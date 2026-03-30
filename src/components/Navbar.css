@@ -1,0 +1,131 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--main);
+  box-shadow: 0 2px 16px rgba(139, 173, 137, 0.12);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.paw-icon {
+  font-size: 1.6rem;
+  animation: pawBounce 2s ease-in-out infinite;
+}
+
+@keyframes pawBounce {
+  0%, 100% { transform: rotate(-10deg) scale(1); }
+  50% { transform: rotate(10deg) scale(1.1); }
+}
+
+.logo-text {
+  font-family: var(--font-script);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--secondary-dark);
+  letter-spacing: 0.02em;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.nav-link {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-pill);
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--secondary-dark);
+  background: var(--secondary-pale);
+}
+
+.nav-link.active {
+  color: var(--text-dark);
+  background: var(--main);
+  box-shadow: 0 4px 12px rgba(139, 173, 137, 0.25);
+  border: 1.5px solid var(--main-dark);
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background: var(--secondary);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+@media (max-width: 640px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .navbar-links {
+    display: none;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    padding: 1rem;
+    border-bottom: 2px solid var(--main);
+    gap: 0.5rem;
+    box-shadow: 0 8px 24px rgba(139, 173, 137, 0.15);
+  }
+
+  .navbar-links.open {
+    display: flex;
+  }
+
+  .nav-link {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem;
+  }
+}

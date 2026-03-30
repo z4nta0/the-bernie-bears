@@ -1,0 +1,231 @@
+.page-header {
+  background: linear-gradient(135deg, var(--main-pale) 0%, var(--main) 50%, var(--secondary-pale) 100%);
+  padding: 5rem 2rem 4rem;
+  text-align: center;
+  border-bottom: 2px solid var(--main-dark);
+}
+
+.page-header h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  margin-bottom: 0.75rem;
+}
+
+.page-header p {
+  font-size: 1.1rem;
+  color: var(--text-mid);
+  font-style: italic;
+}
+
+/* About intro */
+.about-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  padding: 5rem 2rem;
+}
+
+.about-intro-text h2 {
+  font-size: 2.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.about-intro-text p {
+  color: var(--text-mid);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.about-intro-img {
+  display: flex;
+  justify-content: center;
+}
+
+.img-card-placeholder {
+  width: 320px;
+  height: 320px;
+  background: white;
+  border-radius: var(--radius-xl);
+  border: 3px dashed var(--accent-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  box-shadow: var(--shadow-card);
+  color: var(--text-light);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/* Section */
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+/* Dog Cards */
+.meet-the-girls {
+  padding: 2rem 2rem 5rem;
+}
+
+.dog-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.dog-card {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-card);
+  border: 2px solid var(--main);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.dog-card--lilah {
+  border-top: 5px solid var(--secondary);
+}
+
+.dog-card--norah {
+  border-top: 5px solid var(--accent);
+}
+
+.img-placeholder-round {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: var(--main-pale);
+  border: 3px dashed var(--main-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  font-size: 2.5rem;
+  gap: 0.25rem;
+}
+
+.img-placeholder-round p {
+  font-size: 0.7rem;
+  color: var(--text-light);
+  font-style: italic;
+  text-align: center;
+}
+
+.dog-badge {
+  display: inline-block;
+  background: var(--secondary-pale);
+  color: var(--secondary-dark);
+  border-radius: var(--radius-pill);
+  padding: 0.3rem 0.9rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.3rem;
+}
+
+.dog-badge--norah {
+  background: var(--accent-pale);
+  color: var(--accent);
+}
+
+.dog-card-content h3 {
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+}
+
+.dog-card-content p {
+  color: var(--text-mid);
+  line-height: 1.75;
+  font-size: 0.95rem;
+}
+
+.dog-traits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.dog-traits span {
+  background: var(--main-pale);
+  border: 1px solid var(--main);
+  border-radius: var(--radius-pill);
+  padding: 0.35rem 0.8rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-mid);
+}
+
+/* Fun Facts */
+.fun-facts {
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+  padding: 5rem 2rem;
+}
+
+.facts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.fact-card {
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1rem;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  transition: transform 0.25s ease;
+}
+
+.fact-card:hover {
+  transform: translateY(-4px);
+}
+
+.fact-icon {
+  font-size: 2rem;
+}
+
+.fact-value {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: white;
+}
+
+.fact-label {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.75);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-intro {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .dog-cards {
+    grid-template-columns: 1fr;
+  }
+}
