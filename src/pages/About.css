@@ -59,6 +59,12 @@
   font-style: italic;
 }
 
+.groupPhoto {
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+}
+
 /* Section */
 .section-title {
   font-size: clamp(2rem, 4vw, 3rem);
@@ -122,6 +128,13 @@
   color: var(--text-light);
   font-style: italic;
   text-align: center;
+}
+
+.lilahPhoto, .norahPhoto {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .dog-badge {

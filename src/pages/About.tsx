@@ -1,4 +1,7 @@
 import './About.css'
+import groupPhoto from '../assets/group-photo.jpg'
+import lilahPhoto from '../assets/lilah.jpg'
+import norahPhoto from '../assets/norah.jpg'
 
 const About = () => {
   return (
@@ -27,8 +30,9 @@ const About = () => {
         </div>
         <div className="about-intro-img">
           <div className="img-card-placeholder">
-            <span style={{ fontSize: '5rem' }}>🐾</span>
-            <p>Add a group photo here</p>
+            {/*<span style={{ fontSize: '5rem' }}>🐾</span>
+            <p>Add a group photo here</p>*/}
+            <img className='groupPhoto' src={groupPhoto} alt='Cartoonized picture of The Bernie Bears, both Lilah and Norah' />
           </div>
         </div>
       </section>
@@ -44,8 +48,10 @@ const About = () => {
           <div className="dog-card dog-card--lilah">
             <div className="dog-card-img">
               <div className="img-placeholder-round">
-                <span>🌸</span>
-                <p>Lilah's photo</p>
+                {/*<span>🌸</span>
+                <p>Lilah's photo</p>*/}
+                <img className='lilahPhoto' src={lilahPhoto} alt='Picture of Lilah, the older sister' />
+
               </div>
             </div>
             <div className="dog-card-content">
@@ -69,8 +75,10 @@ const About = () => {
           <div className="dog-card dog-card--norah">
             <div className="dog-card-img">
               <div className="img-placeholder-round">
-                <span>🌺</span>
-                <p>Norah's photo</p>
+                {/*<span>🌺</span>
+                <p>Norah's photo</p>*/}
+                <img className='norahPhoto' src={norahPhoto} alt='Picture of Norah, the younger sister' />
+
               </div>
             </div>
             <div className="dog-card-content">
