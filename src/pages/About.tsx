@@ -13,7 +13,7 @@ const About = () => {
       </section>
 
       {/* Main intro */}
-      <section className="about-intro container">
+      <section className="about-intro">
         <div className="about-intro-text">
           <h2>The Bernie Bears Story</h2>
           <p>
@@ -40,7 +40,7 @@ const About = () => {
       <div className="paw-divider">🐾 🐾 🐾</div>
 
       {/* Meet Each Dog */}
-      <section className="meet-the-girls container">
+      <section className="meet-the-girls">
         <h2 className="section-title">Meet Lilah & Norah</h2>
 
         <div className="dog-cards">

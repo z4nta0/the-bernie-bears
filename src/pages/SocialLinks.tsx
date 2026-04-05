@@ -48,7 +48,7 @@ const SocialLinks = () => {
         <p>Find Lilah & Norah on all their favorite platforms</p>
       </section>
 
-      <section className="links-section container">
+      <section className="links-section">
         <p className="links-intro">
           Whether you love long videos, quick clips, or scrolling through adorable photos,
           there's a place for every kind of Bernie Bears fan. 🐾

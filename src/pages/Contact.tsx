@@ -27,7 +27,7 @@ const Contact = () => {
         <p>We'd love to hear from you — Lilah & Norah are always listening 🐾</p>
       </section>
 
-      <section className="contact-section container">
+      <section className="contact-section">
         <div className="contact-grid">
 
           {/* Info panel */}

@@ -23,6 +23,8 @@
   gap: 4rem;
   align-items: center;
   padding: 5rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .about-intro-text h2 {
@@ -75,6 +77,8 @@
 /* Dog Cards */
 .meet-the-girls {
   padding: 2rem 2rem 5rem;
+  max-width: 1100px;
+    margin: 0 auto;
 }
 
 .dog-cards {
