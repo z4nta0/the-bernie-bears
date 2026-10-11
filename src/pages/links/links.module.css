@@ -143,7 +143,7 @@
 
 
 }
-.socCarAnc::before { /* What: Social Card Anchor Stripe. Why: Each card is marked with its brand color. How: This draws a 5px stripe down the card's left edge in the color the card hands it through --soc-car-col. */
+.socCarAnc::before { /* What: Social Card Anchor Stripe. Why: Each card is marked with its brand color. How: This draws a stripe about 4.7px wide down the card's left edge in the color the card hands it through --soc-car-col. */
 
 
 	background    : var( --soc-car-col );
@@ -194,7 +194,7 @@
 
 }
 
-.socIcoDiv { /* What: Social Icon Div. Why: Each card opens with its platform's mark on a pale tile. How: This sizes a 64px rounded tile, centers the icon in it, and keeps it from shrinking, its font size setting the icon's. */
+.socIcoDiv { /* What: Social Icon Div. Why: Each card opens with its platform's mark on a pale tile. How: This sizes a rounded tile about 59px square, centers the icon in it, and keeps it from shrinking, its font size setting the icon's. */
 
 
 	align-items     : center;
@@ -208,10 +208,10 @@
 
 
 }
-@media ( max-width : 640px ) { /* What: Narrow Social Icon Div. Why: A 64px tile crowds a narrow card. How: This applies 640px wide and below. */
+@media ( max-width : 640px ) { /* What: Narrow Social Icon Div. Why: A full-size tile crowds a narrow card. How: This applies 640px wide and below. */
 
 
-	.socIcoDiv { /* What: Smaller Social Icon Div. Why: The tile should shrink with the card. How: This sizes it to 50px, with a smaller icon. */
+	.socIcoDiv { /* What: Smaller Social Icon Div. Why: The tile should shrink with the card. How: This sizes it to about 45px, with a smaller icon. */
 
 
 		font-size : var( --fon-siz-p03 );                /* Font Size Base Plus 3 ~= 25.572px */

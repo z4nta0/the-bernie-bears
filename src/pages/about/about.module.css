@@ -304,7 +304,7 @@
 
 /* #region sisFraDiv */
 
-.sisFraDiv { /* What: Sister Frame Div. Why: Each sister's photo sits in a round frame. How: This centers a 160px pale cream circle with a dashed cream edge and centers the photo in it. */
+.sisFraDiv { /* What: Sister Frame Div. Why: Each sister's photo sits in a round frame. How: This centers a pale cream circle about 138px across with a dashed cream edge and centers the photo in it. */
 
 
 	align-items     : center;
@@ -323,7 +323,7 @@
 
 }
 
-.sisPhoIma { /* What: Sister Photo Image. Why: Each photo fills most of its round frame. How: This crops it to a 150px circle. */
+.sisPhoIma { /* What: Sister Photo Image. Why: Each photo fills most of its round frame. How: This crops it to a circle about 130px across. */
 
 
 	border-radius : 50%;
