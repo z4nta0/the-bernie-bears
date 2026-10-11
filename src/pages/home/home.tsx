@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 import './home.css'
-import portraitBoth from '../../assets/portrait-both.jpg'
+import portraitBoth from './portrait-both.jpg'
 
 const Home = () => {
   return (
