@@ -87,11 +87,11 @@
 .footer-link { /* What: Footer Link. Why: The links should read clearly on the dark band. How: This sets them small and bold in cream, with no underline, easing their color. */
 
 
-	color           : var( --bac-pag-col ); /* Background Page Color = #f7f7e2 */
-	font-size       : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	color           : var( --bac-pag-col );                            /* Background Page Color = #f7f7e2 */
+	font-size       : var( --fon-siz-p01 );                            /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight     : 600;
 	text-decoration : none;
-	transition      : color 0.2s;
+	transition      : color var( --dur-tra-p01 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease */
 
 
 }

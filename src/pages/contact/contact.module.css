@@ -25,7 +25,7 @@
 .page-enter { /* What: Page Enter Wrapper. Why: The page should arrive gently rather than appear at once. How: This plays the shared fade-up once as the page mounts, holding its first frame until it starts. */
 
 
-	animation : global( fadeInUp ) 0.55s ease both;
+	animation : global( fadeInUp ) var( --dur-ani-p05 ) var( --mot-sta-eas ) both; /* Duration Animation Base Plus 5 ~= 643.9ms, Motion Standard Easing = ease */
 
 
 }
@@ -330,17 +330,17 @@
 
 
 	align-items     : center;
-	border          : var( --bor-wid-lar ) solid transparent;    /* Border Width Large ~= 2.035px */
+	border          : var( --bor-wid-lar ) solid transparent;        /* Border Width Large ~= 2.035px */
 	border-radius   : 999px;
 	cursor          : pointer;
 	display         : inline-flex;
-	font-family     : var( --fon-fam-mai );                      /* Font Family Main = 'Nunito', sans-serif */
-	font-size       : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
+	font-family     : var( --fon-fam-mai );                          /* Font Family Main = 'Nunito', sans-serif */
+	font-size       : var( --fon-siz-p01 );                          /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight     : 700;
-	gap             : var( --spa-hor-m03 );                      /* Spacing Horizontal Base Minus 3 ~= 6.268px */
-	padding         : var( --spa-ver-bas ) var( --spa-hor-p03 ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	gap             : var( --spa-hor-m03 );                          /* Spacing Horizontal Base Minus 3 ~= 6.268px */
+	padding         : var( --spa-ver-bas ) var( --spa-hor-p03 );     /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	text-decoration : none;
-	transition      : all 0.25s ease;
+	transition      : all var( --dur-tra-p02 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
 
 
 }

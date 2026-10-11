@@ -25,7 +25,7 @@
 .page-enter { /* What: Page Enter Wrapper. Why: The page should arrive gently rather than appear at once. How: This plays the shared fade-up once as the page mounts, holding its first frame until it starts. */
 
 
-	animation : global( fadeInUp ) 0.55s ease both;
+	animation : global( fadeInUp ) var( --dur-ani-p05 ) var( --mot-sta-eas ) both; /* Duration Animation Base Plus 5 ~= 643.9ms, Motion Standard Easing = ease */
 
 
 }
@@ -139,7 +139,7 @@
 	padding         : var( --spa-ver-p02 ) var( --spa-hor-p03 );       /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	position        : relative;
 	text-decoration : none;
-	transition      : all 0.3s ease;
+	transition      : all var( --dur-tra-p02 ) var( --mot-sta-eas );   /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
 
 
 }
@@ -276,9 +276,9 @@
 
 
 	flex-shrink : 0;
-	font-size   : var( --fon-siz-p03 ); /* Font Size Base Plus 3 ~= 25.572px */
+	font-size   : var( --fon-siz-p03 );                                /* Font Size Base Plus 3 ~= 25.572px */
 	font-weight : 700;
-	transition  : transform 0.2s ease;
+	transition  : transform var( --dur-tra-p01 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease */
 
 
 }
