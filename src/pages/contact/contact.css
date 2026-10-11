@@ -1,3 +1,54 @@
+/* Buttons (from the old global home.css, until this page gets its own module) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.85rem 2rem;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  transition: all 0.25s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--secondary);
+  color: white;
+  box-shadow: 0 6px 24px rgba(209, 175, 226, 0.4);
+}
+
+.btn-primary:hover {
+  background: var(--secondary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(209, 175, 226, 0.5);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.btn-outline:hover {
+  background: var(--accent-pale);
+  transform: translateY(-2px);
+}
+
+.btn-white {
+  background: white;
+  color: var(--secondary-dark);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+}
+
+.btn-white:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(0,0,0,0.18);
+}
+
+
 .contact-section {
   padding: 5rem 2rem;
   max-width: 1100px;

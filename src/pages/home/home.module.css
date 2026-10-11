@@ -1,0 +1,684 @@
+
+
+
+/**
+ * home.module.css = Home Page Module
+ *
+ * @summary
+ * Styles for HomPagCom: the page fading up into place, the hero's welcome
+ * beside the girls' portrait on a morphing blob with two floating name
+ * badges, the row of paw prints, the four feature cards that lift on hover,
+ * and the gradient banner at the end. The pill buttons are shared by the hero
+ * and the banner. The features section and the banner's column take the
+ * page's shared container values, which have always set the section's
+ * padding, and the section title's bottom margin is the About page's, which
+ * has always won on both pages. Every animation and transition is off under
+ * reduced motion.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region page-enter */
+
+.page-enter { /* What: Page Enter Wrapper. Why: The page should arrive gently rather than appear at once. How: This plays the shared fade-up once as the page mounts, holding its first frame until it starts. */
+
+
+	animation : global(fadeInUp) 0.55s ease both;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Page Enter Wrapper. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.page-enter { /* What: Still Page Enter Wrapper. Why: The page should simply appear. How: This turns the animation off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+
+
+/* #region hero */
+
+.hero { /* What: Hero Section. Why: The home page opens with the welcome beside the girls' portrait. How: This sets the two side by side in a centered grid nearly as tall as the screen. */
+
+
+	align-items           : center;
+	display               : grid;
+	gap                   : 3rem;
+	grid-template-columns : 1fr 1fr;
+	margin                : 0 auto;
+	max-width             : 1200px;
+	min-height            : 88vh;
+	padding               : 5rem 4rem;
+
+
+}
+@media ( max-width : 768px ) { /* What: Narrow Hero Section. Why: The two columns don't fit side by side on a narrow screen. How: This applies 768px wide and below. */
+
+
+	.hero { /* What: Stacked Hero Section. Why: A narrow screen reads the welcome above the portrait. How: This stacks them in one centered column, trims the padding, and lets the height follow the content. */
+
+
+		grid-template-columns : 1fr;
+		min-height            : auto;
+		padding               : 3rem 1.5rem;
+		text-align            : center;
+
+
+	}
+
+
+}
+
+.hero-eyebrow { /* What: Hero Eyebrow. Why: A short line leads into the title. How: This sets it small, bold, sage, spaced, and uppercase. */
+
+
+	color          : var(--accent);
+	font-size      : 1rem;
+	font-weight    : 600;
+	letter-spacing : 0.1em;
+	margin-bottom  : 0.5rem;
+	text-transform : uppercase;
+
+
+}
+
+.hero-title { /* What: Hero Title. Why: The girls' brand name is the page's headline. How: This sets it very large in deep lavender, growing with the screen, tightly leaded, with a soft lavender glow. */
+
+
+	color         : var(--secondary-dark);
+	font-size     : clamp(3rem, 6vw, 5.5rem);
+	line-height   : 1.05;
+	margin-bottom : 1.2rem;
+	text-shadow   : 2px 4px 16px rgba(209, 175, 226, 0.3);
+
+
+}
+
+.hero-sub { /* What: Hero Sub Line. Why: The pitch says who the girls are. How: This sets it a little large in the mid grey, airy, and no wider than a comfortable line. */
+
+
+	color         : var(--text-mid);
+	font-size     : 1.1rem;
+	line-height   : 1.7;
+	margin-bottom : 2rem;
+	max-width     : 480px;
+
+
+}
+@media ( max-width : 768px ) { /* What: Narrow Hero Sub Line. Why: The stacked hero centers its pitch across the column. How: This applies 768px wide and below. */
+
+
+	.hero-sub { /* What: Full Width Hero Sub Line. Why: A width cap would leave the centered pitch off balance. How: This lets it span the column. */
+
+
+		max-width : 100%;
+
+
+	}
+
+
+}
+
+
+/* #region hero-buttons */
+
+.hero-buttons { /* What: Hero Buttons. Why: The two ways onward sit together. How: This sets them in a row that wraps. */
+
+
+	display   : flex;
+	flex-wrap : wrap;
+	gap       : 1rem;
+
+
+}
+@media ( max-width : 768px ) { /* What: Narrow Hero Buttons. Why: The stacked hero is centered. How: This applies 768px wide and below. */
+
+
+	.hero-buttons { /* What: Centered Hero Buttons. Why: The buttons should sit under the centered pitch. How: This centers the row. */
+
+
+		justify-content : center;
+
+
+	}
+
+
+}
+
+.btn { /* What: Button. Why: The page's actions read as bold pills, shared by the hero and the banner. How: This sets a pill with bold text, a transparent border its variants can color, and an eased change on hover. */
+
+
+	align-items     : center;
+	border          : 2px solid transparent;
+	border-radius   : var(--radius-pill);
+	cursor          : pointer;
+	display         : inline-flex;
+	font-family     : var(--font-body);
+	font-size       : 0.95rem;
+	font-weight     : 700;
+	gap             : 0.4rem;
+	padding         : 0.85rem 2rem;
+	text-decoration : none;
+	transition      : all 0.25s ease;
+
+
+}
+.btn-primary { /* What: Primary Button. Why: The main action should stand out. How: This fills the pill lavender with white text and a soft lavender shadow. */
+
+
+	background : var(--secondary);
+	box-shadow : 0 6px 24px rgba(209, 175, 226, 0.4);
+	color      : white;
+
+
+}
+.btn-primary:hover { /* What: Hovered Primary Button. Why: A button should respond to the pointer. How: This deepens the lavender, lifts the pill 2px, and spreads its shadow. */
+
+
+	background : var(--secondary-dark);
+	box-shadow : 0 10px 32px rgba(209, 175, 226, 0.5);
+	transform  : translateY(-2px);
+
+
+}
+.btn-outline { /* What: Outline Button. Why: The second action should read as lighter than the first. How: This leaves the pill clear with sage text and a sage border. */
+
+
+	background   : transparent;
+	border-color : var(--accent);
+	color        : var(--accent);
+
+
+}
+.btn-outline:hover { /* What: Hovered Outline Button. Why: A button should respond to the pointer. How: This tints the pill pale sage and lifts it 2px. */
+
+
+	background : var(--accent-pale);
+	transform  : translateY(-2px);
+
+
+}
+.btn-white { /* What: White Button. Why: The banner's action sits on a colored gradient. How: This fills the pill white with deep lavender text and a soft shadow. */
+
+
+	background : white;
+	box-shadow : 0 6px 24px rgba(0,0,0,0.12);
+	color      : var(--secondary-dark);
+
+
+}
+.btn-white:hover { /* What: Hovered White Button. Why: A button should respond to the pointer. How: This lifts the pill 2px and spreads its shadow. */
+
+
+	box-shadow : 0 10px 32px rgba(0,0,0,0.18);
+	transform  : translateY(-2px);
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button. Why: Someone who asked for less motion shouldn't see the buttons animate. How: This applies only when the reduced-motion preference is set. */
+
+
+	.btn { /* What: Motionless Button. Why: The hover looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion hero-buttons */
+
+
+/* #region hero-image-wrap */
+
+.hero-image-wrap { /* What: Hero Image Wrap. Why: The portrait sits centered on its blob, with the badges placed around it. How: This centers its contents in a 460px tall box that the blob and badges position against. */
+
+
+	align-items     : center;
+	display         : flex;
+	height          : 460px;
+	justify-content : center;
+	position        : relative;
+
+
+}
+@media ( max-width : 768px ) { /* What: Narrow Hero Image Wrap. Why: The portrait shrinks on a narrow screen. How: This applies 768px wide and below. */
+
+
+	.hero-image-wrap { /* What: Shorter Hero Image Wrap. Why: The smaller portrait needs less room. How: This trims the box to 320px tall. */
+
+
+		height : 320px;
+
+
+	}
+
+
+}
+
+.hero-blob { /* What: Hero Blob. Why: A soft shape behind the portrait adds warmth. How: This draws a cream to sage to lavender blob behind the portrait and morphs its outline slowly, forever. */
+
+
+	animation     : blobMorph 8s ease-in-out infinite;
+	background    : radial-gradient(ellipse at 40% 40%, var(--main) 0%, var(--accent-pale) 60%, var(--secondary-pale) 100%);
+	border-radius : 60% 40% 55% 45% / 50% 60% 40% 50%;
+	height        : 420px;
+	position      : absolute;
+	width         : 420px;
+	z-index       : 0;
+
+
+}
+@media ( max-width : 768px ) { /* What: Narrow Hero Blob. Why: The blob shrinks with the portrait. How: This applies 768px wide and below. */
+
+
+	.hero-blob { /* What: Smaller Hero Blob. Why: The blob should match the smaller portrait. How: This sizes it to 280px. */
+
+
+		height : 280px;
+		width  : 280px;
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hero Blob. Why: Someone who asked for less motion shouldn't see the blob morph. How: This applies only when the reduced-motion preference is set. */
+
+
+	.hero-blob { /* What: Still Hero Blob. Why: The blob should simply hold its shape. How: This turns the animation off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+@keyframes blobMorph { /* What: Blob Morph. Why: The blob's outline shifts so the hero feels alive. How: This moves through three soft outlines and back to the first. */
+
+
+	0%,
+	100% {
+
+
+		border-radius : 60% 40% 55% 45% / 50% 60% 40% 50%;
+
+
+	}
+
+	33% {
+
+
+		border-radius : 40% 60% 45% 55% / 60% 40% 60% 40%;
+
+
+	}
+
+	66% {
+
+
+		border-radius : 55% 45% 60% 40% / 40% 55% 45% 60%;
+
+
+	}
+
+
+}
+
+
+/* #region hero-img-frame */
+
+.hero-img-frame { /* What: Hero Image Frame. Why: The portrait sits in a rounded white frame above the blob. How: This sizes a 360px rounded square with a white border and a soft shadow, clipping the photo to it. */
+
+
+	border        : 4px solid white;
+	border-radius : var(--radius-xl);
+	box-shadow    : var(--shadow-card);
+	height        : 360px;
+	overflow      : hidden;
+	position      : relative;
+	width         : 360px;
+	z-index       : 1;
+
+
+}
+@media ( max-width : 768px ) { /* What: Narrow Hero Image Frame. Why: The portrait shrinks on a narrow screen. How: This applies 768px wide and below. */
+
+
+	.hero-img-frame { /* What: Smaller Hero Image Frame. Why: A 360px frame crowds a narrow screen. How: This sizes it to 280px. */
+
+
+		height : 280px;
+		width  : 280px;
+
+
+	}
+
+
+}
+
+.hero-img { /* What: Hero Image. Why: The photo fills its frame. How: This covers the frame, centered, cropping what doesn't fit. */
+
+
+	display         : block;
+	height          : 100%;
+	object-fit      : cover;
+	object-position : center 50%;
+	width           : 100%;
+
+
+}
+
+/* #endregion hero-img-frame */
+
+
+.floating-badge { /* What: Floating Badge. Why: The badges name the girls in the portrait. How: This sets each name as a white pill with a lavender border above the portrait, bobbing gently, forever. */
+
+
+	animation     : badgeFloat 3s ease-in-out infinite;
+	background    : white;
+	border        : 2px solid var(--accent-light);
+	border-radius : var(--radius-pill);
+	box-shadow    : var(--shadow-soft);
+	color         : var(--secondary-dark);
+	font-size     : 0.9rem;
+	font-weight   : 700;
+	padding       : 0.4rem 1rem;
+	position      : absolute;
+	z-index       : 2;
+
+
+}
+.floating-badge--1 { /* What: First Floating Badge. Why: Lilah's badge sits by the portrait's upper left. How: This places it there and starts its bob at once. */
+
+
+	animation-delay : 0s;
+	left            : -5%;
+	top             : 15%;
+
+
+}
+@media ( max-width : 768px ) { /* What: Narrow First Floating Badge. Why: A badge past the frame's edge would leave a narrow screen. How: This applies 768px wide and below. */
+
+
+	.floating-badge--1 { /* What: Inset First Floating Badge. Why: The badge should stay on screen. How: This aligns it with the box's left edge. */
+
+
+		left : 0;
+
+
+	}
+
+
+}
+.floating-badge--2 { /* What: Second Floating Badge. Why: Norah's badge sits by the portrait's lower right. How: This places it there and starts its bob half a cycle after Lilah's. */
+
+
+	animation-delay : 1.5s;
+	bottom          : 15%;
+	right           : -5%;
+
+
+}
+@media ( max-width : 768px ) { /* What: Narrow Second Floating Badge. Why: A badge past the frame's edge would leave a narrow screen. How: This applies 768px wide and below. */
+
+
+	.floating-badge--2 { /* What: Inset Second Floating Badge. Why: The badge should stay on screen. How: This aligns it with the box's right edge. */
+
+
+		right : 0;
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Floating Badge. Why: Someone who asked for less motion shouldn't see the badges bob. How: This applies only when the reduced-motion preference is set. */
+
+
+	.floating-badge { /* What: Still Floating Badge. Why: The badges should simply sit by the portrait. How: This turns the animation off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+@keyframes badgeFloat { /* What: Badge Float. Why: The badges bob so the hero feels alive. How: This lifts a badge 8px at the halfway point and settles it back. */
+
+
+	0%,
+	100% {
+
+
+		transform : translateY(0);
+
+
+	}
+
+	50% {
+
+
+		transform : translateY(-8px);
+
+
+	}
+
+
+}
+
+/* #endregion hero-image-wrap */
+
+/* #endregion hero */
+
+
+
+.paw-divider { /* What: Paw Divider. Why: A row of paw prints separates the hero from the cards. How: This centers three widely spaced sage paws, a little faded, with room above and below. */
+
+
+	color          : var(--accent);
+	font-size      : 1.4rem;
+	letter-spacing : 0.5rem;
+	margin         : 2rem 0;
+	opacity        : 0.7;
+	text-align     : center;
+
+
+}
+
+
+
+/* #region features */
+
+.features { /* What: Features Section. Why: The cards sit in the page's centered column. How: This holds the section within the page's 1,100px column and its side padding, the shared container values that have always set its padding. */
+
+
+	margin    : 0 auto;
+	max-width : 1100px;
+	padding   : 0 2rem;
+
+
+}
+
+.section-title { /* What: Section Title. Why: The cards need a heading. How: This centers it large, growing with the screen, with the About page's bottom margin, which has always won on this page too. */
+
+
+	font-size     : clamp(2rem, 4vw, 3rem);
+	margin-bottom : 2.5rem;
+	text-align    : center;
+
+
+}
+
+.section-sub { /* What: Section Sub Line. Why: A short line sets up the cards. How: This centers it in the mid grey, no wider than a comfortable line, with room below. */
+
+
+	color         : var(--text-mid);
+	font-size     : 1rem;
+	margin-bottom : 3rem;
+	margin-left   : auto;
+	margin-right  : auto;
+	max-width     : 560px;
+	text-align    : center;
+
+
+}
+
+
+/* #region features-grid */
+
+.features-grid { /* What: Features Grid. Why: The cards should fill the row and wrap on a narrow screen. How: This fits as many 220px columns as the row allows. */
+
+
+	display               : grid;
+	gap                   : 1.5rem;
+	grid-template-columns : repeat(auto-fit, minmax(220px, 1fr));
+
+
+}
+
+
+/* #region feature-card */
+
+.feature-card { /* What: Feature Card. Why: Each card sums up one part of life with the girls. How: This sets a centered white card with rounded corners, a cream border, and a soft shadow, easing every change. */
+
+
+	background    : white;
+	border        : 1px solid var(--main);
+	border-radius : var(--radius-lg);
+	box-shadow    : var(--shadow-card);
+	padding       : 2rem 1.5rem;
+	text-align    : center;
+	transition    : all 0.3s ease;
+
+
+}
+.feature-card:hover { /* What: Hovered Feature Card. Why: A card should respond to the pointer. How: This lifts it 6px, deepens its shadow, and tints its border lavender. */
+
+
+	border-color : var(--accent-light);
+	box-shadow   : var(--shadow-hover);
+	transform    : translateY(-6px);
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Feature Card. Why: Someone who asked for less motion shouldn't see the cards rise. How: This applies only when the reduced-motion preference is set. */
+
+
+	.feature-card { /* What: Motionless Feature Card. Why: The hover look should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.feature-emoji { /* What: Feature Emoji. Why: Each card opens with a large emoji. How: This sizes it with room below. */
+
+
+	font-size     : 2.5rem;
+	margin-bottom : 1rem;
+
+
+}
+
+.feature-card-title { /* What: Feature Card Title. Why: Each card is named. How: This sets the name a little large with a small gap below. */
+
+
+	font-size     : 1.3rem;
+	margin-bottom : 0.6rem;
+
+
+}
+
+.feature-card-text { /* What: Feature Card Text. Why: Each card says a little more. How: This sets its sentence small and airy in the mid grey. */
+
+
+	color       : var(--text-mid);
+	font-size   : 0.9rem;
+	line-height : 1.65;
+
+
+}
+
+/* #endregion feature-card */
+
+/* #endregion features-grid */
+
+/* #endregion features */
+
+
+
+/* #region cta-banner */
+
+.cta-banner { /* What: Call To Action Banner. Why: The page ends by sending visitors to follow the girls. How: This fills a centered band with a lavender to sage gradient, with room above it. */
+
+
+	background : linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+	margin-top : 4rem;
+	padding    : 5rem 2rem;
+	text-align : center;
+
+
+}
+
+
+/* #region container */
+
+.container { /* What: Banner Container. Why: The banner's content sits in the page's centered column. How: This holds it within the page's 1,100px column and its side padding, the shared container values. */
+
+
+	margin    : 0 auto;
+	max-width : 1100px;
+	padding   : 0 2rem;
+
+
+}
+
+.cta-banner-title { /* What: Call To Action Banner Title. Why: The invitation should read on the gradient. How: This sets it large and white, growing with the screen. */
+
+
+	color         : white;
+	font-size     : clamp(2rem, 4vw, 3rem);
+	margin-bottom : 1rem;
+
+
+}
+
+.cta-banner-text { /* What: Call To Action Banner Text. Why: The line under the invitation should read on the gradient too. How: This sets it a little large in nearly opaque white, with room below. */
+
+
+	color         : rgba(255,255,255,0.92);
+	font-size     : 1.05rem;
+	margin-bottom : 2rem;
+
+
+}
+
+/* #endregion container */
+
+/* #endregion cta-banner */
+
+/* #endregion page-enter */
+
+

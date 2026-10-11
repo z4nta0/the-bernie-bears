@@ -3,13 +3,11 @@
 
 // #region Imports
 
+import cssModObj from './home.module.css';   // What: CSS Module Object. Why: The home page is styled in its own module, whose class names Vite hashes. How: Every element reads its class from this object.
 import porJpgUrl from './portrait-both.jpg'; // What: Portrait JPG URL. Why: The hero shows Lilah and Norah together, and Vite fingerprints and checks an imported image. How: This imports the photo's built URL for the hero's img.
 
 
 import { Link } from 'react-router'; // What: Link. Why: The hero and banner buttons move to other pages without a full page load. How: This renders each button as a router link.
-
-
-import './home.css'; // What: Home Stylesheet Import. Why: The home page's own styles live beside it. How: This is imported purely for its side effect, adding its rules to the page.
 
 // #endregion Imports
 
@@ -144,35 +142,37 @@ function HomPagCom () : React.JSX.Element {
 	return (
 
 
-		<div className='home page-enter'>{ /* What: Home Page Div Element. Why: The home page fades up into place like every other page. How: This holds the page's sections. */ }
+		<div className={ cssModObj.pageEnter }>{ /* What: Home Page Div Element. Why: The home page fades up into place like every other page. How: This holds the page's sections. */ }
 
 
-			<section className='hero'>{ /* What: Hero Section Element. Why: The home page opens by introducing the girls. How: This sets the words and the portrait side by side. */ }
+			<section className={ cssModObj.hero }>{ /* What: Hero Section Element. Why: The home page opens by introducing the girls. How: This sets the words and the portrait side by side. */ }
 
 
-				<div className='hero-content'>{ /* What: Hero Content Div Element. Why: The welcome reads as one column. How: This stacks the eyebrow, title, pitch, and buttons. */ }
+				<div>{ /* What: Hero Content Div Element. Why: The welcome reads as one column. How: This stacks the eyebrow, title, pitch, and buttons, with no styling of its own. */ }
 
 
-					<p className='hero-eyebrow'>Welcome to the world of</p>{ /* What: Hero Eyebrow Paragraph Element. Why: A short line leads into the title. How: This shows it above the title. */ }
+					<p className={ cssModObj.heroEyebrow }>Welcome to the world of</p>{ /* What: Hero Eyebrow Paragraph Element. Why: A short line leads into the title. How: This shows it above the title. */ }
 
-					<h1 className='hero-title'>The Bernie Bears</h1>{ /* What: Hero Title Heading Element. Why: The page's heading names the girls' brand. How: This shows it in the script font. */ }
+					<h1 className={ cssModObj.heroTitle }>The Bernie Bears</h1>{ /* What: Hero Title Heading Element. Why: The page's heading names the girls' brand. How: This shows it in the script font. */ }
 
-					<p className='hero-sub'>{ /* What: Hero Sub Paragraph Element. Why: A short pitch says who the girls are. How: This shows it under the title, ending in a paw print hidden from screen readers. */ }
+					<p className={ cssModObj.heroSub }>{ /* What: Hero Sub Paragraph Element. Why: A short pitch says who the girls are. How: This shows it under the title, ending in a paw print hidden from screen readers. */ }
 						Meet Lilah & Norah, two adorable Bernese Mountain Dog sisters bringing
 						laughter, love, bear hugs, and the occasional dramatic outfit to your feed. <span aria-hidden='true'>🐾</span>
 					</p>
 
-					<div className='hero-buttons'>{ /* What: Hero Buttons Div Element. Why: The two main ways onward sit together. How: This sets the buttons in a row. */ }
+					<div className={ cssModObj.heroButtons }>{ /* What: Hero Buttons Div Element. Why: The two main ways onward sit together. How: This sets the buttons in a row. */ }
 
 
 						<Link
-							className='btn btn-primary'
+							className={` ${ cssModObj.btn }   ${ cssModObj.btnPrimary } `}
 
 							to='/about'
 						>Meet the Girls</Link>{ /* What: Meet The Girls Link. Why: Visitors want to know the girls first. How: This routes to the About page. */ }
 
+
+
 						<Link
-							className='btn btn-outline'
+							className={` ${ cssModObj.btn }   ${ cssModObj.btnOutline } `}
 
 							to='/links'
 						>Follow Along</Link>{ /* What: Follow Along Link. Why: Following the girls is the site's main purpose. How: This routes to the Social Links page. */ }
@@ -185,16 +185,16 @@ function HomPagCom () : React.JSX.Element {
 
 
 
-				<div className='hero-image-wrap'>{ /* What: Hero Image Wrap Div Element. Why: The portrait sits on a soft blob with the girls' names floating beside it. How: This holds the blob, the framed portrait, and the two badges. */ }
+				<div className={ cssModObj.heroImageWrap }>{ /* What: Hero Image Wrap Div Element. Why: The portrait sits on a soft blob with the girls' names floating beside it. How: This holds the blob, the framed portrait, and the two badges. */ }
 
 
-					<div className='hero-blob' />{ /* What: Hero Blob Div Element. Why: A soft shape behind the portrait adds warmth. How: This draws a morphing blob. */ }
+					<div className={ cssModObj.heroBlob } />{ /* What: Hero Blob Div Element. Why: A soft shape behind the portrait adds warmth. How: This draws a morphing blob. */ }
 
-					<div className='hero-img-frame'>{ /* What: Hero Image Frame Div Element. Why: The portrait sits in a rounded frame. How: This frames the image. */ }
+					<div className={ cssModObj.heroImgFrame }>{ /* What: Hero Image Frame Div Element. Why: The portrait sits in a rounded frame. How: This frames the image. */ }
 
 
 						<img
-							className='hero-img'
+							className={ cssModObj.heroImg }
 
 							src={ porJpgUrl }
 
@@ -204,9 +204,9 @@ function HomPagCom () : React.JSX.Element {
 
 					</div>
 
-					<div className='floating-badge floating-badge--1'><span aria-hidden='true'>🌸</span> Lilah</div>{ /* What: Lilah Floating Badge Div Element. Why: The badges name the girls in the portrait. How: This floats Lilah's name beside it, after a flower hidden from screen readers. */ }
+					<div className={` ${ cssModObj.floatingBadge }   ${ cssModObj.floatingBadge1 } `}><span aria-hidden='true'>🌸</span> Lilah</div>{ /* What: Lilah Floating Badge Div Element. Why: The badges name the girls in the portrait. How: This floats Lilah's name beside it, after a flower hidden from screen readers. */ }
 
-					<div className='floating-badge floating-badge--2'><span aria-hidden='true'>🌺</span> Norah</div>{ /* What: Norah Floating Badge Div Element. Why: The badges name the girls in the portrait. How: This floats Norah's name beside it, half a cycle behind Lilah's, after a flower hidden from screen readers. */ }
+					<div className={` ${ cssModObj.floatingBadge }   ${ cssModObj.floatingBadge2 } `}><span aria-hidden='true'>🌺</span> Norah</div>{ /* What: Norah Floating Badge Div Element. Why: The badges name the girls in the portrait. How: This floats Norah's name beside it, half a cycle behind Lilah's, after a flower hidden from screen readers. */ }
 
 
 				</div>
@@ -217,22 +217,22 @@ function HomPagCom () : React.JSX.Element {
 
 
 			<div
-				className='paw-divider'
+				className={ cssModObj.pawDivider }
 
 				aria-hidden='true'
 			>🐾 🐾 🐾</div>{ /* What: Paw Divider Div Element. Why: A row of paw prints separates the hero from the cards. How: This shows three paws, hidden from screen readers as decoration. */ }
 
 
 
-			<section className='features container'>{ /* What: Features Section Element. Why: The page sums up life with the girls. How: This holds the heading, its subtitle, and the cards. */ }
+			<section className={ cssModObj.features }>{ /* What: Features Section Element. Why: The page sums up life with the girls. How: This holds the heading, its subtitle, and the cards. */ }
 
 
-				<h2 className='section-title'>Life with the Bernie Bears</h2>{ /* What: Section Title Heading Element. Why: The cards need a heading. How: This names the section. */ }
+				<h2 className={ cssModObj.sectionTitle }>Life with the Bernie Bears</h2>{ /* What: Section Title Heading Element. Why: The cards need a heading. How: This names the section. */ }
 
-				<p className='section-sub'>Every day is an adventure when you've got fluffy ears and a flair for drama</p>{ /* What: Section Sub Paragraph Element. Why: A short line sets up the cards. How: This shows it under the heading. */ }
+				<p className={ cssModObj.sectionSub }>Every day is an adventure when you've got fluffy ears and a flair for drama</p>{ /* What: Section Sub Paragraph Element. Why: A short line sets up the cards. How: This shows it under the heading. */ }
 
 
-				<div className='features-grid'>{ /* What: Features Grid Div Element. Why: The cards sit in a grid that wraps on narrow screens. How: This lays them out. */ }
+				<div className={ cssModObj.featuresGrid }>{ /* What: Features Grid Div Element. Why: The cards sit in a grid that wraps on narrow screens. How: This lays them out. */ }
 
 
 					{ FEA_CAR_ARR.map( ( feaCarObj ) => ( // What: Feature Card Map. Why: Each row of FEA_CAR_ARR gets a card. How: This renders one card per row.
@@ -241,19 +241,19 @@ function HomPagCom () : React.JSX.Element {
 						<div
 							key={ feaCarObj.titStr }
 
-							className='feature-card'
+							className={ cssModObj.featureCard }
 						>{ /* What: Feature Card Div Element. Why: Each card sums up one part of life with the girls. How: This stacks the card's emoji, title, and sentence. */ }
 
 
 							<div
-								className='feature-emoji'
+								className={ cssModObj.featureEmoji }
 
 								aria-hidden='true'
 							>{ feaCarObj.emoStr }</div>{ /* What: Feature Emoji Div Element. Why: Each card opens with an emoji. How: This shows the row's emoji, hidden from screen readers as decoration. */ }
 
-							<h3>{ feaCarObj.titStr }</h3>{ /* What: Feature Card Heading Element. Why: Each card is named. How: This shows the row's title. */ }
+							<h3 className={ cssModObj.featureCardTitle }>{ feaCarObj.titStr }</h3>{ /* What: Feature Card Heading Element. Why: Each card is named. How: This shows the row's title. */ }
 
-							<p>{ feaCarObj.desStr }</p>{ /* What: Feature Card Paragraph Element. Why: Each card says a little more. How: This shows the row's sentence. */ }
+							<p className={ cssModObj.featureCardText }>{ feaCarObj.desStr }</p>{ /* What: Feature Card Paragraph Element. Why: Each card says a little more. How: This shows the row's sentence. */ }
 
 
 						</div>
@@ -269,18 +269,20 @@ function HomPagCom () : React.JSX.Element {
 
 
 
-			<section className='cta-banner'>{ /* What: Call To Action Banner Section Element. Why: The page ends by sending visitors to follow the girls. How: This holds the banner's heading, line, and button. */ }
+			<section className={ cssModObj.ctaBanner }>{ /* What: Call To Action Banner Section Element. Why: The page ends by sending visitors to follow the girls. How: This holds the banner's heading, line, and button. */ }
 
 
-				<div className='container'>{ /* What: Banner Container Div Element. Why: The banner's content sits in the page's centered column. How: This holds the heading, line, and button. */ }
+				<div className={ cssModObj.container }>{ /* What: Banner Container Div Element. Why: The banner's content sits in the page's centered column. How: This holds the heading, line, and button. */ }
 
 
-					<h2>Join the Bernie Bears family!</h2>{ /* What: Banner Heading Element. Why: The banner invites visitors to follow along. How: This shows the invitation. */ }
+					<h2 className={ cssModObj.ctaBannerTitle }>Join the Bernie Bears family!</h2>{ /* What: Banner Heading Element. Why: The banner invites visitors to follow along. How: This shows the invitation. */ }
 
-					<p>Follow Lilah & Norah across all their favorite platforms and never miss a moment (or a bear hug).</p>{ /* What: Banner Paragraph Element. Why: A short line says why to follow. How: This shows it under the heading. */ }
+					<p className={ cssModObj.ctaBannerText }>Follow Lilah & Norah across all their favorite platforms and never miss a moment (or a bear hug).</p>{ /* What: Banner Paragraph Element. Why: A short line says why to follow. How: This shows it under the heading. */ }
+
+
 
 					<Link
-						className='btn btn-white'
+						className={` ${ cssModObj.btn }   ${ cssModObj.btnWhite } `}
 
 						to='/links'
 
