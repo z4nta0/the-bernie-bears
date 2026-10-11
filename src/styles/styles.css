@@ -407,6 +407,8 @@
 	--ver-rhy-p10 : var( --cdn-pow-011 );     /* What: Vertical Rhythm Base Plus 10 ~= 22.047. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of 11, multiplied by 1rem where it sets a length. */
 	--ver-rhy-p11 : var( --cdn-pow-012 );     /* What: Vertical Rhythm Base Plus 11 ~= 29.207. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of 12, multiplied by 1rem where it sets a length. */
 	--ver-rhy-p12 : var( --cdn-pow-013 );     /* What: Vertical Rhythm Base Plus 12 ~= 38.691. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of 13, multiplied by 1rem where it sets a length. */
+	--ver-rhy-p13 : var( --cdn-pow-014 );     /* What: Vertical Rhythm Base Plus 13 ~= 51.254. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of 14, multiplied by 1rem where it sets a length. */
+	--ver-rhy-p14 : var( --cdn-pow-015 );     /* What: Vertical Rhythm Base Plus 14 ~= 67.897. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of 15, multiplied by 1rem where it sets a length. */
 
 	/* #endregion Vertical Rhythm Tokens */
 

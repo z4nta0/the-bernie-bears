@@ -51,7 +51,7 @@
 
 	background    : linear-gradient( 135deg, var( --bac-pag-col ) 0%, var( --bac-hig-col ) 50%, var( --acc-tin-col ) 100% ); /* Background Page Color = #f7f7e2, Background Highlight Color = #ececb6, Accent Tint Color = #f3eaf9 */
 	border-bottom : var( --bor-wid-lar ) solid var( --bor-str-col );                                                         /* Border Width Large ~= 2.035px, Border Strong Color = #d6d69a */
-	padding       : var( --spa-ver-p06 ) var( --spa-hor-p03 ) var( --spa-ver-p05 );                                          /* Spacing Vertical Base Plus 6 ~= 78.751px, Spacing Horizontal Base Plus 3 ~= 33.876px, Spacing Vertical Base Plus 5 ~= 59.447px */
+	padding       : var( --spa-ver-p06 ) var( --gut-sid-pad ) var( --spa-ver-p05 );                                          /* Spacing Vertical Base Plus 6 ~= 78.751px, Gutter Side Padding, about 19.304px - 44.876px, Spacing Vertical Base Plus 5 ~= 59.447px */
 	text-align    : center;
 
 
@@ -82,12 +82,12 @@
 
 /* #region linCarSec */
 
-.linCarSec { /* What: Links Cards Section. Why: The cards sit in the page's centered column. How: This holds the intro and the cards within a 1,100px column with room above and below. */
+.linCarSec { /* What: Links Cards Section. Why: The cards sit in the page's centered column. How: This holds the intro and the cards within the page's capped column with room above and below. */
 
 
 	margin    : 0 auto;
-	max-width : 1100px;
-	padding   : var( --spa-ver-p05 ) var( --spa-hor-p03 ); /* Spacing Vertical Base Plus 5 ~= 59.447px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	max-width : var( --con-max-wid );                      /* Container Maximum Width ~= 1,094.093px */
+	padding   : var( --spa-ver-p05 ) var( --gut-sid-pad ); /* Spacing Vertical Base Plus 5 ~= 59.447px, Gutter Side Padding, about 19.304px - 44.876px */
 
 
 }
@@ -109,14 +109,14 @@
 
 /* #region socLisDiv */
 
-.socLisDiv { /* What: Social List Div. Why: The cards stack in one centered column. How: This stacks them with gaps, no wider than 720px. */
+.socLisDiv { /* What: Social List Div. Why: The cards stack in one centered column. How: This stacks them with gaps, no wider than the p14 rhythm step. */
 
 
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --spa-ver-p01 ); /* Spacing Vertical Base Plus 1 ~= 19.304px */
+	gap            : var( --spa-ver-p01 );                /* Spacing Vertical Base Plus 1 ~= 19.304px */
 	margin         : 0 auto;
-	max-width      : 720px;
+	max-width      : calc( var( --ver-rhy-p14 ) * 1rem ); /* Vertical Rhythm Base Plus 14 ~= 746.868px */
 
 
 }
@@ -128,18 +128,18 @@
 
 
 	align-items     : center;
-	background      : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
-	border          : var( --bor-wid-lar ) solid var( --bor-mai-col ); /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
-	border-radius   : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
+	background      : var( --bac-sur-col );                                                                           /* Background Surface Color = #ffffff */
+	border          : var( --bor-wid-lar ) solid var( --bor-mai-col );                                                /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
+	border-radius   : var( --rad-bor-xla );                                                                           /* Radius Border Extra Large ~= 19.304px */
 	box-shadow      : var( --ele-med-sha );
 	color           : inherit;
 	display         : flex;
-	gap             : var( --spa-hor-p02 );                            /* Spacing Horizontal Base Plus 2 ~= 25.572px */
+	gap             : var( --spa-hor-p02 );                                                                           /* Spacing Horizontal Base Plus 2 ~= 25.572px */
 	overflow        : hidden;
-	padding         : var( --spa-ver-p02 ) var( --spa-hor-p03 );       /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	padding         : var( --spa-ver-p02 ) clamp( var( --spa-hor-p01 ), var( --hor-rhy-014 ), var( --spa-hor-p03 ) ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 1 ~= 19.304px, Horizontal Rhythm 14 ~= 49.625px @ 1,920px width, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	position        : relative;
 	text-decoration : none;
-	transition      : all var( --dur-tra-p02 ) var( --mot-sta-eas );   /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
+	transition      : all var( --dur-tra-p02 ) var( --mot-sta-eas );                                                  /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
 
 
 }
@@ -318,7 +318,7 @@
 
 	background : linear-gradient( 135deg, var( --acs-tin-col ) 0%, var( --acc-tin-col ) 100% ); /* Accent-Secondary Tint Color = #ddeadc, Accent Tint Color = #f3eaf9 */
 	border-top : var( --bor-wid-lar ) solid var( --bor-mai-col );                               /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
-	padding    : var( --spa-ver-p05 ) var( --spa-hor-p03 );                                     /* Spacing Vertical Base Plus 5 ~= 59.447px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	padding    : var( --spa-ver-p05 ) var( --gut-sid-pad );                                     /* Spacing Vertical Base Plus 5 ~= 59.447px, Gutter Side Padding, about 19.304px - 44.876px */
 	text-align : center;
 
 
@@ -327,12 +327,12 @@
 
 /* #region ctaInnDiv */
 
-.ctaInnDiv { /* What: Call-To-Action Inner Div. Why: The closing words sit in the page's centered column. How: This holds them within the page's 1,100px column and its side padding, the shared container values. */
+.ctaInnDiv { /* What: Call-To-Action Inner Div. Why: The closing words sit in the page's centered column. How: This holds them within the page's capped column and its side padding, the shared container values. */
 
 
 	margin    : 0 auto;
-	max-width : 1100px;
-	padding   : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
+	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	padding   : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 
 
 }

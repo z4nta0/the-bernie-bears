@@ -53,12 +53,12 @@
 
 	align-items           : center;
 	display               : grid;
-	gap                   : var( --spa-ver-p04 ) var( --spa-hor-p04 ); /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 4 ~= 44.876px */
+	gap                   : var( --spa-ver-p04 ) clamp( var( --spa-hor-p02 ), var( --hor-rhy-015 ), var( --spa-hor-p04 ) ); /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px, Horizontal Rhythm 15 ~= 65.739px @ 1,920px width, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	grid-template-columns : 1fr 1fr;
 	margin                : 0 auto;
-	max-width             : 1200px;
+	max-width             : var( --con-max-wid );                                                                           /* Container Maximum Width ~= 1,094.093px */
 	min-height            : 88vh;
-	padding               : var( --spa-ver-p06 ) var( --spa-hor-p05 ); /* Spacing Vertical Base Plus 6 ~= 78.751px, Spacing Horizontal Base Plus 5 ~= 59.447px */
+	padding               : var( --spa-ver-p06 ) clamp( var( --spa-hor-p02 ), var( --hor-rhy-017 ), var( --spa-hor-p05 ) ); /* Spacing Vertical Base Plus 6 ~= 78.751px, Spacing Horizontal Base Plus 2 ~= 25.572px, Horizontal Rhythm 17 ~= 115.363px @ 1,920px width, Spacing Horizontal Base Plus 5 ~= 59.447px */
 
 
 }
@@ -70,7 +70,7 @@
 
 		grid-template-columns : 1fr;
 		min-height            : auto;
-		padding               : var( --spa-ver-p04 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+		padding               : var( --spa-ver-p04 ) clamp( var( --spa-hor-p02 ), var( --hor-rhy-017 ), var( --spa-hor-p05 ) ); /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px, Horizontal Rhythm 17 ~= 115.363px @ 1,920px width, Spacing Horizontal Base Plus 5 ~= 59.447px */
 		text-align            : center;
 
 
@@ -508,12 +508,12 @@
 
 /* #region homFeaSec */
 
-.homFeaSec { /* What: Home Features Section. Why: The cards sit in the page's centered column. How: This holds the section within the page's 1,100px column and its side padding, the shared container values that have always set its padding. */
+.homFeaSec { /* What: Home Features Section. Why: The cards sit in the page's centered column. How: This holds the section within the page's capped column and its side padding, the shared container values that have always set its padding. */
 
 
 	margin    : 0 auto;
-	max-width : 1100px;
-	padding   : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
+	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	padding   : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 
 
 }
@@ -549,7 +549,7 @@
 
 
 	display               : grid;
-	gap                   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	gap                   : var( --spa-ver-p02 ) clamp( var( --spa-hor-bas ), var( --hor-rhy-014 ), var( --spa-hor-p02 ) ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base ~= 14.572px, Horizontal Rhythm 14 ~= 49.625px @ 1,920px width, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	grid-template-columns : repeat( auto-fit, minmax( 220px, 1fr ) );
 
 
@@ -637,7 +637,7 @@
 
 	background : linear-gradient( 135deg, var( --acc-mai-col ) 0%, var( --acc-sec-col ) 100% ); /* Accent Main Color = #d1afe2, Accent Secondary Color = #8bad89 */
 	margin-top : var( --spa-ver-p05 );                                                          /* Spacing Vertical Base Plus 5 ~= 59.447px */
-	padding    : var( --spa-ver-p06 ) var( --spa-hor-p03 );                                     /* Spacing Vertical Base Plus 6 ~= 78.751px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	padding    : var( --spa-ver-p06 ) var( --gut-sid-pad );                                     /* Spacing Vertical Base Plus 6 ~= 78.751px, Gutter Side Padding, about 19.304px - 44.876px */
 	text-align : center;
 
 
@@ -646,12 +646,12 @@
 
 /* #region ctaInnDiv */
 
-.ctaInnDiv { /* What: Call-To-Action Inner Div. Why: The banner's content sits in the page's centered column. How: This holds it within the page's 1,100px column and its side padding, the shared container values. */
+.ctaInnDiv { /* What: Call-To-Action Inner Div. Why: The banner's content sits in the page's centered column. How: This holds it within the page's capped column and its side padding, the shared container values. */
 
 
 	margin    : 0 auto;
-	max-width : 1100px;
-	padding   : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
+	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	padding   : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 
 
 }

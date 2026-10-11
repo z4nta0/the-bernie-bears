@@ -50,7 +50,7 @@
 
 	background    : linear-gradient( 135deg, var( --bac-pag-col ) 0%, var( --bac-hig-col ) 50%, var( --acc-tin-col ) 100% ); /* Background Page Color = #f7f7e2, Background Highlight Color = #ececb6, Accent Tint Color = #f3eaf9 */
 	border-bottom : var( --bor-wid-lar ) solid var( --bor-str-col );                                                         /* Border Width Large ~= 2.035px, Border Strong Color = #d6d69a */
-	padding       : var( --spa-ver-p06 ) var( --spa-hor-p03 ) var( --spa-ver-p05 );                                          /* Spacing Vertical Base Plus 6 ~= 78.751px, Spacing Horizontal Base Plus 3 ~= 33.876px, Spacing Vertical Base Plus 5 ~= 59.447px */
+	padding       : var( --spa-ver-p06 ) var( --gut-sid-pad ) var( --spa-ver-p05 );                                          /* Spacing Vertical Base Plus 6 ~= 78.751px, Gutter Side Padding, about 19.304px - 44.876px, Spacing Vertical Base Plus 5 ~= 59.447px */
 	text-align    : center;
 
 
@@ -81,16 +81,16 @@
 
 /* #region aboIntSec */
 
-.aboIntSec { /* What: About Intro Section. Why: The story sits beside the cartoon. How: This sets the two side by side in a centered grid within the page's 1,100px column. */
+.aboIntSec { /* What: About Intro Section. Why: The story sits beside the cartoon. How: This sets the two side by side in a centered grid within the page's capped column. */
 
 
 	align-items           : center;
 	display               : grid;
-	gap                   : var( --spa-ver-p05 ) var( --spa-hor-p05 ); /* Spacing Vertical Base Plus 5 ~= 59.447px, Spacing Horizontal Base Plus 5 ~= 59.447px */
+	gap                   : var( --spa-ver-p05 ) clamp( var( --spa-hor-p03 ), var( --hor-rhy-016 ), var( --spa-hor-p05 ) ); /* Spacing Vertical Base Plus 5 ~= 59.447px, Spacing Horizontal Base Plus 3 ~= 33.876px, Horizontal Rhythm 16 ~= 87.085px @ 1,920px width, Spacing Horizontal Base Plus 5 ~= 59.447px */
 	grid-template-columns : 1fr 1fr;
 	margin                : 0 auto;
-	max-width             : 1100px;
-	padding               : var( --spa-ver-p06 ) var( --spa-hor-p03 ); /* Spacing Vertical Base Plus 6 ~= 78.751px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	max-width             : var( --con-max-wid );                                                                           /* Container Maximum Width ~= 1,094.093px */
+	padding               : var( --spa-ver-p06 ) var( --gut-sid-pad );                                                      /* Spacing Vertical Base Plus 6 ~= 78.751px, Gutter Side Padding, about 19.304px - 44.876px */
 
 
 }
@@ -201,12 +201,12 @@
 
 /* #region aboSisSec */
 
-.aboSisSec { /* What: About Sisters Section. Why: The sisters' cards sit in the page's centered column. How: This holds them within a 1,100px column with room below. */
+.aboSisSec { /* What: About Sisters Section. Why: The sisters' cards sit in the page's centered column. How: This holds them within the page's capped column with room below. */
 
 
 	margin    : 0 auto;
-	max-width : 1100px;
-	padding   : var( --spa-ver-p03 ) var( --spa-hor-p03 ) var( --spa-ver-p06 ); /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px, Spacing Vertical Base Plus 6 ~= 78.751px */
+	max-width : var( --con-max-wid );                                           /* Container Maximum Width ~= 1,094.093px */
+	padding   : var( --spa-ver-p03 ) var( --gut-sid-pad ) var( --spa-ver-p06 ); /* Spacing Vertical Base Plus 3 ~= 33.876px, Gutter Side Padding, about 19.304px - 44.876px, Spacing Vertical Base Plus 6 ~= 78.751px */
 
 
 }
@@ -228,7 +228,7 @@
 
 
 	display               : grid;
-	gap                   : var( --spa-ver-p03 ) var( --spa-hor-p03 ); /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	gap                   : var( --spa-ver-p03 ) clamp( var( --spa-hor-p01 ), var( --hor-rhy-015 ), var( --spa-hor-p03 ) ); /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 1 ~= 19.304px, Horizontal Rhythm 15 ~= 65.739px @ 1,920px width, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	grid-template-columns : 1fr 1fr;
 
 
@@ -260,7 +260,7 @@
 	display        : flex;
 	flex-direction : column;
 	gap            : var( --spa-ver-p02 );                                                                                      /* Spacing Vertical Base Plus 2 ~= 25.572px */
-	padding        : var( --spa-ver-p04 ) var( --spa-hor-p04 );                                                                 /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 4 ~= 44.876px */
+	padding        : var( --spa-ver-p04 ) clamp( var( --spa-hor-p02 ), var( --hor-rhy-015 ), var( --spa-hor-p04 ) );            /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px, Horizontal Rhythm 15 ~= 65.739px @ 1,920px width, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	transition     : transform var( --dur-tra-p02 ) var( --mot-sta-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
 
 
@@ -425,7 +425,7 @@
 
 
 	background : linear-gradient( 135deg, var( --acc-mai-col ) 0%, var( --acc-sec-col ) 100% ); /* Accent Main Color = #d1afe2, Accent Secondary Color = #8bad89 */
-	padding    : var( --spa-ver-p06 ) var( --spa-hor-p03 );                                     /* Spacing Vertical Base Plus 6 ~= 78.751px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	padding    : var( --spa-ver-p06 ) var( --gut-sid-pad );                                     /* Spacing Vertical Base Plus 6 ~= 78.751px, Gutter Side Padding, about 19.304px - 44.876px */
 
 
 }
@@ -433,12 +433,12 @@
 
 /* #region facInnDiv */
 
-.facInnDiv { /* What: Facts Inner Div. Why: The facts sit in the page's centered column. How: This holds them within the page's 1,100px column and its side padding, the shared container values. */
+.facInnDiv { /* What: Facts Inner Div. Why: The facts sit in the page's centered column. How: This holds them within the page's capped column and its side padding, the shared container values. */
 
 
 	margin    : 0 auto;
-	max-width : 1100px;
-	padding   : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
+	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	padding   : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 
 
 }
@@ -461,9 +461,9 @@
 
 
 	display               : grid;
-	gap                   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	gap                   : var( --spa-ver-p02 ) clamp( var( --spa-hor-bas ), var( --hor-rhy-014 ), var( --spa-hor-p02 ) ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base ~= 14.572px, Horizontal Rhythm 14 ~= 49.625px @ 1,920px width, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	grid-template-columns : repeat( auto-fit, minmax( 160px, 1fr ) );
-	margin-top            : var( --spa-ver-bas );                      /* Spacing Vertical Base ~= 14.572px */
+	margin-top            : var( --spa-ver-bas );                                                                           /* Spacing Vertical Base ~= 14.572px */
 
 
 }

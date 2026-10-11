@@ -51,7 +51,7 @@
 
 	background    : linear-gradient( 135deg, var( --bac-pag-col ) 0%, var( --bac-hig-col ) 50%, var( --acc-tin-col ) 100% ); /* Background Page Color = #f7f7e2, Background Highlight Color = #ececb6, Accent Tint Color = #f3eaf9 */
 	border-bottom : var( --bor-wid-lar ) solid var( --bor-str-col );                                                         /* Border Width Large ~= 2.035px, Border Strong Color = #d6d69a */
-	padding       : var( --spa-ver-p06 ) var( --spa-hor-p03 ) var( --spa-ver-p05 );                                          /* Spacing Vertical Base Plus 6 ~= 78.751px, Spacing Horizontal Base Plus 3 ~= 33.876px, Spacing Vertical Base Plus 5 ~= 59.447px */
+	padding       : var( --spa-ver-p06 ) var( --gut-sid-pad ) var( --spa-ver-p05 );                                          /* Spacing Vertical Base Plus 6 ~= 78.751px, Gutter Side Padding, about 19.304px - 44.876px, Spacing Vertical Base Plus 5 ~= 59.447px */
 	text-align    : center;
 
 
@@ -82,12 +82,12 @@
 
 /* #region conDetSec */
 
-.conDetSec { /* What: Contact Details Section. Why: The ways to get in touch sit in the page's centered column. How: This holds them within a 1,100px column with room above and below. */
+.conDetSec { /* What: Contact Details Section. Why: The ways to get in touch sit in the page's centered column. How: This holds them within the page's capped column with room above and below. */
 
 
 	margin    : 0 auto;
-	max-width : 1100px;
-	padding   : var( --spa-ver-p06 ) var( --spa-hor-p03 ); /* Spacing Vertical Base Plus 6 ~= 78.751px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	max-width : var( --con-max-wid );                      /* Container Maximum Width ~= 1,094.093px */
+	padding   : var( --spa-ver-p06 ) var( --gut-sid-pad ); /* Spacing Vertical Base Plus 6 ~= 78.751px, Gutter Side Padding, about 19.304px - 44.876px */
 
 
 }
@@ -100,7 +100,7 @@
 
 	align-items           : start;
 	display               : grid;
-	gap                   : var( --spa-ver-p05 ) var( --spa-hor-p05 ); /* Spacing Vertical Base Plus 5 ~= 59.447px, Spacing Horizontal Base Plus 5 ~= 59.447px */
+	gap                   : var( --spa-ver-p05 ) clamp( var( --spa-hor-p03 ), var( --hor-rhy-016 ), var( --spa-hor-p05 ) ); /* Spacing Vertical Base Plus 5 ~= 59.447px, Spacing Horizontal Base Plus 3 ~= 33.876px, Horizontal Rhythm 16 ~= 87.085px @ 1,920px width, Spacing Horizontal Base Plus 5 ~= 59.447px */
 	grid-template-columns : 1fr 1.4fr;
 
 
@@ -271,11 +271,11 @@
 .conPanDiv { /* What: Contact Panel Div. Why: The ways to send a message stand out as their own panel. How: This sets a white panel with rounded corners, a cream border, and a soft shadow. */
 
 
-	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
-	border        : var( --bor-wid-lar ) solid var( --bor-mai-col ); /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
-	border-radius : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
+	background    : var( --bac-sur-col );                                                                           /* Background Surface Color = #ffffff */
+	border        : var( --bor-wid-lar ) solid var( --bor-mai-col );                                                /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
+	border-radius : var( --rad-bor-xla );                                                                           /* Radius Border Extra Large ~= 19.304px */
 	box-shadow    : var( --ele-med-sha );
-	padding       : var( --spa-ver-p04 ) var( --spa-hor-p04 );       /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 4 ~= 44.876px */
+	padding       : var( --spa-ver-p04 ) clamp( var( --spa-hor-p02 ), var( --hor-rhy-015 ), var( --spa-hor-p04 ) ); /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px, Horizontal Rhythm 15 ~= 65.739px @ 1,920px width, Spacing Horizontal Base Plus 4 ~= 44.876px */
 
 
 }
@@ -410,7 +410,7 @@
 
 	background : linear-gradient( 135deg, var( --acs-tin-col ) 0%, var( --acc-tin-col ) 100% ); /* Accent-Secondary Tint Color = #ddeadc, Accent Tint Color = #f3eaf9 */
 	border-top : var( --bor-wid-lar ) solid var( --bor-mai-col );                               /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
-	padding    : var( --spa-ver-p05 ) var( --spa-hor-p03 );                                     /* Spacing Vertical Base Plus 5 ~= 59.447px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	padding    : var( --spa-ver-p05 ) var( --gut-sid-pad );                                     /* Spacing Vertical Base Plus 5 ~= 59.447px, Gutter Side Padding, about 19.304px - 44.876px */
 
 
 }
@@ -418,12 +418,12 @@
 
 /* #region wavInnDiv */
 
-.wavInnDiv { /* What: Wave Inner Div. Why: The closing words sit centered in the page's centered column. How: This holds them within the page's 1,100px column and its side padding, the shared container values, with its text centered. */
+.wavInnDiv { /* What: Wave Inner Div. Why: The closing words sit centered in the page's centered column. How: This holds them within the page's capped column and its side padding, the shared container values, with its text centered. */
 
 
 	margin     : 0 auto;
-	max-width  : 1100px;
-	padding    : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
+	max-width  : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	padding    : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	text-align : center;
 
 

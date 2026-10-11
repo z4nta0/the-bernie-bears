@@ -33,7 +33,7 @@
 
 /* #region fooInnDiv */
 
-.fooInnDiv { /* What: Footer Inner Div. Why: The footer's content sits in the page's centered column. How: This stacks and centers the brand, tagline, links, and copyright, within the page's 1,100px column and its side padding. */
+.fooInnDiv { /* What: Footer Inner Div. Why: The footer's content sits in the page's centered column. How: This stacks and centers the brand, tagline, links, and copyright, within the page's capped column and its side padding. */
 
 
 	align-items    : center;
@@ -41,8 +41,8 @@
 	flex-direction : column;
 	gap            : var( --spa-ver-p02 );   /* Spacing Vertical Base Plus 2 ~= 25.572px */
 	margin         : 0 auto;
-	max-width      : 1100px;
-	padding        : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
+	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	text-align     : center;
 
 

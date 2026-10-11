@@ -40,7 +40,7 @@
 
 /* #region navInnDiv */
 
-.navInnDiv { /* What: Navigation Inner Div. Why: The brand, toggle, and links share one row in the page's centered column. How: This spreads them across a 72px row within the page's 1,100px column and its side padding. */
+.navInnDiv { /* What: Navigation Inner Div. Why: The brand, toggle, and links share one row in the page's centered column. How: This spreads them across a 72px row within the page's capped column and its side padding. */
 
 
 	align-items     : center;
@@ -48,8 +48,8 @@
 	height          : calc( var( --ver-rhy-p06 ) * 1rem ); /* Vertical Rhythm Base Plus 6 ~= 78.751px */
 	justify-content : space-between;
 	margin          : 0 auto;
-	max-width       : 1100px;
-	padding         : 0 var( --spa-hor-p03 );              /* Spacing Horizontal Base Plus 3 ~= 33.876px */
+	max-width       : var( --con-max-wid );                /* Container Maximum Width ~= 1,094.093px */
+	padding         : 0 var( --gut-sid-pad );              /* Gutter Side Padding, about 19.304px - 44.876px */
 
 
 }
