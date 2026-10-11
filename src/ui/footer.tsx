@@ -16,9 +16,10 @@ import './footer.css'; // What: Footer Stylesheet Import. Why: The footer's own 
  * footer.tsx = Footer
  *
  * @summary
- * The site's footer: the brand name with its tagline, a link to each page,
- * and a copyright line. It reads the current year each time it renders, so the
- * copyright never goes stale. Every page renders it below its content.
+ * The site's footer: the brand name with its tagline, a link to each page and
+ * to the brand's main site, and a copyright line. It reads the current year
+ * each time it renders, so the copyright never goes stale. Every page renders
+ * it below its content.
  *
  * Sections:
  *  - Components
@@ -38,9 +39,11 @@ import './footer.css'; // What: Footer Stylesheet Import. Why: The footer's own 
  * SitFooCom = Site Footer Component
  *
  * @summary
- * Renders the footer: the brand name and tagline, a link to each page in a
- * navigation landmark labelled Footer, so screen readers can tell it from the
- * bar's, and the copyright with the current year. The brand's paw print is
+ * Renders the footer: the brand name and tagline, a link to each page and an
+ * Official Site link to the brand's main site, which opens in a new tab
+ * without giving it access to this one, in a navigation landmark labelled
+ * Footer, so screen readers can tell it from the bar's, and the copyright with
+ * the current year. The brand's paw print is
  * hidden from screen readers as decoration, while the copyright's heart is
  * announced as love, since the line says it was made with love.
  *
@@ -87,7 +90,7 @@ function SitFooCom () : React.JSX.Element {
 					className='footer-nav'
 
 					aria-label='Footer'
-				>{ /* What: Footer Navigation Nav Element. Why: Every page can be reached from the bottom of any page, and a second navigation landmark needs a label to tell it from the bar's. How: This holds a link to each page, labelled Footer. */ }
+				>{ /* What: Footer Navigation Nav Element. Why: Every page can be reached from the bottom of any page, and a second navigation landmark needs a label to tell it from the bar's. How: This holds a link to each page and to the brand's main site, labelled Footer. */ }
 
 
 					<Link to='/'>Home</Link>{ /* What: Home Link. Why: The footer links back to the home page. How: This routes to the root path. */ }
@@ -97,6 +100,12 @@ function SitFooCom () : React.JSX.Element {
 					<Link to='/links'>Social Links</Link>{ /* What: Social Links Link. Why: The footer links to every place to follow the girls. How: This routes to the Social Links page. */ }
 
 					<Link to='/contact'>Contact</Link>{ /* What: Contact Link. Why: The footer links to the ways to get in touch. How: This routes to the Contact page. */ }
+
+					<a
+						href='https://theberniebears.com/'
+						rel='noopener noreferrer'
+						target='_blank'
+					>Official Site</a>{ /* What: Official Site Anchor Element. Why: This site exists to promote the brand's main site, which every page should point to. How: This opens theberniebears.com in a new tab, without giving it access to this one. */ }
 
 
 				</nav>
