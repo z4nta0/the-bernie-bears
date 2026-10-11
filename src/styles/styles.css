@@ -1,138 +1,229 @@
-/* ===== Bernie Bears Global Styles ===== */
 
-:root {
-  /* Brand Colors */
-  --main: #ECECB6;
-  --main-dark: #d6d69a;
-  --main-pale: #f7f7e2;
-  --secondary: #D1AFE2;
-  --secondary-dark: #b48fcb;
-  --secondary-pale: #f3eaf9;
-  --accent: #8BAD89;
-  --accent-light: #CEB1DD;
-  --accent-pale: #ddeadc;
-  --white-fluffy: #ffffff;
-  --black-bear: #1c1a1a;
-  --text-dark: #2c2c2c;
-  --text-mid: #5a5a5a;
-  --text-light: #8a8a8a;
 
-  --font-script: 'Dancing Script', cursive;
-  --font-body: 'Nunito', sans-serif;
 
-  --shadow-soft: 0 4px 24px rgba(209, 175, 226, 0.18);
-  --shadow-card: 0 8px 32px rgba(209, 175, 226, 0.15);
-  --shadow-hover: 0 16px 48px rgba(139, 173, 137, 0.28);
+/**
+ * styles.css = Global Styles
+ *
+ * @summary
+ * The site's global stylesheet, holding only what can't belong to one
+ * component: the design tokens every module reads, the base element styles
+ * (the box reset, the page's font and colors, the script headings, plain links
+ * and images, and the scrollbar), and the fadeInUp keyframe every page's
+ * entrance plays through global(). Every component's own styles live in its
+ * CSS module. Step 9's design-token pass replaces these tokens with the
+ * user-level rules' named scales and color roles.
+ *
+ * Sections:
+ *  - Tokens
+ *  - Base Elements
+ *  - Shared Keyframes
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
 
-  --radius-lg: 24px;
-  --radius-xl: 40px;
-  --radius-pill: 9999px;
+
+
+/* #region Tokens */
+
+:root { /* What: Root Tokens. Why: Every module reads the site's colors, fonts, radii, and shadows from one place. How: This defines them as custom properties on the root, in sections. */
+
+
+	/* #region Color Tokens */
+
+	--accent         : #8BAD89; /* What: Accent. Why: Sage is the site's second brand color. How: Eyebrows, outline buttons, badges, and gradients read it. */
+	--accent-light   : #CEB1DD; /* What: Accent Light. Why: A light lavender edges the hero's badges and cards on hover. How: Borders read it. */
+	--accent-pale    : #ddeadc; /* What: Accent Pale. Why: A pale sage tints hovers, badges, and gradients. How: Backgrounds read it. */
+	--black-bear     : #1c1a1a; /* What: Black Bear. Why: The palette names its darkest brown-black. How: Nothing reads it yet. */
+	--main           : #ECECB6; /* What: Main. Why: The cream is the site's main brand color. How: Borders, the current bar link, and gradients read it. */
+	--main-dark      : #d6d69a; /* What: Main Dark. Why: A deeper cream edges cream elements. How: Borders read it. */
+	--main-pale      : #f7f7e2; /* What: Main Pale. Why: A pale cream is the page's background. How: The body, chips, the note, and the footer's text read it. */
+	--secondary      : #D1AFE2; /* What: Secondary. Why: Lavender is the site's accent color. How: Primary buttons, the toggle's bars, and gradients read it. */
+	--secondary-dark : #b48fcb; /* What: Secondary Dark. Why: A deeper lavender sets the headings and the brand name. How: Headings, hovers, and badges read it. */
+	--secondary-pale : #f3eaf9; /* What: Secondary Pale. Why: A pale lavender tints hovers, badges, and gradients. How: Backgrounds read it. */
+	--text-dark      : #2c2c2c; /* What: Text Dark. Why: Body text needs a dark, soft black. How: The body, labels, and the footer's band read it. */
+	--text-light     : #8a8a8a; /* What: Text Light. Why: Quiet text sits in a light grey. How: Small labels and the footer's tagline and copyright read it. */
+	--text-mid       : #5a5a5a; /* What: Text Mid. Why: Paragraphs sit in a softer grey than headings. How: Most paragraphs read it. */
+	--white-fluffy   : #ffffff; /* What: White Fluffy. Why: The palette names its white. How: Nothing reads it yet. */
+
+	/* #endregion Color Tokens */
+
+
+
+	/* #region Font Tokens */
+
+	--font-body   : 'Nunito', sans-serif;      /* What: Font Body. Why: Nunito sets every paragraph, label, and button. How: The body and buttons read it. */
+	--font-script : 'Dancing Script', cursive; /* What: Font Script. Why: Dancing Script sets the headings and the brand name. How: Headings and the script accents read it. */
+
+	/* #endregion Font Tokens */
+
+
+
+	/* #region Radius Tokens */
+
+	--radius-lg   : 24px;   /* What: Radius Large. Why: Cards share one rounding. How: Cards and panels read it. */
+	--radius-pill : 9999px; /* What: Radius Pill. Why: Pills and chips are fully rounded. How: Buttons, links, badges, and chips read it. */
+	--radius-xl   : 40px;   /* What: Radius Extra Large. Why: The biggest cards and frames round more. How: The hero frame, the dog cards, and the contact panel read it. */
+
+	/* #endregion Radius Tokens */
+
+
+
+	/* #region Shadow Tokens */
+
+	--shadow-card  : 0 8px 32px rgba(209, 175, 226, 0.15);  /* What: Shadow Card. Why: Cards float softly over the page. How: Cards and panels read it. */
+	--shadow-hover : 0 16px 48px rgba(139, 173, 137, 0.28); /* What: Shadow Hover. Why: A hovered card lifts higher. How: Hovered cards read it. */
+	--shadow-soft  : 0 4px 24px rgba(209, 175, 226, 0.18);  /* What: Shadow Soft. Why: Small elements float a little. How: The hero's badges and the contact cards read it. */
+
+	/* #endregion Shadow Tokens */
+
+
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* #endregion Tokens */
+
+
+
+/* #region Base Elements */
+
+*,
+*::before,
+*::after { /* What: Box Reset. Why: Every element should size by its border box and start with no default margin or padding. How: This resets every element and its pseudo-elements. */
+
+
+	box-sizing : border-box;
+	margin     : 0;
+	padding    : 0;
+
+
 }
 
-html {
-  scroll-behavior: smooth;
+html { /* What: Page Root. Why: Jumps within the page should glide. How: This turns on smooth scrolling. */
+
+
+	scroll-behavior : smooth;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Page Root. Why: Someone who asked for less motion shouldn't see the page glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	html { /* What: Instant Scroll Page Root. Why: Jumps should simply land. How: This turns smooth scrolling off. */
+
+
+		scroll-behavior : auto;
+
+
+	}
+
+
 }
 
-body {
-  font-family: var(--font-body);
-  background-color: var(--main-pale);
-  color: var(--text-dark);
-  line-height: 1.6;
-  overflow-x: hidden;
+body { /* What: Page Body. Why: Every page shares one font, color, and background. How: This sets Nunito in the dark text color on the pale cream, with airy lines, and clips anything that would scroll the page sideways. */
+
+
+	background-color : var(--main-pale);
+	color            : var(--text-dark);
+	font-family      : var(--font-body);
+	line-height      : 1.6;
+	overflow-x       : hidden;
+
+
 }
 
-h1, h2, h3, h4 {
-  font-family: var(--font-script);
-  color: var(--secondary-dark);
-  line-height: 1.2;
+h1,
+h2,
+h3,
+h4 { /* What: Headings. Why: Every heading shares the script font. How: This sets them in Dancing Script, in the deep lavender, with tight lines. */
+
+
+	color       : var(--secondary-dark);
+	font-family : var(--font-script);
+	line-height : 1.2;
+
+
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+a { /* What: Links. Why: Links are styled by their components, not the browser. How: This drops the underline and inherits the surrounding color. */
+
+
+	color           : inherit;
+	text-decoration : none;
+
+
 }
 
-img {
-  max-width: 100%;
-  display: block;
+img { /* What: Images. Why: An image should never overflow its container or leave a gap below it. How: This caps its width and makes it a block. */
+
+
+	display   : block;
+	max-width : 100%;
+
+
 }
 
-button {
-  cursor: pointer;
-  font-family: var(--font-body);
+button { /* What: Buttons. Why: Buttons should use the site's font and show they can be clicked. How: This sets Nunito and the pointer cursor. */
+
+
+	cursor      : pointer;
+	font-family : var(--font-body);
+
+
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+::-webkit-scrollbar { /* What: Scrollbar. Why: Chromium and WebKit draw a slim scrollbar in the site's colors. How: This makes it 8px wide. */
+
+
+	width : 8px;
+
+
 }
-::-webkit-scrollbar-track {
-  background: var(--main-pale);
+::-webkit-scrollbar-track { /* What: Scrollbar Track. Why: The track should blend with the page. How: This fills it with the page's pale cream. */
+
+
+	background : var(--main-pale);
+
+
 }
-::-webkit-scrollbar-thumb {
-  background: var(--secondary-pale);
-  border-radius: var(--radius-pill);
+::-webkit-scrollbar-thumb { /* What: Scrollbar Thumb. Why: The thumb should be soft but visible. How: This fills it pale lavender and rounds it fully. */
+
+
+	background    : var(--secondary-pale);
+	border-radius : var(--radius-pill);
+
+
 }
 
-/* Utility */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 2rem;
+/* #endregion Base Elements */
+
+
+
+/* #region Shared Keyframes */
+
+@keyframes fadeInUp { /* What: Fade In Up. Why: Every page arrives gently. How: This fades a page in from 24px below its place, played by each page module's page-enter class through global(). */
+
+
+	from {
+
+
+		opacity   : 0;
+		transform : translateY(24px);
+
+
+	}
+
+	to {
+
+
+		opacity   : 1;
+		transform : translateY(0);
+
+
+	}
+
+
 }
 
-/* Paw print decorative element */
-.paw-divider {
-  text-align: center;
-  font-size: 1.4rem;
-  color: var(--accent);
-  letter-spacing: 0.5rem;
-  margin: 2rem 0;
-  opacity: 0.7;
-}
+/* #endregion Shared Keyframes */
 
-/* Page fade-in */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-.page-enter {
-  animation: fadeInUp 0.55s ease both;
-}
-
-/* Floating paw background pattern */
-.paw-bg {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-  opacity: 0.04;
-}
-
-.paw-bg span {
-  position: absolute;
-  font-size: 3rem;
-  animation: floatPaw 20s linear infinite;
-}
-
-@keyframes floatPaw {
-  from { transform: translateY(110vh) rotate(0deg); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  to { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-}
