@@ -48,7 +48,7 @@
 
 /* #region homHerSec */
 
-.homHerSec { /* What: Home Hero Section. Why: The home page opens with the welcome beside the girls' portrait. How: This sets the two side by side in a centered grid nearly as tall as the screen. */
+.homHerSec { /* What: Home Hero Section. Why: The home page opens with the welcome beside the girls' portrait. How: This sets the two side by side in a centered grid whose height follows its content. */
 
 
 	align-items           : center;
@@ -57,7 +57,6 @@
 	grid-template-columns : 1fr 1fr;
 	margin                : 0 auto;
 	max-width             : var( --con-max-wid );                                                                           /* Container Maximum Width ~= 1,094.093px */
-	min-height            : 88vh;
 	padding               : var( --spa-ver-p06 ) clamp( var( --spa-hor-p02 ), var( --hor-rhy-017 ), var( --spa-hor-p05 ) ); /* Spacing Vertical Base Plus 6 ~= 78.751px, Spacing Horizontal Base Plus 2 ~= 25.572px, Horizontal Rhythm 17 ~= 115.363px @ 1,920px width, Spacing Horizontal Base Plus 5 ~= 59.447px */
 
 
@@ -65,11 +64,10 @@
 @media ( max-width : 768px ) { /* What: Narrow Home Hero Section. Why: The two columns don't fit side by side on a narrow screen. How: This applies 768px wide and below. */
 
 
-	.homHerSec { /* What: Stacked Home Hero Section. Why: A narrow screen reads the welcome above the portrait. How: This stacks them in one centered column, trims the padding, and lets the height follow the content. */
+	.homHerSec { /* What: Stacked Home Hero Section. Why: A narrow screen reads the welcome above the portrait. How: This stacks them in one centered column and trims the padding. */
 
 
 		grid-template-columns : 1fr;
-		min-height            : auto;
 		padding               : var( --spa-ver-p04 ) clamp( var( --spa-hor-p02 ), var( --hor-rhy-017 ), var( --spa-hor-p05 ) ); /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px, Horizontal Rhythm 17 ~= 115.363px @ 1,920px width, Spacing Horizontal Base Plus 5 ~= 59.447px */
 		text-align            : center;
 
