@@ -4,7 +4,7 @@ import { SitFooCom } from './ui/footer.tsx'
 import { HomPagCom } from './pages/home/home.tsx'
 import { AboPagCom } from './pages/about/about.tsx'
 import { LinPagCom } from './pages/links/links.tsx'
-import Contact from './pages/contact/contact.tsx'
+import { ConPagCom } from './pages/contact/contact.tsx'
 
 function App() {
 
@@ -17,7 +17,7 @@ function App() {
             <Route path="/" element={<HomPagCom />} />
             <Route path="/about" element={<AboPagCom />} />
             <Route path="/links" element={<LinPagCom />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/contact" element={<ConPagCom />} />
           </Routes>
         </main>
         <SitFooCom />
