@@ -1,6 +1,6 @@
 .footer {
   background: var(--text-dark);
-  color: var(--pink-pale);
+  color: var(--main-pale);
   padding: 3rem 0 2rem;
   margin-top: auto;
 }
@@ -16,7 +16,7 @@
 .footer-logo {
   font-family: var(--font-script);
   font-size: 1.8rem;
-  color: var(--pink-soft);
+  color: var(--secondary);
   display: block;
   margin-bottom: 0.4rem;
 }
@@ -37,13 +37,13 @@
 .footer-nav a {
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--pink-pale);
+  color: var(--main-pale);
   transition: color 0.2s;
   text-decoration: none;
 }
 
 .footer-nav a:hover {
-  color: var(--pink-hot);
+  color: var(--main);
 }
 
 .footer-copy {
