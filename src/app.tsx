@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router'
 import { NavBarCom } from './ui/nav.tsx'
 import { SitFooCom } from './ui/footer.tsx'
-import Home from './pages/home/home.tsx'
+import { HomPagCom } from './pages/home/home.tsx'
 import About from './pages/about/about.tsx'
 import SocialLinks from './pages/links/links.tsx'
 import Contact from './pages/contact/contact.tsx'
@@ -14,7 +14,7 @@ function App() {
         <NavBarCom />
         <main style={{ flex: 1 }}>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<HomPagCom />} />
             <Route path="/about" element={<About />} />
             <Route path="/links" element={<SocialLinks />} />
             <Route path="/contact" element={<Contact />} />
