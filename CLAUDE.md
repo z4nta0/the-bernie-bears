@@ -249,9 +249,10 @@ passes on `close-out`.
      older palette that no longer exist, so its brand name and page links
      were invisible on the live site. They now read `--main-pale` (text and
      links), `--secondary` (the name), and `--main` (link hover).
-   - **External links** keep `rel='noopener noreferrer'`. Dropping
-     `noreferrer` on the links to the main site would let its analytics see
-     the visits this site sends; that's a question for the user.
+   - **External links use `rel='noopener'` alone** (decided 2026-10-11 by
+     the user): dropping `noreferrer` lets the main site's analytics, and the
+     platforms', see the visits this site sends, while `noopener` still keeps
+     the opened page from reaching this one.
    - **Found for later**: `links.css` still reads `--pink-pale` and
      `--pink-soft` for the social cards' border and hover border, which
      therefore draw no border at all (step 9). `about.css` holds the

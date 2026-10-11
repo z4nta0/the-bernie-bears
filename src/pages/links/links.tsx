@@ -243,9 +243,9 @@ function LinPagCom () : React.JSX.Element {
 							style={ { '--card-color' : socLinObj.colStr } as React.CSSProperties } // What: Card Color Property. Why: The stylesheet draws each card's left stripe in its brand color. How: This hands the row's color to the card's --card-color custom property. // What: Type Assertion Note. Why: React's style type doesn't list custom properties. How: The object holds only this one custom property, which React sets as written.
 
 							href={ socLinObj.urlStr }
-							rel='noopener noreferrer'
+							rel='noopener'
 							target='_blank'
-						>{ /* What: Social Card Anchor Element. Why: Each card takes the visitor to one of the girls' pages, or the brand's shop. How: This opens the row's address in a new tab, without giving that page access to this one. */ }
+						>{ /* What: Social Card Anchor Element. Why: Each card takes the visitor to one of the girls' pages, or the brand's shop. How: This opens the row's address in a new tab, without giving that page access to this one, while still letting its analytics see the visit came from this site. */ }
 
 
 							<div

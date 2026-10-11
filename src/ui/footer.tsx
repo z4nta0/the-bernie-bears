@@ -103,9 +103,9 @@ function SitFooCom () : React.JSX.Element {
 
 					<a
 						href='https://theberniebears.com/'
-						rel='noopener noreferrer'
+						rel='noopener'
 						target='_blank'
-					>Official Site</a>{ /* What: Official Site Anchor Element. Why: This site exists to promote the brand's main site, which every page should point to. How: This opens theberniebears.com in a new tab, without giving it access to this one. */ }
+					>Official Site</a>{ /* What: Official Site Anchor Element. Why: This site exists to promote the brand's main site, which every page should point to. How: This opens theberniebears.com in a new tab, without giving it access to this one, while still letting its analytics see the visit came from this site. */ }
 
 
 				</nav>
