@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router'
 import Navbar from './ui/nav.tsx'
-import Footer from './ui/footer.tsx'
+import { SitFooCom } from './ui/footer.tsx'
 import Home from './pages/home/home.tsx'
 import About from './pages/about/about.tsx'
 import SocialLinks from './pages/links/links.tsx'
@@ -20,7 +20,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
-        <Footer />
+        <SitFooCom />
       </div>
     </BrowserRouter>
   )
