@@ -3,14 +3,14 @@
 
 // #region Imports
 
+import { AboPagCom } from './pages/about/about.tsx';     // What: About Page Component. Why: The About route shows the girls' story. How: The about route renders it.
+import { ConPagCom } from './pages/contact/contact.tsx'; // What: Contact Page Component. Why: The Contact route shows the ways to get in touch. How: The contact route renders it.
+import { HomPagCom } from './pages/home/home.tsx';       // What: Home Page Component. Why: The site's root address is its home page. How: The home route renders it.
+import { LinPagCom } from './pages/links/links.tsx';     // What: Links Page Component. Why: The Social Links route lists every place to follow the girls. How: The links route renders it.
+import { NavBarCom } from './ui/nav.tsx';                // What: Navigation Bar Component. Why: Every page starts with the shared bar. How: This renders above the routes.
 import { Route     } from 'react-router';                // What: Route. Why: Each page is matched to its path. How: This declares one route per page.
 import { Routes    } from 'react-router';                // What: Routes. Why: Only one page should render for any path. How: This renders the first route whose path matches.
-import { NavBarCom } from './ui/nav.tsx';                // What: Navigation Bar Component. Why: Every page starts with the shared bar. How: This renders above the routes. // What: Load Order Note. Why: Each component's file imports its own global stylesheet, so these imports set the order the stylesheets load in, and home.css and about.css both define .section-title, the later one winning on both pages. How: The components stay in the order they were first written in, rather than alphabetical, until step 8 moves every stylesheet into its own CSS module.
-import { SitFooCom } from './ui/footer.tsx';             // What: Site Footer Component. Why: Every page ends with the shared footer. How: This renders below the routes. // What: Load Order Note. Why: The import order sets the order the global stylesheets load in. How: This keeps its place after the bar.
-import { HomPagCom } from './pages/home/home.tsx';       // What: Home Page Component. Why: The site's root address is its home page. How: The home route renders it. // What: Load Order Note. Why: home.css has to load before about.css, whose .section-title margin has always won on both pages. How: This stays ahead of the About import.
-import { AboPagCom } from './pages/about/about.tsx';     // What: About Page Component. Why: The About route shows the girls' story. How: The about route renders it. // What: Load Order Note. Why: about.css's .section-title margin has always won over home.css's on both pages. How: This stays after the Home import.
-import { LinPagCom } from './pages/links/links.tsx';     // What: Links Page Component. Why: The Social Links route lists every place to follow the girls. How: The links route renders it. // What: Load Order Note. Why: The import order sets the order the global stylesheets load in. How: This keeps its place after the About import.
-import { ConPagCom } from './pages/contact/contact.tsx'; // What: Contact Page Component. Why: The Contact route shows the ways to get in touch. How: The contact route renders it. // What: Load Order Note. Why: The import order sets the order the global stylesheets load in. How: This keeps its place last.
+import { SitFooCom } from './ui/footer.tsx';             // What: Site Footer Component. Why: Every page ends with the shared footer. How: This renders below the routes.
 
 // #endregion Imports
 
@@ -24,9 +24,7 @@ import { ConPagCom } from './pages/contact/contact.tsx'; // What: Contact Page C
  * the main landmark holding whichever page the address matches, and the
  * footer, stacked in a column at least as tall as the screen so the footer
  * sits at the bottom of a short page. A new page is added as another route
- * here. The imports keep their original order rather than alphabetical, since
- * each page's file loads a global stylesheet and two of them define the same
- * class, until step 8 moves the styles into CSS modules.
+ * here.
  *
  * Sections:
  *  - Components
