@@ -304,7 +304,53 @@ passes on `close-out`.
 9. **Design tokens**: the siblings' core design numbers (the plastic ratio,
    with 1rem as an 11px base), this site's colors mapped to roles, the type,
    spacing, duration, easing, shadow, and focus ring tokens, and three-segment
-   class and keyframe names.
+   class and keyframe names. Done 2026-10-11 in five commits, the contrast
+   approach agreed with the user first.
+   - **Colors and fonts**: the page cream is `--bac-pag-col`, white
+     `--bac-sur-col`, the cream yellow `--bor-mai-col` with a deeper
+     `--bor-str-col`, the lavender `--acc-mai-col` (hover `--acc-hov-col`,
+     tint `--acc-tin-col`, light `--acc-lig-col`), the sage `--acc-sec-col`
+     (tint `--acs-tin-col`), and the greys `--tex-mai-col`, `--tex-sec-col`,
+     and `--tex-mut-col`. **Project-specific roles**: `--bac-hig-col`
+     (Background Highlight, the cream yellow as a fill: the current bar link
+     and the gradients), `--acc-dar-col` and `--acs-dar-col` (lavender and
+     sage text shades, the brand colors darkened by 0.175 and 0.205 OKLCH
+     lightness to about #7e5b93 and #4f6f4e, the least that passes 4.5:1 on
+     every background they sit on), and `--tex-inm-col` (#9a9a9a, quiet text
+     on the dark footer). Dancing Script is `--fon-fam-bra` and Nunito
+     `--fon-fam-mai`.
+   - **Contrast**: every violation is gone in all three engines. Lavender and
+     sage text read the dark shades, the muted grey darkened to #717171, and,
+     departing from the plan's "darken the pill a touch", the lavender buttons
+     and the two gradient bands keep their fills and set dark text (7.3:1),
+     since white only passes on a deep purple. The paw rows' text color is the
+     main text color: emoji ignore it, but axe checks it.
+   - **Type and spacing**: the root is 68.75%, body text Base Plus 1, and
+     every length sits on its step, measured from the old 16px rem, so most
+     text is a little smaller. Gaps follow the direction they run, line
+     heights sit on the rhythm, fixed boxes are squares on one rhythm step,
+     and the photos are sized from their frames. The toggle's bars use `m05`
+     with an `m04` gap and an `m02` shift, which still meet in an exact cross
+     (ρ⁻⁴ + ρ⁻³ = ρ⁻¹). Nunito averages 2.27 characters per em, so paragraphs
+     cap at `pow-012` (about 66) and the section subtitle at `pow-011` (about
+     50). The old 24px and 40px radii fold into `--rad-bor-xla`, and the 4px
+     and 5px borders into `--bor-wid-xla` (3px). Layout widths (the 1,100px
+     columns, the grid minimums) wait for step 10.
+   - **Durations and easing**: interface motion takes its nearest step (or
+     the next one up where the nearest is over 10% shorter); the looping paw,
+     blob, and badges round up as expressive motion; the second badge's delay
+     reads half its own duration; every curve folds into the standard ease.
+   - **Shadows**: `--sha-mai-col` is the lavender, so the elevation scale
+     keeps the site's soft tinted shadows: small for the badges, contact cards,
+     and current link, medium for resting cards, panels, frames, the bar, and
+     the buttons, large for hovered cards and buttons and the open menu.
+   - **Names**: every class has its three-segment name (matching the siblings
+     for shared pieces), the keyframes are `pawIcoSpaLoopBounce`,
+     `herBloDivLoopMorph`, `floBadDivLoopFloat`, and the shared
+     `pageEnterFadeIn`, the card color property is `--soc-car-col`, and every
+     rule and element comment labels it by its class's expansion.
+   - **Open for step 10**: About's narrow overflow is now 35px at 320px and
+     also reaches 360px in WebKit, from the fixed 321px cartoon frame.
 10. **Horizontal layout comparison**, decided with the user per "Width is
     decided per project", then a WAVE and manual accessibility review.
 11. **New features**: the 404 page, security headers (`public/_headers`),
