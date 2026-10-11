@@ -177,7 +177,7 @@
   margin-top: 1rem;
 }
 
-.dog-traits span {
+.dog-traits > span {
   background: var(--main-pale);
   border: 1px solid var(--main);
   border-radius: var(--radius-pill);
