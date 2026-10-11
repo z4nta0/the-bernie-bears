@@ -145,23 +145,23 @@
 
 /* #region groFraDiv */
 
-.groFraDiv { /* What: Group Frame Div. Why: The cartoon sits in a white card with a dashed lavender edge. How: This sizes a rounded square card with a soft shadow that grows with the screen from the p11 rhythm step but never past its column, and centers the image in it. */
+.groFraDiv { /* What: Group Frame Div. Why: The cartoon sits in a white card with a dashed lavender edge. How: This sizes a rounded square card with a soft shadow at the p11 rhythm step, about 321px, shrinking only where its column is narrower, and centers the image in it. */
 
 
 	align-items     : center;
 	aspect-ratio    : 1;
-	background      : var( --bac-sur-col );                                                          /* Background Surface Color = #ffffff */
-	border          : var( --bor-wid-xla ) dashed var( --acc-lig-col );                              /* Border Width Extra Large ~= 3.571px, Accent Light Color = #ceb1dd */
-	border-radius   : var( --rad-bor-xla );                                                          /* Radius Border Extra Large ~= 19.304px */
+	background      : var( --bac-sur-col );                             /* Background Surface Color = #ffffff */
+	border          : var( --bor-wid-xla ) dashed var( --acc-lig-col ); /* Border Width Extra Large ~= 3.571px, Accent Light Color = #ceb1dd */
+	border-radius   : var( --rad-bor-xla );                             /* Radius Border Extra Large ~= 19.304px */
 	box-shadow      : var( --ele-med-sha );
-	color           : var( --tex-mut-col );                                                          /* Text Muted Color = #717171 */
+	color           : var( --tex-mut-col );                             /* Text Muted Color = #717171 */
 	display         : flex;
 	flex-direction  : column;
-	font-size       : var( --fon-siz-p01 );                                                          /* Font Size Base Plus 1 ~= 14.572px */
+	font-size       : var( --fon-siz-p01 );                             /* Font Size Base Plus 1 ~= 14.572px */
 	font-style      : italic;
-	gap             : var( --spa-ver-m01 );                                                          /* Spacing Vertical Base Minus 1 = 11px */
+	gap             : var( --spa-ver-m01 );                             /* Spacing Vertical Base Minus 1 = 11px */
 	justify-content : center;
-	width           : min( max( calc( var( --ver-rhy-p11 ) * 1rem ), var( --hor-rhy-022 ) ), 100% ); /* Vertical Rhythm Base Plus 11 ~= 321.273px, Horizontal Rhythm 22 ~= 470.635px @ 1,920px width */
+	width           : min( calc( var( --ver-rhy-p11 ) * 1rem ), 100% ); /* Vertical Rhythm Base Plus 11 ~= 321.273px */
 
 
 }
