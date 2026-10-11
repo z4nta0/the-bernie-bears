@@ -1,0 +1,319 @@
+
+
+
+/**
+ * nav.module.css = Navigation Bar Module
+ *
+ * @summary
+ * Styles for NavBarCom: the frosted bar that sticks to the top of the page,
+ * with the brand (a bouncing paw and the name in the script font) on the left
+ * and the page links as pills on the right, the current page's filled in. On
+ * screens 640px wide or narrower the links move into a panel below the bar,
+ * shown only while the three-bar toggle has it open, and the toggle's bars
+ * turn into a cross. The bar's states are attributes rather than classes:
+ * aria-expanded on the toggle, data-mobile-menu-open on the links, and
+ * aria-current on the current page's link. The bar's width and side padding
+ * are the page's shared container values, merged into its own rule.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region navbar */
+
+.navbar { /* What: Navigation Bar. Why: The bar stays at the top of the screen over the page. How: This sticks it to the top above the page's content, frosts what scrolls under it, and edges it with a cream rule and a soft shadow. */
+
+
+	backdrop-filter : blur(12px);
+	background      : rgba(255, 255, 255, 0.92);
+	border-bottom   : 2px solid var(--main);
+	box-shadow      : 0 2px 16px rgba(139, 173, 137, 0.12);
+	position        : sticky;
+	top             : 0;
+	z-index         : 100;
+
+
+}
+
+
+/* #region navbar-inner */
+
+.navbar-inner { /* What: Navigation Bar Inner Row. Why: The brand, toggle, and links share one row in the page's centered column. How: This spreads them across a 72px row within the page's 1,100px column and its side padding. */
+
+
+	align-items     : center;
+	display         : flex;
+	height          : 72px;
+	justify-content : space-between;
+	margin          : 0 auto;
+	max-width       : 1100px;
+	padding         : 0 2rem;
+
+
+}
+
+
+/* #region navbar-logo */
+
+.navbar-logo { /* What: Navigation Bar Logo Link. Why: The paw and the name read as one link home. How: This sets the paw beside the name, with no underline. */
+
+
+	align-items     : center;
+	display         : flex;
+	gap             : 0.5rem;
+	text-decoration : none;
+
+
+}
+
+.paw-icon { /* What: Paw Icon. Why: A bouncing paw gives the brand some life. How: This sizes the paw and rocks it gently, forever. */
+
+
+	animation : pawBounce 2s ease-in-out infinite;
+	font-size : 1.6rem;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Paw Icon. Why: Someone who asked for less motion shouldn't see the paw bounce. How: This applies only when the reduced-motion preference is set. */
+
+
+	.paw-icon { /* What: Still Paw Icon. Why: The paw should simply sit beside the name. How: This turns the animation off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+@keyframes pawBounce { /* What: Paw Bounce. Why: The paw rocks so the brand feels playful. How: This tilts it left at rest and right, a little larger, at the halfway point. */
+
+
+	0%,
+	100% {
+
+
+		transform : rotate(-10deg) scale(1);
+
+
+	}
+
+	50% {
+
+
+		transform : rotate(10deg) scale(1.1);
+
+
+	}
+
+
+}
+
+.logo-text { /* What: Logo Text. Why: The bar names the site. How: This sets the name large and bold in the script font, in the deep lavender, spaced a little. */
+
+
+	color          : var(--secondary-dark);
+	font-family    : var(--font-script);
+	font-size      : 1.6rem;
+	font-weight    : 700;
+	letter-spacing : 0.02em;
+
+
+}
+
+/* #endregion navbar-logo */
+
+
+/* #region hamburger */
+
+.hamburger { /* What: Hamburger Toggle. Why: Wide screens show the links in the bar, so the toggle stays hidden there. How: This hides it, and stacks its bars on a bare, borderless button once a narrow screen shows it. */
+
+
+	background     : none;
+	border         : none;
+	cursor         : pointer;
+	display        : none;
+	flex-direction : column;
+	gap            : 5px;
+	padding        : 4px;
+
+
+}
+@media ( max-width : 640px ) { /* What: Narrow Hamburger Toggle. Why: The links don't fit the bar on a narrow screen, so the toggle has to show. How: This applies 640px wide and below. */
+
+
+	.hamburger { /* What: Shown Hamburger Toggle. Why: The menu needs a way to open. How: This shows the toggle as a column of bars. */
+
+
+		display : flex;
+
+
+	}
+
+
+}
+
+.hamburger-bar { /* What: Hamburger Bar. Why: The toggle draws as three lavender bars. How: This sizes and rounds each bar, easing every change so the cross forms smoothly. */
+
+
+	background       : var(--secondary);
+	border-radius    : 3px;
+	display          : block;
+	height           : 3px;
+	transform-origin : center;
+	transition       : all 0.3s ease;
+	width            : 26px;
+
+
+}
+.hamburger[aria-expanded='true'] .hamburger-bar:nth-child(1) { /* What: Open Top Hamburger Bar. Why: The open toggle shows a cross. How: This drops the top bar to the middle and tilts it one way. */
+
+
+	transform : translateY(8px) rotate(45deg);
+
+
+}
+.hamburger[aria-expanded='true'] .hamburger-bar:nth-child(2) { /* What: Open Middle Hamburger Bar. Why: The cross has only two strokes. How: This fades the middle bar out. */
+
+
+	opacity : 0;
+
+
+}
+.hamburger[aria-expanded='true'] .hamburger-bar:nth-child(3) { /* What: Open Bottom Hamburger Bar. Why: The open toggle shows a cross. How: This lifts the bottom bar to the middle and tilts it the other way. */
+
+
+	transform : translateY(-8px) rotate(-45deg);
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hamburger Bar. Why: Someone who asked for less motion shouldn't see the bars move. How: This applies only when the reduced-motion preference is set. */
+
+
+	.hamburger-bar { /* What: Motionless Hamburger Bar. Why: The bars should simply switch between three lines and a cross. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion hamburger */
+
+
+/* #region navbar-links */
+
+.navbar-links { /* What: Navigation Bar Links. Why: Wide screens show the page links in a row in the bar. How: This lines them up with small gaps. */
+
+
+	align-items : center;
+	display     : flex;
+	gap         : 0.25rem;
+
+
+}
+@media ( max-width : 640px ) { /* What: Narrow Navigation Bar Links. Why: The links don't fit the bar on a narrow screen. How: This applies 640px wide and below. */
+
+
+	.navbar-links { /* What: Closed Navigation Menu. Why: On a narrow screen the links become a panel below the bar, out of the way until the toggle opens it. How: This stacks them on a white panel across the screen under the bar, hidden while closed, which also keeps its links out of the Tab order. */
+
+
+		background     : white;
+		border-bottom  : 2px solid var(--main);
+		box-shadow     : 0 8px 24px rgba(139, 173, 137, 0.15);
+		display        : none;
+		flex-direction : column;
+		gap            : 0.5rem;
+		left           : 0;
+		padding        : 1rem;
+		position       : absolute;
+		right          : 0;
+		top            : 72px;
+
+
+	}
+	.navbar-links[data-mobile-menu-open] { /* What: Open Navigation Menu. Why: The panel shows its links once the toggle opens it. How: This shows the panel while data-mobile-menu-open is set. */
+
+
+		display : flex;
+
+
+	}
+
+
+}
+
+.nav-link { /* What: Navigation Link. Why: Each link names a page as a soft pill. How: This sets it bold in the body font with pill padding and rounding, easing every change. */
+
+
+	border-radius : var(--radius-pill);
+	color         : var(--text-mid);
+	font-family   : var(--font-body);
+	font-size     : 0.95rem;
+	font-weight   : 600;
+	padding       : 0.5rem 1rem;
+	position      : relative;
+	transition    : all 0.2s ease;
+
+
+}
+.nav-link:hover { /* What: Hovered Navigation Link. Why: A link should respond to the pointer. How: This tints the pill pale lavender with deep lavender text. */
+
+
+	background : var(--secondary-pale);
+	color      : var(--secondary-dark);
+
+
+}
+.nav-link[aria-current='page'] { /* What: Current Navigation Link. Why: The link for the page being shown should stand out. How: This fills the pill cream with dark text, a darker cream border, and a soft shadow, winning over the hover look by coming after it. */
+
+
+	background : var(--main);
+	border     : 1.5px solid var(--main-dark);
+	box-shadow : 0 4px 12px rgba(139, 173, 137, 0.25);
+	color      : var(--text-dark);
+
+
+}
+@media ( max-width : 640px ) { /* What: Narrow Navigation Link. Why: The menu's links stack down the panel and are tapped rather than clicked. How: This applies 640px wide and below. */
+
+
+	.nav-link { /* What: Full Width Navigation Link. Why: A wide, centered target is easier to tap. How: This stretches the pill across the panel and centers its text. */
+
+
+		padding    : 0.75rem;
+		text-align : center;
+		width      : 100%;
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Navigation Link. Why: Someone who asked for less motion shouldn't see the links animate. How: This applies only when the reduced-motion preference is set. */
+
+
+	.nav-link { /* What: Motionless Navigation Link. Why: The hover and current looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion navbar-links */
+
+/* #endregion navbar-inner */
+
+/* #endregion navbar */
+
+
