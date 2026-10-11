@@ -439,12 +439,12 @@
 
 }
 
-.wavTexPar { /* What: Wave Text Paragraph. Why: The page ends warmly. How: This sets the closing line in the script font in deep lavender. */
+.wavTexPar { /* What: Wave Text Paragraph. Why: The page ends warmly. How: This sets the closing line in the script font in a deep lavender dark enough for the band. */
 
 
-	color       : var( --acc-dar-col ); /* Accent Dark Color ~= #7e5b93 */
-	font-family : var( --fon-fam-bra ); /* Font Family Brand = 'Dancing Script', cursive */
-	font-size   : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	color       : oklch( from var( --acc-dar-col ) calc( l - 0.02 ) c h ); /* Accent Dark Color ~= #7e5b93, darkened by 0.02 ~= #78558d */ /* What: Darker Wave Text Color. Why: The deep lavender reaches only 4.44:1 against the sage end of the band's gradient, under the 4.5:1 this size of text needs. How: This darkens it a touch for this line alone, to about 4.85:1 at the gradient's darkest point. */
+	font-family : var( --fon-fam-bra );                                  /* Font Family Brand = 'Dancing Script', cursive */
+	font-size   : var( --fon-siz-p02 );                                  /* Font Size Base Plus 2 ~= 19.304px */
 
 
 }
