@@ -1,0 +1,139 @@
+
+
+
+/**
+ * footer.module.css = Site Footer Module
+ *
+ * @summary
+ * Styles for SitFooCom: the dark band that ends every page, holding one
+ * centered column with the brand name in the script font, its italic tagline,
+ * a wrapping row of page links that lighten on hover, and a small copyright
+ * line under a faint rule. The column's width and side padding are the page's
+ * shared container values, merged into its own rule.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region footer */
+
+.footer { /* What: Site Footer. Why: Every page ends on a dark band set apart from the content above. How: This fills it with the dark text color, sets its text cream, pads it, and pushes it to the bottom of a short page. */
+
+
+	background : var(--text-dark);
+	color      : var(--main-pale);
+	margin-top : auto;
+	padding    : 3rem 0 2rem;
+
+
+}
+
+
+/* #region footer-inner */
+
+.footer-inner { /* What: Footer Inner Column. Why: The footer's content sits in the page's centered column. How: This stacks and centers the brand, tagline, links, and copyright, within the page's 1,100px column and its side padding. */
+
+
+	align-items    : center;
+	display        : flex;
+	flex-direction : column;
+	gap            : 1.5rem;
+	margin         : 0 auto;
+	max-width      : 1100px;
+	padding        : 0 2rem;
+	text-align     : center;
+
+
+}
+
+.footer-logo { /* What: Footer Logo Name. Why: The footer names the brand. How: This sets the name large in the script font, in lavender, on its own line. */
+
+
+	color         : var(--secondary);
+	display       : block;
+	font-family   : var(--font-script);
+	font-size     : 1.8rem;
+	margin-bottom : 0.4rem;
+
+
+}
+
+.footer-tagline { /* What: Footer Tagline. Why: The tagline sits quietly under the name. How: This sets it small, grey, and italic. */
+
+
+	color      : var(--text-light);
+	font-size  : 0.9rem;
+	font-style : italic;
+
+
+}
+
+
+/* #region footer-nav */
+
+.footer-nav { /* What: Footer Navigation. Why: The page links sit in a centered row that wraps on a narrow screen. How: This lays them out with gaps between them. */
+
+
+	display         : flex;
+	flex-wrap       : wrap;
+	gap             : 1.5rem;
+	justify-content : center;
+
+
+}
+
+.footer-link { /* What: Footer Link. Why: The links should read clearly on the dark band. How: This sets them small and bold in cream, with no underline, easing their color. */
+
+
+	color           : var(--main-pale);
+	font-size       : 0.9rem;
+	font-weight     : 600;
+	text-decoration : none;
+	transition      : color 0.2s;
+
+
+}
+.footer-link:hover { /* What: Hovered Footer Link. Why: A link should respond to the pointer. How: This turns it the warmer cream. */
+
+
+	color : var(--main);
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Footer Link. Why: Someone who asked for less motion shouldn't see the links animate. How: This applies only when the reduced-motion preference is set. */
+
+
+	.footer-link { /* What: Motionless Footer Link. Why: The hover color should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion footer-nav */
+
+
+.footer-copy { /* What: Footer Copyright. Why: The footer ends with the copyright, set apart from the links. How: This sets it small and grey across the column's full width, under a faint rule. */
+
+
+	border-top  : 1px solid rgba(255,255,255,0.08);
+	color       : var(--text-light);
+	font-size   : 0.8rem;
+	padding-top : 1rem;
+	text-align  : center;
+	width       : 100%;
+
+
+}
+
+/* #endregion footer-inner */
+
+/* #endregion footer */
+
+
