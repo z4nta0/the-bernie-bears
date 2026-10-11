@@ -76,7 +76,37 @@ passes on `close-out`.
    TypeScript 6.0. Each is checked against the previous build with
    screenshots, computed styles, and axe in all three engines.
    `@types/node` is installed too, since `tsconfig.node.json` asks for it and
-   `tsc -b` fails without it.
+   `tsc -b` fails without it. Done 2026-10-11, in four commits.
+   - **How it was checked**: a scratchpad script (using tonys-toppers'
+     Playwright, since this project's suites come in step 4) captured every
+     route plus a missing path at 390px and 1,440px, and the open phone menu,
+     with every looping animation frozen at its start: full-page screenshots,
+     every element's computed style at rest, each link and button hovered,
+     each Tab stop focused, and axe. A second script opened and used the
+     menu, navigated, and sent and reset the contact form. Capturing one
+     build twice showed what counts as noise: WebKit's link and footer
+     widths jitter by under 0.1px at some widths, which moves a few thousand
+     pixels, and Chromium redraws some text's antialiasing on About at 390px
+     and a 9 by 3px spot on Contact at 1,440px.
+   - **Vite 8**: done 2026-10-11, with `@vitejs/plugin-react` 6 and
+     `@types/node`. Its CSS minifier reorders declarations, writes colors as
+     lowercase or 8-digit hex (only custom properties' raw text shows it),
+     and writes `background : none` and `transparent` as a `0 0` position,
+     which draws nothing different. Everything else matched.
+   - **React 19**: done 2026-10-11, with matching captures, behavior, and no
+     console errors. The bundle grows from 58.7 to 81.5 KB gzipped, React
+     19's own size.
+   - **React Router 8**: done 2026-10-11, with every import moved to
+     `react-router` and `npm audit` clear of the old router's three moderate
+     advisories. It renders a navigation as a React transition, so a check
+     that reads the new page has to wait for it rather than read it the
+     moment the URL changes.
+   - **TypeScript 6.0**: done 2026-10-11. It only type checks (Vite
+     compiles), so a clean `tsc -b` and a byte-for-byte identical build stood
+     in for the browser checks. The dev server runs and passes the behavior
+     checks too.
+   - **Not yet done**: the four files whose imports moved keep their old
+     formatting until step 6.
 3. **ESLint**, set up from the sibling projects' `eslint.config.ts`.
 4. **Playwright and axe** in all three engines, with baseline screenshots of
    every route at phone and desktop widths and the open phone menu, taken
