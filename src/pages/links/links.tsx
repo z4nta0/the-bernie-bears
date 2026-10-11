@@ -184,7 +184,7 @@ const SOC_LIN_ARR = [ // What: Social Link Array. Why: The page lists every plac
  * row of SOC_LIN_ARR, and the closing call to follow. Each card is a link that
  * opens its page in a new tab, without giving that page access to this one,
  * and hands its brand color to the stylesheet's left stripe through the
- * --card-color custom property. The icons, the arrows, and the paw prints are
+ * --soc-car-col custom property. The icons, the arrows, and the paw prints are
  * hidden from screen readers as decoration, so each card is announced by its
  * platform, handle, and sentence.
  *
@@ -207,29 +207,29 @@ function LinPagCom () : React.JSX.Element {
 	return (
 
 
-		<div className={ cssModObj.pageEnter }>{ /* What: Social Links Page Div Element. Why: The Social Links page fades up into place like every other page. How: This holds the page's sections. */ }
+		<div className={ cssModObj.pagEntDiv }>{ /* What: Page Enter Div Element. Why: The Social Links page fades up into place like every other page. How: This holds the page's sections. */ }
 
 
-			<section className={ cssModObj.pageHeader }>{ /* What: Page Header Section Element. Why: The page opens with its title. How: This holds the heading and a short line under it. */ }
+			<section className={ cssModObj.pagHedSec }>{ /* What: Page Header Section Element. Why: The page opens with its title. How: This holds the heading and a short line under it. */ }
 
 
-				<h1 className={ cssModObj.pageHeaderTitle }>Follow the Bears</h1>{ /* What: Page Header Heading Element. Why: The page's heading says what it's for. How: This names the page. */ }
+				<h1 className={ cssModObj.pagTitHea }>Follow the Bears</h1>{ /* What: Page Title Heading Element. Why: The page's heading says what it's for. How: This names the page. */ }
 
-				<p className={ cssModObj.pageHeaderSub }>Find Lilah & Norah on all their favorite platforms</p>{ /* What: Page Header Paragraph Element. Why: A short line says where to look. How: This shows it under the heading. */ }
+				<p className={ cssModObj.pagSubPar }>Find Lilah & Norah on all their favorite platforms</p>{ /* What: Page Sub Paragraph Element. Why: A short line says where to look. How: This shows it under the heading. */ }
 
 
 			</section>
 
 
-			<section className={ cssModObj.linksSection }>{ /* What: Links Section Element. Why: The cards are the page's content. How: This holds the intro line and the list of cards. */ }
+			<section className={ cssModObj.linCarSec }>{ /* What: Links Cards Section Element. Why: The cards are the page's content. How: This holds the intro line and the list of cards. */ }
 
 
-				<p className={ cssModObj.linksIntro }>{ /* What: Links Intro Paragraph Element. Why: A short line says there's a place for every kind of fan. How: This shows it above the cards, ending in a paw print hidden from screen readers. */ }
+				<p className={ cssModObj.linIntPar }>{ /* What: Links Intro Paragraph Element. Why: A short line says there's a place for every kind of fan. How: This shows it above the cards, ending in a paw print hidden from screen readers. */ }
 					Whether you love long videos, quick clips, or scrolling through adorable photos,
 					there's a place for every kind of Bernie Bears fan. <span aria-hidden='true'>🐾</span>
 				</p>
 
-				<div className={ cssModObj.socialCards }>{ /* What: Social Cards Div Element. Why: The cards stack in one column. How: This lays them out. */ }
+				<div className={ cssModObj.socLisDiv }>{ /* What: Social List Div Element. Why: The cards stack in one column. How: This lays them out. */ }
 
 
 					{ SOC_LIN_ARR.map( ( socLinObj ) => ( // What: Social Link Map. Why: Each row of SOC_LIN_ARR gets a card. How: This renders one card per row.
@@ -238,9 +238,9 @@ function LinPagCom () : React.JSX.Element {
 						<a
 							key={ socLinObj.plaStr }
 
-							className={ cssModObj.socialCard }
+							className={ cssModObj.socCarAnc }
 
-							style={ { '--card-color' : socLinObj.colStr } as React.CSSProperties } // What: Card Color Property. Why: The stylesheet draws each card's left stripe in its brand color. How: This hands the row's color to the card's --card-color custom property. // What: Type Assertion Note. Why: React's style type doesn't list custom properties. How: The object holds only this one custom property, which React sets as written.
+							style={ { '--soc-car-col' : socLinObj.colStr } as React.CSSProperties } // What: Card Color Property. Why: The stylesheet draws each card's left stripe in its brand color. How: This hands the row's color to the card's --soc-car-col custom property. // What: Type Assertion Note. Why: React's style type doesn't list custom properties. How: The object holds only this one custom property, which React sets as written.
 
 							href={ socLinObj.urlStr }
 							rel='noopener'
@@ -249,7 +249,7 @@ function LinPagCom () : React.JSX.Element {
 
 
 							<div
-								className={ cssModObj.socialCardIcon }
+								className={ cssModObj.socIcoDiv }
 
 								style={{
 									background : socLinObj.bacStr,
@@ -257,7 +257,7 @@ function LinPagCom () : React.JSX.Element {
 								}}
 
 								aria-hidden='true'
-							>{ /* What: Social Card Icon Div Element. Why: Each card opens with its platform's icon on a pale tile. How: This tints the tile and sets the icon's color, hidden from screen readers as decoration. */ }
+							>{ /* What: Social Icon Div Element. Why: Each card opens with its platform's icon on a pale tile. How: This tints the tile and sets the icon's color, hidden from screen readers as decoration. */ }
 
 
 								<svg
@@ -277,29 +277,29 @@ function LinPagCom () : React.JSX.Element {
 							</div>
 
 
-							<div className={ cssModObj.socialCardBody }>{ /* What: Social Card Body Div Element. Why: The card's words read as one column. How: This stacks the platform, handle, and sentence. */ }
+							<div className={ cssModObj.socBodDiv }>{ /* What: Social Body Div Element. Why: The card's words read as one column. How: This stacks the platform, handle, and sentence. */ }
 
 
-								<div className={ cssModObj.socialPlatform }>{ socLinObj.plaStr }</div>{ /* What: Social Platform Div Element. Why: The card names its platform. How: This shows it in small capitals. */ }
+								<div className={ cssModObj.socPlaDiv }>{ socLinObj.plaStr }</div>{ /* What: Social Platform Div Element. Why: The card names its platform. How: This shows it in small capitals. */ }
 
 								<div
-									className={ cssModObj.socialHandle }
+									className={ cssModObj.socHanDiv }
 
 									style={{ color : socLinObj.colStr }}
 								>{ socLinObj.hanStr }</div>{ /* What: Social Handle Div Element. Why: The card shows the account to look for. How: This shows the row's handle in its brand color. */ }
 
-								<p className={ cssModObj.socialDesc }>{ socLinObj.desStr }</p>{ /* What: Social Description Paragraph Element. Why: The card says what's there. How: This shows the row's sentence. */ }
+								<p className={ cssModObj.socDesPar }>{ socLinObj.desStr }</p>{ /* What: Social Description Paragraph Element. Why: The card says what's there. How: This shows the row's sentence. */ }
 
 
 							</div>
 
 							<div
-								className={ cssModObj.socialCardArrow }
+								className={ cssModObj.socArrDiv }
 
 								style={{ color : socLinObj.colStr }}
 
 								aria-hidden='true'
-							>→</div>{ /* What: Social Card Arrow Div Element. Why: An arrow shows the card leads somewhere. How: This shows it in the row's brand color, hidden from screen readers as decoration. */ }
+							>→</div>{ /* What: Social Arrow Div Element. Why: An arrow shows the card leads somewhere. How: This shows it in the row's brand color, hidden from screen readers as decoration. */ }
 
 
 						</a>
@@ -315,15 +315,15 @@ function LinPagCom () : React.JSX.Element {
 
 
 
-			<section className={ cssModObj.socialCta }>{ /* What: Social Call To Action Section Element. Why: The page ends by asking visitors to follow along. How: This holds the closing heading and line. */ }
+			<section className={ cssModObj.linCtaSec }>{ /* What: Links Call-To-Action Section Element. Why: The page ends by asking visitors to follow along. How: This holds the closing heading and line. */ }
 
 
-				<div className={ cssModObj.container }>{ /* What: Social Call To Action Container Div Element. Why: The closing words sit in the page's centered column. How: This holds the heading and line. */ }
+				<div className={ cssModObj.ctaInnDiv }>{ /* What: Call-To-Action Inner Div Element. Why: The closing words sit in the page's centered column. How: This holds the heading and line. */ }
 
 
-					<h2 className={ cssModObj.socialCtaTitle }>Don't miss a thing! <span aria-hidden='true'>🐾</span></h2>{ /* What: Social Call To Action Heading Element. Why: The page closes on an invitation. How: This shows it, ending in a paw print hidden from screen readers. */ }
+					<h2 className={ cssModObj.ctaTitHea }>Don't miss a thing! <span aria-hidden='true'>🐾</span></h2>{ /* What: Call-To-Action Title Heading Element. Why: The page closes on an invitation. How: This shows it, ending in a paw print hidden from screen readers. */ }
 
-					<p className={ cssModObj.socialCtaText }>{ /* What: Social Call To Action Paragraph Element. Why: A short line says how to keep up. How: This shows it under the heading. */ }
+					<p className={ cssModObj.ctaTexPar }>{ /* What: Call-To-Action Text Paragraph Element. Why: A short line says how to keep up. How: This shows it under the heading. */ }
 						Hit follow, turn on notifications, and become part of The Bernie Bears community.
 						New content is always just around the corner!
 					</p>

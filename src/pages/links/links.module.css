@@ -20,19 +20,19 @@
 
 
 
-/* #region page-enter */
+/* #region pagEntDiv */
 
-.page-enter { /* What: Page Enter Wrapper. Why: The page should arrive gently rather than appear at once. How: This plays the shared fade-up once as the page mounts, holding its first frame until it starts. */
+.pagEntDiv { /* What: Page Enter Div. Why: The page should arrive gently rather than appear at once. How: This plays the shared fade-up once as the page mounts, holding its first frame until it starts. */
 
 
-	animation : global( fadeInUp ) var( --dur-ani-p05 ) var( --mot-sta-eas ) both; /* Duration Animation Base Plus 5 ~= 643.9ms, Motion Standard Easing = ease */
+	animation : global( pageEnterFadeIn ) var( --dur-ani-p05 ) var( --mot-sta-eas ) both; /* Duration Animation Base Plus 5 ~= 643.9ms, Motion Standard Easing = ease */
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Page Enter Wrapper. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Page Enter Div. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
 
 
-	.page-enter { /* What: Still Page Enter Wrapper. Why: The page should simply appear. How: This turns the animation off. */
+	.pagEntDiv { /* What: Still Page Enter Div. Why: The page should simply appear. How: This turns the animation off. */
 
 
 		animation : none;
@@ -44,9 +44,9 @@
 }
 
 
-/* #region page-header */
+/* #region pagHedSec */
 
-.page-header { /* What: Page Header. Why: The page opens with its title on a soft band. How: This fills a centered band with a cream to lavender gradient and a darker cream rule below. */
+.pagHedSec { /* What: Page Header Section. Why: The page opens with its title on a soft band. How: This fills a centered band with a cream to lavender gradient and a darker cream rule below. */
 
 
 	background    : linear-gradient( 135deg, var( --bac-pag-col ) 0%, var( --bac-hig-col ) 50%, var( --acc-tin-col ) 100% ); /* Background Page Color = #f7f7e2, Background Highlight Color = #ececb6, Accent Tint Color = #f3eaf9 */
@@ -57,7 +57,7 @@
 
 }
 
-.page-header-title { /* What: Page Header Title. Why: The page's heading is its biggest text. How: This sets it very large, growing with the screen, with a small gap below. */
+.pagTitHea { /* What: Page Title Heading. Why: The page's heading is its biggest text. How: This sets it very large, growing with the screen, with a small gap below. */
 
 
 	font-size     : clamp( var( --fon-siz-p05 ), 5vw, var( --fon-siz-p07 ) ); /* Font Size Base Plus 5 ~= 44.876px, Font Size Base Plus 7 ~= 78.751px */
@@ -66,7 +66,7 @@
 
 }
 
-.page-header-sub { /* What: Page Header Sub Line. Why: A short line under the heading sets the tone. How: This sets it a little large, italic, in the mid grey. */
+.pagSubPar { /* What: Page Sub Paragraph. Why: A short line under the heading sets the tone. How: This sets it a little large, italic, in the mid grey. */
 
 
 	color      : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
@@ -76,13 +76,13 @@
 
 }
 
-/* #endregion page-header */
+/* #endregion pagHedSec */
 
 
 
-/* #region links-section */
+/* #region linCarSec */
 
-.links-section { /* What: Links Section. Why: The cards sit in the page's centered column. How: This holds the intro and the cards within a 1,100px column with room above and below. */
+.linCarSec { /* What: Links Cards Section. Why: The cards sit in the page's centered column. How: This holds the intro and the cards within a 1,100px column with room above and below. */
 
 
 	margin    : 0 auto;
@@ -92,7 +92,7 @@
 
 }
 
-.links-intro { /* What: Links Intro. Why: A short line says there's a place for every kind of fan. How: This centers it a little large in the mid grey, no wider than a comfortable line, with room below. */
+.linIntPar { /* What: Links Intro Paragraph. Why: A short line says there's a place for every kind of fan. How: This centers it a little large in the mid grey, no wider than a comfortable line, with room below. */
 
 
 	color         : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
@@ -107,9 +107,9 @@
 }
 
 
-/* #region social-cards */
+/* #region socLisDiv */
 
-.social-cards { /* What: Social Cards. Why: The cards stack in one centered column. How: This stacks them with gaps, no wider than 720px. */
+.socLisDiv { /* What: Social List Div. Why: The cards stack in one centered column. How: This stacks them with gaps, no wider than 720px. */
 
 
 	display        : flex;
@@ -122,16 +122,16 @@
 }
 
 
-/* #region social-card */
+/* #region socCarAnc */
 
-.social-card { /* What: Social Card. Why: Each card takes the visitor to one of the girls' pages, or the brand's shop. How: This sets the icon, words, and arrow in a row on a white card with a cream border, rounded corners, and a soft shadow, clipping its stripe to the corners and easing every change. */
+.socCarAnc { /* What: Social Card Anchor. Why: Each card takes the visitor to one of the girls' pages, or the brand's shop. How: This sets the icon, words, and arrow in a row on a white card with a cream border, rounded corners, and a soft shadow, clipping its stripe to the corners and easing every change. */
 
 
 	align-items     : center;
 	background      : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
 	border          : var( --bor-wid-lar ) solid var( --bor-mai-col ); /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
 	border-radius   : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
-	box-shadow      : var( --ele-med-sha );                            /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
+	box-shadow      : var( --ele-med-sha );
 	color           : inherit;
 	display         : flex;
 	gap             : var( --spa-hor-p02 );                            /* Spacing Horizontal Base Plus 2 ~= 25.572px */
@@ -143,10 +143,10 @@
 
 
 }
-.social-card::before { /* What: Social Card Stripe. Why: Each card is marked with its brand color. How: This draws a 5px stripe down the card's left edge in the color the card hands it through --card-color. */
+.socCarAnc::before { /* What: Social Card Anchor Stripe. Why: Each card is marked with its brand color. How: This draws a 5px stripe down the card's left edge in the color the card hands it through --soc-car-col. */
 
 
-	background    : var( --card-color );
+	background    : var( --soc-car-col );
 	border-radius : var( --rad-bor-xsm ) 0 0 var( --rad-bor-xsm ); /* Radius Border Extra Small ~= 3.571px */
 	bottom        : 0;
 	content       : '';
@@ -157,19 +157,19 @@
 
 
 }
-.social-card:hover { /* What: Hovered Social Card. Why: A card should respond to the pointer. How: This slides it 6px right, deepens its shadow, and turns its border light lavender. */
+.socCarAnc:hover { /* What: Hovered Social Card Anchor. Why: A card should respond to the pointer. How: This slides it 6px right, deepens its shadow, and turns its border light lavender. */
 
 
 	border-color : var( --acc-lig-col );               /* Accent Light Color = #ceb1dd */
-	box-shadow   : var( --ele-lar-sha );               /* Elevation Large Shadow, about 0 19.3px 44.9px -14.6px plus 0 6.3px 14.6px -3.6px */
+	box-shadow   : var( --ele-lar-sha );
 	transform    : translateX( var( --spa-hor-m03 ) ); /* Spacing Horizontal Base Minus 3 ~= 6.268px */
 
 
 }
-@media ( max-width : 640px ) { /* What: Narrow Social Card. Why: The card's roomy padding crowds a narrow screen. How: This applies 640px wide and below. */
+@media ( max-width : 640px ) { /* What: Narrow Social Card Anchor. Why: The card's roomy padding crowds a narrow screen. How: This applies 640px wide and below. */
 
 
-	.social-card { /* What: Compact Social Card. Why: A narrow screen needs its room for the words. How: This trims the padding and the gaps. */
+	.socCarAnc { /* What: Compact Social Card Anchor. Why: A narrow screen needs its room for the words. How: This trims the padding and the gaps. */
 
 
 		gap     : var( --spa-hor-bas );                      /* Spacing Horizontal Base ~= 14.572px */
@@ -180,10 +180,10 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Social Card. Why: Someone who asked for less motion shouldn't see the cards slide. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Social Card Anchor. Why: Someone who asked for less motion shouldn't see the cards slide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.social-card { /* What: Motionless Social Card. Why: The hover look should simply switch. How: This turns the transition off. */
+	.socCarAnc { /* What: Motionless Social Card Anchor. Why: The hover look should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -194,7 +194,7 @@
 
 }
 
-.social-card-icon { /* What: Social Card Icon Tile. Why: Each card opens with its platform's mark on a pale tile. How: This sizes a 64px rounded tile, centers the icon in it, and keeps it from shrinking, its font size setting the icon's. */
+.socIcoDiv { /* What: Social Icon Div. Why: Each card opens with its platform's mark on a pale tile. How: This sizes a 64px rounded tile, centers the icon in it, and keeps it from shrinking, its font size setting the icon's. */
 
 
 	align-items     : center;
@@ -208,10 +208,10 @@
 
 
 }
-@media ( max-width : 640px ) { /* What: Narrow Social Card Icon Tile. Why: A 64px tile crowds a narrow card. How: This applies 640px wide and below. */
+@media ( max-width : 640px ) { /* What: Narrow Social Icon Div. Why: A 64px tile crowds a narrow card. How: This applies 640px wide and below. */
 
 
-	.social-card-icon { /* What: Smaller Social Card Icon Tile. Why: The tile should shrink with the card. How: This sizes it to 50px, with a smaller icon. */
+	.socIcoDiv { /* What: Smaller Social Icon Div. Why: The tile should shrink with the card. How: This sizes it to 50px, with a smaller icon. */
 
 
 		font-size : var( --fon-siz-p03 );                /* Font Size Base Plus 3 ~= 25.572px */
@@ -225,9 +225,9 @@
 }
 
 
-/* #region social-card-body */
+/* #region socBodDiv */
 
-.social-card-body { /* What: Social Card Body. Why: The card's words take the room the icon and arrow leave. How: This lets the column grow to fill it. */
+.socBodDiv { /* What: Social Body Div. Why: The card's words take the room the icon and arrow leave. How: This lets the column grow to fill it. */
 
 
 	flex : 1;
@@ -235,7 +235,7 @@
 
 }
 
-.social-platform { /* What: Social Platform. Why: The card names its platform quietly. How: This sets it small, bold, spaced, and uppercase in the light grey. */
+.socPlaDiv { /* What: Social Platform Div. Why: The card names its platform quietly. How: This sets it small, bold, spaced, and uppercase in the light grey. */
 
 
 	color          : var( --tex-mut-col );                   /* Text Muted Color = #717171 */
@@ -248,7 +248,7 @@
 
 }
 
-.social-handle { /* What: Social Handle. Why: The account to look for should stand out. How: This sets it large and bold in the script font, in the color the card sets on it. */
+.socHanDiv { /* What: Social Handle Div. Why: The account to look for should stand out. How: This sets it large and bold in the script font, in the color the card sets on it. */
 
 
 	font-family   : var( --fon-fam-bra ); /* Font Family Brand = 'Dancing Script', cursive */
@@ -259,7 +259,7 @@
 
 }
 
-.social-desc { /* What: Social Description. Why: The card says what's there. How: This sets its sentence small and airy in the mid grey. */
+.socDesPar { /* What: Social Description Paragraph. Why: The card says what's there. How: This sets its sentence small and airy in the mid grey. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
@@ -269,10 +269,10 @@
 
 }
 
-/* #endregion social-card-body */
+/* #endregion socBodDiv */
 
 
-.social-card-arrow { /* What: Social Card Arrow. Why: An arrow shows the card leads somewhere. How: This sets it large and bold, kept from shrinking, easing its nudge. */
+.socArrDiv { /* What: Social Arrow Div. Why: An arrow shows the card leads somewhere. How: This sets it large and bold, kept from shrinking, easing its nudge. */
 
 
 	flex-shrink : 0;
@@ -282,17 +282,17 @@
 
 
 }
-.social-card:hover .social-card-arrow { /* What: Hovered Social Card Arrow. Why: The arrow points the way as the card responds. How: This nudges it 4px right while its card is hovered. */
+.socCarAnc:hover .socArrDiv { /* What: Hovered Social Arrow Div. Why: The arrow points the way as the card responds. How: This nudges it 4px right while its card is hovered. */
 
 
 	transform : translateX( 4px );
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Social Card Arrow. Why: Someone who asked for less motion shouldn't see the arrow move. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Social Arrow Div. Why: Someone who asked for less motion shouldn't see the arrow move. How: This applies only when the reduced-motion preference is set. */
 
 
-	.social-card-arrow { /* What: Motionless Social Card Arrow. Why: The nudge should simply switch. How: This turns the transition off. */
+	.socArrDiv { /* What: Motionless Social Arrow Div. Why: The nudge should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -303,17 +303,17 @@
 
 }
 
-/* #endregion social-card */
+/* #endregion socCarAnc */
 
-/* #endregion social-cards */
+/* #endregion socLisDiv */
 
-/* #endregion links-section */
+/* #endregion linCarSec */
 
 
 
-/* #region social-cta */
+/* #region linCtaSec */
 
-.social-cta { /* What: Social Call To Action. Why: The page ends by asking visitors to follow along. How: This fills a centered band with a pale sage to lavender gradient under a cream rule. */
+.linCtaSec { /* What: Links Call-To-Action Section. Why: The page ends by asking visitors to follow along. How: This fills a centered band with a pale sage to lavender gradient under a cream rule. */
 
 
 	background : linear-gradient( 135deg, var( --acs-tin-col ) 0%, var( --acc-tin-col ) 100% ); /* Accent-Secondary Tint Color = #ddeadc, Accent Tint Color = #f3eaf9 */
@@ -325,9 +325,9 @@
 }
 
 
-/* #region container */
+/* #region ctaInnDiv */
 
-.container { /* What: Social Call To Action Container. Why: The closing words sit in the page's centered column. How: This holds them within the page's 1,100px column and its side padding, the shared container values. */
+.ctaInnDiv { /* What: Call-To-Action Inner Div. Why: The closing words sit in the page's centered column. How: This holds them within the page's 1,100px column and its side padding, the shared container values. */
 
 
 	margin    : 0 auto;
@@ -337,7 +337,7 @@
 
 }
 
-.social-cta-title { /* What: Social Call To Action Title. Why: The page closes on an invitation. How: This sets it large, growing with the screen, with room below. */
+.ctaTitHea { /* What: Call-To-Action Title Heading. Why: The page closes on an invitation. How: This sets it large, growing with the screen, with room below. */
 
 
 	font-size     : clamp( var( --fon-siz-p03 ), 3vw, var( --fon-siz-p05 ) ); /* Font Size Base Plus 3 ~= 25.572px, Font Size Base Plus 5 ~= 44.876px */
@@ -346,7 +346,7 @@
 
 }
 
-.social-cta-text { /* What: Social Call To Action Text. Why: A short line says how to keep up. How: This centers it airy in the mid grey, no wider than a comfortable line. */
+.ctaTexPar { /* What: Call-To-Action Text Paragraph. Why: A short line says how to keep up. How: This centers it airy in the mid grey, no wider than a comfortable line. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
@@ -358,10 +358,10 @@
 
 }
 
-/* #endregion container */
+/* #endregion ctaInnDiv */
 
-/* #endregion social-cta */
+/* #endregion linCtaSec */
 
-/* #endregion page-enter */
+/* #endregion pagEntDiv */
 
 

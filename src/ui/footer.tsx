@@ -70,31 +70,31 @@ function SitFooCom () : React.JSX.Element {
 	return (
 
 
-		<footer className={ cssModObj.footer }>{ /* What: Site Footer Element. Why: Every page ends with the brand, its page links, and the copyright. How: This holds the footer's single centered column. */ }
+		<footer className={ cssModObj.sitFooFoo }>{ /* What: Site Footer Footer Element. Why: Every page ends with the brand, its page links, and the copyright. How: This holds the footer's single centered column. */ }
 
 
-			<div className={ cssModObj.footerInner }>{ /* What: Footer Inner Div Element. Why: The footer's content sits in the page's centered column. How: This stacks the brand, the links, and the copyright. */ }
+			<div className={ cssModObj.fooInnDiv }>{ /* What: Footer Inner Div Element. Why: The footer's content sits in the page's centered column. How: This stacks the brand, the links, and the copyright. */ }
 
 
 				<div>{ /* What: Footer Brand Div Element. Why: The brand name and its tagline read as one block. How: This stacks the name above the tagline, with no styling of its own. */ }
 
 
-					<span className={ cssModObj.footerLogo }><span aria-hidden='true'>🐾</span> The Bernie Bears</span>{ /* What: Footer Logo Span Element. Why: The footer names the brand. How: This shows the name after a paw print, which is hidden from screen readers as decoration. */ }
+					<span className={ cssModObj.fooLogSpa }><span aria-hidden='true'>🐾</span> The Bernie Bears</span>{ /* What: Footer Logo Span Element. Why: The footer names the brand. How: This shows the name after a paw print, which is hidden from screen readers as decoration. */ }
 
-					<p className={ cssModObj.footerTagline }>Lilah & Norah: spreading joy, bear hugs & fluffy paws one day at a time</p>{ /* What: Footer Tagline Paragraph Element. Why: The tagline sums up what the girls are about. How: This shows one italic line under the name. */ }
+					<p className={ cssModObj.fooTagPar }>Lilah & Norah: spreading joy, bear hugs & fluffy paws one day at a time</p>{ /* What: Footer Tagline Paragraph Element. Why: The tagline sums up what the girls are about. How: This shows one italic line under the name. */ }
 
 
 				</div>
 
 				<nav
-					className={ cssModObj.footerNav }
+					className={ cssModObj.fooNavNav }
 
 					aria-label='Footer'
 				>{ /* What: Footer Navigation Nav Element. Why: Every page can be reached from the bottom of any page, and a second navigation landmark needs a label to tell it from the bar's. How: This holds a link to each page and to the brand's main site, labelled Footer. */ }
 
 
 					<Link
-						className={ cssModObj.footerLink }
+						className={ cssModObj.fooLinAnc }
 
 						to='/'
 					>Home</Link>{ /* What: Home Link. Why: The footer links back to the home page. How: This routes to the root path. */ }
@@ -102,7 +102,7 @@ function SitFooCom () : React.JSX.Element {
 
 
 					<Link
-						className={ cssModObj.footerLink }
+						className={ cssModObj.fooLinAnc }
 
 						to='/about'
 					>About</Link>{ /* What: About Link. Why: The footer links to the girls' story. How: This routes to the About page. */ }
@@ -110,7 +110,7 @@ function SitFooCom () : React.JSX.Element {
 
 
 					<Link
-						className={ cssModObj.footerLink }
+						className={ cssModObj.fooLinAnc }
 
 						to='/links'
 					>Social Links</Link>{ /* What: Social Links Link. Why: The footer links to every place to follow the girls. How: This routes to the Social Links page. */ }
@@ -118,7 +118,7 @@ function SitFooCom () : React.JSX.Element {
 
 
 					<Link
-						className={ cssModObj.footerLink }
+						className={ cssModObj.fooLinAnc }
 
 						to='/contact'
 					>Contact</Link>{ /* What: Contact Link. Why: The footer links to the ways to get in touch. How: This routes to the Contact page. */ }
@@ -126,17 +126,17 @@ function SitFooCom () : React.JSX.Element {
 
 
 					<a
-						className={ cssModObj.footerLink }
+						className={ cssModObj.fooLinAnc }
 
 						href='https://theberniebears.com/'
 						rel='noopener'
 						target='_blank'
-					>Official Site</a>{ /* What: Official Site Anchor Element. Why: This site exists to promote the brand's main site, which every page should point to. How: This opens theberniebears.com in a new tab, without giving it access to this one, while still letting its analytics see the visit came from this site. */ }
+					>Official Site</a>{ /* What: Footer Link Anchor Element. Why: This site exists to promote the brand's main site, which every page should point to. How: This opens theberniebears.com in a new tab, without giving it access to this one, while still letting its analytics see the visit came from this site. */ }
 
 
 				</nav>
 
-				<p className={ cssModObj.footerCopy }>© { curYeaNum } The Bernie Bears. Made with <span aria-label='love' role='img'>🩷</span>, bear hugs & lots of treats.</p>{ /* What: Footer Copy Paragraph Element. Why: The footer ends with the copyright. How: This prints the current year read on each render, with the heart announced as love. */ }
+				<p className={ cssModObj.fooCopPar }>© { curYeaNum } The Bernie Bears. Made with <span aria-label='love' role='img'>🩷</span>, bear hugs & lots of treats.</p>{ /* What: Footer Copyright Paragraph Element. Why: The footer ends with the copyright. How: This prints the current year read on each render, with the heart announced as love. */ }
 
 
 			</div>

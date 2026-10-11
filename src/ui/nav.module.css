@@ -21,15 +21,15 @@
 
 
 
-/* #region navbar */
+/* #region navBarHed */
 
-.navbar { /* What: Navigation Bar. Why: The bar stays at the top of the screen over the page. How: This sticks it to the top above the page's content, frosts what scrolls under it, and edges it with a cream rule and a soft shadow. */
+.navBarHed { /* What: Navigation Bar Header. Why: The bar stays at the top of the screen over the page. How: This sticks it to the top above the page's content, frosts what scrolls under it, and edges it with a cream rule and a soft shadow. */
 
 
 	backdrop-filter : blur( calc( var( --ver-rhy-m01 ) * 1rem ) );     /* Vertical Rhythm Base Minus 1 = 11px */
 	background      : oklch( from var( --bac-sur-col ) l c h / 0.92 ); /* Background Surface Color = #ffffff @ 0.92 opacity */
 	border-bottom   : var( --bor-wid-lar ) solid var( --bor-mai-col ); /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
-	box-shadow      : var( --ele-med-sha );                            /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
+	box-shadow      : var( --ele-med-sha );
 	position        : sticky;
 	top             : 0;
 	z-index         : 100;
@@ -38,9 +38,9 @@
 }
 
 
-/* #region navbar-inner */
+/* #region navInnDiv */
 
-.navbar-inner { /* What: Navigation Bar Inner Row. Why: The brand, toggle, and links share one row in the page's centered column. How: This spreads them across a 72px row within the page's 1,100px column and its side padding. */
+.navInnDiv { /* What: Navigation Inner Div. Why: The brand, toggle, and links share one row in the page's centered column. How: This spreads them across a 72px row within the page's 1,100px column and its side padding. */
 
 
 	align-items     : center;
@@ -55,9 +55,9 @@
 }
 
 
-/* #region navbar-logo */
+/* #region navBraAnc */
 
-.navbar-logo { /* What: Navigation Bar Logo Link. Why: The paw and the name read as one link home. How: This sets the paw beside the name, with no underline. */
+.navBraAnc { /* What: Navigation Brand Anchor. Why: The paw and the name read as one link home. How: This sets the paw beside the name, with no underline. */
 
 
 	align-items     : center;
@@ -68,18 +68,18 @@
 
 }
 
-.paw-icon { /* What: Paw Icon. Why: A bouncing paw gives the brand some life. How: This sizes the paw and rocks it gently, forever. */
+.pawIcoSpa { /* What: Paw Icon Span. Why: A bouncing paw gives the brand some life. How: This sizes the paw and rocks it gently, forever. */
 
 
-	animation : pawBounce var( --dur-ani-p10 ) var( --mot-sta-eas ) infinite; /* Duration Animation Base Plus 10 ~= 2,627.0ms, Motion Standard Easing = ease */
-	font-size : var( --fon-siz-p03 );                                         /* Font Size Base Plus 3 ~= 25.572px */
+	animation : pawIcoSpaLoopBounce var( --dur-ani-p10 ) var( --mot-sta-eas ) infinite; /* Duration Animation Base Plus 10 ~= 2,627.0ms, Motion Standard Easing = ease */
+	font-size : var( --fon-siz-p03 );                                                   /* Font Size Base Plus 3 ~= 25.572px */
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Paw Icon. Why: Someone who asked for less motion shouldn't see the paw bounce. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Paw Icon Span. Why: Someone who asked for less motion shouldn't see the paw bounce. How: This applies only when the reduced-motion preference is set. */
 
 
-	.paw-icon { /* What: Still Paw Icon. Why: The paw should simply sit beside the name. How: This turns the animation off. */
+	.pawIcoSpa { /* What: Still Paw Icon Span. Why: The paw should simply sit beside the name. How: This turns the animation off. */
 
 
 		animation : none;
@@ -89,7 +89,7 @@
 
 
 }
-@keyframes pawBounce { /* What: Paw Bounce. Why: The paw rocks so the brand feels playful. How: This tilts it left at rest and right, a little larger, at the halfway point. */
+@keyframes pawIcoSpaLoopBounce { /* What: Paw Icon Span Loop Bounce. Why: The paw rocks so the brand feels playful. How: This tilts it left at rest and right, a little larger, at the halfway point. */
 
 
 	0%,
@@ -112,7 +112,7 @@
 
 }
 
-.logo-text { /* What: Logo Text. Why: The bar names the site. How: This sets the name large and bold in the script font, in the deep lavender, spaced a little. */
+.braNamSpa { /* What: Brand Name Span. Why: The bar names the site. How: This sets the name large and bold in the script font, in the deep lavender, spaced a little. */
 
 
 	color          : var( --acc-dar-col );                   /* Accent Dark Color ~= #7e5b93 */
@@ -124,12 +124,12 @@
 
 }
 
-/* #endregion navbar-logo */
+/* #endregion navBraAnc */
 
 
-/* #region hamburger */
+/* #region navTogBut */
 
-.hamburger { /* What: Hamburger Toggle. Why: Wide screens show the links in the bar, so the toggle stays hidden there. How: This hides it, and stacks its bars on a bare, borderless button once a narrow screen shows it. */
+.navTogBut { /* What: Navigation Toggle Button. Why: Wide screens show the links in the bar, so the toggle stays hidden there. How: This hides it, and stacks its bars on a bare, borderless button once a narrow screen shows it. */
 
 
 	background     : none;
@@ -142,10 +142,10 @@
 
 
 }
-@media ( max-width : 640px ) { /* What: Narrow Hamburger Toggle. Why: The links don't fit the bar on a narrow screen, so the toggle has to show. How: This applies 640px wide and below. */
+@media ( max-width : 640px ) { /* What: Narrow Navigation Toggle Button. Why: The links don't fit the bar on a narrow screen, so the toggle has to show. How: This applies 640px wide and below. */
 
 
-	.hamburger { /* What: Shown Hamburger Toggle. Why: The menu needs a way to open. How: This shows the toggle as a column of bars. */
+	.navTogBut { /* What: Shown Navigation Toggle Button. Why: The menu needs a way to open. How: This shows the toggle as a column of bars. */
 
 
 		display : flex;
@@ -156,7 +156,7 @@
 
 }
 
-.hamburger-bar { /* What: Hamburger Bar. Why: The toggle draws as three lavender bars. How: This sizes and rounds each bar, easing every change so the cross forms smoothly. */
+.togBarSpa { /* What: Toggle Bar Span. Why: The toggle draws as three lavender bars. How: This sizes and rounds each bar, easing every change so the cross forms smoothly. */
 
 
 	background       : var( --acc-mai-col );                          /* Accent Main Color = #d1afe2 */
@@ -169,31 +169,31 @@
 
 
 }
-.hamburger[aria-expanded='true'] .hamburger-bar:nth-child(1) { /* What: Open Top Hamburger Bar. Why: The open toggle shows a cross. How: This drops the top bar to the middle and tilts it one way. */
+.navTogBut[aria-expanded='true'] .togBarSpa:nth-child(1) { /* What: Open Top Toggle Bar Span. Why: The open toggle shows a cross. How: This drops the top bar to the middle and tilts it one way. */
 
 
 	transform : translateY( calc( var( --ver-rhy-m02 ) * 1rem ) ) rotate( 45deg ); /* Vertical Rhythm Base Minus 2 ~= 8.304px */
 
 
 }
-.hamburger[aria-expanded='true'] .hamburger-bar:nth-child(2) { /* What: Open Middle Hamburger Bar. Why: The cross has only two strokes. How: This fades the middle bar out. */
+.navTogBut[aria-expanded='true'] .togBarSpa:nth-child(2) { /* What: Open Middle Toggle Bar Span. Why: The cross has only two strokes. How: This fades the middle bar out. */
 
 
 	opacity : 0;
 
 
 }
-.hamburger[aria-expanded='true'] .hamburger-bar:nth-child(3) { /* What: Open Bottom Hamburger Bar. Why: The open toggle shows a cross. How: This lifts the bottom bar to the middle and tilts it the other way. */
+.navTogBut[aria-expanded='true'] .togBarSpa:nth-child(3) { /* What: Open Bottom Toggle Bar Span. Why: The open toggle shows a cross. How: This lifts the bottom bar to the middle and tilts it the other way. */
 
 
 	transform : translateY( calc( var( --ver-rhy-m02 ) * -1rem ) ) rotate( -45deg ); /* Vertical Rhythm Base Minus 2 ~= -8.304px */
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hamburger Bar. Why: Someone who asked for less motion shouldn't see the bars move. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Toggle Bar Span. Why: Someone who asked for less motion shouldn't see the bars move. How: This applies only when the reduced-motion preference is set. */
 
 
-	.hamburger-bar { /* What: Motionless Hamburger Bar. Why: The bars should simply switch between three lines and a cross. How: This turns the transition off. */
+	.togBarSpa { /* What: Motionless Toggle Bar Span. Why: The bars should simply switch between three lines and a cross. How: This turns the transition off. */
 
 
 		transition : none;
@@ -204,12 +204,12 @@
 
 }
 
-/* #endregion hamburger */
+/* #endregion navTogBut */
 
 
-/* #region navbar-links */
+/* #region navLinNav */
 
-.navbar-links { /* What: Navigation Bar Links. Why: Wide screens show the page links in a row in the bar. How: This lines them up with small gaps. */
+.navLinNav { /* What: Navigation Links Nav. Why: Wide screens show the page links in a row in the bar. How: This lines them up with small gaps. */
 
 
 	align-items : center;
@@ -218,15 +218,15 @@
 
 
 }
-@media ( max-width : 640px ) { /* What: Narrow Navigation Bar Links. Why: The links don't fit the bar on a narrow screen. How: This applies 640px wide and below. */
+@media ( max-width : 640px ) { /* What: Narrow Navigation Links Nav. Why: The links don't fit the bar on a narrow screen. How: This applies 640px wide and below. */
 
 
-	.navbar-links { /* What: Closed Navigation Menu. Why: On a narrow screen the links become a panel below the bar, out of the way until the toggle opens it. How: This stacks them on a white panel across the screen under the bar, hidden while closed, which also keeps its links out of the Tab order. */
+	.navLinNav { /* What: Closed Navigation Links Nav. Why: On a narrow screen the links become a panel below the bar, out of the way until the toggle opens it. How: This stacks them on a white panel across the screen under the bar, hidden while closed, which also keeps its links out of the Tab order. */
 
 
 		background     : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
 		border-bottom  : var( --bor-wid-lar ) solid var( --bor-mai-col ); /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
-		box-shadow     : var( --ele-lar-sha );                            /* Elevation Large Shadow, about 0 19.3px 44.9px -14.6px plus 0 6.3px 14.6px -3.6px */
+		box-shadow     : var( --ele-lar-sha );
 		display        : none;
 		flex-direction : column;
 		gap            : var( --spa-ver-m02 );                            /* Spacing Vertical Base Minus 2 ~= 8.304px */
@@ -238,7 +238,7 @@
 
 
 	}
-	.navbar-links[data-mobile-menu-open] { /* What: Open Navigation Menu. Why: The panel shows its links once the toggle opens it. How: This shows the panel while data-mobile-menu-open is set. */
+	.navLinNav[data-mobile-menu-open] { /* What: Open Navigation Links Nav. Why: The panel shows its links once the toggle opens it. How: This shows the panel while data-mobile-menu-open is set. */
 
 
 		display : flex;
@@ -249,7 +249,7 @@
 
 }
 
-.nav-link { /* What: Navigation Link. Why: Each link names a page as a soft pill. How: This sets it bold in the body font with pill padding and rounding, easing every change. */
+.navLinAnc { /* What: Navigation Link Anchor. Why: Each link names a page as a soft pill. How: This sets it bold in the body font with pill padding and rounding, easing every change. */
 
 
 	border-radius : 999px;
@@ -263,7 +263,7 @@
 
 
 }
-.nav-link:hover { /* What: Hovered Navigation Link. Why: A link should respond to the pointer. How: This tints the pill pale lavender with deep lavender text. */
+.navLinAnc:hover { /* What: Hovered Navigation Link Anchor. Why: A link should respond to the pointer. How: This tints the pill pale lavender with deep lavender text. */
 
 
 	background : var( --acc-tin-col ); /* Accent Tint Color = #f3eaf9 */
@@ -271,20 +271,20 @@
 
 
 }
-.nav-link[aria-current='page'] { /* What: Current Navigation Link. Why: The link for the page being shown should stand out. How: This fills the pill cream with dark text, a darker cream border, and a soft shadow, winning over the hover look by coming after it. */
+.navLinAnc[aria-current='page'] { /* What: Current Navigation Link Anchor. Why: The link for the page being shown should stand out. How: This fills the pill cream with dark text, a darker cream border, and a soft shadow, winning over the hover look by coming after it. */
 
 
 	background : var( --bac-hig-col );                            /* Background Highlight Color = #ececb6 */
 	border     : var( --bor-wid-bas ) solid var( --bor-str-col ); /* Border Width Base ~= 1.160px, Border Strong Color = #d6d69a */
-	box-shadow : var( --ele-sma-sha );                            /* Elevation Small Shadow, about 0 1.2px 2px */
+	box-shadow : var( --ele-sma-sha );
 	color      : var( --tex-mai-col );                            /* Text Main Color = #2c2c2c */
 
 
 }
-@media ( max-width : 640px ) { /* What: Narrow Navigation Link. Why: The menu's links stack down the panel and are tapped rather than clicked. How: This applies 640px wide and below. */
+@media ( max-width : 640px ) { /* What: Narrow Navigation Link Anchor. Why: The menu's links stack down the panel and are tapped rather than clicked. How: This applies 640px wide and below. */
 
 
-	.nav-link { /* What: Full Width Navigation Link. Why: A wide, centered target is easier to tap. How: This stretches the pill across the panel and centers its text. */
+	.navLinAnc { /* What: Full Width Navigation Link Anchor. Why: A wide, centered target is easier to tap. How: This stretches the pill across the panel and centers its text. */
 
 
 		padding    : var( --spa-ver-m01 ) var( --spa-hor-m01 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Minus 1 = 11px */
@@ -296,10 +296,10 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Navigation Link. Why: Someone who asked for less motion shouldn't see the links animate. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Navigation Link Anchor. Why: Someone who asked for less motion shouldn't see the links animate. How: This applies only when the reduced-motion preference is set. */
 
 
-	.nav-link { /* What: Motionless Navigation Link. Why: The hover and current looks should simply switch. How: This turns the transition off. */
+	.navLinAnc { /* What: Motionless Navigation Link Anchor. Why: The hover and current looks should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -310,10 +310,10 @@
 
 }
 
-/* #endregion navbar-links */
+/* #endregion navLinNav */
 
-/* #endregion navbar-inner */
+/* #endregion navInnDiv */
 
-/* #endregion navbar */
+/* #endregion navBarHed */
 
 

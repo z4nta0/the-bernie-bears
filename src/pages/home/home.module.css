@@ -21,19 +21,19 @@
 
 
 
-/* #region page-enter */
+/* #region pagEntDiv */
 
-.page-enter { /* What: Page Enter Wrapper. Why: The page should arrive gently rather than appear at once. How: This plays the shared fade-up once as the page mounts, holding its first frame until it starts. */
+.pagEntDiv { /* What: Page Enter Div. Why: The page should arrive gently rather than appear at once. How: This plays the shared fade-up once as the page mounts, holding its first frame until it starts. */
 
 
-	animation : global( fadeInUp ) var( --dur-ani-p05 ) var( --mot-sta-eas ) both; /* Duration Animation Base Plus 5 ~= 643.9ms, Motion Standard Easing = ease */
+	animation : global( pageEnterFadeIn ) var( --dur-ani-p05 ) var( --mot-sta-eas ) both; /* Duration Animation Base Plus 5 ~= 643.9ms, Motion Standard Easing = ease */
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Page Enter Wrapper. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Page Enter Div. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
 
 
-	.page-enter { /* What: Still Page Enter Wrapper. Why: The page should simply appear. How: This turns the animation off. */
+	.pagEntDiv { /* What: Still Page Enter Div. Why: The page should simply appear. How: This turns the animation off. */
 
 
 		animation : none;
@@ -46,9 +46,9 @@
 
 
 
-/* #region hero */
+/* #region homHerSec */
 
-.hero { /* What: Hero Section. Why: The home page opens with the welcome beside the girls' portrait. How: This sets the two side by side in a centered grid nearly as tall as the screen. */
+.homHerSec { /* What: Home Hero Section. Why: The home page opens with the welcome beside the girls' portrait. How: This sets the two side by side in a centered grid nearly as tall as the screen. */
 
 
 	align-items           : center;
@@ -62,10 +62,10 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Narrow Hero Section. Why: The two columns don't fit side by side on a narrow screen. How: This applies 768px wide and below. */
+@media ( max-width : 768px ) { /* What: Narrow Home Hero Section. Why: The two columns don't fit side by side on a narrow screen. How: This applies 768px wide and below. */
 
 
-	.hero { /* What: Stacked Hero Section. Why: A narrow screen reads the welcome above the portrait. How: This stacks them in one centered column, trims the padding, and lets the height follow the content. */
+	.homHerSec { /* What: Stacked Home Hero Section. Why: A narrow screen reads the welcome above the portrait. How: This stacks them in one centered column, trims the padding, and lets the height follow the content. */
 
 
 		grid-template-columns : 1fr;
@@ -79,7 +79,7 @@
 
 }
 
-.hero-eyebrow { /* What: Hero Eyebrow. Why: A short line leads into the title. How: This sets it small, bold, sage, spaced, and uppercase. */
+.herEyePar { /* What: Hero Eyebrow Paragraph. Why: A short line leads into the title. How: This sets it small, bold, sage, spaced, and uppercase. */
 
 
 	color          : var( --acs-dar-col );                   /* Accent-Secondary Dark Color ~= #4f6f4e */
@@ -92,7 +92,7 @@
 
 }
 
-.hero-title { /* What: Hero Title. Why: The girls' brand name is the page's headline. How: This sets it very large in deep lavender, growing with the screen, tightly leaded, with a soft lavender glow. */
+.herTitHea { /* What: Hero Title Heading. Why: The girls' brand name is the page's headline. How: This sets it very large in deep lavender, growing with the screen, tightly leaded, with a soft lavender glow. */
 
 
 	color         : var( --acc-dar-col );                                     /* Accent Dark Color ~= #7e5b93 */
@@ -104,7 +104,7 @@
 
 }
 
-.hero-sub { /* What: Hero Sub Line. Why: The pitch says who the girls are. How: This sets it a little large in the mid grey, airy, and no wider than a comfortable line. */
+.herLedPar { /* What: Hero Lede Paragraph. Why: The pitch says who the girls are. How: This sets it a little large in the mid grey, airy, and no wider than a comfortable line. */
 
 
 	color         : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
@@ -115,10 +115,10 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Narrow Hero Sub Line. Why: The stacked hero centers its pitch across the column. How: This applies 768px wide and below. */
+@media ( max-width : 768px ) { /* What: Narrow Hero Lede Paragraph. Why: The stacked hero centers its pitch across the column. How: This applies 768px wide and below. */
 
 
-	.hero-sub { /* What: Full Width Hero Sub Line. Why: A width cap would leave the centered pitch off balance. How: This lets it span the column. */
+	.herLedPar { /* What: Full Width Hero Lede Paragraph. Why: A width cap would leave the centered pitch off balance. How: This lets it span the column. */
 
 
 		max-width : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
@@ -130,9 +130,9 @@
 }
 
 
-/* #region hero-buttons */
+/* #region herActDiv */
 
-.hero-buttons { /* What: Hero Buttons. Why: The two ways onward sit together. How: This sets them in a row that wraps. */
+.herActDiv { /* What: Hero Actions Div. Why: The two ways onward sit together. How: This sets them in a row that wraps. */
 
 
 	display   : flex;
@@ -141,10 +141,10 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Narrow Hero Buttons. Why: The stacked hero is centered. How: This applies 768px wide and below. */
+@media ( max-width : 768px ) { /* What: Narrow Hero Actions Div. Why: The stacked hero is centered. How: This applies 768px wide and below. */
 
 
-	.hero-buttons { /* What: Centered Hero Buttons. Why: The buttons should sit under the centered pitch. How: This centers the row. */
+	.herActDiv { /* What: Centered Hero Actions Div. Why: The buttons should sit under the centered pitch. How: This centers the row. */
 
 
 		justify-content : center;
@@ -155,7 +155,7 @@
 
 }
 
-.btn { /* What: Button. Why: The page's actions read as bold pills, shared by the hero and the banner. How: This sets a pill with bold text, a transparent border its variants can color, and an eased change on hover. */
+.butBasAnc { /* What: Button Base Anchor. Why: The page's actions read as bold pills, shared by the hero and the banner. How: This sets a pill with bold text, a transparent border its variants can color, and an eased change on hover. */
 
 
 	align-items     : center;
@@ -173,25 +173,25 @@
 
 
 }
-.btn-primary { /* What: Primary Button. Why: The main action should stand out. How: This fills the pill lavender with white text and a soft lavender shadow. */
+.butBasAnc--primary { /* What: Primary Button Base Anchor. Why: The main action should stand out. How: This fills the pill lavender with white text and a soft lavender shadow. */
 
 
 	background : var( --acc-mai-col ); /* Accent Main Color = #d1afe2 */
-	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
+	box-shadow : var( --ele-med-sha );
 	color      : var( --tex-acc-col ); /* Text Accent Color = #2c2c2c */
 
 
 }
-.btn-primary:hover { /* What: Hovered Primary Button. Why: A button should respond to the pointer. How: This deepens the lavender, lifts the pill 2px, and spreads its shadow. */
+.butBasAnc--primary:hover { /* What: Hovered Primary Button Base Anchor. Why: A button should respond to the pointer. How: This deepens the lavender, lifts the pill 2px, and spreads its shadow. */
 
 
 	background : var( --acc-hov-col );                            /* Accent Hover Color = #b48fcb */
-	box-shadow : var( --ele-lar-sha );                            /* Elevation Large Shadow, about 0 19.3px 44.9px -14.6px plus 0 6.3px 14.6px -3.6px */
+	box-shadow : var( --ele-lar-sha );
 	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }
-.btn-outline { /* What: Outline Button. Why: The second action should read as lighter than the first. How: This leaves the pill clear with sage text and a sage border. */
+.butBasAnc--outline { /* What: Outline Button Base Anchor. Why: The second action should read as lighter than the first. How: This leaves the pill clear with sage text and a sage border. */
 
 
 	background   : transparent;
@@ -200,7 +200,7 @@
 
 
 }
-.btn-outline:hover { /* What: Hovered Outline Button. Why: A button should respond to the pointer. How: This tints the pill pale sage and lifts it 2px. */
+.butBasAnc--outline:hover { /* What: Hovered Outline Button Base Anchor. Why: A button should respond to the pointer. How: This tints the pill pale sage and lifts it 2px. */
 
 
 	background : var( --acs-tin-col );                            /* Accent-Secondary Tint Color = #ddeadc */
@@ -208,27 +208,27 @@
 
 
 }
-.btn-white { /* What: White Button. Why: The banner's action sits on a colored gradient. How: This fills the pill white with deep lavender text and a soft shadow. */
+.butBasAnc--white { /* What: White Button Base Anchor. Why: The banner's action sits on a colored gradient. How: This fills the pill white with deep lavender text and a soft shadow. */
 
 
 	background : var( --bac-sur-col ); /* Background Surface Color = #ffffff */
-	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
+	box-shadow : var( --ele-med-sha );
 	color      : var( --acc-dar-col ); /* Accent Dark Color ~= #7e5b93 */
 
 
 }
-.btn-white:hover { /* What: Hovered White Button. Why: A button should respond to the pointer. How: This lifts the pill 2px and spreads its shadow. */
+.butBasAnc--white:hover { /* What: Hovered White Button Base Anchor. Why: A button should respond to the pointer. How: This lifts the pill 2px and spreads its shadow. */
 
 
-	box-shadow : var( --ele-lar-sha );                            /* Elevation Large Shadow, about 0 19.3px 44.9px -14.6px plus 0 6.3px 14.6px -3.6px */
+	box-shadow : var( --ele-lar-sha );
 	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button. Why: Someone who asked for less motion shouldn't see the buttons animate. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button Base Anchor. Why: Someone who asked for less motion shouldn't see the buttons animate. How: This applies only when the reduced-motion preference is set. */
 
 
-	.btn { /* What: Motionless Button. Why: The hover looks should simply switch. How: This turns the transition off. */
+	.butBasAnc { /* What: Motionless Button Base Anchor. Why: The hover looks should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -239,12 +239,12 @@
 
 }
 
-/* #endregion hero-buttons */
+/* #endregion herActDiv */
 
 
-/* #region hero-image-wrap */
+/* #region herVisDiv */
 
-.hero-image-wrap { /* What: Hero Image Wrap. Why: The portrait sits centered on its blob, with the badges placed around it. How: This centers its contents in a 460px tall box that the blob and badges position against. */
+.herVisDiv { /* What: Hero Visual Div. Why: The portrait sits centered on its blob, with the badges placed around it. How: This centers its contents in a 460px tall box that the blob and badges position against. */
 
 
 	align-items     : center;
@@ -255,10 +255,10 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Narrow Hero Image Wrap. Why: The portrait shrinks on a narrow screen. How: This applies 768px wide and below. */
+@media ( max-width : 768px ) { /* What: Narrow Hero Visual Div. Why: The portrait shrinks on a narrow screen. How: This applies 768px wide and below. */
 
 
-	.hero-image-wrap { /* What: Shorter Hero Image Wrap. Why: The smaller portrait needs less room. How: This trims the box to 320px tall. */
+	.herVisDiv { /* What: Shorter Hero Visual Div. Why: The smaller portrait needs less room. How: This trims the box to 320px tall. */
 
 
 		height : calc( var( --ver-rhy-p11 ) * 1rem ); /* Vertical Rhythm Base Plus 11 ~= 321.273px */
@@ -269,10 +269,10 @@
 
 }
 
-.hero-blob { /* What: Hero Blob. Why: A soft shape behind the portrait adds warmth. How: This draws a cream to sage to lavender blob behind the portrait and morphs its outline slowly, forever. */
+.herBloDiv { /* What: Hero Blob Div. Why: A soft shape behind the portrait adds warmth. How: This draws a cream to sage to lavender blob behind the portrait and morphs its outline slowly, forever. */
 
 
-	animation     : blobMorph var( --dur-ani-p14 ) var( --mot-sta-eas ) infinite;                                                        /* Duration Animation Base Plus 14 ~= 8,090.0ms, Motion Standard Easing = ease */
+	animation     : herBloDivLoopMorph var( --dur-ani-p14 ) var( --mot-sta-eas ) infinite;                                               /* Duration Animation Base Plus 14 ~= 8,090.0ms, Motion Standard Easing = ease */
 	background    : radial-gradient( ellipse at 40% 40%, var( --bac-hig-col ) 0%, var( --acs-tin-col ) 60%, var( --acc-tin-col ) 100% ); /* Background Highlight Color = #ececb6, Accent-Secondary Tint Color = #ddeadc, Accent Tint Color = #f3eaf9 */
 	border-radius : 60% 40% 55% 45% / 50% 60% 40% 50%;
 	height        : calc( var( --ver-rhy-p12 ) * 1rem );                                                                                 /* Vertical Rhythm Base Plus 12 ~= 425.596px */
@@ -282,10 +282,10 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Narrow Hero Blob. Why: The blob shrinks with the portrait. How: This applies 768px wide and below. */
+@media ( max-width : 768px ) { /* What: Narrow Hero Blob Div. Why: The blob shrinks with the portrait. How: This applies 768px wide and below. */
 
 
-	.hero-blob { /* What: Smaller Hero Blob. Why: The blob should match the smaller portrait. How: This sizes it to 280px. */
+	.herBloDiv { /* What: Smaller Hero Blob Div. Why: The blob should match the smaller portrait. How: This sizes it to 280px. */
 
 
 		height : calc( var( --ver-rhy-p10 ) * 1rem ); /* Vertical Rhythm Base Plus 10 ~= 242.522px */
@@ -296,10 +296,10 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hero Blob. Why: Someone who asked for less motion shouldn't see the blob morph. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hero Blob Div. Why: Someone who asked for less motion shouldn't see the blob morph. How: This applies only when the reduced-motion preference is set. */
 
 
-	.hero-blob { /* What: Still Hero Blob. Why: The blob should simply hold its shape. How: This turns the animation off. */
+	.herBloDiv { /* What: Still Hero Blob Div. Why: The blob should simply hold its shape. How: This turns the animation off. */
 
 
 		animation : none;
@@ -309,7 +309,7 @@
 
 
 }
-@keyframes blobMorph { /* What: Blob Morph. Why: The blob's outline shifts so the hero feels alive. How: This moves through three soft outlines and back to the first. */
+@keyframes herBloDivLoopMorph { /* What: Hero Blob Div Loop Morph. Why: The blob's outline shifts so the hero feels alive. How: This moves through three soft outlines and back to the first. */
 
 
 	0%,
@@ -341,14 +341,14 @@
 }
 
 
-/* #region hero-img-frame */
+/* #region porFraDiv */
 
-.hero-img-frame { /* What: Hero Image Frame. Why: The portrait sits in a rounded white frame above the blob. How: This sizes a 360px rounded square with a white border and a soft shadow, clipping the photo to it. */
+.porFraDiv { /* What: Portrait Frame Div. Why: The portrait sits in a rounded white frame above the blob. How: This sizes a 360px rounded square with a white border and a soft shadow, clipping the photo to it. */
 
 
 	border        : var( --bor-wid-xla ) solid var( --bac-sur-col ); /* Border Width Extra Large ~= 3.571px, Background Surface Color = #ffffff */
 	border-radius : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
-	box-shadow    : var( --ele-med-sha );                            /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
+	box-shadow    : var( --ele-med-sha );
 	height        : calc( var( --ver-rhy-p11 ) * 1rem );             /* Vertical Rhythm Base Plus 11 ~= 321.273px */
 	overflow      : hidden;
 	position      : relative;
@@ -357,10 +357,10 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Narrow Hero Image Frame. Why: The portrait shrinks on a narrow screen. How: This applies 768px wide and below. */
+@media ( max-width : 768px ) { /* What: Narrow Portrait Frame Div. Why: The portrait shrinks on a narrow screen. How: This applies 768px wide and below. */
 
 
-	.hero-img-frame { /* What: Smaller Hero Image Frame. Why: A 360px frame crowds a narrow screen. How: This sizes it to 280px. */
+	.porFraDiv { /* What: Smaller Portrait Frame Div. Why: A 360px frame crowds a narrow screen. How: This sizes it to 280px. */
 
 
 		height : calc( var( --ver-rhy-p10 ) * 1rem ); /* Vertical Rhythm Base Plus 10 ~= 242.522px */
@@ -372,7 +372,7 @@
 
 }
 
-.hero-img { /* What: Hero Image. Why: The photo fills its frame. How: This covers the frame, centered, cropping what doesn't fit. */
+.porPhoIma { /* What: Portrait Photo Image. Why: The photo fills its frame. How: This covers the frame, centered, cropping what doesn't fit. */
 
 
 	display         : block;
@@ -384,27 +384,27 @@
 
 }
 
-/* #endregion hero-img-frame */
+/* #endregion porFraDiv */
 
 
-.floating-badge { /* What: Floating Badge. Why: The badges name the girls in the portrait. How: This sets each name as a white pill with a lavender border above the portrait, bobbing gently, forever. */
+.floBadDiv { /* What: Floating Badge Div. Why: The badges name the girls in the portrait. How: This sets each name as a white pill with a lavender border above the portrait, bobbing gently, forever. */
 
 
-	animation     : badgeFloat var( --dur-ani-p11 ) var( --mot-sta-eas ) infinite; /* Duration Animation Base Plus 11 ~= 3,480.0ms, Motion Standard Easing = ease */
-	background    : var( --bac-sur-col );                                          /* Background Surface Color = #ffffff */
-	border        : var( --bor-wid-lar ) solid var( --acc-lig-col );               /* Border Width Large ~= 2.035px, Accent Light Color = #ceb1dd */
+	animation     : floBadDivLoopFloat var( --dur-ani-p11 ) var( --mot-sta-eas ) infinite; /* Duration Animation Base Plus 11 ~= 3,480.0ms, Motion Standard Easing = ease */
+	background    : var( --bac-sur-col );                                                  /* Background Surface Color = #ffffff */
+	border        : var( --bor-wid-lar ) solid var( --acc-lig-col );                       /* Border Width Large ~= 2.035px, Accent Light Color = #ceb1dd */
 	border-radius : 999px;
-	box-shadow    : var( --ele-sma-sha );                                          /* Elevation Small Shadow, about 0 1.2px 2px */
-	color         : var( --acc-dar-col );                                          /* Accent Dark Color ~= #7e5b93 */
-	font-size     : var( --fon-siz-p01 );                                          /* Font Size Base Plus 1 ~= 14.572px */
+	box-shadow    : var( --ele-sma-sha );
+	color         : var( --acc-dar-col );                                                  /* Accent Dark Color ~= #7e5b93 */
+	font-size     : var( --fon-siz-p01 );                                                  /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight   : 700;
-	padding       : var( --spa-ver-m03 ) var( --spa-hor-bas );                     /* Spacing Vertical Base Minus 3 ~= 6.268px, Spacing Horizontal Base ~= 14.572px */
+	padding       : var( --spa-ver-m03 ) var( --spa-hor-bas );                             /* Spacing Vertical Base Minus 3 ~= 6.268px, Spacing Horizontal Base ~= 14.572px */
 	position      : absolute;
 	z-index       : 2;
 
 
 }
-.floating-badge--1 { /* What: First Floating Badge. Why: Lilah's badge sits by the portrait's upper left. How: This places it there and starts its bob at once. */
+.floBadDiv--lilah { /* What: Lilah Floating Badge Div. Why: Lilah's badge sits by the portrait's upper left. How: This places it there and starts its bob at once. */
 
 
 	animation-delay : 0s;
@@ -413,10 +413,10 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Narrow First Floating Badge. Why: A badge past the frame's edge would leave a narrow screen. How: This applies 768px wide and below. */
+@media ( max-width : 768px ) { /* What: Narrow Lilah Floating Badge Div. Why: A badge past the frame's edge would leave a narrow screen. How: This applies 768px wide and below. */
 
 
-	.floating-badge--1 { /* What: Inset First Floating Badge. Why: The badge should stay on screen. How: This aligns it with the box's left edge. */
+	.floBadDiv--lilah { /* What: Inset Lilah Floating Badge Div. Why: The badge should stay on screen. How: This aligns it with the box's left edge. */
 
 
 		left : 0;
@@ -426,7 +426,7 @@
 
 
 }
-.floating-badge--2 { /* What: Second Floating Badge. Why: Norah's badge sits by the portrait's lower right. How: This places it there and starts its bob half a cycle after Lilah's. */
+.floBadDiv--norah { /* What: Norah Floating Badge Div. Why: Norah's badge sits by the portrait's lower right. How: This places it there and starts its bob half a cycle after Lilah's. */
 
 
 	animation-delay : calc( var( --dur-ani-p11 ) / 2 ); /* Duration Animation Base Plus 11 ~= 3,480.0ms */
@@ -435,10 +435,10 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Narrow Second Floating Badge. Why: A badge past the frame's edge would leave a narrow screen. How: This applies 768px wide and below. */
+@media ( max-width : 768px ) { /* What: Narrow Norah Floating Badge Div. Why: A badge past the frame's edge would leave a narrow screen. How: This applies 768px wide and below. */
 
 
-	.floating-badge--2 { /* What: Inset Second Floating Badge. Why: The badge should stay on screen. How: This aligns it with the box's right edge. */
+	.floBadDiv--norah { /* What: Inset Norah Floating Badge Div. Why: The badge should stay on screen. How: This aligns it with the box's right edge. */
 
 
 		right : 0;
@@ -448,10 +448,10 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Floating Badge. Why: Someone who asked for less motion shouldn't see the badges bob. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Floating Badge Div. Why: Someone who asked for less motion shouldn't see the badges bob. How: This applies only when the reduced-motion preference is set. */
 
 
-	.floating-badge { /* What: Still Floating Badge. Why: The badges should simply sit by the portrait. How: This turns the animation off. */
+	.floBadDiv { /* What: Still Floating Badge Div. Why: The badges should simply sit by the portrait. How: This turns the animation off. */
 
 
 		animation : none;
@@ -461,7 +461,7 @@
 
 
 }
-@keyframes badgeFloat { /* What: Badge Float. Why: The badges bob so the hero feels alive. How: This lifts a badge 8px at the halfway point and settles it back. */
+@keyframes floBadDivLoopFloat { /* What: Floating Badge Div Loop Float. Why: The badges bob so the hero feels alive. How: This lifts a badge 8px at the halfway point and settles it back. */
 
 
 	0%,
@@ -484,13 +484,13 @@
 
 }
 
-/* #endregion hero-image-wrap */
+/* #endregion herVisDiv */
 
-/* #endregion hero */
+/* #endregion homHerSec */
 
 
 
-.paw-divider { /* What: Paw Divider. Why: A row of paw prints separates the hero from the cards. How: This centers three widely spaced paws, a little faded, with room above and below. */
+.pawDivDiv { /* What: Paw Divider Div. Why: A row of paw prints separates the hero from the cards. How: This centers three widely spaced paws, a little faded, with room above and below. */
 
 
 	color          : var( --tex-mai-col );                   /* Text Main Color = #2c2c2c */ /* What: Emoji Text Color. Why: Emoji draw in their own colors whatever the text color is, while axe still checks this one for contrast. How: The main text color passes at the row's opacity and changes nothing on screen. */
@@ -505,9 +505,9 @@
 
 
 
-/* #region features */
+/* #region homFeaSec */
 
-.features { /* What: Features Section. Why: The cards sit in the page's centered column. How: This holds the section within the page's 1,100px column and its side padding, the shared container values that have always set its padding. */
+.homFeaSec { /* What: Home Features Section. Why: The cards sit in the page's centered column. How: This holds the section within the page's 1,100px column and its side padding, the shared container values that have always set its padding. */
 
 
 	margin    : 0 auto;
@@ -517,7 +517,7 @@
 
 }
 
-.section-title { /* What: Section Title. Why: The cards need a heading. How: This centers it large, growing with the screen, with the About page's bottom margin, which has always won on this page too. */
+.secTitHea { /* What: Section Title Heading. Why: The cards need a heading. How: This centers it large, growing with the screen, with the About page's bottom margin, which has always won on this page too. */
 
 
 	font-size     : clamp( var( --fon-siz-p04 ), 4vw, var( --fon-siz-p05 ) ); /* Font Size Base Plus 4 ~= 33.876px, Font Size Base Plus 5 ~= 44.876px */
@@ -527,7 +527,7 @@
 
 }
 
-.section-sub { /* What: Section Sub Line. Why: A short line sets up the cards. How: This centers it in the mid grey, no wider than a comfortable line, with room below. */
+.secSubPar { /* What: Section Sub Paragraph. Why: A short line sets up the cards. How: This centers it in the mid grey, no wider than a comfortable line, with room below. */
 
 
 	color         : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
@@ -542,9 +542,9 @@
 }
 
 
-/* #region features-grid */
+/* #region feaGriDiv */
 
-.features-grid { /* What: Features Grid. Why: The cards should fill the row and wrap on a narrow screen. How: This fits as many 220px columns as the row allows. */
+.feaGriDiv { /* What: Features Grid Div. Why: The cards should fill the row and wrap on a narrow screen. How: This fits as many 220px columns as the row allows. */
 
 
 	display               : grid;
@@ -555,34 +555,34 @@
 }
 
 
-/* #region feature-card */
+/* #region feaCarDiv */
 
-.feature-card { /* What: Feature Card. Why: Each card sums up one part of life with the girls. How: This sets a centered white card with rounded corners, a cream border, and a soft shadow, easing every change. */
+.feaCarDiv { /* What: Feature Card Div. Why: Each card sums up one part of life with the girls. How: This sets a centered white card with rounded corners, a cream border, and a soft shadow, easing every change. */
 
 
 	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
 	border        : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #ececb6 */
 	border-radius : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
-	box-shadow    : var( --ele-med-sha );                            /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
+	box-shadow    : var( --ele-med-sha );
 	padding       : var( --spa-ver-p03 ) var( --spa-hor-p02 );       /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	text-align    : center;
 	transition    : all var( --dur-tra-p02 ) var( --mot-sta-eas );   /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
 
 
 }
-.feature-card:hover { /* What: Hovered Feature Card. Why: A card should respond to the pointer. How: This lifts it 6px, deepens its shadow, and tints its border lavender. */
+.feaCarDiv:hover { /* What: Hovered Feature Card Div. Why: A card should respond to the pointer. How: This lifts it 6px, deepens its shadow, and tints its border lavender. */
 
 
 	border-color : var( --acc-lig-col );                            /* Accent Light Color = #ceb1dd */
-	box-shadow   : var( --ele-lar-sha );                            /* Elevation Large Shadow, about 0 19.3px 44.9px -14.6px plus 0 6.3px 14.6px -3.6px */
+	box-shadow   : var( --ele-lar-sha );
 	transform    : translateY( calc( var( --spa-ver-m03 ) * -1 ) ); /* Spacing Vertical Base Minus 3 ~= -6.268px */
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Feature Card. Why: Someone who asked for less motion shouldn't see the cards rise. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Feature Card Div. Why: Someone who asked for less motion shouldn't see the cards rise. How: This applies only when the reduced-motion preference is set. */
 
 
-	.feature-card { /* What: Motionless Feature Card. Why: The hover look should simply switch. How: This turns the transition off. */
+	.feaCarDiv { /* What: Motionless Feature Card Div. Why: The hover look should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -593,7 +593,7 @@
 
 }
 
-.feature-emoji { /* What: Feature Emoji. Why: Each card opens with a large emoji. How: This sizes it with room below. */
+.feaEmoDiv { /* What: Feature Emoji Div. Why: Each card opens with a large emoji. How: This sizes it with room below. */
 
 
 	font-size     : var( --fon-siz-p05 ); /* Font Size Base Plus 5 ~= 44.876px */
@@ -602,7 +602,7 @@
 
 }
 
-.feature-card-title { /* What: Feature Card Title. Why: Each card is named. How: This sets the name a little large with a small gap below. */
+.feaTitHea { /* What: Feature Title Heading. Why: Each card is named. How: This sets the name a little large with a small gap below. */
 
 
 	font-size     : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
@@ -611,7 +611,7 @@
 
 }
 
-.feature-card-text { /* What: Feature Card Text. Why: Each card says a little more. How: This sets its sentence small and airy in the mid grey. */
+.feaTexPar { /* What: Feature Text Paragraph. Why: Each card says a little more. How: This sets its sentence small and airy in the mid grey. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
@@ -621,17 +621,17 @@
 
 }
 
-/* #endregion feature-card */
+/* #endregion feaCarDiv */
 
-/* #endregion features-grid */
+/* #endregion feaGriDiv */
 
-/* #endregion features */
+/* #endregion homFeaSec */
 
 
 
-/* #region cta-banner */
+/* #region homCtaSec */
 
-.cta-banner { /* What: Call To Action Banner. Why: The page ends by sending visitors to follow the girls. How: This fills a centered band with a lavender to sage gradient, with room above it. */
+.homCtaSec { /* What: Home Call-To-Action Section. Why: The page ends by sending visitors to follow the girls. How: This fills a centered band with a lavender to sage gradient, with room above it. */
 
 
 	background : linear-gradient( 135deg, var( --acc-mai-col ) 0%, var( --acc-sec-col ) 100% ); /* Accent Main Color = #d1afe2, Accent Secondary Color = #8bad89 */
@@ -643,9 +643,9 @@
 }
 
 
-/* #region container */
+/* #region ctaInnDiv */
 
-.container { /* What: Banner Container. Why: The banner's content sits in the page's centered column. How: This holds it within the page's 1,100px column and its side padding, the shared container values. */
+.ctaInnDiv { /* What: Call-To-Action Inner Div. Why: The banner's content sits in the page's centered column. How: This holds it within the page's 1,100px column and its side padding, the shared container values. */
 
 
 	margin    : 0 auto;
@@ -655,7 +655,7 @@
 
 }
 
-.cta-banner-title { /* What: Call To Action Banner Title. Why: The invitation should read on the gradient. How: This sets it large and white, growing with the screen. */
+.ctaTitHea { /* What: Call-To-Action Title Heading. Why: The invitation should read on the gradient. How: This sets it large and white, growing with the screen. */
 
 
 	color         : var( --tex-mai-col );                                     /* Text Main Color = #2c2c2c */
@@ -665,7 +665,7 @@
 
 }
 
-.cta-banner-text { /* What: Call To Action Banner Text. Why: The line under the invitation should read on the gradient too. How: This sets it a little large in nearly opaque white, with room below. */
+.ctaTexPar { /* What: Call-To-Action Text Paragraph. Why: The line under the invitation should read on the gradient too. How: This sets it a little large in nearly opaque white, with room below. */
 
 
 	color         : var( --tex-mai-col ); /* Text Main Color = #2c2c2c */
@@ -675,10 +675,10 @@
 
 }
 
-/* #endregion container */
+/* #endregion ctaInnDiv */
 
-/* #endregion cta-banner */
+/* #endregion homCtaSec */
 
-/* #endregion page-enter */
+/* #endregion pagEntDiv */
 
 

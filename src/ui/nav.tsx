@@ -90,26 +90,26 @@ function NavBarCom () : React.JSX.Element {
 	return (
 
 
-		<header className={ cssModObj.navbar }>{ /* What: Navigation Bar Header Element. Why: Every page starts with the shared bar. How: This holds the bar, which sticks to the top of the screen. */ }
+		<header className={ cssModObj.navBarHed }>{ /* What: Navigation Bar Header Element. Why: Every page starts with the shared bar. How: This holds the bar, which sticks to the top of the screen. */ }
 
 
-			<div className={ cssModObj.navbarInner }>{ /* What: Navigation Bar Inner Div Element. Why: The bar's content sits in the page's centered column. How: This lays out the brand, the toggle, and the links in a row. */ }
+			<div className={ cssModObj.navInnDiv }>{ /* What: Navigation Inner Div Element. Why: The bar's content sits in the page's centered column. How: This lays out the brand, the toggle, and the links in a row. */ }
 
 
 				<NavLink
-					className={ cssModObj.navbarLogo }
+					className={ cssModObj.navBraAnc }
 
 					to='/'
 				>{ /* What: Brand Navigation Link. Why: The brand is the way back to the home page. How: This links to the root path. */ }
 
 
 					<span
-						className={ cssModObj.pawIcon }
+						className={ cssModObj.pawIcoSpa }
 
 						aria-hidden='true'
 					>🐾</span>{ /* What: Paw Icon Span Element. Why: A bouncing paw print opens the brand. How: This shows the paw, hidden from screen readers as decoration. */ }
 
-					<span className={ cssModObj.logoText }>The Bernie Bears</span>{ /* What: Logo Text Span Element. Why: The bar names the site. How: This shows the name beside the paw. */ }
+					<span className={ cssModObj.braNamSpa }>The Bernie Bears</span>{ /* What: Brand Name Span Element. Why: The bar names the site. How: This shows the name beside the paw. */ }
 
 
 				</NavLink>
@@ -117,7 +117,7 @@ function NavBarCom () : React.JSX.Element {
 
 
 				<button
-					className={ cssModObj.hamburger }
+					className={ cssModObj.navTogBut }
 
 					type='button'
 
@@ -125,25 +125,25 @@ function NavBarCom () : React.JSX.Element {
 					aria-label='Toggle menu'
 
 					onClick={ () => setMenOpeBoo( ( preOpeBoo ) => !preOpeBoo ) }
-				>{ /* What: Hamburger Button Element. Why: On a phone the links sit in a menu. How: This opens or closes it, tells screen readers whether it's open through aria-expanded, and turns its three bars into a cross while it is. */ }
+				>{ /* What: Navigation Toggle Button Element. Why: On a phone the links sit in a menu. How: This opens or closes it, tells screen readers whether it's open through aria-expanded, and turns its three bars into a cross while it is. */ }
 
 
-					<span className={ cssModObj.hamburgerBar } />{ /* What: Hamburger Bar Span Element. Why: The toggle draws as three bars. How: This is one of them. */ }
+					<span className={ cssModObj.togBarSpa } />{ /* What: Toggle Bar Span Element. Why: The toggle draws as three bars. How: This is one of them. */ }
 
-					<span className={ cssModObj.hamburgerBar } />{ /* What: Hamburger Bar Span Element. Why: The toggle draws as three bars. How: This is one of them. */ }
+					<span className={ cssModObj.togBarSpa } />{ /* What: Toggle Bar Span Element. Why: The toggle draws as three bars. How: This is one of them. */ }
 
-					<span className={ cssModObj.hamburgerBar } />{ /* What: Hamburger Bar Span Element. Why: The toggle draws as three bars. How: This is one of them. */ }
+					<span className={ cssModObj.togBarSpa } />{ /* What: Toggle Bar Span Element. Why: The toggle draws as three bars. How: This is one of them. */ }
 
 
 				</button>
 
 				<nav
-					className={ cssModObj.navbarLinks }
+					className={ cssModObj.navLinNav }
 
 					data-mobile-menu-open={ menOpeBoo || undefined } // What: Mobile Menu Open Flag. Why: On a phone the links show only while the menu is open. How: This marks the nav while menOpeBoo is true, and drops the attribute otherwise.
 
 					aria-label='Main'
-				>{ /* What: Navigation Bar Links Nav Element. Why: The page links sit in a row on wide screens and drop down as the menu on a phone, and the bar's navigation landmark needs a label to tell it from the footer's. How: This holds a link to each page, labelled Main, shown on a phone only while it carries data-mobile-menu-open. */ }
+				>{ /* What: Navigation Links Nav Element. Why: The page links sit in a row on wide screens and drop down as the menu on a phone, and the bar's navigation landmark needs a label to tell it from the footer's. How: This holds a link to each page, labelled Main, shown on a phone only while it carries data-mobile-menu-open. */ }
 
 
 					{ NAV_LIN_ARR.map( ( linRecObj ) => ( // What: Page Link Map. Why: Each page gets a link. How: This renders one link per row.
@@ -152,7 +152,7 @@ function NavBarCom () : React.JSX.Element {
 						<NavLink
 							key={ linRecObj.patStr }
 
-							className={ cssModObj.navLink }
+							className={ cssModObj.navLinAnc }
 
 							end={ linRecObj.patStr === '/' } // What: End Match Flag. Why: Every path starts with the root, so the Home link would otherwise be active on every page. How: This makes only the Home link match its path exactly.
 							to={ linRecObj.patStr }

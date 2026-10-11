@@ -6,12 +6,13 @@
  *
  * @summary
  * The site's global stylesheet, holding only what can't belong to one
- * component: the design tokens every module reads, the base element styles
- * (the box reset, the page's font and colors, the script headings, plain links
- * and images, and the scrollbar), and the fadeInUp keyframe every page's
- * entrance plays through global(). Every component's own styles live in its
- * CSS module. Step 9's design-token pass replaces these tokens with the
- * user-level rules' named scales and color roles.
+ * component: the design tokens every module reads (the plastic-ratio core
+ * design numbers, the color and font roles, and the scales for type, spacing,
+ * rhythm, borders, radii, durations, easing, elevation, and text widths), the
+ * base element styles (the 11px root, the box reset, the page's font and
+ * colors, the brand-font headings, plain links and images, and the scrollbar),
+ * and the pageEnterFadeIn keyframe every page's entrance plays through
+ * global(). Every component's own styles live in its CSS module.
  *
  * Sections:
  *  - Tokens
@@ -491,7 +492,7 @@ button { /* What: Buttons. Why: Buttons should use the site's font and show they
 
 /* #region Shared Keyframes */
 
-@keyframes fadeInUp { /* What: Fade In Up. Why: Every page arrives gently. How: This fades a page in from 24px below its place, played by each page module's page-enter class through global(). */
+@keyframes pageEnterFadeIn { /* What: Page Enter Fade In. Why: Every page arrives gently. How: This fades a page in from a spacing step below its place, played by each page module's pagEntDiv class through global(). */
 
 
 	from {

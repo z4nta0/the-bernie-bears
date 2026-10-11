@@ -17,9 +17,9 @@
 
 
 
-/* #region footer */
+/* #region sitFooFoo */
 
-.footer { /* What: Site Footer. Why: Every page ends on a dark band set apart from the content above. How: This fills it with the dark text color, sets its text cream, pads it, and pushes it to the bottom of a short page. */
+.sitFooFoo { /* What: Site Footer Footer. Why: Every page ends on a dark band set apart from the content above. How: This fills it with the dark text color, sets its text cream, pads it, and pushes it to the bottom of a short page. */
 
 
 	background : var( --bac-inv-col );                        /* Background Inverse Color = #2c2c2c */
@@ -31,9 +31,9 @@
 }
 
 
-/* #region footer-inner */
+/* #region fooInnDiv */
 
-.footer-inner { /* What: Footer Inner Column. Why: The footer's content sits in the page's centered column. How: This stacks and centers the brand, tagline, links, and copyright, within the page's 1,100px column and its side padding. */
+.fooInnDiv { /* What: Footer Inner Div. Why: The footer's content sits in the page's centered column. How: This stacks and centers the brand, tagline, links, and copyright, within the page's 1,100px column and its side padding. */
 
 
 	align-items    : center;
@@ -48,7 +48,7 @@
 
 }
 
-.footer-logo { /* What: Footer Logo Name. Why: The footer names the brand. How: This sets the name large in the script font, in lavender, on its own line. */
+.fooLogSpa { /* What: Footer Logo Span. Why: The footer names the brand. How: This sets the name large in the script font, in lavender, on its own line. */
 
 
 	color         : var( --acc-mai-col ); /* Accent Main Color = #d1afe2 */
@@ -60,7 +60,7 @@
 
 }
 
-.footer-tagline { /* What: Footer Tagline. Why: The tagline sits quietly under the name. How: This sets it small, grey, and italic. */
+.fooTagPar { /* What: Footer Tagline Paragraph. Why: The tagline sits quietly under the name. How: This sets it small, grey, and italic. */
 
 
 	color      : var( --tex-inm-col ); /* Text Inverse-Muted Color = #9a9a9a */
@@ -71,9 +71,9 @@
 }
 
 
-/* #region footer-nav */
+/* #region fooNavNav */
 
-.footer-nav { /* What: Footer Navigation. Why: The page links sit in a centered row that wraps on a narrow screen. How: This lays them out with gaps between them. */
+.fooNavNav { /* What: Footer Navigation Nav. Why: The page links sit in a centered row that wraps on a narrow screen. How: This lays them out with gaps between them. */
 
 
 	display         : flex;
@@ -84,7 +84,7 @@
 
 }
 
-.footer-link { /* What: Footer Link. Why: The links should read clearly on the dark band. How: This sets them small and bold in cream, with no underline, easing their color. */
+.fooLinAnc { /* What: Footer Link Anchor. Why: The links should read clearly on the dark band. How: This sets them small and bold in cream, with no underline, easing their color. */
 
 
 	color           : var( --bac-pag-col );                            /* Background Page Color = #f7f7e2 */
@@ -95,17 +95,17 @@
 
 
 }
-.footer-link:hover { /* What: Hovered Footer Link. Why: A link should respond to the pointer. How: This turns it the warmer cream. */
+.fooLinAnc:hover { /* What: Hovered Footer Link Anchor. Why: A link should respond to the pointer. How: This turns it the warmer cream. */
 
 
 	color : var( --bac-hig-col ); /* Background Highlight Color = #ececb6 */
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Footer Link. Why: Someone who asked for less motion shouldn't see the links animate. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Footer Link Anchor. Why: Someone who asked for less motion shouldn't see the links animate. How: This applies only when the reduced-motion preference is set. */
 
 
-	.footer-link { /* What: Motionless Footer Link. Why: The hover color should simply switch. How: This turns the transition off. */
+	.fooLinAnc { /* What: Motionless Footer Link Anchor. Why: The hover color should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -116,10 +116,10 @@
 
 }
 
-/* #endregion footer-nav */
+/* #endregion fooNavNav */
 
 
-.footer-copy { /* What: Footer Copyright. Why: The footer ends with the copyright, set apart from the links. How: This sets it small and grey across the column's full width, under a faint rule. */
+.fooCopPar { /* What: Footer Copyright Paragraph. Why: The footer ends with the copyright, set apart from the links. How: This sets it small and grey across the column's full width, under a faint rule. */
 
 
 	border-top  : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-009-rec ) ); /* Border Width Base ~= 1.160px, Background Surface Color = #ffffff, Core-Design-Number to the Power of 9 Reciprocal ~= 0.080 */
@@ -132,8 +132,8 @@
 
 }
 
-/* #endregion footer-inner */
+/* #endregion fooInnDiv */
 
-/* #endregion footer */
+/* #endregion sitFooFoo */
 
 

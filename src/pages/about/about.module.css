@@ -19,19 +19,19 @@
 
 
 
-/* #region page-enter */
+/* #region pagEntDiv */
 
-.page-enter { /* What: Page Enter Wrapper. Why: The page should arrive gently rather than appear at once. How: This plays the shared fade-up once as the page mounts, holding its first frame until it starts. */
+.pagEntDiv { /* What: Page Enter Div. Why: The page should arrive gently rather than appear at once. How: This plays the shared fade-up once as the page mounts, holding its first frame until it starts. */
 
 
-	animation : global( fadeInUp ) var( --dur-ani-p05 ) var( --mot-sta-eas ) both; /* Duration Animation Base Plus 5 ~= 643.9ms, Motion Standard Easing = ease */
+	animation : global( pageEnterFadeIn ) var( --dur-ani-p05 ) var( --mot-sta-eas ) both; /* Duration Animation Base Plus 5 ~= 643.9ms, Motion Standard Easing = ease */
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Page Enter Wrapper. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Page Enter Div. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
 
 
-	.page-enter { /* What: Still Page Enter Wrapper. Why: The page should simply appear. How: This turns the animation off. */
+	.pagEntDiv { /* What: Still Page Enter Div. Why: The page should simply appear. How: This turns the animation off. */
 
 
 		animation : none;
@@ -43,9 +43,9 @@
 }
 
 
-/* #region page-header */
+/* #region pagHedSec */
 
-.page-header { /* What: Page Header. Why: The page opens with its title on a soft band. How: This fills a centered band with a cream to lavender gradient and a darker cream rule below. */
+.pagHedSec { /* What: Page Header Section. Why: The page opens with its title on a soft band. How: This fills a centered band with a cream to lavender gradient and a darker cream rule below. */
 
 
 	background    : linear-gradient( 135deg, var( --bac-pag-col ) 0%, var( --bac-hig-col ) 50%, var( --acc-tin-col ) 100% ); /* Background Page Color = #f7f7e2, Background Highlight Color = #ececb6, Accent Tint Color = #f3eaf9 */
@@ -56,7 +56,7 @@
 
 }
 
-.page-header-title { /* What: Page Header Title. Why: The page's heading is its biggest text. How: This sets it very large, growing with the screen, with a small gap below. */
+.pagTitHea { /* What: Page Title Heading. Why: The page's heading is its biggest text. How: This sets it very large, growing with the screen, with a small gap below. */
 
 
 	font-size     : clamp( var( --fon-siz-p05 ), 5vw, var( --fon-siz-p07 ) ); /* Font Size Base Plus 5 ~= 44.876px, Font Size Base Plus 7 ~= 78.751px */
@@ -65,7 +65,7 @@
 
 }
 
-.page-header-sub { /* What: Page Header Sub Line. Why: A short line under the heading sets the tone. How: This sets it a little large, italic, in the mid grey. */
+.pagSubPar { /* What: Page Sub Paragraph. Why: A short line under the heading sets the tone. How: This sets it a little large, italic, in the mid grey. */
 
 
 	color      : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
@@ -75,13 +75,13 @@
 
 }
 
-/* #endregion page-header */
+/* #endregion pagHedSec */
 
 
 
-/* #region about-intro */
+/* #region aboIntSec */
 
-.about-intro { /* What: About Intro Section. Why: The story sits beside the cartoon. How: This sets the two side by side in a centered grid within the page's 1,100px column. */
+.aboIntSec { /* What: About Intro Section. Why: The story sits beside the cartoon. How: This sets the two side by side in a centered grid within the page's 1,100px column. */
 
 
 	align-items           : center;
@@ -97,7 +97,7 @@
 @media ( max-width : 768px ) { /* What: Narrow About Intro Section. Why: The two columns don't fit side by side on a narrow screen. How: This applies 768px wide and below. */
 
 
-	.about-intro { /* What: Stacked About Intro Section. Why: A narrow screen reads the story above the cartoon. How: This stacks them in one centered column. */
+	.aboIntSec { /* What: Stacked About Intro Section. Why: A narrow screen reads the story above the cartoon. How: This stacks them in one centered column. */
 
 
 		grid-template-columns : 1fr;
@@ -110,7 +110,7 @@
 }
 
 
-.about-intro-title { /* What: About Intro Title. Why: The story needs a heading. How: This sets it large with room below. */
+.intTitHea { /* What: Intro Title Heading. Why: The story needs a heading. How: This sets it large with room below. */
 
 
 	font-size     : var( --fon-siz-p04 ); /* Font Size Base Plus 4 ~= 33.876px */
@@ -119,7 +119,7 @@
 
 }
 
-.about-intro-copy { /* What: About Intro Copy. Why: The story's paragraphs should read easily. How: This sets them airy in the mid grey, with a gap after each. */
+.intStoPar { /* What: Intro Story Paragraph. Why: The story's paragraphs should read easily. How: This sets them airy in the mid grey, with a gap after each. */
 
 
 	color         : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
@@ -131,9 +131,9 @@
 }
 
 
-/* #region about-intro-img */
+/* #region intVisDiv */
 
-.about-intro-img { /* What: About Intro Image. Why: The cartoon's card sits centered in its column. How: This centers it. */
+.intVisDiv { /* What: Intro Visual Div. Why: The cartoon's card sits centered in its column. How: This centers it. */
 
 
 	display         : flex;
@@ -143,16 +143,16 @@
 }
 
 
-/* #region img-card-placeholder */
+/* #region groFraDiv */
 
-.img-card-placeholder { /* What: Image Card. Why: The cartoon sits in a white card with a dashed lavender edge. How: This sizes a 320px rounded card with a soft shadow and centers the image in it. */
+.groFraDiv { /* What: Group Frame Div. Why: The cartoon sits in a white card with a dashed lavender edge. How: This sizes a 320px rounded card with a soft shadow and centers the image in it. */
 
 
 	align-items     : center;
 	background      : var( --bac-sur-col );                             /* Background Surface Color = #ffffff */
 	border          : var( --bor-wid-xla ) dashed var( --acc-lig-col ); /* Border Width Extra Large ~= 3.571px, Accent Light Color = #ceb1dd */
 	border-radius   : var( --rad-bor-xla );                             /* Radius Border Extra Large ~= 19.304px */
-	box-shadow      : var( --ele-med-sha );                             /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
+	box-shadow      : var( --ele-med-sha );
 	color           : var( --tex-mut-col );                             /* Text Muted Color = #717171 */
 	display         : flex;
 	flex-direction  : column;
@@ -166,7 +166,7 @@
 
 }
 
-.groupPhoto { /* What: Group Photo. Why: The cartoon fills most of its card. How: This sizes it to 300px with softly rounded corners. */
+.groPhoIma { /* What: Group Photo Image. Why: The cartoon fills most of its card. How: This sizes it to 300px with softly rounded corners. */
 
 
 	border-radius : var( --rad-bor-med );                                       /* Radius Border Medium = 11px */
@@ -176,15 +176,15 @@
 
 }
 
-/* #endregion img-card-placeholder */
+/* #endregion groFraDiv */
 
-/* #endregion about-intro-img */
+/* #endregion intVisDiv */
 
-/* #endregion about-intro */
+/* #endregion aboIntSec */
 
 
 
-.paw-divider { /* What: Paw Divider. Why: A row of paw prints separates the story from the girls' cards. How: This centers three widely spaced paws, a little faded, with room above and below. */
+.pawDivDiv { /* What: Paw Divider Div. Why: A row of paw prints separates the story from the girls' cards. How: This centers three widely spaced paws, a little faded, with room above and below. */
 
 
 	color          : var( --tex-mai-col );                   /* Text Main Color = #2c2c2c */ /* What: Emoji Text Color. Why: Emoji draw in their own colors whatever the text color is, while axe still checks this one for contrast. How: The main text color passes at the row's opacity and changes nothing on screen. */
@@ -199,9 +199,9 @@
 
 
 
-/* #region meet-the-girls */
+/* #region aboSisSec */
 
-.meet-the-girls { /* What: Meet The Girls Section. Why: The sisters' cards sit in the page's centered column. How: This holds them within a 1,100px column with room below. */
+.aboSisSec { /* What: About Sisters Section. Why: The sisters' cards sit in the page's centered column. How: This holds them within a 1,100px column with room below. */
 
 
 	margin    : 0 auto;
@@ -211,7 +211,7 @@
 
 }
 
-.section-title { /* What: Section Title. Why: The cards need a heading. How: This centers it large, growing with the screen, with room below. */
+.secTitHea { /* What: Section Title Heading. Why: The cards need a heading. How: This centers it large, growing with the screen, with room below. */
 
 
 	font-size     : clamp( var( --fon-siz-p04 ), 4vw, var( --fon-siz-p05 ) ); /* Font Size Base Plus 4 ~= 33.876px, Font Size Base Plus 5 ~= 44.876px */
@@ -222,9 +222,9 @@
 }
 
 
-/* #region dog-cards */
+/* #region sisGriDiv */
 
-.dog-cards { /* What: Dog Cards. Why: The two cards sit side by side on wide screens. How: This sets them in two equal columns. */
+.sisGriDiv { /* What: Sisters Grid Div. Why: The two cards sit side by side on wide screens. How: This sets them in two equal columns. */
 
 
 	display               : grid;
@@ -233,10 +233,10 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Narrow Dog Cards. Why: Two cards don't fit side by side on a narrow screen. How: This applies 768px wide and below. */
+@media ( max-width : 768px ) { /* What: Narrow Sisters Grid Div. Why: Two cards don't fit side by side on a narrow screen. How: This applies 768px wide and below. */
 
 
-	.dog-cards { /* What: Stacked Dog Cards. Why: A narrow screen reads one card after the other. How: This sets them in one column. */
+	.sisGriDiv { /* What: Stacked Sisters Grid Div. Why: A narrow screen reads one card after the other. How: This sets them in one column. */
 
 
 		grid-template-columns : 1fr;
@@ -248,15 +248,15 @@
 }
 
 
-/* #region dog-card */
+/* #region sisCarDiv */
 
-.dog-card { /* What: Dog Card. Why: Each sister gets a card of her own. How: This stacks her photo and details in a white card with rounded corners, a cream border, and a soft shadow, easing its lift. */
+.sisCarDiv { /* What: Sister Card Div. Why: Each sister gets a card of her own. How: This stacks her photo and details in a white card with rounded corners, a cream border, and a soft shadow, easing its lift. */
 
 
 	background     : var( --bac-sur-col );                                                                                      /* Background Surface Color = #ffffff */
 	border         : var( --bor-wid-lar ) solid var( --bor-mai-col );                                                           /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
 	border-radius  : var( --rad-bor-xla );                                                                                      /* Radius Border Extra Large ~= 19.304px */
-	box-shadow     : var( --ele-med-sha );                                                                                      /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
+	box-shadow     : var( --ele-med-sha );
 	display        : flex;
 	flex-direction : column;
 	gap            : var( --spa-ver-p02 );                                                                                      /* Spacing Vertical Base Plus 2 ~= 25.572px */
@@ -265,32 +265,32 @@
 
 
 }
-.dog-card:hover { /* What: Hovered Dog Card. Why: A card should respond to the pointer. How: This lifts it 6px and deepens its shadow. */
+.sisCarDiv:hover { /* What: Hovered Sister Card Div. Why: A card should respond to the pointer. How: This lifts it 6px and deepens its shadow. */
 
 
-	box-shadow : var( --ele-lar-sha );                            /* Elevation Large Shadow, about 0 19.3px 44.9px -14.6px plus 0 6.3px 14.6px -3.6px */
+	box-shadow : var( --ele-lar-sha );
 	transform  : translateY( calc( var( --spa-ver-m03 ) * -1 ) ); /* Spacing Vertical Base Minus 3 ~= -6.268px */
 
 
 }
-.dog-card--lilah { /* What: Lilah Dog Card. Why: Each sister has her own accent. How: This edges Lilah's card in lavender along the top. */
+.sisCarDiv--lilah { /* What: Lilah Sister Card Div. Why: Each sister has her own accent. How: This edges Lilah's card in lavender along the top. */
 
 
 	border-top : var( --bor-wid-xla ) solid var( --acc-mai-col ); /* Border Width Extra Large ~= 3.571px, Accent Main Color = #d1afe2 */
 
 
 }
-.dog-card--norah { /* What: Norah Dog Card. Why: Each sister has her own accent. How: This edges Norah's card in sage along the top. */
+.sisCarDiv--norah { /* What: Norah Sister Card Div. Why: Each sister has her own accent. How: This edges Norah's card in sage along the top. */
 
 
 	border-top : var( --bor-wid-xla ) solid var( --acc-sec-col ); /* Border Width Extra Large ~= 3.571px, Accent Secondary Color = #8bad89 */
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Dog Card. Why: Someone who asked for less motion shouldn't see the cards rise. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Sister Card Div. Why: Someone who asked for less motion shouldn't see the cards rise. How: This applies only when the reduced-motion preference is set. */
 
 
-	.dog-card { /* What: Motionless Dog Card. Why: The hover look should simply switch. How: This turns the transition off. */
+	.sisCarDiv { /* What: Motionless Sister Card Div. Why: The hover look should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -302,9 +302,9 @@
 }
 
 
-/* #region img-placeholder-round */
+/* #region sisFraDiv */
 
-.img-placeholder-round { /* What: Round Image Frame. Why: Each sister's photo sits in a round frame. How: This centers a 160px pale cream circle with a dashed cream edge and centers the photo in it. */
+.sisFraDiv { /* What: Sister Frame Div. Why: Each sister's photo sits in a round frame. How: This centers a 160px pale cream circle with a dashed cream edge and centers the photo in it. */
 
 
 	align-items     : center;
@@ -323,8 +323,7 @@
 
 }
 
-.lilahPhoto,
-.norahPhoto { /* What: Sister Photo. Why: Each photo fills most of its round frame. How: This crops it to a 150px circle. */
+.sisPhoIma { /* What: Sister Photo Image. Why: Each photo fills most of its round frame. How: This crops it to a 150px circle. */
 
 
 	border-radius : 50%;
@@ -335,10 +334,10 @@
 
 }
 
-/* #endregion img-placeholder-round */
+/* #endregion sisFraDiv */
 
 
-.dog-badge { /* What: Dog Badge. Why: The badge says where each sister stands in the family. How: This sets small, bold, uppercase lavender text on a pale lavender pill. */
+.sisBadDiv { /* What: Sister Badge Div. Why: The badge says where each sister stands in the family. How: This sets small, bold, uppercase lavender text on a pale lavender pill. */
 
 
 	background     : var( --acc-tin-col );                      /* Accent Tint Color = #f3eaf9 */
@@ -354,7 +353,7 @@
 
 
 }
-.dog-badge--norah { /* What: Norah Dog Badge. Why: Norah's badge matches her card's accent. How: This sets it sage on a pale sage pill. */
+.sisBadDiv--norah { /* What: Norah Sister Badge Div. Why: Norah's badge matches her card's accent. How: This sets it sage on a pale sage pill. */
 
 
 	background : var( --acs-tin-col ); /* Accent-Secondary Tint Color = #ddeadc */
@@ -363,7 +362,7 @@
 
 }
 
-.dog-card-name { /* What: Dog Card Name. Why: Each card is named for its sister. How: This sets the name large with room below. */
+.sisNamHea { /* What: Sister Name Heading. Why: Each card is named for its sister. How: This sets the name large with room below. */
 
 
 	font-size     : var( --fon-siz-p04 ); /* Font Size Base Plus 4 ~= 33.876px */
@@ -372,7 +371,7 @@
 
 }
 
-.dog-card-text { /* What: Dog Card Text. Why: Each card describes its sister. How: This sets the paragraph airy in the mid grey. */
+.sisTexPar { /* What: Sister Text Paragraph. Why: Each card describes its sister. How: This sets the paragraph airy in the mid grey. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
@@ -383,9 +382,9 @@
 }
 
 
-/* #region dog-traits */
+/* #region sisTraDiv */
 
-.dog-traits { /* What: Dog Traits. Why: Three traits sum each sister up at a glance. How: This sets them in a wrapping row of chips below the paragraph. */
+.sisTraDiv { /* What: Sister Traits Div. Why: Three traits sum each sister up at a glance. How: This sets them in a wrapping row of chips below the paragraph. */
 
 
 	display    : flex;
@@ -396,7 +395,7 @@
 
 }
 
-.dog-trait { /* What: Dog Trait. Why: Each trait reads as a chip. How: This sets small, bold, mid grey text on a pale cream pill with a cream border. */
+.sisTraSpa { /* What: Sister Trait Span. Why: Each trait reads as a chip. How: This sets small, bold, mid grey text on a pale cream pill with a cream border. */
 
 
 	background    : var( --bac-pag-col );                            /* Background Page Color = #f7f7e2 */
@@ -410,19 +409,19 @@
 
 }
 
-/* #endregion dog-traits */
+/* #endregion sisTraDiv */
 
-/* #endregion dog-card */
+/* #endregion sisCarDiv */
 
-/* #endregion dog-cards */
+/* #endregion sisGriDiv */
 
-/* #endregion meet-the-girls */
+/* #endregion aboSisSec */
 
 
 
-/* #region fun-facts */
+/* #region aboFacSec */
 
-.fun-facts { /* What: Fun Facts Section. Why: The page closes on quick facts on a colored band. How: This fills the band with a lavender to sage gradient. */
+.aboFacSec { /* What: About Facts Section. Why: The page closes on quick facts on a colored band. How: This fills the band with a lavender to sage gradient. */
 
 
 	background : linear-gradient( 135deg, var( --acc-mai-col ) 0%, var( --acc-sec-col ) 100% ); /* Accent Main Color = #d1afe2, Accent Secondary Color = #8bad89 */
@@ -432,9 +431,9 @@
 }
 
 
-/* #region container */
+/* #region facInnDiv */
 
-.container { /* What: Fun Facts Container. Why: The facts sit in the page's centered column. How: This holds them within the page's 1,100px column and its side padding, the shared container values. */
+.facInnDiv { /* What: Facts Inner Div. Why: The facts sit in the page's centered column. How: This holds them within the page's 1,100px column and its side padding, the shared container values. */
 
 
 	margin    : 0 auto;
@@ -444,7 +443,7 @@
 
 }
 
-.fun-facts-title { /* What: Fun Facts Title. Why: The facts need a heading that reads on the gradient. How: This centers it large and white, growing with the screen, with room below. */
+.facTitHea { /* What: Facts Title Heading. Why: The facts need a heading that reads on the gradient. How: This centers it large and white, growing with the screen, with room below. */
 
 
 	color         : var( --tex-mai-col );                                     /* Text Main Color = #2c2c2c */
@@ -456,9 +455,9 @@
 }
 
 
-/* #region facts-grid */
+/* #region facGriDiv */
 
-.facts-grid { /* What: Facts Grid. Why: The facts should fill the row and wrap on a narrow screen. How: This fits as many 160px columns as the row allows. */
+.facGriDiv { /* What: Facts Grid Div. Why: The facts should fill the row and wrap on a narrow screen. How: This fits as many 160px columns as the row allows. */
 
 
 	display               : grid;
@@ -470,9 +469,9 @@
 }
 
 
-/* #region fact-card */
+/* #region facCarDiv */
 
-.fact-card { /* What: Fact Card. Why: Each fact is a frosted card on the band. How: This stacks the fact's emoji, value, and label, centered, in a translucent white card that frosts the band behind it, easing its lift. */
+.facCarDiv { /* What: Fact Card Div. Why: Each fact is a frosted card on the band. How: This stacks the fact's emoji, value, and label, centered, in a translucent white card that frosts the band behind it, easing its lift. */
 
 
 	align-items     : center;
@@ -489,17 +488,17 @@
 
 
 }
-.fact-card:hover { /* What: Hovered Fact Card. Why: A card should respond to the pointer. How: This lifts it 4px. */
+.facCarDiv:hover { /* What: Hovered Fact Card Div. Why: A card should respond to the pointer. How: This lifts it 4px. */
 
 
 	transform : translateY( -4px );
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Fact Card. Why: Someone who asked for less motion shouldn't see the cards rise. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Fact Card Div. Why: Someone who asked for less motion shouldn't see the cards rise. How: This applies only when the reduced-motion preference is set. */
 
 
-	.fact-card { /* What: Motionless Fact Card. Why: The hover look should simply switch. How: This turns the transition off. */
+	.facCarDiv { /* What: Motionless Fact Card Div. Why: The hover look should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -510,7 +509,7 @@
 
 }
 
-.fact-icon { /* What: Fact Icon. Why: Each fact opens with a large emoji. How: This sizes it. */
+.facIcoSpa { /* What: Fact Icon Span. Why: Each fact opens with a large emoji. How: This sizes it. */
 
 
 	font-size : var( --fon-siz-p04 ); /* Font Size Base Plus 4 ~= 33.876px */
@@ -518,7 +517,7 @@
 
 }
 
-.fact-value { /* What: Fact Value. Why: The fact itself is the card's focus. How: This sets it bold and white. */
+.facValSpa { /* What: Fact Value Span. Why: The fact itself is the card's focus. How: This sets it bold and white. */
 
 
 	color       : var( --tex-mai-col ); /* Text Main Color = #2c2c2c */
@@ -528,7 +527,7 @@
 
 }
 
-.fact-label { /* What: Fact Label. Why: Each fact says what it's about, quietly. How: This sets it small, spaced, and uppercase in translucent white. */
+.facLabSpa { /* What: Fact Label Span. Why: Each fact says what it's about, quietly. How: This sets it small, spaced, and uppercase in translucent white. */
 
 
 	color          : var( --tex-mai-col );                   /* Text Main Color = #2c2c2c */
@@ -539,14 +538,14 @@
 
 }
 
-/* #endregion fact-card */
+/* #endregion facCarDiv */
 
-/* #endregion facts-grid */
+/* #endregion facGriDiv */
 
-/* #endregion container */
+/* #endregion facInnDiv */
 
-/* #endregion fun-facts */
+/* #endregion aboFacSec */
 
-/* #endregion page-enter */
+/* #endregion pagEntDiv */
 
 
