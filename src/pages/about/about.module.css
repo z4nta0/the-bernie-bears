@@ -1,0 +1,552 @@
+
+
+
+/**
+ * about.module.css = About Page Module
+ *
+ * @summary
+ * Styles for AboPagCom: the page fading up into place, the gradient header,
+ * the story beside the cartoon in its dashed card, the row of paw prints, the
+ * two sisters' cards with their round photos, badges, and trait chips, which
+ * lift on hover, and the frosted fun fact cards on a lavender to sage band.
+ * The facts' column takes the page's shared container values, and the
+ * band's white heading has its own rule in place of an inline style. Every
+ * animation and transition is off under reduced motion.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region page-enter */
+
+.page-enter { /* What: Page Enter Wrapper. Why: The page should arrive gently rather than appear at once. How: This plays the shared fade-up once as the page mounts, holding its first frame until it starts. */
+
+
+	animation : global(fadeInUp) 0.55s ease both;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Page Enter Wrapper. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.page-enter { /* What: Still Page Enter Wrapper. Why: The page should simply appear. How: This turns the animation off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+
+/* #region page-header */
+
+.page-header { /* What: Page Header. Why: The page opens with its title on a soft band. How: This fills a centered band with a cream to lavender gradient and a darker cream rule below. */
+
+
+	background    : linear-gradient(135deg, var(--main-pale) 0%, var(--main) 50%, var(--secondary-pale) 100%);
+	border-bottom : 2px solid var(--main-dark);
+	padding       : 5rem 2rem 4rem;
+	text-align    : center;
+
+
+}
+
+.page-header-title { /* What: Page Header Title. Why: The page's heading is its biggest text. How: This sets it very large, growing with the screen, with a small gap below. */
+
+
+	font-size     : clamp(2.5rem, 5vw, 4.5rem);
+	margin-bottom : 0.75rem;
+
+
+}
+
+.page-header-sub { /* What: Page Header Sub Line. Why: A short line under the heading sets the tone. How: This sets it a little large, italic, in the mid grey. */
+
+
+	color      : var(--text-mid);
+	font-size  : 1.1rem;
+	font-style : italic;
+
+
+}
+
+/* #endregion page-header */
+
+
+
+/* #region about-intro */
+
+.about-intro { /* What: About Intro Section. Why: The story sits beside the cartoon. How: This sets the two side by side in a centered grid within the page's 1,100px column. */
+
+
+	align-items           : center;
+	display               : grid;
+	gap                   : 4rem;
+	grid-template-columns : 1fr 1fr;
+	margin                : 0 auto;
+	max-width             : 1100px;
+	padding               : 5rem 2rem;
+
+
+}
+@media ( max-width : 768px ) { /* What: Narrow About Intro Section. Why: The two columns don't fit side by side on a narrow screen. How: This applies 768px wide and below. */
+
+
+	.about-intro { /* What: Stacked About Intro Section. Why: A narrow screen reads the story above the cartoon. How: This stacks them in one centered column. */
+
+
+		grid-template-columns : 1fr;
+		text-align            : center;
+
+
+	}
+
+
+}
+
+
+.about-intro-title { /* What: About Intro Title. Why: The story needs a heading. How: This sets it large with room below. */
+
+
+	font-size     : 2.4rem;
+	margin-bottom : 1.2rem;
+
+
+}
+
+.about-intro-copy { /* What: About Intro Copy. Why: The story's paragraphs should read easily. How: This sets them airy in the mid grey, with a gap after each. */
+
+
+	color         : var(--text-mid);
+	font-size     : 1rem;
+	line-height   : 1.8;
+	margin-bottom : 1rem;
+
+
+}
+
+
+/* #region about-intro-img */
+
+.about-intro-img { /* What: About Intro Image. Why: The cartoon's card sits centered in its column. How: This centers it. */
+
+
+	display         : flex;
+	justify-content : center;
+
+
+}
+
+
+/* #region img-card-placeholder */
+
+.img-card-placeholder { /* What: Image Card. Why: The cartoon sits in a white card with a dashed lavender edge. How: This sizes a 320px rounded card with a soft shadow and centers the image in it. */
+
+
+	align-items     : center;
+	background      : white;
+	border          : 3px dashed var(--accent-light);
+	border-radius   : var(--radius-xl);
+	box-shadow      : var(--shadow-card);
+	color           : var(--text-light);
+	display         : flex;
+	flex-direction  : column;
+	font-size       : 0.9rem;
+	font-style      : italic;
+	gap             : 0.75rem;
+	height          : 320px;
+	justify-content : center;
+	width           : 320px;
+
+
+}
+
+.groupPhoto { /* What: Group Photo. Why: The cartoon fills most of its card. How: This sizes it to 300px with softly rounded corners. */
+
+
+	border-radius : 10px;
+	height        : 300px;
+	width         : 300px;
+
+
+}
+
+/* #endregion img-card-placeholder */
+
+/* #endregion about-intro-img */
+
+/* #endregion about-intro */
+
+
+
+.paw-divider { /* What: Paw Divider. Why: A row of paw prints separates the story from the girls' cards. How: This centers three widely spaced sage paws, a little faded, with room above and below. */
+
+
+	color          : var(--accent);
+	font-size      : 1.4rem;
+	letter-spacing : 0.5rem;
+	margin         : 2rem 0;
+	opacity        : 0.7;
+	text-align     : center;
+
+
+}
+
+
+
+/* #region meet-the-girls */
+
+.meet-the-girls { /* What: Meet The Girls Section. Why: The sisters' cards sit in the page's centered column. How: This holds them within a 1,100px column with room below. */
+
+
+	margin    : 0 auto;
+	max-width : 1100px;
+	padding   : 2rem 2rem 5rem;
+
+
+}
+
+.section-title { /* What: Section Title. Why: The cards need a heading. How: This centers it large, growing with the screen, with room below. */
+
+
+	font-size     : clamp(2rem, 4vw, 3rem);
+	margin-bottom : 2.5rem;
+	text-align    : center;
+
+
+}
+
+
+/* #region dog-cards */
+
+.dog-cards { /* What: Dog Cards. Why: The two cards sit side by side on wide screens. How: This sets them in two equal columns. */
+
+
+	display               : grid;
+	gap                   : 2rem;
+	grid-template-columns : 1fr 1fr;
+
+
+}
+@media ( max-width : 768px ) { /* What: Narrow Dog Cards. Why: Two cards don't fit side by side on a narrow screen. How: This applies 768px wide and below. */
+
+
+	.dog-cards { /* What: Stacked Dog Cards. Why: A narrow screen reads one card after the other. How: This sets them in one column. */
+
+
+		grid-template-columns : 1fr;
+
+
+	}
+
+
+}
+
+
+/* #region dog-card */
+
+.dog-card { /* What: Dog Card. Why: Each sister gets a card of her own. How: This stacks her photo and details in a white card with rounded corners, a cream border, and a soft shadow, easing its lift. */
+
+
+	background     : white;
+	border         : 2px solid var(--main);
+	border-radius  : var(--radius-xl);
+	box-shadow     : var(--shadow-card);
+	display        : flex;
+	flex-direction : column;
+	gap            : 1.5rem;
+	padding        : 2.5rem;
+	transition     : transform 0.3s ease, box-shadow 0.3s ease;
+
+
+}
+.dog-card:hover { /* What: Hovered Dog Card. Why: A card should respond to the pointer. How: This lifts it 6px and deepens its shadow. */
+
+
+	box-shadow : var(--shadow-hover);
+	transform  : translateY(-6px);
+
+
+}
+.dog-card--lilah { /* What: Lilah Dog Card. Why: Each sister has her own accent. How: This edges Lilah's card in lavender along the top. */
+
+
+	border-top : 5px solid var(--secondary);
+
+
+}
+.dog-card--norah { /* What: Norah Dog Card. Why: Each sister has her own accent. How: This edges Norah's card in sage along the top. */
+
+
+	border-top : 5px solid var(--accent);
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Dog Card. Why: Someone who asked for less motion shouldn't see the cards rise. How: This applies only when the reduced-motion preference is set. */
+
+
+	.dog-card { /* What: Motionless Dog Card. Why: The hover look should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+
+/* #region img-placeholder-round */
+
+.img-placeholder-round { /* What: Round Image Frame. Why: Each sister's photo sits in a round frame. How: This centers a 160px pale cream circle with a dashed cream edge and centers the photo in it. */
+
+
+	align-items     : center;
+	background      : var(--main-pale);
+	border          : 3px dashed var(--main-dark);
+	border-radius   : 50%;
+	display         : flex;
+	flex-direction  : column;
+	font-size       : 2.5rem;
+	gap             : 0.25rem;
+	height          : 160px;
+	justify-content : center;
+	margin          : 0 auto;
+	width           : 160px;
+
+
+}
+
+.lilahPhoto,
+.norahPhoto { /* What: Sister Photo. Why: Each photo fills most of its round frame. How: This crops it to a 150px circle. */
+
+
+	border-radius : 50%;
+	height        : 150px;
+	object-fit    : cover;
+	width         : 150px;
+
+
+}
+
+/* #endregion img-placeholder-round */
+
+
+.dog-badge { /* What: Dog Badge. Why: The badge says where each sister stands in the family. How: This sets small, bold, uppercase lavender text on a pale lavender pill. */
+
+
+	background     : var(--secondary-pale);
+	border-radius  : var(--radius-pill);
+	color          : var(--secondary-dark);
+	display        : inline-block;
+	font-size      : 0.78rem;
+	font-weight    : 700;
+	letter-spacing : 0.06em;
+	margin-bottom  : 0.3rem;
+	padding        : 0.3rem 0.9rem;
+	text-transform : uppercase;
+
+
+}
+.dog-badge--norah { /* What: Norah Dog Badge. Why: Norah's badge matches her card's accent. How: This sets it sage on a pale sage pill. */
+
+
+	background : var(--accent-pale);
+	color      : var(--accent);
+
+
+}
+
+.dog-card-name { /* What: Dog Card Name. Why: Each card is named for its sister. How: This sets the name large with room below. */
+
+
+	font-size     : 2rem;
+	margin-bottom : 0.8rem;
+
+
+}
+
+.dog-card-text { /* What: Dog Card Text. Why: Each card describes its sister. How: This sets the paragraph airy in the mid grey. */
+
+
+	color       : var(--text-mid);
+	font-size   : 0.95rem;
+	line-height : 1.75;
+
+
+}
+
+
+/* #region dog-traits */
+
+.dog-traits { /* What: Dog Traits. Why: Three traits sum each sister up at a glance. How: This sets them in a wrapping row of chips below the paragraph. */
+
+
+	display    : flex;
+	flex-wrap  : wrap;
+	gap        : 0.5rem;
+	margin-top : 1rem;
+
+
+}
+
+.dog-trait { /* What: Dog Trait. Why: Each trait reads as a chip. How: This sets small, bold, mid grey text on a pale cream pill with a cream border. */
+
+
+	background    : var(--main-pale);
+	border        : 1px solid var(--main);
+	border-radius : var(--radius-pill);
+	color         : var(--text-mid);
+	font-size     : 0.82rem;
+	font-weight   : 600;
+	padding       : 0.35rem 0.8rem;
+
+
+}
+
+/* #endregion dog-traits */
+
+/* #endregion dog-card */
+
+/* #endregion dog-cards */
+
+/* #endregion meet-the-girls */
+
+
+
+/* #region fun-facts */
+
+.fun-facts { /* What: Fun Facts Section. Why: The page closes on quick facts on a colored band. How: This fills the band with a lavender to sage gradient. */
+
+
+	background : linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+	padding    : 5rem 2rem;
+
+
+}
+
+
+/* #region container */
+
+.container { /* What: Fun Facts Container. Why: The facts sit in the page's centered column. How: This holds them within the page's 1,100px column and its side padding, the shared container values. */
+
+
+	margin    : 0 auto;
+	max-width : 1100px;
+	padding   : 0 2rem;
+
+
+}
+
+.fun-facts-title { /* What: Fun Facts Title. Why: The facts need a heading that reads on the gradient. How: This centers it large and white, growing with the screen, with room below. */
+
+
+	color         : white;
+	font-size     : clamp(2rem, 4vw, 3rem);
+	margin-bottom : 2.5rem;
+	text-align    : center;
+
+
+}
+
+
+/* #region facts-grid */
+
+.facts-grid { /* What: Facts Grid. Why: The facts should fill the row and wrap on a narrow screen. How: This fits as many 160px columns as the row allows. */
+
+
+	display               : grid;
+	gap                   : 1.5rem;
+	grid-template-columns : repeat(auto-fit, minmax(160px, 1fr));
+	margin-top            : 1rem;
+
+
+}
+
+
+/* #region fact-card */
+
+.fact-card { /* What: Fact Card. Why: Each fact is a frosted card on the band. How: This stacks the fact's emoji, value, and label, centered, in a translucent white card that frosts the band behind it, easing its lift. */
+
+
+	align-items     : center;
+	backdrop-filter : blur(8px);
+	background      : rgba(255,255,255,0.2);
+	border          : 1px solid rgba(255,255,255,0.3);
+	border-radius   : var(--radius-lg);
+	display         : flex;
+	flex-direction  : column;
+	gap             : 0.4rem;
+	padding         : 1.75rem 1rem;
+	text-align      : center;
+	transition      : transform 0.25s ease;
+
+
+}
+.fact-card:hover { /* What: Hovered Fact Card. Why: A card should respond to the pointer. How: This lifts it 4px. */
+
+
+	transform : translateY(-4px);
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Fact Card. Why: Someone who asked for less motion shouldn't see the cards rise. How: This applies only when the reduced-motion preference is set. */
+
+
+	.fact-card { /* What: Motionless Fact Card. Why: The hover look should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.fact-icon { /* What: Fact Icon. Why: Each fact opens with a large emoji. How: This sizes it. */
+
+
+	font-size : 2rem;
+
+
+}
+
+.fact-value { /* What: Fact Value. Why: The fact itself is the card's focus. How: This sets it bold and white. */
+
+
+	color       : white;
+	font-size   : 0.95rem;
+	font-weight : 700;
+
+
+}
+
+.fact-label { /* What: Fact Label. Why: Each fact says what it's about, quietly. How: This sets it small, spaced, and uppercase in translucent white. */
+
+
+	color          : rgba(255,255,255,0.75);
+	font-size      : 0.78rem;
+	letter-spacing : 0.08em;
+	text-transform : uppercase;
+
+
+}
+
+/* #endregion fact-card */
+
+/* #endregion facts-grid */
+
+/* #endregion container */
+
+/* #endregion fun-facts */
+
+/* #endregion page-enter */
+
+
