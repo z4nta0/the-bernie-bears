@@ -50,8 +50,8 @@
 
 
 	background    : linear-gradient( 135deg, var( --bac-pag-col ) 0%, var( --bac-hig-col ) 50%, var( --acc-tin-col ) 100% ); /* Background Page Color = #f7f7e2, Background Highlight Color = #ececb6, Accent Tint Color = #f3eaf9 */
-	border-bottom : 2px solid var( --bor-str-col );                                                                          /* Border Strong Color = #d6d69a */
-	padding       : 5rem 2rem 4rem;
+	border-bottom : var( --bor-wid-lar ) solid var( --bor-str-col );                                                         /* Border Width Large ~= 2.035px, Border Strong Color = #d6d69a */
+	padding       : var( --spa-ver-p06 ) var( --spa-hor-p03 ) var( --spa-ver-p05 );                                          /* Spacing Vertical Base Plus 6 ~= 78.751px, Spacing Horizontal Base Plus 3 ~= 33.876px, Spacing Vertical Base Plus 5 ~= 59.447px */
 	text-align    : center;
 
 
@@ -60,8 +60,8 @@
 .page-header-title { /* What: Page Header Title. Why: The page's heading is its biggest text. How: This sets it very large, growing with the screen, with a small gap below. */
 
 
-	font-size     : clamp( 2.5rem, 5vw, 4.5rem );
-	margin-bottom : 0.75rem;
+	font-size     : clamp( var( --fon-siz-p05 ), 5vw, var( --fon-siz-p07 ) ); /* Font Size Base Plus 5 ~= 44.876px, Font Size Base Plus 7 ~= 78.751px */
+	margin-bottom : var( --spa-ver-m01 );                                     /* Spacing Vertical Base Minus 1 = 11px */
 
 
 }
@@ -70,7 +70,7 @@
 
 
 	color      : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
-	font-size  : 1.1rem;
+	font-size  : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
 	font-style : italic;
 
 
@@ -87,7 +87,7 @@
 
 	margin    : 0 auto;
 	max-width : 1100px;
-	padding   : 5rem 2rem;
+	padding   : var( --spa-ver-p06 ) var( --spa-hor-p03 ); /* Spacing Vertical Base Plus 6 ~= 78.751px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 
 
 }
@@ -100,7 +100,7 @@
 
 	align-items           : start;
 	display               : grid;
-	gap                   : 4rem;
+	gap                   : var( --spa-ver-p05 ) var( --spa-hor-p05 ); /* Spacing Vertical Base Plus 5 ~= 59.447px, Spacing Horizontal Base Plus 5 ~= 59.447px */
 	grid-template-columns : 1fr 1.4fr;
 
 
@@ -111,7 +111,7 @@
 	.contact-grid { /* What: Stacked Contact Grid. Why: A narrow screen reads the info above the panel. How: This stacks them in one column with a smaller gap. */
 
 
-		gap                   : 2.5rem;
+		gap                   : var( --spa-ver-p04 ) var( --spa-hor-p04 ); /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 		grid-template-columns : 1fr;
 
 
@@ -124,8 +124,8 @@
 .contact-info-title { /* What: Contact Info Title. Why: The column needs a heading. How: This sets it large with room below. */
 
 
-	font-size     : 2.2rem;
-	margin-bottom : 1rem;
+	font-size     : var( --fon-siz-p04 ); /* Font Size Base Plus 4 ~= 33.876px */
+	margin-bottom : var( --spa-ver-bas ); /* Spacing Vertical Base ~= 14.572px */
 
 
 }
@@ -134,9 +134,9 @@
 
 
 	color         : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
-	font-size     : 0.98rem;
-	line-height   : 1.8;
-	margin-bottom : 2rem;
+	font-size     : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	line-height   : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+	margin-bottom : var( --spa-ver-p03 ); /* Spacing Vertical Base Plus 3 ~= 33.876px */
 
 
 }
@@ -149,8 +149,8 @@
 
 	display        : flex;
 	flex-direction : column;
-	gap            : 1rem;
-	margin-bottom  : 2rem;
+	gap            : var( --spa-ver-bas ); /* Spacing Vertical Base ~= 14.572px */
+	margin-bottom  : var( --spa-ver-p03 ); /* Spacing Vertical Base Plus 3 ~= 33.876px */
 
 
 }
@@ -162,13 +162,13 @@
 
 
 	align-items   : center;
-	background    : var( --bac-sur-col );           /* Background Surface Color = #ffffff */
-	border        : 1px solid var( --bor-mai-col ); /* Border Main Color = #ececb6 */
-	border-radius : var( --radius-lg );
+	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
+	border        : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #ececb6 */
+	border-radius : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
 	box-shadow    : var( --shadow-soft );
 	display       : flex;
-	gap           : 1rem;
-	padding       : 1.1rem 1.4rem;
+	gap           : var( --spa-hor-bas );                            /* Spacing Horizontal Base ~= 14.572px */
+	padding       : var( --spa-ver-p01 ) var( --spa-hor-p01 );       /* Spacing Vertical Base Plus 1 ~= 19.304px, Spacing Horizontal Base Plus 1 ~= 19.304px */
 
 
 }
@@ -177,7 +177,7 @@
 
 
 	flex-shrink : 0;
-	font-size   : 1.6rem;
+	font-size   : var( --fon-siz-p03 ); /* Font Size Base Plus 3 ~= 25.572px */
 
 
 }
@@ -187,9 +187,9 @@
 
 	color         : var( --tex-mai-col ); /* Text Main Color = #2c2c2c */
 	display       : block;
-	font-size     : 0.85rem;
+	font-size     : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight   : 700;
-	margin-bottom : 0.2rem;
+	margin-bottom : var( --spa-ver-m05 ); /* Spacing Vertical Base Minus 5 ~= 3.572px */
 
 
 }
@@ -201,7 +201,7 @@
 
 
 	color     : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
-	font-size : 0.88rem;
+	font-size : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	margin    : 0;
 
 
@@ -231,12 +231,12 @@
 
 
 	align-items   : flex-start;
-	background    : var( --bac-pag-col );           /* Background Page Color = #f7f7e2 */
-	border        : 1px solid var( --bor-mai-col ); /* Border Main Color = #ececb6 */
-	border-radius : var( --radius-lg );
+	background    : var( --bac-pag-col );                            /* Background Page Color = #f7f7e2 */
+	border        : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #ececb6 */
+	border-radius : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
 	display       : flex;
-	gap           : 0.75rem;
-	padding       : 1.1rem 1.4rem;
+	gap           : var( --spa-hor-m01 );                            /* Spacing Horizontal Base Minus 1 = 11px */
+	padding       : var( --spa-ver-p01 ) var( --spa-hor-p01 );       /* Spacing Vertical Base Plus 1 ~= 19.304px, Spacing Horizontal Base Plus 1 ~= 19.304px */
 
 
 }
@@ -245,8 +245,8 @@
 
 
 	flex-shrink : 0;
-	font-size   : 1.4rem;
-	margin-top  : 0.1rem;
+	font-size   : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	margin-top  : var( --spa-ver-m08 ); /* Spacing Vertical Base Minus 8 ~= 1.536px */
 
 
 }
@@ -255,8 +255,8 @@
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
-	font-size   : 0.85rem;
-	line-height : 1.65;
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
 	margin      : 0;
 
 
@@ -271,11 +271,11 @@
 .contact-panel { /* What: Contact Panel. Why: The ways to send a message stand out as their own panel. How: This sets a white panel with rounded corners, a cream border, and a soft shadow. */
 
 
-	background    : var( --bac-sur-col );           /* Background Surface Color = #ffffff */
-	border        : 2px solid var( --bor-mai-col ); /* Border Main Color = #ececb6 */
-	border-radius : var( --radius-xl );
+	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
+	border        : var( --bor-wid-lar ) solid var( --bor-mai-col ); /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
+	border-radius : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
 	box-shadow    : var( --shadow-card );
-	padding       : 2.5rem;
+	padding       : var( --spa-ver-p04 ) var( --spa-hor-p04 );       /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 
 
 }
@@ -285,7 +285,7 @@
 	.contact-panel { /* What: Compact Contact Panel. Why: A narrow screen needs its room for the words and buttons. How: This trims the padding. */
 
 
-		padding : 1.75rem;
+		padding : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 
 
 	}
@@ -296,8 +296,8 @@
 .contact-panel-title { /* What: Contact Panel Title. Why: The panel says what it's for. How: This sets the heading large with room below. */
 
 
-	font-size     : 2.2rem;
-	margin-bottom : 1rem;
+	font-size     : var( --fon-siz-p04 ); /* Font Size Base Plus 4 ~= 33.876px */
+	margin-bottom : var( --spa-ver-bas ); /* Spacing Vertical Base ~= 14.572px */
 
 
 }
@@ -306,9 +306,9 @@
 
 
 	color         : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
-	font-size     : 0.98rem;
-	line-height   : 1.8;
-	margin-bottom : 2rem;
+	font-size     : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	line-height   : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+	margin-bottom : var( --spa-ver-p03 ); /* Spacing Vertical Base Plus 3 ~= 33.876px */
 
 
 }
@@ -321,7 +321,7 @@
 
 	display   : flex;
 	flex-wrap : wrap;
-	gap       : 1rem;
+	gap       : var( --spa-ver-bas ) var( --spa-hor-bas ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base ~= 14.572px */
 
 
 }
@@ -330,15 +330,15 @@
 
 
 	align-items     : center;
-	border          : 2px solid transparent;
-	border-radius   : var( --radius-pill );
+	border          : var( --bor-wid-lar ) solid transparent;    /* Border Width Large ~= 2.035px */
+	border-radius   : 999px;
 	cursor          : pointer;
 	display         : inline-flex;
-	font-family     : var( --fon-fam-mai ); /* Font Family Main = 'Nunito', sans-serif */
-	font-size       : 0.95rem;
+	font-family     : var( --fon-fam-mai );                      /* Font Family Main = 'Nunito', sans-serif */
+	font-size       : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight     : 700;
-	gap             : 0.4rem;
-	padding         : 0.85rem 2rem;
+	gap             : var( --spa-hor-m03 );                      /* Spacing Horizontal Base Minus 3 ~= 6.268px */
+	padding         : var( --spa-ver-bas ) var( --spa-hor-p03 ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	text-decoration : none;
 	transition      : all 0.25s ease;
 
@@ -358,7 +358,7 @@
 
 	background : var( --acc-hov-col );                                       /* Accent Hover Color = #b48fcb */
 	box-shadow : 0 10px 32px oklch( from var( --acc-mai-col ) l c h / 0.5 ); /* Accent Main Color = #d1afe2 @ 0.5 opacity */
-	transform  : translateY( -2px );
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) );            /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }
@@ -374,8 +374,8 @@
 .btn-outline:hover { /* What: Hovered Outline Button. Why: A button should respond to the pointer. How: This tints the pill pale sage and lifts it 2px. */
 
 
-	background : var( --acs-tin-col ); /* Accent-Secondary Tint Color = #ddeadc */
-	transform  : translateY( -2px );
+	background : var( --acs-tin-col );                            /* Accent-Secondary Tint Color = #ddeadc */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }
@@ -409,8 +409,8 @@
 
 
 	background : linear-gradient( 135deg, var( --acs-tin-col ) 0%, var( --acc-tin-col ) 100% ); /* Accent-Secondary Tint Color = #ddeadc, Accent Tint Color = #f3eaf9 */
-	border-top : 2px solid var( --bor-mai-col );                                                /* Border Main Color = #ececb6 */
-	padding    : 3.5rem 2rem;
+	border-top : var( --bor-wid-lar ) solid var( --bor-mai-col );                               /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
+	padding    : var( --spa-ver-p05 ) var( --spa-hor-p03 );                                     /* Spacing Vertical Base Plus 5 ~= 59.447px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 
 
 }
@@ -423,7 +423,7 @@
 
 	margin     : 0 auto;
 	max-width  : 1100px;
-	padding    : 0 2rem;
+	padding    : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
 	text-align : center;
 
 
@@ -432,9 +432,9 @@
 .wave-bears { /* What: Wave Bears. Why: A row of bears and a paw leads into the closing line. How: This sets the emoji large and widely spaced, with room below. */
 
 
-	font-size      : 2.5rem;
-	letter-spacing : 0.5rem;
-	margin-bottom  : 0.75rem;
+	font-size      : var( --fon-siz-p05 );                   /* Font Size Base Plus 5 ~= 44.876px */
+	letter-spacing : calc( var( --cdn-pow-006-rec ) * 1em ); /* Core-Design-Number to the Power of 6 Reciprocal ~= 0.185em */
+	margin-bottom  : var( --spa-ver-m01 );                   /* Spacing Vertical Base Minus 1 = 11px */
 
 
 }
@@ -444,7 +444,7 @@
 
 	color       : var( --acc-dar-col ); /* Accent Dark Color ~= #7e5b93 */
 	font-family : var( --fon-fam-bra ); /* Font Family Brand = 'Dancing Script', cursive */
-	font-size   : 1.4rem;
+	font-size   : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
 
 
 }

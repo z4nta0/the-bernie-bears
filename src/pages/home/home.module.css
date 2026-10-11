@@ -53,12 +53,12 @@
 
 	align-items           : center;
 	display               : grid;
-	gap                   : 3rem;
+	gap                   : var( --spa-ver-p04 ) var( --spa-hor-p04 ); /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	grid-template-columns : 1fr 1fr;
 	margin                : 0 auto;
 	max-width             : 1200px;
 	min-height            : 88vh;
-	padding               : 5rem 4rem;
+	padding               : var( --spa-ver-p06 ) var( --spa-hor-p05 ); /* Spacing Vertical Base Plus 6 ~= 78.751px, Spacing Horizontal Base Plus 5 ~= 59.447px */
 
 
 }
@@ -70,7 +70,7 @@
 
 		grid-template-columns : 1fr;
 		min-height            : auto;
-		padding               : 3rem 1.5rem;
+		padding               : var( --spa-ver-p04 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 		text-align            : center;
 
 
@@ -82,11 +82,11 @@
 .hero-eyebrow { /* What: Hero Eyebrow. Why: A short line leads into the title. How: This sets it small, bold, sage, spaced, and uppercase. */
 
 
-	color          : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #4f6f4e */
-	font-size      : 1rem;
+	color          : var( --acs-dar-col );                   /* Accent-Secondary Dark Color ~= #4f6f4e */
+	font-size      : var( --fon-siz-p01 );                   /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight    : 600;
-	letter-spacing : 0.1em;
-	margin-bottom  : 0.5rem;
+	letter-spacing : calc( var( --cdn-pow-008-rec ) * 1em ); /* Core-Design-Number to the Power of 8 Reciprocal ~= 0.105em */
+	margin-bottom  : var( --spa-ver-m02 );                   /* Spacing Vertical Base Minus 2 ~= 8.304px */
 	text-transform : uppercase;
 
 
@@ -96,9 +96,9 @@
 
 
 	color         : var( --acc-dar-col );                                                             /* Accent Dark Color ~= #7e5b93 */
-	font-size     : clamp( 3rem, 6vw, 5.5rem );
-	line-height   : 1.05;
-	margin-bottom : 1.2rem;
+	font-size     : clamp( var( --fon-siz-p05 ), 6vw, var( --fon-siz-p07 ) );                         /* Font Size Base Plus 5 ~= 44.876px, Font Size Base Plus 7 ~= 78.751px */
+	line-height   : var( --ver-rhy-m01 );                                                             /* Vertical Rhythm Base Minus 1 ~= 1.000 */
+	margin-bottom : var( --spa-ver-p01 );                                                             /* Spacing Vertical Base Plus 1 ~= 19.304px */
 	text-shadow   : 2px 4px 16px oklch( from var( --acc-mai-col ) l c h / var( --cdn-pow-004-rec ) ); /* Accent Main Color = #d1afe2, Core-Design-Number to the Power of 4 Reciprocal ~= 0.325 */
 
 
@@ -108,10 +108,10 @@
 
 
 	color         : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
-	font-size     : 1.1rem;
-	line-height   : 1.7;
-	margin-bottom : 2rem;
-	max-width     : 480px;
+	font-size     : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	line-height   : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+	margin-bottom : var( --spa-ver-p03 ); /* Spacing Vertical Base Plus 3 ~= 33.876px */
+	max-width     : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
 
 
 }
@@ -121,7 +121,7 @@
 	.hero-sub { /* What: Full Width Hero Sub Line. Why: A width cap would leave the centered pitch off balance. How: This lets it span the column. */
 
 
-		max-width : 100%;
+		max-width : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
 
 
 	}
@@ -137,7 +137,7 @@
 
 	display   : flex;
 	flex-wrap : wrap;
-	gap       : 1rem;
+	gap       : var( --spa-ver-bas ) var( --spa-hor-bas ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base ~= 14.572px */
 
 
 }
@@ -159,15 +159,15 @@
 
 
 	align-items     : center;
-	border          : 2px solid transparent;
-	border-radius   : var( --radius-pill );
+	border          : var( --bor-wid-lar ) solid transparent;    /* Border Width Large ~= 2.035px */
+	border-radius   : 999px;
 	cursor          : pointer;
 	display         : inline-flex;
-	font-family     : var( --fon-fam-mai ); /* Font Family Main = 'Nunito', sans-serif */
-	font-size       : 0.95rem;
+	font-family     : var( --fon-fam-mai );                      /* Font Family Main = 'Nunito', sans-serif */
+	font-size       : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight     : 700;
-	gap             : 0.4rem;
-	padding         : 0.85rem 2rem;
+	gap             : var( --spa-hor-m03 );                      /* Spacing Horizontal Base Minus 3 ~= 6.268px */
+	padding         : var( --spa-ver-bas ) var( --spa-hor-p03 ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	text-decoration : none;
 	transition      : all 0.25s ease;
 
@@ -187,7 +187,7 @@
 
 	background : var( --acc-hov-col );                                       /* Accent Hover Color = #b48fcb */
 	box-shadow : 0 10px 32px oklch( from var( --acc-mai-col ) l c h / 0.5 ); /* Accent Main Color = #d1afe2 @ 0.5 opacity */
-	transform  : translateY( -2px );
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) );            /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }
@@ -203,8 +203,8 @@
 .btn-outline:hover { /* What: Hovered Outline Button. Why: A button should respond to the pointer. How: This tints the pill pale sage and lifts it 2px. */
 
 
-	background : var( --acs-tin-col ); /* Accent-Secondary Tint Color = #ddeadc */
-	transform  : translateY( -2px );
+	background : var( --acs-tin-col );                            /* Accent-Secondary Tint Color = #ddeadc */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }
@@ -221,7 +221,7 @@
 
 
 	box-shadow : 0 10px 32px oklch( from var( --sha-mai-col ) l c h / var( --cdn-pow-006-rec ) ); /* Shadow Main Color = #000000, Core-Design-Number to the Power of 6 Reciprocal ~= 0.185 */
-	transform  : translateY( -2px );
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) );                                 /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }
@@ -249,7 +249,7 @@
 
 	align-items     : center;
 	display         : flex;
-	height          : 460px;
+	height          : calc( var( --ver-rhy-p12 ) * 1rem ); /* Vertical Rhythm Base Plus 12 ~= 425.596px */
 	justify-content : center;
 	position        : relative;
 
@@ -261,7 +261,7 @@
 	.hero-image-wrap { /* What: Shorter Hero Image Wrap. Why: The smaller portrait needs less room. How: This trims the box to 320px tall. */
 
 
-		height : 320px;
+		height : calc( var( --ver-rhy-p11 ) * 1rem ); /* Vertical Rhythm Base Plus 11 ~= 321.273px */
 
 
 	}
@@ -275,9 +275,9 @@
 	animation     : blobMorph 8s ease-in-out infinite;
 	background    : radial-gradient( ellipse at 40% 40%, var( --bac-hig-col ) 0%, var( --acs-tin-col ) 60%, var( --acc-tin-col ) 100% ); /* Background Highlight Color = #ececb6, Accent-Secondary Tint Color = #ddeadc, Accent Tint Color = #f3eaf9 */
 	border-radius : 60% 40% 55% 45% / 50% 60% 40% 50%;
-	height        : 420px;
+	height        : calc( var( --ver-rhy-p12 ) * 1rem );                                                                                 /* Vertical Rhythm Base Plus 12 ~= 425.596px */
 	position      : absolute;
-	width         : 420px;
+	width         : calc( var( --ver-rhy-p12 ) * 1rem );                                                                                 /* Vertical Rhythm Base Plus 12 ~= 425.596px */
 	z-index       : 0;
 
 
@@ -288,8 +288,8 @@
 	.hero-blob { /* What: Smaller Hero Blob. Why: The blob should match the smaller portrait. How: This sizes it to 280px. */
 
 
-		height : 280px;
-		width  : 280px;
+		height : calc( var( --ver-rhy-p10 ) * 1rem ); /* Vertical Rhythm Base Plus 10 ~= 242.522px */
+		width  : calc( var( --ver-rhy-p10 ) * 1rem ); /* Vertical Rhythm Base Plus 10 ~= 242.522px */
 
 
 	}
@@ -346,13 +346,13 @@
 .hero-img-frame { /* What: Hero Image Frame. Why: The portrait sits in a rounded white frame above the blob. How: This sizes a 360px rounded square with a white border and a soft shadow, clipping the photo to it. */
 
 
-	border        : 4px solid var( --bac-sur-col ); /* Background Surface Color = #ffffff */
-	border-radius : var( --radius-xl );
+	border        : var( --bor-wid-xla ) solid var( --bac-sur-col ); /* Border Width Extra Large ~= 3.571px, Background Surface Color = #ffffff */
+	border-radius : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
 	box-shadow    : var( --shadow-card );
-	height        : 360px;
+	height        : calc( var( --ver-rhy-p11 ) * 1rem );             /* Vertical Rhythm Base Plus 11 ~= 321.273px */
 	overflow      : hidden;
 	position      : relative;
-	width         : 360px;
+	width         : calc( var( --ver-rhy-p11 ) * 1rem );             /* Vertical Rhythm Base Plus 11 ~= 321.273px */
 	z-index       : 1;
 
 
@@ -363,8 +363,8 @@
 	.hero-img-frame { /* What: Smaller Hero Image Frame. Why: A 360px frame crowds a narrow screen. How: This sizes it to 280px. */
 
 
-		height : 280px;
-		width  : 280px;
+		height : calc( var( --ver-rhy-p10 ) * 1rem ); /* Vertical Rhythm Base Plus 10 ~= 242.522px */
+		width  : calc( var( --ver-rhy-p10 ) * 1rem ); /* Vertical Rhythm Base Plus 10 ~= 242.522px */
 
 
 	}
@@ -391,14 +391,14 @@
 
 
 	animation     : badgeFloat 3s ease-in-out infinite;
-	background    : var( --bac-sur-col );           /* Background Surface Color = #ffffff */
-	border        : 2px solid var( --acc-lig-col ); /* Accent Light Color = #ceb1dd */
-	border-radius : var( --radius-pill );
+	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
+	border        : var( --bor-wid-lar ) solid var( --acc-lig-col ); /* Border Width Large ~= 2.035px, Accent Light Color = #ceb1dd */
+	border-radius : 999px;
 	box-shadow    : var( --shadow-soft );
-	color         : var( --acc-dar-col );           /* Accent Dark Color ~= #7e5b93 */
-	font-size     : 0.9rem;
+	color         : var( --acc-dar-col );                            /* Accent Dark Color ~= #7e5b93 */
+	font-size     : var( --fon-siz-p01 );                            /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight   : 700;
-	padding       : 0.4rem 1rem;
+	padding       : var( --spa-ver-m03 ) var( --spa-hor-bas );       /* Spacing Vertical Base Minus 3 ~= 6.268px, Spacing Horizontal Base ~= 14.572px */
 	position      : absolute;
 	z-index       : 2;
 
@@ -476,7 +476,7 @@
 	50% {
 
 
-		transform : translateY( -8px );
+		transform : translateY( calc( var( --spa-ver-m02 ) * -1 ) ); /* Spacing Vertical Base Minus 2 ~= -8.304px */
 
 
 	}
@@ -493,11 +493,11 @@
 .paw-divider { /* What: Paw Divider. Why: A row of paw prints separates the hero from the cards. How: This centers three widely spaced paws, a little faded, with room above and below. */
 
 
-	color          : var( --tex-mai-col ); /* Text Main Color = #2c2c2c */ /* What: Emoji Text Color. Why: Emoji draw in their own colors whatever the text color is, while axe still checks this one for contrast. How: The main text color passes at the row's opacity and changes nothing on screen. */
-	font-size      : 1.4rem;
-	letter-spacing : 0.5rem;
-	margin         : 2rem 0;
-	opacity        : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
+	color          : var( --tex-mai-col );                   /* Text Main Color = #2c2c2c */ /* What: Emoji Text Color. Why: Emoji draw in their own colors whatever the text color is, while axe still checks this one for contrast. How: The main text color passes at the row's opacity and changes nothing on screen. */
+	font-size      : var( --fon-siz-p02 );                   /* Font Size Base Plus 2 ~= 19.304px */
+	letter-spacing : calc( var( --cdn-pow-004-rec ) * 1em ); /* Core-Design-Number to the Power of 4 Reciprocal ~= 0.325em */
+	margin         : var( --spa-ver-p03 ) 0;                 /* Spacing Vertical Base Plus 3 ~= 33.876px */
+	opacity        : var( --cdn-pow-001-rec );               /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
 	text-align     : center;
 
 
@@ -512,7 +512,7 @@
 
 	margin    : 0 auto;
 	max-width : 1100px;
-	padding   : 0 2rem;
+	padding   : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
 
 
 }
@@ -520,8 +520,8 @@
 .section-title { /* What: Section Title. Why: The cards need a heading. How: This centers it large, growing with the screen, with the About page's bottom margin, which has always won on this page too. */
 
 
-	font-size     : clamp( 2rem, 4vw, 3rem );
-	margin-bottom : 2.5rem;
+	font-size     : clamp( var( --fon-siz-p04 ), 4vw, var( --fon-siz-p05 ) ); /* Font Size Base Plus 4 ~= 33.876px, Font Size Base Plus 5 ~= 44.876px */
+	margin-bottom : var( --spa-ver-p04 );                                     /* Spacing Vertical Base Plus 4 ~= 44.876px */
 	text-align    : center;
 
 
@@ -531,11 +531,11 @@
 
 
 	color         : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
-	font-size     : 1rem;
-	margin-bottom : 3rem;
+	font-size     : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	margin-bottom : var( --spa-ver-p04 ); /* Spacing Vertical Base Plus 4 ~= 44.876px */
 	margin-left   : auto;
 	margin-right  : auto;
-	max-width     : 560px;
+	max-width     : var( --tex-wid-sma ); /* Text Width Small ~= 22.047em */
 	text-align    : center;
 
 
@@ -548,7 +548,7 @@
 
 
 	display               : grid;
-	gap                   : 1.5rem;
+	gap                   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	grid-template-columns : repeat( auto-fit, minmax( 220px, 1fr ) );
 
 
@@ -560,11 +560,11 @@
 .feature-card { /* What: Feature Card. Why: Each card sums up one part of life with the girls. How: This sets a centered white card with rounded corners, a cream border, and a soft shadow, easing every change. */
 
 
-	background    : var( --bac-sur-col );           /* Background Surface Color = #ffffff */
-	border        : 1px solid var( --bor-mai-col ); /* Border Main Color = #ececb6 */
-	border-radius : var( --radius-lg );
+	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
+	border        : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #ececb6 */
+	border-radius : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
 	box-shadow    : var( --shadow-card );
-	padding       : 2rem 1.5rem;
+	padding       : var( --spa-ver-p03 ) var( --spa-hor-p02 );       /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	text-align    : center;
 	transition    : all 0.3s ease;
 
@@ -573,9 +573,9 @@
 .feature-card:hover { /* What: Hovered Feature Card. Why: A card should respond to the pointer. How: This lifts it 6px, deepens its shadow, and tints its border lavender. */
 
 
-	border-color : var( --acc-lig-col ); /* Accent Light Color = #ceb1dd */
+	border-color : var( --acc-lig-col );                            /* Accent Light Color = #ceb1dd */
 	box-shadow   : var( --shadow-hover );
-	transform    : translateY( -6px );
+	transform    : translateY( calc( var( --spa-ver-m03 ) * -1 ) ); /* Spacing Vertical Base Minus 3 ~= -6.268px */
 
 
 }
@@ -596,8 +596,8 @@
 .feature-emoji { /* What: Feature Emoji. Why: Each card opens with a large emoji. How: This sizes it with room below. */
 
 
-	font-size     : 2.5rem;
-	margin-bottom : 1rem;
+	font-size     : var( --fon-siz-p05 ); /* Font Size Base Plus 5 ~= 44.876px */
+	margin-bottom : var( --spa-ver-bas ); /* Spacing Vertical Base ~= 14.572px */
 
 
 }
@@ -605,8 +605,8 @@
 .feature-card-title { /* What: Feature Card Title. Why: Each card is named. How: This sets the name a little large with a small gap below. */
 
 
-	font-size     : 1.3rem;
-	margin-bottom : 0.6rem;
+	font-size     : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	margin-bottom : var( --spa-ver-m02 ); /* Spacing Vertical Base Minus 2 ~= 8.304px */
 
 
 }
@@ -615,8 +615,8 @@
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
-	font-size   : 0.9rem;
-	line-height : 1.65;
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
 
 
 }
@@ -635,8 +635,8 @@
 
 
 	background : linear-gradient( 135deg, var( --acc-mai-col ) 0%, var( --acc-sec-col ) 100% ); /* Accent Main Color = #d1afe2, Accent Secondary Color = #8bad89 */
-	margin-top : 4rem;
-	padding    : 5rem 2rem;
+	margin-top : var( --spa-ver-p05 );                                                          /* Spacing Vertical Base Plus 5 ~= 59.447px */
+	padding    : var( --spa-ver-p06 ) var( --spa-hor-p03 );                                     /* Spacing Vertical Base Plus 6 ~= 78.751px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	text-align : center;
 
 
@@ -650,7 +650,7 @@
 
 	margin    : 0 auto;
 	max-width : 1100px;
-	padding   : 0 2rem;
+	padding   : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
 
 
 }
@@ -658,9 +658,9 @@
 .cta-banner-title { /* What: Call To Action Banner Title. Why: The invitation should read on the gradient. How: This sets it large and white, growing with the screen. */
 
 
-	color         : var( --tex-mai-col ); /* Text Main Color = #2c2c2c */
-	font-size     : clamp( 2rem, 4vw, 3rem );
-	margin-bottom : 1rem;
+	color         : var( --tex-mai-col );                                     /* Text Main Color = #2c2c2c */
+	font-size     : clamp( var( --fon-siz-p04 ), 4vw, var( --fon-siz-p05 ) ); /* Font Size Base Plus 4 ~= 33.876px, Font Size Base Plus 5 ~= 44.876px */
+	margin-bottom : var( --spa-ver-bas );                                     /* Spacing Vertical Base ~= 14.572px */
 
 
 }
@@ -669,8 +669,8 @@
 
 
 	color         : var( --tex-mai-col ); /* Text Main Color = #2c2c2c */
-	font-size     : 1.05rem;
-	margin-bottom : 2rem;
+	font-size     : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	margin-bottom : var( --spa-ver-p03 ); /* Spacing Vertical Base Plus 3 ~= 33.876px */
 
 
 }

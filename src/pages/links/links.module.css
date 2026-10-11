@@ -50,8 +50,8 @@
 
 
 	background    : linear-gradient( 135deg, var( --bac-pag-col ) 0%, var( --bac-hig-col ) 50%, var( --acc-tin-col ) 100% ); /* Background Page Color = #f7f7e2, Background Highlight Color = #ececb6, Accent Tint Color = #f3eaf9 */
-	border-bottom : 2px solid var( --bor-str-col );                                                                          /* Border Strong Color = #d6d69a */
-	padding       : 5rem 2rem 4rem;
+	border-bottom : var( --bor-wid-lar ) solid var( --bor-str-col );                                                         /* Border Width Large ~= 2.035px, Border Strong Color = #d6d69a */
+	padding       : var( --spa-ver-p06 ) var( --spa-hor-p03 ) var( --spa-ver-p05 );                                          /* Spacing Vertical Base Plus 6 ~= 78.751px, Spacing Horizontal Base Plus 3 ~= 33.876px, Spacing Vertical Base Plus 5 ~= 59.447px */
 	text-align    : center;
 
 
@@ -60,8 +60,8 @@
 .page-header-title { /* What: Page Header Title. Why: The page's heading is its biggest text. How: This sets it very large, growing with the screen, with a small gap below. */
 
 
-	font-size     : clamp( 2.5rem, 5vw, 4.5rem );
-	margin-bottom : 0.75rem;
+	font-size     : clamp( var( --fon-siz-p05 ), 5vw, var( --fon-siz-p07 ) ); /* Font Size Base Plus 5 ~= 44.876px, Font Size Base Plus 7 ~= 78.751px */
+	margin-bottom : var( --spa-ver-m01 );                                     /* Spacing Vertical Base Minus 1 = 11px */
 
 
 }
@@ -70,7 +70,7 @@
 
 
 	color      : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
-	font-size  : 1.1rem;
+	font-size  : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
 	font-style : italic;
 
 
@@ -87,7 +87,7 @@
 
 	margin    : 0 auto;
 	max-width : 1100px;
-	padding   : 4rem 2rem;
+	padding   : var( --spa-ver-p05 ) var( --spa-hor-p03 ); /* Spacing Vertical Base Plus 5 ~= 59.447px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 
 
 }
@@ -96,11 +96,11 @@
 
 
 	color         : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
-	font-size     : 1.05rem;
-	margin-bottom : 3rem;
+	font-size     : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	margin-bottom : var( --spa-ver-p04 ); /* Spacing Vertical Base Plus 4 ~= 44.876px */
 	margin-left   : auto;
 	margin-right  : auto;
-	max-width     : 560px;
+	max-width     : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
 	text-align    : center;
 
 
@@ -114,7 +114,7 @@
 
 	display        : flex;
 	flex-direction : column;
-	gap            : 1.25rem;
+	gap            : var( --spa-ver-p01 ); /* Spacing Vertical Base Plus 1 ~= 19.304px */
 	margin         : 0 auto;
 	max-width      : 720px;
 
@@ -128,15 +128,15 @@
 
 
 	align-items     : center;
-	background      : var( --bac-sur-col );           /* Background Surface Color = #ffffff */
-	border          : 2px solid var( --bor-mai-col ); /* Border Main Color = #ececb6 */
-	border-radius   : var( --radius-lg );
+	background      : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
+	border          : var( --bor-wid-lar ) solid var( --bor-mai-col ); /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
+	border-radius   : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
 	box-shadow      : var( --shadow-card );
 	color           : inherit;
 	display         : flex;
-	gap             : 1.5rem;
+	gap             : var( --spa-hor-p02 );                            /* Spacing Horizontal Base Plus 2 ~= 25.572px */
 	overflow        : hidden;
-	padding         : 1.75rem 2rem;
+	padding         : var( --spa-ver-p02 ) var( --spa-hor-p03 );       /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	position        : relative;
 	text-decoration : none;
 	transition      : all 0.3s ease;
@@ -147,22 +147,22 @@
 
 
 	background    : var( --card-color );
-	border-radius : 3px 0 0 3px;
+	border-radius : var( --rad-bor-xsm ) 0 0 var( --rad-bor-xsm ); /* Radius Border Extra Small ~= 3.571px */
 	bottom        : 0;
 	content       : '';
 	left          : 0;
 	position      : absolute;
 	top           : 0;
-	width         : 5px;
+	width         : calc( var( --ver-rhy-m04 ) * 1rem );           /* Vertical Rhythm Base Minus 4 ~= 4.732px */
 
 
 }
 .social-card:hover { /* What: Hovered Social Card. Why: A card should respond to the pointer. How: This slides it 6px right, deepens its shadow, and turns its border light lavender. */
 
 
-	border-color : var( --acc-lig-col ); /* Accent Light Color = #ceb1dd */
+	border-color : var( --acc-lig-col );               /* Accent Light Color = #ceb1dd */
 	box-shadow   : var( --shadow-hover );
-	transform    : translateX( 6px );
+	transform    : translateX( var( --spa-hor-m03 ) ); /* Spacing Horizontal Base Minus 3 ~= 6.268px */
 
 
 }
@@ -172,8 +172,8 @@
 	.social-card { /* What: Compact Social Card. Why: A narrow screen needs its room for the words. How: This trims the padding and the gaps. */
 
 
-		gap     : 1rem;
-		padding : 1.25rem;
+		gap     : var( --spa-hor-bas );                      /* Spacing Horizontal Base ~= 14.572px */
+		padding : var( --spa-ver-p01 ) var( --spa-hor-p01 ); /* Spacing Vertical Base Plus 1 ~= 19.304px, Spacing Horizontal Base Plus 1 ~= 19.304px */
 
 
 	}
@@ -198,13 +198,13 @@
 
 
 	align-items     : center;
-	border-radius   : 16px;
+	border-radius   : var( --rad-bor-lar );                /* Radius Border Large ~= 14.572px */
 	display         : flex;
 	flex-shrink     : 0;
-	font-size       : 2rem;
-	height          : 64px;
+	font-size       : var( --fon-siz-p04 );                /* Font Size Base Plus 4 ~= 33.876px */
+	height          : calc( var( --ver-rhy-p05 ) * 1rem ); /* Vertical Rhythm Base Plus 5 ~= 59.447px */
 	justify-content : center;
-	width           : 64px;
+	width           : calc( var( --ver-rhy-p05 ) * 1rem ); /* Vertical Rhythm Base Plus 5 ~= 59.447px */
 
 
 }
@@ -214,9 +214,9 @@
 	.social-card-icon { /* What: Smaller Social Card Icon Tile. Why: The tile should shrink with the card. How: This sizes it to 50px, with a smaller icon. */
 
 
-		font-size : 1.5rem;
-		height    : 50px;
-		width     : 50px;
+		font-size : var( --fon-siz-p03 );                /* Font Size Base Plus 3 ~= 25.572px */
+		height    : calc( var( --ver-rhy-p04 ) * 1rem ); /* Vertical Rhythm Base Plus 4 ~= 44.876px */
+		width     : calc( var( --ver-rhy-p04 ) * 1rem ); /* Vertical Rhythm Base Plus 4 ~= 44.876px */
 
 
 	}
@@ -238,11 +238,11 @@
 .social-platform { /* What: Social Platform. Why: The card names its platform quietly. How: This sets it small, bold, spaced, and uppercase in the light grey. */
 
 
-	color          : var( --tex-mut-col ); /* Text Muted Color = #717171 */
-	font-size      : 0.78rem;
+	color          : var( --tex-mut-col );                   /* Text Muted Color = #717171 */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 11px */
 	font-weight    : 700;
-	letter-spacing : 0.1em;
-	margin-bottom  : 0.1rem;
+	letter-spacing : calc( var( --cdn-pow-008-rec ) * 1em ); /* Core-Design-Number to the Power of 8 Reciprocal ~= 0.105em */
+	margin-bottom  : var( --spa-ver-m08 );                   /* Spacing Vertical Base Minus 8 ~= 1.536px */
 	text-transform : uppercase;
 
 
@@ -252,9 +252,9 @@
 
 
 	font-family   : var( --fon-fam-bra ); /* Font Family Brand = 'Dancing Script', cursive */
-	font-size     : 1.4rem;
+	font-size     : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
 	font-weight   : 700;
-	margin-bottom : 0.4rem;
+	margin-bottom : var( --spa-ver-m03 ); /* Spacing Vertical Base Minus 3 ~= 6.268px */
 
 
 }
@@ -263,8 +263,8 @@
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
-	font-size   : 0.88rem;
-	line-height : 1.6;
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
 
 
 }
@@ -276,7 +276,7 @@
 
 
 	flex-shrink : 0;
-	font-size   : 1.5rem;
+	font-size   : var( --fon-siz-p03 ); /* Font Size Base Plus 3 ~= 25.572px */
 	font-weight : 700;
 	transition  : transform 0.2s ease;
 
@@ -317,8 +317,8 @@
 
 
 	background : linear-gradient( 135deg, var( --acs-tin-col ) 0%, var( --acc-tin-col ) 100% ); /* Accent-Secondary Tint Color = #ddeadc, Accent Tint Color = #f3eaf9 */
-	border-top : 2px solid var( --bor-mai-col );                                                /* Border Main Color = #ececb6 */
-	padding    : 4rem 2rem;
+	border-top : var( --bor-wid-lar ) solid var( --bor-mai-col );                               /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
+	padding    : var( --spa-ver-p05 ) var( --spa-hor-p03 );                                     /* Spacing Vertical Base Plus 5 ~= 59.447px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	text-align : center;
 
 
@@ -332,7 +332,7 @@
 
 	margin    : 0 auto;
 	max-width : 1100px;
-	padding   : 0 2rem;
+	padding   : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
 
 
 }
@@ -340,8 +340,8 @@
 .social-cta-title { /* What: Social Call To Action Title. Why: The page closes on an invitation. How: This sets it large, growing with the screen, with room below. */
 
 
-	font-size     : clamp( 1.8rem, 3vw, 2.5rem );
-	margin-bottom : 1rem;
+	font-size     : clamp( var( --fon-siz-p03 ), 3vw, var( --fon-siz-p05 ) ); /* Font Size Base Plus 3 ~= 25.572px, Font Size Base Plus 5 ~= 44.876px */
+	margin-bottom : var( --spa-ver-bas );                                     /* Spacing Vertical Base ~= 14.572px */
 
 
 }
@@ -350,10 +350,10 @@
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
-	font-size   : 1rem;
-	line-height : 1.7;
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
 	margin      : 0 auto;
-	max-width   : 500px;
+	max-width   : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
 
 
 }
