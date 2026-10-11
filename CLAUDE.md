@@ -238,7 +238,7 @@ passes on `close-out`.
      sage accent. The X, Pinterest, and Shop descriptions are new copy for
      the user to review.
    - **Contact**: the form, which never sent anything, is gone, along with
-     its styles. A panel offers "Open the Contact Form" (the main site's
+     its styles. A panel offers "Open Contact Form" (the main site's
      Contact Us page, in a new tab) and "Email Us", and the email card's
      address is an underlined link in the dark text color, so it adds no
      contrast failure. Removing the form also fixed the page's sideways
