@@ -117,7 +117,40 @@ passes on `close-out`.
    every route at phone and desktop widths and the open phone menu, taken
    before anything moves. Its dev server runs on port 5193 (the siblings use
    5190 through 5192). Whatever the live site already fails is listed here
-   for the step that fixes it.
+   for the step that fixes it. Done 2026-10-11 (see "## Test suites"). The
+   keyboard walk passes everywhere; everything else below fails on the live
+   site, in every engine unless noted:
+   - **Contrast** (serious, every page): the logo text, lavender headings,
+     dog badges, buttons, floating name badges, paw dividers, social card
+     labels, and footer text all fall short on the cream background: step 9,
+     whose color roles are where the contrast gets fixed, raised with the
+     user first since the colors visibly change. axe also marks contrast as
+     needing review by hand on every page, for text over the gradients and
+     photos.
+   - **Two unlabeled navigation landmarks**: the bar's and the footer's
+     `<nav>` (desktop, where both show): step 6.
+   - **Decorative glyphs read aloud** in the logo link ("🐾 The Bernie
+     Bears"), "See All Social Links 🐾", every social card (its emoji and
+     →), and "Send Message 🐾": step 6 (the form goes in step 7).
+   - **No reduced motion**: `fadeInUp`, `pawBounce`, `badgeFloat`, and
+     `blobMorph` all play: step 8. The responsive suite's "span.paw-icon
+     spills its text" at every width is the same problem, since the
+     bouncing paw's rotation tilts its box while the check measures it
+     untilted; it clears once the paw stops under reduced motion.
+   - **Sideways scrolling**: About at 320px (32px, the intro's columns run
+     past the edge), Contact at 320px (about 4px), and Contact at 769px
+     (155px, its two-column layout just above the 768px breakpoint pushes
+     the form past the edge): step 10's layout work. `body { overflow-x :
+     hidden }` hides these from the responsive suite's element check, so
+     only its sideways-scroll line and the scripted reflow test report them.
+   - **The 404 page has no `h1`**: step 11.
+   - **Rendering flakes**: Firefox redraws the Nunito body text a little
+     differently from run to run (every Nunito line, never the Dancing
+     Script headings), likely from the fonts arriving from Google Fonts,
+     and Chromium redraws the antialiasing of the Contact note's rounded
+     corner (a 9 by 3px spot, 2 levels off). Both are rechecked once step 5
+     self-hosts the fonts; until then, a failure there gets a rerun, not
+     new baselines.
 5. **Directory structure**, matching tonys-toppers: kebab-case files, a
    folder per route under `pages/`, the bar and footer in `ui/`, the fonts
    (Dancing Script and Nunito) self-hosted, and the Netlify fallback moved
@@ -145,3 +178,36 @@ passes on `close-out`.
     social preview card per "## Kind of site", and interaction feedback.
 12. **Close-out**: the README rewritten (it still describes the placeholder
     site), the full rule audit passes, and the version bump.
+
+## Test suites
+Added 2026-10-11, adapted from tonys-toppers'. Playwright suites live in
+`tests/`, one project per suite and engine in `tests/playwright.config.ts`,
+which starts its own dev server on port 5193 (never the usual 5173, nor the
+sibling projects' 5190 through 5192) and stops it afterwards. Every suite
+runs in Chromium, Firefox, and WebKit. Results, screenshots, and traces go to
+`tests/output/` (git-ignored); `npx playwright show-report
+tests/output/report` opens the HTML report. The states the suites visit
+(every route and the 404 page at 390px and 1,440px, plus the phone menu open
+at 390px) are listed in `tests/support/states.ts`, whose `opeStaFun` skips
+animations that repeat forever (the hero's blob, the name badges, and the
+bar's paw) when waiting for the page to settle.
+- `npm run test:accessibility`: the pre-commit accessibility scan. axe-core
+  checks each state against WCAG 2.2 A and AA plus best practices
+  (`axe.spec.ts`), and scripted checks (`scripted.spec.ts`) cover link and
+  button names (a decorative arrow or emoji in a name fails), a Tab walk
+  (order, traps, focus on screen, uncovered, and visible), reflow at 320px,
+  and motion under reduced motion. axe's "needs review" results are printed
+  and attached to the report rather than failing the run.
+- `npm run test:rendering`: compares a full-page screenshot of every state
+  with its baseline in `tests/rendering/baselines/`, with zero tolerance and
+  a per-pixel color threshold of 0, under reduced motion and with the page's
+  clock fixed to one date, since the footer's year comes from it. Baselines
+  are captured on Linux. After an intended visual change, refresh with `npm
+  run test:rendering -- --update-snapshots` and commit the baselines with it.
+- `npm run test:responsive`: measures every route, the 404 page, and the
+  open menu at 13 widths from 320 to 1,920px (the 640px and 768px
+  breakpoints and the pixel past each included), failing on sideways
+  scrolling, an unclipped element past either edge, text spilling its box,
+  or two reachable controls overlapping.
+- `npm test` runs every suite. The interaction and SEO suites join in step
+  11, as in tonys-toppers.
