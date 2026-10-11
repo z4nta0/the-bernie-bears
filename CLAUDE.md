@@ -218,11 +218,11 @@ passes on `close-out`.
      `.nav-link.active` rule already set the same four values and wins on
      hover, which the capture harness confirmed (no difference at rest,
      hovered, or focused, in any engine).
-   - **`app.tsx` keeps its imports in their original order**, not
-     alphabetical: each page's file loads a global stylesheet, and `home.css`
-     and `about.css` both define `.section-title`, whose About margin has
-     always won on both pages. Alphabetizing them shrank both pages, so each
-     import says why it stays put, until step 8's modules end the collision.
+   - **`app.tsx` kept its imports in their original order** until step 8:
+     each page's file loaded a global stylesheet, and `home.css` and
+     `about.css` both defined `.section-title`, whose About margin always won
+     on both pages. Alphabetizing them shrank both pages, so each import said
+     why it stayed put until the modules ended the collision.
    - **Sequencing**: the Social Links and Contact pages got their step 7
      rebuild and their formatting in one commit each, rather than formatting
      markup the next step replaced.
@@ -261,7 +261,46 @@ passes on `close-out`.
 8. **Hooks and CSS modules**: `aria-current` and `aria-expanded` in place of
    the active link's inline style and the menu's `open` class, the closed
    phone menu out of the Tab order, a `.module.css` per component, and every
-   animation and transition given its reduced-motion variant.
+   animation and transition given its reduced-motion variant. Done
+   2026-10-11.
+   - **State and hooks**: the toggle reports the menu through
+     `aria-expanded`, the menu carries `data-mobile-menu-open`, and the
+     current link is styled through the `aria-current` NavLink sets. No
+     JavaScript finds elements by class, so no hook attributes were needed.
+     The closed menu was already `display: none`, out of the Tab order.
+   - **Modules**: `ui/nav`, `ui/footer`, and the home, about, links, and
+     contact pages each have their own `.module.css`, classes kept verbatim
+     and read through `cssModObj`, in markup order with regions, with Vite
+     reading module classes as camelCase keys. `pawBounce`, `blobMorph`, and
+     `badgeFloat` moved into their modules; `fadeInUp` stays global behind
+     `global()`. The shared classes (`container`, `page-header`, `btn`,
+     `paw-divider`, `page-enter`) were copied into each module that uses
+     them, and every element reached through a descendant tag selector got a
+     class of its own (named in the old hyphen style until step 9). Where an
+     element carried `container` beside its own class, the two merged into
+     one rule with the values that actually applied: the home features
+     section's own padding never did, since the global `.container` loaded
+     after it. The home section title takes the About margin that always won.
+     Rule-less classes and the unused global utilities, the floating paw
+     pattern, and `floatPaw` are gone, and `styles.css` holds only the
+     tokens, base element styles, and `fadeInUp`.
+   - **Reduced motion**: every animation and transition has a variant, and
+     smooth scrolling turns off. Every page now passes the reduced-motion
+     check, and the paw's spill failure cleared at every width, since it came
+     from the paw's tilt.
+   - **Verified** by comparing every element's computed style against the
+     step's starting build at rest, hovered, and focused on every route at
+     both widths and with the menu open, in all three engines, ignoring only
+     the scoped keyframe names, plus the behavior checks. Chromium's
+     baselines were refreshed page by page: once an entrance or loop stops
+     animating under reduced motion, Chromium rasterizes that content off
+     its animated layer, drawing text with subpixel rather than grayscale
+     antialiasing and gradients and soft edges a level or two differently.
+     Firefox and WebKit needed no refresh beyond 1 or 2 pixels on About.
+     The Contact note's corner flake hasn't returned since, so it came from
+     the same layer.
+   - **`app.tsx`'s imports are alphabetical** again, since the modules ended
+     the `.section-title` collision.
 9. **Design tokens**: the siblings' core design numbers (the plastic ratio,
    with 1rem as an 11px base), this site's colors mapped to roles, the type,
    spacing, duration, easing, shadow, and focus ring tokens, and three-segment
