@@ -244,12 +244,12 @@
 
 /* #region herVisDiv */
 
-.herVisDiv { /* What: Hero Visual Div. Why: The portrait sits centered on its blob, with the badges placed around it. How: This centers its contents in a 460px tall box that the blob and badges position against. */
+.herVisDiv { /* What: Hero Visual Div. Why: The portrait sits centered on its blob, with the badges placed around it. How: This centers its contents in a square box as wide as its column, which the blob and badges position against. */
 
 
 	align-items     : center;
+	aspect-ratio    : 1;
 	display         : flex;
-	height          : calc( var( --ver-rhy-p12 ) * 1rem ); /* Vertical Rhythm Base Plus 12 ~= 425.596px */
 	justify-content : center;
 	position        : relative;
 
@@ -258,10 +258,11 @@
 @media ( max-width : 768px ) { /* What: Narrow Hero Visual Div. Why: The portrait shrinks on a narrow screen. How: This applies 768px wide and below. */
 
 
-	.herVisDiv { /* What: Shorter Hero Visual Div. Why: The smaller portrait needs less room. How: This trims the box to 320px tall. */
+	.herVisDiv { /* What: Shorter Hero Visual Div. Why: The smaller portrait needs less room. How: This drops the square shape and trims the box to the p11 rhythm step. */
 
 
-		height : calc( var( --ver-rhy-p11 ) * 1rem ); /* Vertical Rhythm Base Plus 11 ~= 321.273px */
+		aspect-ratio : auto;
+		height       : calc( var( --ver-rhy-p11 ) * 1rem ); /* Vertical Rhythm Base Plus 11 ~= 321.273px */
 
 
 	}
@@ -269,15 +270,15 @@
 
 }
 
-.herBloDiv { /* What: Hero Blob Div. Why: A soft shape behind the portrait adds warmth. How: This draws a cream to sage to lavender blob behind the portrait and morphs its outline slowly, forever. */
+.herBloDiv { /* What: Hero Blob Div. Why: A soft shape behind the portrait adds warmth. How: This sizes a square that grows with the screen from the p12 rhythm step but never past its column, draws a cream to sage to lavender blob behind the portrait and morphs its outline slowly, forever. */
 
 
 	animation     : herBloDivLoopMorph var( --dur-ani-p14 ) var( --mot-sta-eas ) infinite;                                               /* Duration Animation Base Plus 14 ~= 8,090.0ms, Motion Standard Easing = ease */
+	aspect-ratio  : 1;
 	background    : radial-gradient( ellipse at 40% 40%, var( --bac-hig-col ) 0%, var( --acs-tin-col ) 60%, var( --acc-tin-col ) 100% ); /* Background Highlight Color = #ececb6, Accent-Secondary Tint Color = #ddeadc, Accent Tint Color = #f3eaf9 */
 	border-radius : 60% 40% 55% 45% / 50% 60% 40% 50%;
-	height        : calc( var( --ver-rhy-p12 ) * 1rem );                                                                                 /* Vertical Rhythm Base Plus 12 ~= 425.596px */
 	position      : absolute;
-	width         : calc( var( --ver-rhy-p12 ) * 1rem );                                                                                 /* Vertical Rhythm Base Plus 12 ~= 425.596px */
+	width         : min( max( calc( var( --ver-rhy-p12 ) * 1rem ), var( --hor-rhy-023 ) ), 100% );                                       /* Vertical Rhythm Base Plus 12 ~= 425.596px, Horizontal Rhythm 23 ~= 623.458px @ 1,920px width */
 	z-index       : 0;
 
 
@@ -285,7 +286,7 @@
 @media ( max-width : 768px ) { /* What: Narrow Hero Blob Div. Why: The blob shrinks with the portrait. How: This applies 768px wide and below. */
 
 
-	.herBloDiv { /* What: Smaller Hero Blob Div. Why: The blob should match the smaller portrait. How: This sizes it to 280px. */
+	.herBloDiv { /* What: Smaller Hero Blob Div. Why: The blob should match the smaller portrait. How: This sizes it to the p10 rhythm step. */
 
 
 		height : calc( var( --ver-rhy-p10 ) * 1rem ); /* Vertical Rhythm Base Plus 10 ~= 242.522px */
@@ -343,16 +344,16 @@
 
 /* #region porFraDiv */
 
-.porFraDiv { /* What: Portrait Frame Div. Why: The portrait sits in a rounded white frame above the blob. How: This sizes a 360px rounded square with a white border and a soft shadow, clipping the photo to it. */
+.porFraDiv { /* What: Portrait Frame Div. Why: The portrait sits in a rounded white frame above the blob. How: This sizes a rounded square, one step smaller than the blob and growing with the screen from the p11 rhythm step, with a white border and a soft shadow, clipping the photo to it. */
 
 
-	border        : var( --bor-wid-xla ) solid var( --bac-sur-col ); /* Border Width Extra Large ~= 3.571px, Background Surface Color = #ffffff */
-	border-radius : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
+	aspect-ratio  : 1;
+	border        : var( --bor-wid-xla ) solid var( --bac-sur-col );                                                              /* Border Width Extra Large ~= 3.571px, Background Surface Color = #ffffff */
+	border-radius : var( --rad-bor-xla );                                                                                         /* Radius Border Extra Large ~= 19.304px */
 	box-shadow    : var( --ele-med-sha );
-	height        : calc( var( --ver-rhy-p11 ) * 1rem );             /* Vertical Rhythm Base Plus 11 ~= 321.273px */
 	overflow      : hidden;
 	position      : relative;
-	width         : calc( var( --ver-rhy-p11 ) * 1rem );             /* Vertical Rhythm Base Plus 11 ~= 321.273px */
+	width         : min( max( calc( var( --ver-rhy-p11 ) * 1rem ), var( --hor-rhy-022 ) ), calc( 100% / var( --cdn-pow-001 ) ) ); /* Vertical Rhythm Base Plus 11 ~= 321.273px, Horizontal Rhythm 22 ~= 470.635px @ 1,920px width, Core-Design-Number to the Power of 1 ~= 1.325 */
 	z-index       : 1;
 
 
@@ -360,7 +361,7 @@
 @media ( max-width : 768px ) { /* What: Narrow Portrait Frame Div. Why: The portrait shrinks on a narrow screen. How: This applies 768px wide and below. */
 
 
-	.porFraDiv { /* What: Smaller Portrait Frame Div. Why: A 360px frame crowds a narrow screen. How: This sizes it to 280px. */
+	.porFraDiv { /* What: Smaller Portrait Frame Div. Why: A full-size frame crowds a narrow screen. How: This sizes it to the p10 rhythm step. */
 
 
 		height : calc( var( --ver-rhy-p10 ) * 1rem ); /* Vertical Rhythm Base Plus 10 ~= 242.522px */

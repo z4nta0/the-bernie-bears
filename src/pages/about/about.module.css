@@ -145,33 +145,33 @@
 
 /* #region groFraDiv */
 
-.groFraDiv { /* What: Group Frame Div. Why: The cartoon sits in a white card with a dashed lavender edge. How: This sizes a 320px rounded card with a soft shadow and centers the image in it. */
+.groFraDiv { /* What: Group Frame Div. Why: The cartoon sits in a white card with a dashed lavender edge. How: This sizes a rounded square card with a soft shadow that grows with the screen from the p11 rhythm step but never past its column, and centers the image in it. */
 
 
 	align-items     : center;
-	background      : var( --bac-sur-col );                             /* Background Surface Color = #ffffff */
-	border          : var( --bor-wid-xla ) dashed var( --acc-lig-col ); /* Border Width Extra Large ~= 3.571px, Accent Light Color = #ceb1dd */
-	border-radius   : var( --rad-bor-xla );                             /* Radius Border Extra Large ~= 19.304px */
+	aspect-ratio    : 1;
+	background      : var( --bac-sur-col );                                                          /* Background Surface Color = #ffffff */
+	border          : var( --bor-wid-xla ) dashed var( --acc-lig-col );                              /* Border Width Extra Large ~= 3.571px, Accent Light Color = #ceb1dd */
+	border-radius   : var( --rad-bor-xla );                                                          /* Radius Border Extra Large ~= 19.304px */
 	box-shadow      : var( --ele-med-sha );
-	color           : var( --tex-mut-col );                             /* Text Muted Color = #717171 */
+	color           : var( --tex-mut-col );                                                          /* Text Muted Color = #717171 */
 	display         : flex;
 	flex-direction  : column;
-	font-size       : var( --fon-siz-p01 );                             /* Font Size Base Plus 1 ~= 14.572px */
+	font-size       : var( --fon-siz-p01 );                                                          /* Font Size Base Plus 1 ~= 14.572px */
 	font-style      : italic;
-	gap             : var( --spa-ver-m01 );                             /* Spacing Vertical Base Minus 1 = 11px */
-	height          : calc( var( --ver-rhy-p11 ) * 1rem );              /* Vertical Rhythm Base Plus 11 ~= 321.273px */
+	gap             : var( --spa-ver-m01 );                                                          /* Spacing Vertical Base Minus 1 = 11px */
 	justify-content : center;
-	width           : calc( var( --ver-rhy-p11 ) * 1rem );              /* Vertical Rhythm Base Plus 11 ~= 321.273px */
+	width           : min( max( calc( var( --ver-rhy-p11 ) * 1rem ), var( --hor-rhy-022 ) ), 100% ); /* Vertical Rhythm Base Plus 11 ~= 321.273px, Horizontal Rhythm 22 ~= 470.635px @ 1,920px width */
 
 
 }
 
-.groPhoIma { /* What: Group Photo Image. Why: The cartoon fills most of its card. How: This sizes it to 300px with softly rounded corners. */
+.groPhoIma { /* What: Group Photo Image. Why: The cartoon fills most of its card. How: This sizes it as a square a little inside the card, with softly rounded corners. */
 
 
-	border-radius : var( --rad-bor-med );                                       /* Radius Border Medium = 11px */
-	height        : calc( var( --ver-rhy-p11 ) * 1rem - var( --spa-ver-p01 ) ); /* Vertical Rhythm Base Plus 11 ~= 321.273px, Spacing Vertical Base Plus 1 ~= 19.304px */
-	width         : calc( var( --ver-rhy-p11 ) * 1rem - var( --spa-ver-p01 ) ); /* Vertical Rhythm Base Plus 11 ~= 321.273px, Spacing Vertical Base Plus 1 ~= 19.304px */
+	aspect-ratio  : 1;
+	border-radius : var( --rad-bor-med );                                           /* Radius Border Medium = 11px */
+	width         : calc( 100% - var( --spa-hor-p01 ) + var( --bor-wid-xla ) * 2 ); /* Spacing Horizontal Base Plus 1 ~= 19.304px, Border Width Extra Large ~= 3.571px */
 
 
 }
