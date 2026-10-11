@@ -1,4 +1,4 @@
-import './SocialLinks.css'
+import './links.css'
 import React from 'react'
 
 const socials = [

@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router'
-import Navbar from './components/Navbar.tsx'
-import Footer from './components/Footer.tsx'
-import Home from './pages/Home.tsx'
-import About from './pages/About.tsx'
-import SocialLinks from './pages/SocialLinks.tsx'
-import Contact from './pages/Contact.tsx'
+import Navbar from './ui/nav.tsx'
+import Footer from './ui/footer.tsx'
+import Home from './pages/home/home.tsx'
+import About from './pages/about/about.tsx'
+import SocialLinks from './pages/links/links.tsx'
+import Contact from './pages/contact/contact.tsx'
 
 function App() {
 

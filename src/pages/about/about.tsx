@@ -1,7 +1,7 @@
-import './About.css'
-import groupPhoto from '../assets/group-photo.jpg'
-import lilahPhoto from '../assets/lilah.jpg'
-import norahPhoto from '../assets/norah.jpg'
+import './about.css'
+import groupPhoto from '../../assets/group-photo.jpg'
+import lilahPhoto from '../../assets/lilah.jpg'
+import norahPhoto from '../../assets/norah.jpg'
 
 const About = () => {
   return (
