@@ -457,13 +457,15 @@
 
 /* #region facGriDiv */
 
-.facGriDiv { /* What: Facts Grid Div. Why: The facts should fill the row and wrap on a narrow screen. How: This fits as many columns as the row allows, each at least the p08 rhythm step or a horizontal step as the screen grows, never wider than the row. */
+.facGriDiv { /* What: Facts Grid Div. Why: The facts should fill every row evenly and wrap on a narrow screen. How: This shows the six facts as six columns, three, two, or one, never four or five, choosing the most that fit at the card's minimum width. */
 
+
+	--fac-car-wid : max( calc( var( --ver-rhy-p08 ) * 1rem ), var( --hor-rhy-017 ) ); /* Vertical Rhythm Base Plus 8 ~= 138.199px, Horizontal Rhythm 17 ~= 115.363px @ 1,920px width */ /* What: Fact Card Width. Why: The smallest a fact card may be. How: The grid reads it to decide how many columns fit, the p08 rhythm step or a horizontal step as the screen grows. */
 
 	display               : grid;
-	gap                   : var( --spa-ver-p02 ) clamp( var( --spa-hor-bas ), var( --hor-rhy-014 ), var( --spa-hor-p02 ) );                   /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base ~= 14.572px, Horizontal Rhythm 14 ~= 49.625px @ 1,920px width, Spacing Horizontal Base Plus 2 ~= 25.572px */
-	grid-template-columns : repeat( auto-fit, minmax( min( max( calc( var( --ver-rhy-p08 ) * 1rem ), var( --hor-rhy-017 ) ), 100% ), 1fr ) ); /* Vertical Rhythm Base Plus 8 ~= 138.199px, Horizontal Rhythm 17 ~= 115.363px @ 1,920px width */
-	margin-top            : var( --spa-ver-bas );                                                                                             /* Spacing Vertical Base ~= 14.572px */
+	gap                   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	grid-template-columns : repeat( auto-fill, minmax( max( calc( ( 100% - var( --spa-hor-p02 ) * 5 ) / 6 - 0.1px ), min( calc( ( 100% - var( --spa-hor-p02 ) * 2 ) / 3 - 0.1px ), calc( ( var( --fac-car-wid ) * 6 + var( --spa-hor-p02 ) * 5 - 100% ) * 999 ) ), min( calc( ( 100% - var( --spa-hor-p02 ) ) / 2 - 0.1px ), calc( ( var( --fac-car-wid ) * 3 + var( --spa-hor-p02 ) * 2 - 100% ) * 999 ) ), min( 100%, calc( ( var( --fac-car-wid ) * 2 + var( --spa-hor-p02 ) - 100% ) * 999 ) ) ), 1fr ) ); /* Spacing Horizontal Base Plus 2 ~= 25.572px, Fact Card Width, set above */ /* What: Six Three Two One Columns. Why: The grid should never leave a short last row. How: The column minimum is a sixth of the row once six facts fit at their minimum, a third once three do, half once two do, and the whole row otherwise, each switch made by a difference multiplied by 999 that turns hugely positive or negative as the row passes that width, and each share trimmed by 0.1px so rounding never drops a column. */
+	margin-top            : var( --spa-ver-bas );                      /* Spacing Vertical Base ~= 14.572px */
 
 
 }

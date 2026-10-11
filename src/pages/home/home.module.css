@@ -543,12 +543,14 @@
 
 /* #region feaGriDiv */
 
-.feaGriDiv { /* What: Features Grid Div. Why: The cards should fill the row and wrap on a narrow screen. How: This fits as many columns as the row allows, each at least the p09 rhythm step or a horizontal step as the screen grows, never wider than the row. */
+.feaGriDiv { /* What: Features Grid Div. Why: The cards should fill every row evenly and wrap on a narrow screen. How: This shows the four cards as four columns, two, or one, never three, choosing the most that fit at the card's minimum width. */
 
+
+	--fea-car-wid : max( calc( var( --ver-rhy-p09 ) * 1rem ), var( --hor-rhy-019 ) ); /* Vertical Rhythm Base Plus 9 ~= 183.074px, Horizontal Rhythm 19 ~= 202.448px @ 1,920px width */ /* What: Feature Card Width. Why: The smallest a feature card may be. How: The grid reads it to decide how many columns fit, the p09 rhythm step or a horizontal step as the screen grows. */
 
 	display               : grid;
-	gap                   : var( --spa-ver-p02 ) clamp( var( --spa-hor-bas ), var( --hor-rhy-014 ), var( --spa-hor-p02 ) );                   /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base ~= 14.572px, Horizontal Rhythm 14 ~= 49.625px @ 1,920px width, Spacing Horizontal Base Plus 2 ~= 25.572px */
-	grid-template-columns : repeat( auto-fit, minmax( min( max( calc( var( --ver-rhy-p09 ) * 1rem ), var( --hor-rhy-019 ) ), 100% ), 1fr ) ); /* Vertical Rhythm Base Plus 9 ~= 183.074px, Horizontal Rhythm 19 ~= 202.448px @ 1,920px width */
+	gap                   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	grid-template-columns : repeat( auto-fill, minmax( max( calc( ( 100% - var( --spa-hor-p02 ) * 3 ) / 4 - 0.1px ), min( calc( ( 100% - var( --spa-hor-p02 ) ) / 2 - 0.1px ), calc( ( var( --fea-car-wid ) * 4 + var( --spa-hor-p02 ) * 3 - 100% ) * 999 ) ), min( 100%, calc( ( var( --fea-car-wid ) * 2 + var( --spa-hor-p02 ) - 100% ) * 999 ) ) ), 1fr ) ); /* Spacing Horizontal Base Plus 2 ~= 25.572px, Feature Card Width, set above */ /* What: Four Two One Columns. Why: The grid should never leave a lone card on its own row. How: The column minimum is a quarter of the row once four cards fit at their minimum, half once two do, and the whole row otherwise, each switch made by a difference multiplied by 999 that turns hugely positive or negative as the row passes that width, and each share trimmed by 0.1px so rounding never drops a column. */
 
 
 }
