@@ -3,7 +3,7 @@ import { NavBarCom } from './ui/nav.tsx'
 import { SitFooCom } from './ui/footer.tsx'
 import { HomPagCom } from './pages/home/home.tsx'
 import { AboPagCom } from './pages/about/about.tsx'
-import SocialLinks from './pages/links/links.tsx'
+import { LinPagCom } from './pages/links/links.tsx'
 import Contact from './pages/contact/contact.tsx'
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomPagCom />} />
             <Route path="/about" element={<AboPagCom />} />
-            <Route path="/links" element={<SocialLinks />} />
+            <Route path="/links" element={<LinPagCom />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
