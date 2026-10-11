@@ -1,0 +1,367 @@
+
+
+
+/**
+ * links.module.css = Social Links Page Module
+ *
+ * @summary
+ * Styles for LinPagCom: the page fading up into place, the gradient header,
+ * the intro line, the column of social and shop cards, each with a stripe,
+ * icon tile, handle, and arrow in its brand color, which slide right on hover,
+ * and the closing band. The cards' border still reads --pink-pale and
+ * --pink-soft from an older palette, which no longer exist, so the cards draw
+ * no border at all, exactly as before; step 9's color pass gives them one.
+ * The band's column takes the page's shared container values. Every
+ * animation and transition is off under reduced motion.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region page-enter */
+
+.page-enter { /* What: Page Enter Wrapper. Why: The page should arrive gently rather than appear at once. How: This plays the shared fade-up once as the page mounts, holding its first frame until it starts. */
+
+
+	animation : global(fadeInUp) 0.55s ease both;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Page Enter Wrapper. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.page-enter { /* What: Still Page Enter Wrapper. Why: The page should simply appear. How: This turns the animation off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+
+/* #region page-header */
+
+.page-header { /* What: Page Header. Why: The page opens with its title on a soft band. How: This fills a centered band with a cream to lavender gradient and a darker cream rule below. */
+
+
+	background    : linear-gradient(135deg, var(--main-pale) 0%, var(--main) 50%, var(--secondary-pale) 100%);
+	border-bottom : 2px solid var(--main-dark);
+	padding       : 5rem 2rem 4rem;
+	text-align    : center;
+
+
+}
+
+.page-header-title { /* What: Page Header Title. Why: The page's heading is its biggest text. How: This sets it very large, growing with the screen, with a small gap below. */
+
+
+	font-size     : clamp(2.5rem, 5vw, 4.5rem);
+	margin-bottom : 0.75rem;
+
+
+}
+
+.page-header-sub { /* What: Page Header Sub Line. Why: A short line under the heading sets the tone. How: This sets it a little large, italic, in the mid grey. */
+
+
+	color      : var(--text-mid);
+	font-size  : 1.1rem;
+	font-style : italic;
+
+
+}
+
+/* #endregion page-header */
+
+
+
+/* #region links-section */
+
+.links-section { /* What: Links Section. Why: The cards sit in the page's centered column. How: This holds the intro and the cards within a 1,100px column with room above and below. */
+
+
+	margin    : 0 auto;
+	max-width : 1100px;
+	padding   : 4rem 2rem;
+
+
+}
+
+.links-intro { /* What: Links Intro. Why: A short line says there's a place for every kind of fan. How: This centers it a little large in the mid grey, no wider than a comfortable line, with room below. */
+
+
+	color         : var(--text-mid);
+	font-size     : 1.05rem;
+	margin-bottom : 3rem;
+	margin-left   : auto;
+	margin-right  : auto;
+	max-width     : 560px;
+	text-align    : center;
+
+
+}
+
+
+/* #region social-cards */
+
+.social-cards { /* What: Social Cards. Why: The cards stack in one centered column. How: This stacks them with gaps, no wider than 720px. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : 1.25rem;
+	margin         : 0 auto;
+	max-width      : 720px;
+
+
+}
+
+
+/* #region social-card */
+
+.social-card { /* What: Social Card. Why: Each card takes the visitor to one of the girls' pages, or the brand's shop. How: This sets the icon, words, and arrow in a row on a white card with rounded corners and a soft shadow, clipping its stripe to the corners and easing every change. */
+
+
+	align-items     : center;
+	background      : white;
+	border          : 2px solid var(--pink-pale); /* What: Missing Border Color. Why: --pink-pale no longer exists, so this whole declaration is dropped and the card draws no border, exactly as on the live site. How: Step 9's color pass gives the card a real border. */
+	border-radius   : var(--radius-lg);
+	box-shadow      : var(--shadow-card);
+	color           : inherit;
+	display         : flex;
+	gap             : 1.5rem;
+	overflow        : hidden;
+	padding         : 1.75rem 2rem;
+	position        : relative;
+	text-decoration : none;
+	transition      : all 0.3s ease;
+
+
+}
+.social-card::before { /* What: Social Card Stripe. Why: Each card is marked with its brand color. How: This draws a 5px stripe down the card's left edge in the color the card hands it through --card-color. */
+
+
+	background    : var(--card-color);
+	border-radius : 3px 0 0 3px;
+	bottom        : 0;
+	content       : '';
+	left          : 0;
+	position      : absolute;
+	top           : 0;
+	width         : 5px;
+
+
+}
+.social-card:hover { /* What: Hovered Social Card. Why: A card should respond to the pointer. How: This slides it 6px right and deepens its shadow. */
+
+
+	border-color : var(--pink-soft); /* What: Missing Hover Border Color. Why: --pink-soft no longer exists, so this declaration is dropped, as on the live site. How: Step 9's color pass sets a real hover border. */
+	box-shadow   : var(--shadow-hover);
+	transform    : translateX(6px);
+
+
+}
+@media ( max-width : 640px ) { /* What: Narrow Social Card. Why: The card's roomy padding crowds a narrow screen. How: This applies 640px wide and below. */
+
+
+	.social-card { /* What: Compact Social Card. Why: A narrow screen needs its room for the words. How: This trims the padding and the gaps. */
+
+
+		gap     : 1rem;
+		padding : 1.25rem;
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Social Card. Why: Someone who asked for less motion shouldn't see the cards slide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.social-card { /* What: Motionless Social Card. Why: The hover look should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.social-card-icon { /* What: Social Card Icon Tile. Why: Each card opens with its platform's mark on a pale tile. How: This sizes a 64px rounded tile, centers the icon in it, and keeps it from shrinking, its font size setting the icon's. */
+
+
+	align-items     : center;
+	border-radius   : 16px;
+	display         : flex;
+	flex-shrink     : 0;
+	font-size       : 2rem;
+	height          : 64px;
+	justify-content : center;
+	width           : 64px;
+
+
+}
+@media ( max-width : 640px ) { /* What: Narrow Social Card Icon Tile. Why: A 64px tile crowds a narrow card. How: This applies 640px wide and below. */
+
+
+	.social-card-icon { /* What: Smaller Social Card Icon Tile. Why: The tile should shrink with the card. How: This sizes it to 50px, with a smaller icon. */
+
+
+		font-size : 1.5rem;
+		height    : 50px;
+		width     : 50px;
+
+
+	}
+
+
+}
+
+
+/* #region social-card-body */
+
+.social-card-body { /* What: Social Card Body. Why: The card's words take the room the icon and arrow leave. How: This lets the column grow to fill it. */
+
+
+	flex : 1;
+
+
+}
+
+.social-platform { /* What: Social Platform. Why: The card names its platform quietly. How: This sets it small, bold, spaced, and uppercase in the light grey. */
+
+
+	color          : var(--text-light);
+	font-size      : 0.78rem;
+	font-weight    : 700;
+	letter-spacing : 0.1em;
+	margin-bottom  : 0.1rem;
+	text-transform : uppercase;
+
+
+}
+
+.social-handle { /* What: Social Handle. Why: The account to look for should stand out. How: This sets it large and bold in the script font, in the color the card sets on it. */
+
+
+	font-family   : var(--font-script);
+	font-size     : 1.4rem;
+	font-weight   : 700;
+	margin-bottom : 0.4rem;
+
+
+}
+
+.social-desc { /* What: Social Description. Why: The card says what's there. How: This sets its sentence small and airy in the mid grey. */
+
+
+	color       : var(--text-mid);
+	font-size   : 0.88rem;
+	line-height : 1.6;
+
+
+}
+
+/* #endregion social-card-body */
+
+
+.social-card-arrow { /* What: Social Card Arrow. Why: An arrow shows the card leads somewhere. How: This sets it large and bold, kept from shrinking, easing its nudge. */
+
+
+	flex-shrink : 0;
+	font-size   : 1.5rem;
+	font-weight : 700;
+	transition  : transform 0.2s ease;
+
+
+}
+.social-card:hover .social-card-arrow { /* What: Hovered Social Card Arrow. Why: The arrow points the way as the card responds. How: This nudges it 4px right while its card is hovered. */
+
+
+	transform : translateX(4px);
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Social Card Arrow. Why: Someone who asked for less motion shouldn't see the arrow move. How: This applies only when the reduced-motion preference is set. */
+
+
+	.social-card-arrow { /* What: Motionless Social Card Arrow. Why: The nudge should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion social-card */
+
+/* #endregion social-cards */
+
+/* #endregion links-section */
+
+
+
+/* #region social-cta */
+
+.social-cta { /* What: Social Call To Action. Why: The page ends by asking visitors to follow along. How: This fills a centered band with a pale sage to lavender gradient under a cream rule. */
+
+
+	background : linear-gradient(135deg, var(--accent-pale) 0%, var(--secondary-pale) 100%);
+	border-top : 2px solid var(--main);
+	padding    : 4rem 2rem;
+	text-align : center;
+
+
+}
+
+
+/* #region container */
+
+.container { /* What: Social Call To Action Container. Why: The closing words sit in the page's centered column. How: This holds them within the page's 1,100px column and its side padding, the shared container values. */
+
+
+	margin    : 0 auto;
+	max-width : 1100px;
+	padding   : 0 2rem;
+
+
+}
+
+.social-cta-title { /* What: Social Call To Action Title. Why: The page closes on an invitation. How: This sets it large, growing with the screen, with room below. */
+
+
+	font-size     : clamp(1.8rem, 3vw, 2.5rem);
+	margin-bottom : 1rem;
+
+
+}
+
+.social-cta-text { /* What: Social Call To Action Text. Why: A short line says how to keep up. How: This centers it airy in the mid grey, no wider than a comfortable line. */
+
+
+	color       : var(--text-mid);
+	font-size   : 1rem;
+	line-height : 1.7;
+	margin      : 0 auto;
+	max-width   : 500px;
+
+
+}
+
+/* #endregion container */
+
+/* #endregion social-cta */
+
+/* #endregion page-enter */
+
+

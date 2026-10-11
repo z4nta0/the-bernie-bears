@@ -1,3 +1,22 @@
+/* Page header (from the old global about.css, until this page gets its own module) */
+.page-header {
+  background: linear-gradient(135deg, var(--main-pale) 0%, var(--main) 50%, var(--secondary-pale) 100%);
+  padding: 5rem 2rem 4rem;
+  text-align: center;
+  border-bottom: 2px solid var(--main-dark);
+}
+
+.page-header h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  margin-bottom: 0.75rem;
+}
+
+.page-header p {
+  font-size: 1.1rem;
+  color: var(--text-mid);
+  font-style: italic;
+}
+
 /* Buttons (from the old global home.css, until this page gets its own module) */
 .btn {
   display: inline-flex;
