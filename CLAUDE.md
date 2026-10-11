@@ -350,9 +350,47 @@ passes on `close-out`.
      `pageEnterFadeIn`, the card color property is `--soc-car-col`, and every
      rule and element comment labels it by its class's expansion.
    - **Open for step 10**: About's narrow overflow is now 35px at 320px and
-     also reaches 360px in WebKit, from the fixed 321px cartoon frame.
-10. **Horizontal layout comparison**, decided with the user per "Width is
-    decided per project", then a WAVE and manual accessibility review.
+     also reaches 360px in WebKit, from the fixed 321px cartoon frame (fixed
+     in step 10).
+10. **Horizontal layout** (done, pending the user's comparison with the live
+    site): option 2, the fluid horizontal rhythm tonys-toppers uses, chosen
+    on 2026-10-11 over the vertical rhythm, with the user deciding after
+    comparing the dev site with the live one whether to keep it.
+   - **Tokens**: `--hor-rhy-min` to `--hor-rhy-max` (100vw over a power of
+     the core design number), `--gut-sid-pad` (horizontal step 016 held
+     between `p01` and `p04`, about 19.3px to 44.9px, the siblings' gutter),
+     and `--con-max-wid`, a 1,920px viewport over the second power (about
+     1,094px), one step narrower than the siblings' cap to stay near the
+     site's own 1,100px column. The social list caps at a vertical rhythm
+     step, `p14` (about 747px, from 720px), added with `p13`.
+   - **Pictures**: the hero box is a square as wide as its column, and the
+     blob, portrait frame, and About's group frame grow from their rhythm
+     sizes with a horizontal step but never past their column, which ends
+     About's overflow at 320px and 360px. Below 768px the hero keeps its
+     fixed sizes.
+   - **Layout**: every section, the bar, and the footer pad their sides with
+     the gutter; the grid gaps and the larger cards' side padding are
+     horizontal steps clamped between spacing steps; the 640px and 768px
+     breakpoints stay.
+   - **Grids**: card minimums are `p09` (features) and `p08` (facts), rising
+     with a horizontal step and never wider than the row. Six facts now share
+     a row from about 1,280px up; uneven rows remain in a narrower band
+     (features 3+1 around 670px to 880px, facts 5+1 around 1,024px), as the
+     old fixed minimums had at other widths.
+   - **To switch to the vertical rhythm**, revert these commits, newest
+     first: `git revert ba37525 01a278a 300e87a` (grid minimums, layout
+     spacing, then tokens and pictures). Tested: it stops twice, on the
+     nav's row comment (keep the later wording, "a row about 79px tall",
+     with "1,100px column" back in it) and on the rendering baselines, which
+     are regenerated afterward anyway. Reverting `300e87a` brings back
+     About's overflow at 320px and 360px, so the frames then need their own
+     fix on the vertical rhythm before the widths move onto its steps.
+   - **Accessibility review**: axe reports no violations apart from the 404
+     page's missing `h1` (step 11). Its undecided results are all contrast
+     over gradients and the translucent bar; measured against every gradient
+     stop, everything passes except Contact's closing line, which takes a
+     slightly darker lavender (4.85:1). Left for the user: a WAVE pass, the
+     bar's text while photos scroll under it, and a screen reader listen.
 11. **New features**: the 404 page, security headers (`public/_headers`),
     image optimization (originals in `design/photos/`, WebP copies written by
     a script, an SVG favicon plus the raster favicon set), the SEO pass and
