@@ -65,7 +65,7 @@ const LAY_CAS_ARR : LayCasTyp[] = [ // What: Layout Case Array. Why: The page an
 
 
 const MEN_MAX_NUM = 640;                                                                      // What: Menu Maximum Number. Why: The mobile menu exists only up to the site's 640px breakpoint. How: The menu case is measured only at widths up to this.
-const WID_LIS_ARR = [ 320, 360, 390, 414, 480, 640, 641, 768, 769, 1024, 1280, 1440, 1920 ]; // What: Width List Array. Why: Layouts crowd at the narrowest widths and switch at the breakpoints. How: This lists common screen widths (480px a landscape phone, 1,024px a tablet) plus the site's 640px and 768px breakpoints and the pixel past each.
+const WID_LIS_ARR = [ 320, 360, 390, 414, 480, 640, 641, 768, 769, 880, 881, 1024, 1280, 1440, 1920 ]; // What: Width List Array. Why: Layouts crowd at the narrowest widths and switch at the breakpoints. How: This lists common screen widths (480px a landscape phone, 1,024px a tablet) plus the site's 640px, 768px, and 880px breakpoints and the pixel past each.
 
 // #endregion Constants
 

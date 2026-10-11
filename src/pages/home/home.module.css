@@ -61,7 +61,7 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Narrow Home Hero Section. Why: The two columns don't fit side by side on a narrow screen. How: This applies 768px wide and below. */
+@media ( max-width : 880px ) { /* What: Narrow Home Hero Section. Why: The two columns don't fit side by side on a narrow screen. How: This applies 880px wide and below. */
 
 
 	.homHerSec { /* What: Stacked Home Hero Section. Why: A narrow screen reads the welcome above the portrait. How: This stacks them in one centered column and trims the padding. */
@@ -113,7 +113,7 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Narrow Hero Lede Paragraph. Why: The stacked hero centers its pitch across the column. How: This applies 768px wide and below. */
+@media ( max-width : 880px ) { /* What: Narrow Hero Lede Paragraph. Why: The stacked hero centers its pitch across the column. How: This applies 880px wide and below. */
 
 
 	.herLedPar { /* What: Full Width Hero Lede Paragraph. Why: A width cap would leave the centered pitch off balance. How: This lets it span the column. */
@@ -139,7 +139,7 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Narrow Hero Actions Div. Why: The stacked hero is centered. How: This applies 768px wide and below. */
+@media ( max-width : 880px ) { /* What: Narrow Hero Actions Div. Why: The stacked hero is centered. How: This applies 880px wide and below. */
 
 
 	.herActDiv { /* What: Centered Hero Actions Div. Why: The buttons should sit under the centered pitch. How: This centers the row. */
@@ -253,7 +253,7 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Narrow Hero Visual Div. Why: The portrait shrinks on a narrow screen. How: This applies 768px wide and below. */
+@media ( max-width : 880px ) { /* What: Narrow Hero Visual Div. Why: The portrait shrinks on a narrow screen. How: This applies 880px wide and below. */
 
 
 	.herVisDiv { /* What: Shorter Hero Visual Div. Why: The smaller portrait needs less room. How: This drops the square shape and trims the box to the p11 rhythm step. */
@@ -281,7 +281,7 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Narrow Hero Blob Div. Why: The blob shrinks with the portrait. How: This applies 768px wide and below. */
+@media ( max-width : 880px ) { /* What: Narrow Hero Blob Div. Why: The blob shrinks with the portrait. How: This applies 880px wide and below. */
 
 
 	.herBloDiv { /* What: Smaller Hero Blob Div. Why: The blob should match the smaller portrait. How: This sizes it to the p10 rhythm step. */
@@ -356,7 +356,7 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Narrow Portrait Frame Div. Why: The portrait shrinks on a narrow screen. How: This applies 768px wide and below. */
+@media ( max-width : 880px ) { /* What: Narrow Portrait Frame Div. Why: The portrait shrinks on a narrow screen. How: This applies 880px wide and below. */
 
 
 	.porFraDiv { /* What: Smaller Portrait Frame Div. Why: A full-size frame crowds a narrow screen. How: This sizes it to the p10 rhythm step. */
@@ -412,7 +412,7 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Narrow Lilah Floating Badge Div. Why: A badge past the frame's edge would leave a narrow screen. How: This applies 768px wide and below. */
+@media ( max-width : 880px ) { /* What: Narrow Lilah Floating Badge Div. Why: A badge past the frame's edge would leave a narrow screen. How: This applies 880px wide and below. */
 
 
 	.floBadDiv--lilah { /* What: Inset Lilah Floating Badge Div. Why: The badge should stay on screen. How: This aligns it with the box's left edge. */
@@ -434,7 +434,7 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Narrow Norah Floating Badge Div. Why: A badge past the frame's edge would leave a narrow screen. How: This applies 768px wide and below. */
+@media ( max-width : 880px ) { /* What: Narrow Norah Floating Badge Div. Why: A badge past the frame's edge would leave a narrow screen. How: This applies 880px wide and below. */
 
 
 	.floBadDiv--norah { /* What: Inset Norah Floating Badge Div. Why: The badge should stay on screen. How: This aligns it with the box's right edge. */
