@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router'
-import Navbar from './ui/nav.tsx'
+import { NavBarCom } from './ui/nav.tsx'
 import { SitFooCom } from './ui/footer.tsx'
 import Home from './pages/home/home.tsx'
 import About from './pages/about/about.tsx'
@@ -11,7 +11,7 @@ function App() {
   return (
     <BrowserRouter>
       <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', position: 'relative', zIndex: 1 }}>
-        <Navbar />
+        <NavBarCom />
         <main style={{ flex: 1 }}>
           <Routes>
             <Route path="/" element={<Home />} />
