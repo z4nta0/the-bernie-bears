@@ -131,7 +131,7 @@
 	background      : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
 	border          : var( --bor-wid-lar ) solid var( --bor-mai-col ); /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
 	border-radius   : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
-	box-shadow      : var( --shadow-card );
+	box-shadow      : var( --ele-med-sha );                            /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
 	color           : inherit;
 	display         : flex;
 	gap             : var( --spa-hor-p02 );                            /* Spacing Horizontal Base Plus 2 ~= 25.572px */
@@ -161,7 +161,7 @@
 
 
 	border-color : var( --acc-lig-col );               /* Accent Light Color = #ceb1dd */
-	box-shadow   : var( --shadow-hover );
+	box-shadow   : var( --ele-lar-sha );               /* Elevation Large Shadow, about 0 19.3px 44.9px -14.6px plus 0 6.3px 14.6px -3.6px */
 	transform    : translateX( var( --spa-hor-m03 ) ); /* Spacing Horizontal Base Minus 3 ~= 6.268px */
 
 

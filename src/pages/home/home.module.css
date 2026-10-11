@@ -95,11 +95,11 @@
 .hero-title { /* What: Hero Title. Why: The girls' brand name is the page's headline. How: This sets it very large in deep lavender, growing with the screen, tightly leaded, with a soft lavender glow. */
 
 
-	color         : var( --acc-dar-col );                                                             /* Accent Dark Color ~= #7e5b93 */
-	font-size     : clamp( var( --fon-siz-p05 ), 6vw, var( --fon-siz-p07 ) );                         /* Font Size Base Plus 5 ~= 44.876px, Font Size Base Plus 7 ~= 78.751px */
-	line-height   : var( --ver-rhy-m01 );                                                             /* Vertical Rhythm Base Minus 1 ~= 1.000 */
-	margin-bottom : var( --spa-ver-p01 );                                                             /* Spacing Vertical Base Plus 1 ~= 19.304px */
-	text-shadow   : 2px 4px 16px oklch( from var( --acc-mai-col ) l c h / var( --cdn-pow-004-rec ) ); /* Accent Main Color = #d1afe2, Core-Design-Number to the Power of 4 Reciprocal ~= 0.325 */
+	color         : var( --acc-dar-col );                                     /* Accent Dark Color ~= #7e5b93 */
+	font-size     : clamp( var( --fon-siz-p05 ), 6vw, var( --fon-siz-p07 ) ); /* Font Size Base Plus 5 ~= 44.876px, Font Size Base Plus 7 ~= 78.751px */
+	line-height   : var( --ver-rhy-m01 );                                     /* Vertical Rhythm Base Minus 1 ~= 1.000 */
+	margin-bottom : var( --spa-ver-p01 );                                     /* Spacing Vertical Base Plus 1 ~= 19.304px */
+	text-shadow   : calc( var( --ver-rhy-m07 ) * 1rem ) calc( var( --ver-rhy-m05 ) * 1rem ) calc( var( --ver-rhy-bas ) * 1rem ) oklch( from var( --acc-mai-col ) l c h / var( --cdn-pow-004-rec ) ); /* Vertical Rhythm Base Minus 7 ~= 2.035px, Vertical Rhythm Base Minus 5 ~= 3.572px, Vertical Rhythm Base ~= 14.572px, Accent Main Color = #d1afe2, Core-Design-Number to the Power of 4 Reciprocal ~= 0.325 */
 
 
 }
@@ -176,18 +176,18 @@
 .btn-primary { /* What: Primary Button. Why: The main action should stand out. How: This fills the pill lavender with white text and a soft lavender shadow. */
 
 
-	background : var( --acc-mai-col );                                                           /* Accent Main Color = #d1afe2 */
-	box-shadow : 0 6px 24px oklch( from var( --acc-mai-col ) l c h / var( --cdn-pow-003-rec ) ); /* Accent Main Color = #d1afe2, Core-Design-Number to the Power of 3 Reciprocal ~= 0.430 */
-	color      : var( --tex-acc-col );                                                           /* Text Accent Color = #2c2c2c */
+	background : var( --acc-mai-col ); /* Accent Main Color = #d1afe2 */
+	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
+	color      : var( --tex-acc-col ); /* Text Accent Color = #2c2c2c */
 
 
 }
 .btn-primary:hover { /* What: Hovered Primary Button. Why: A button should respond to the pointer. How: This deepens the lavender, lifts the pill 2px, and spreads its shadow. */
 
 
-	background : var( --acc-hov-col );                                       /* Accent Hover Color = #b48fcb */
-	box-shadow : 0 10px 32px oklch( from var( --acc-mai-col ) l c h / 0.5 ); /* Accent Main Color = #d1afe2 @ 0.5 opacity */
-	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) );            /* Spacing Vertical Base Minus 7 ~= -2.035px */
+	background : var( --acc-hov-col );                            /* Accent Hover Color = #b48fcb */
+	box-shadow : var( --ele-lar-sha );                            /* Elevation Large Shadow, about 0 19.3px 44.9px -14.6px plus 0 6.3px 14.6px -3.6px */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }
@@ -211,17 +211,17 @@
 .btn-white { /* What: White Button. Why: The banner's action sits on a colored gradient. How: This fills the pill white with deep lavender text and a soft shadow. */
 
 
-	background : var( --bac-sur-col );                                       /* Background Surface Color = #ffffff */
-	box-shadow : 0 6px 24px oklch( from var( --sha-mai-col ) l c h / 0.12 ); /* Shadow Main Color = #000000 @ 0.12 opacity */
-	color      : var( --acc-dar-col );                                       /* Accent Dark Color ~= #7e5b93 */
+	background : var( --bac-sur-col ); /* Background Surface Color = #ffffff */
+	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
+	color      : var( --acc-dar-col ); /* Accent Dark Color ~= #7e5b93 */
 
 
 }
 .btn-white:hover { /* What: Hovered White Button. Why: A button should respond to the pointer. How: This lifts the pill 2px and spreads its shadow. */
 
 
-	box-shadow : 0 10px 32px oklch( from var( --sha-mai-col ) l c h / var( --cdn-pow-006-rec ) ); /* Shadow Main Color = #000000, Core-Design-Number to the Power of 6 Reciprocal ~= 0.185 */
-	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) );                                 /* Spacing Vertical Base Minus 7 ~= -2.035px */
+	box-shadow : var( --ele-lar-sha );                            /* Elevation Large Shadow, about 0 19.3px 44.9px -14.6px plus 0 6.3px 14.6px -3.6px */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }
@@ -348,7 +348,7 @@
 
 	border        : var( --bor-wid-xla ) solid var( --bac-sur-col ); /* Border Width Extra Large ~= 3.571px, Background Surface Color = #ffffff */
 	border-radius : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
-	box-shadow    : var( --shadow-card );
+	box-shadow    : var( --ele-med-sha );                            /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
 	height        : calc( var( --ver-rhy-p11 ) * 1rem );             /* Vertical Rhythm Base Plus 11 ~= 321.273px */
 	overflow      : hidden;
 	position      : relative;
@@ -394,7 +394,7 @@
 	background    : var( --bac-sur-col );                                          /* Background Surface Color = #ffffff */
 	border        : var( --bor-wid-lar ) solid var( --acc-lig-col );               /* Border Width Large ~= 2.035px, Accent Light Color = #ceb1dd */
 	border-radius : 999px;
-	box-shadow    : var( --shadow-soft );
+	box-shadow    : var( --ele-sma-sha );                                          /* Elevation Small Shadow, about 0 1.2px 2px */
 	color         : var( --acc-dar-col );                                          /* Accent Dark Color ~= #7e5b93 */
 	font-size     : var( --fon-siz-p01 );                                          /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight   : 700;
@@ -429,7 +429,7 @@
 .floating-badge--2 { /* What: Second Floating Badge. Why: Norah's badge sits by the portrait's lower right. How: This places it there and starts its bob half a cycle after Lilah's. */
 
 
-	animation-delay : calc( var( --dur-ani-p11 ) / 2 ); /* Duration Animation Base Plus 11 ~= 3,480.0ms, halved to ~= 1,740.0ms */
+	animation-delay : calc( var( --dur-ani-p11 ) / 2 ); /* Duration Animation Base Plus 11 ~= 3,480.0ms */
 	bottom          : 15%;
 	right           : -5%;
 
@@ -563,7 +563,7 @@
 	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
 	border        : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #ececb6 */
 	border-radius : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
-	box-shadow    : var( --shadow-card );
+	box-shadow    : var( --ele-med-sha );                            /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
 	padding       : var( --spa-ver-p03 ) var( --spa-hor-p02 );       /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	text-align    : center;
 	transition    : all var( --dur-tra-p02 ) var( --mot-sta-eas );   /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
@@ -574,7 +574,7 @@
 
 
 	border-color : var( --acc-lig-col );                            /* Accent Light Color = #ceb1dd */
-	box-shadow   : var( --shadow-hover );
+	box-shadow   : var( --ele-lar-sha );                            /* Elevation Large Shadow, about 0 19.3px 44.9px -14.6px plus 0 6.3px 14.6px -3.6px */
 	transform    : translateY( calc( var( --spa-ver-m03 ) * -1 ) ); /* Spacing Vertical Base Minus 3 ~= -6.268px */
 
 

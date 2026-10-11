@@ -26,10 +26,10 @@
 .navbar { /* What: Navigation Bar. Why: The bar stays at the top of the screen over the page. How: This sticks it to the top above the page's content, frosts what scrolls under it, and edges it with a cream rule and a soft shadow. */
 
 
-	backdrop-filter : blur( calc( var( --ver-rhy-m01 ) * 1rem ) );                /* Vertical Rhythm Base Minus 1 = 11px */
-	background      : oklch( from var( --bac-sur-col ) l c h / 0.92 );            /* Background Surface Color = #ffffff @ 0.92 opacity */
-	border-bottom   : var( --bor-wid-lar ) solid var( --bor-mai-col );            /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
-	box-shadow      : 0 2px 16px oklch( from var( --acc-sec-col ) l c h / 0.12 ); /* Accent Secondary Color = #8bad89 @ 0.12 opacity */
+	backdrop-filter : blur( calc( var( --ver-rhy-m01 ) * 1rem ) );     /* Vertical Rhythm Base Minus 1 = 11px */
+	background      : oklch( from var( --bac-sur-col ) l c h / 0.92 ); /* Background Surface Color = #ffffff @ 0.92 opacity */
+	border-bottom   : var( --bor-wid-lar ) solid var( --bor-mai-col ); /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
+	box-shadow      : var( --ele-med-sha );                            /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
 	position        : sticky;
 	top             : 0;
 	z-index         : 100;
@@ -224,17 +224,17 @@
 	.navbar-links { /* What: Closed Navigation Menu. Why: On a narrow screen the links become a panel below the bar, out of the way until the toggle opens it. How: This stacks them on a white panel across the screen under the bar, hidden while closed, which also keeps its links out of the Tab order. */
 
 
-		background     : var( --bac-sur-col );                                                           /* Background Surface Color = #ffffff */
-		border-bottom  : var( --bor-wid-lar ) solid var( --bor-mai-col );                                /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
-		box-shadow     : 0 8px 24px oklch( from var( --acc-sec-col ) l c h / var( --cdn-pow-007-rec ) ); /* Accent Secondary Color = #8bad89, Core-Design-Number to the Power of 7 Reciprocal ~= 0.140 */
+		background     : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
+		border-bottom  : var( --bor-wid-lar ) solid var( --bor-mai-col ); /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
+		box-shadow     : var( --ele-lar-sha );                            /* Elevation Large Shadow, about 0 19.3px 44.9px -14.6px plus 0 6.3px 14.6px -3.6px */
 		display        : none;
 		flex-direction : column;
-		gap            : var( --spa-ver-m02 );                                                           /* Spacing Vertical Base Minus 2 ~= 8.304px */
+		gap            : var( --spa-ver-m02 );                            /* Spacing Vertical Base Minus 2 ~= 8.304px */
 		left           : 0;
-		padding        : var( --spa-ver-bas ) var( --spa-hor-bas );                                      /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base ~= 14.572px */
+		padding        : var( --spa-ver-bas ) var( --spa-hor-bas );       /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base ~= 14.572px */
 		position       : absolute;
 		right          : 0;
-		top            : calc( var( --ver-rhy-p06 ) * 1rem );                                            /* Vertical Rhythm Base Plus 6 ~= 78.751px */
+		top            : calc( var( --ver-rhy-p06 ) * 1rem );             /* Vertical Rhythm Base Plus 6 ~= 78.751px */
 
 
 	}
@@ -274,10 +274,10 @@
 .nav-link[aria-current='page'] { /* What: Current Navigation Link. Why: The link for the page being shown should stand out. How: This fills the pill cream with dark text, a darker cream border, and a soft shadow, winning over the hover look by coming after it. */
 
 
-	background : var( --bac-hig-col );                                                           /* Background Highlight Color = #ececb6 */
-	border     : var( --bor-wid-bas ) solid var( --bor-str-col );                                /* Border Width Base ~= 1.160px, Border Strong Color = #d6d69a */
-	box-shadow : 0 4px 12px oklch( from var( --acc-sec-col ) l c h / var( --cdn-pow-005-rec ) ); /* Accent Secondary Color = #8bad89, Core-Design-Number to the Power of 5 Reciprocal ~= 0.245 */
-	color      : var( --tex-mai-col );                                                           /* Text Main Color = #2c2c2c */
+	background : var( --bac-hig-col );                            /* Background Highlight Color = #ececb6 */
+	border     : var( --bor-wid-bas ) solid var( --bor-str-col ); /* Border Width Base ~= 1.160px, Border Strong Color = #d6d69a */
+	box-shadow : var( --ele-sma-sha );                            /* Elevation Small Shadow, about 0 1.2px 2px */
+	color      : var( --tex-mai-col );                            /* Text Main Color = #2c2c2c */
 
 
 }

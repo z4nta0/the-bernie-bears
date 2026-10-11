@@ -165,7 +165,7 @@
 	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
 	border        : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #ececb6 */
 	border-radius : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
-	box-shadow    : var( --shadow-soft );
+	box-shadow    : var( --ele-sma-sha );                            /* Elevation Small Shadow, about 0 1.2px 2px */
 	display       : flex;
 	gap           : var( --spa-hor-bas );                            /* Spacing Horizontal Base ~= 14.572px */
 	padding       : var( --spa-ver-p01 ) var( --spa-hor-p01 );       /* Spacing Vertical Base Plus 1 ~= 19.304px, Spacing Horizontal Base Plus 1 ~= 19.304px */
@@ -274,7 +274,7 @@
 	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
 	border        : var( --bor-wid-lar ) solid var( --bor-mai-col ); /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
 	border-radius : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
-	box-shadow    : var( --shadow-card );
+	box-shadow    : var( --ele-med-sha );                            /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
 	padding       : var( --spa-ver-p04 ) var( --spa-hor-p04 );       /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 
 
@@ -347,18 +347,18 @@
 .btn-primary { /* What: Primary Button. Why: The main action should stand out. How: This fills the pill lavender with white text and a soft lavender shadow. */
 
 
-	background : var( --acc-mai-col );                                                           /* Accent Main Color = #d1afe2 */
-	box-shadow : 0 6px 24px oklch( from var( --acc-mai-col ) l c h / var( --cdn-pow-003-rec ) ); /* Accent Main Color = #d1afe2, Core-Design-Number to the Power of 3 Reciprocal ~= 0.430 */
-	color      : var( --tex-acc-col );                                                           /* Text Accent Color = #2c2c2c */
+	background : var( --acc-mai-col ); /* Accent Main Color = #d1afe2 */
+	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
+	color      : var( --tex-acc-col ); /* Text Accent Color = #2c2c2c */
 
 
 }
 .btn-primary:hover { /* What: Hovered Primary Button. Why: A button should respond to the pointer. How: This deepens the lavender, lifts the pill 2px, and spreads its shadow. */
 
 
-	background : var( --acc-hov-col );                                       /* Accent Hover Color = #b48fcb */
-	box-shadow : 0 10px 32px oklch( from var( --acc-mai-col ) l c h / 0.5 ); /* Accent Main Color = #d1afe2 @ 0.5 opacity */
-	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) );            /* Spacing Vertical Base Minus 7 ~= -2.035px */
+	background : var( --acc-hov-col );                            /* Accent Hover Color = #b48fcb */
+	box-shadow : var( --ele-lar-sha );                            /* Elevation Large Shadow, about 0 19.3px 44.9px -14.6px plus 0 6.3px 14.6px -3.6px */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }
