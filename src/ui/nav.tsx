@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import { NavLink  } from 'react-router'; // What: Navigation Link. Why: The bar's links move between routes without a full page load, and the one for the current page is marked. How: This renders each link and adds its active class while its route matches.
+import { NavLink  } from 'react-router'; // What: Navigation Link. Why: The bar's links move between routes without a full page load, and the one for the current page is marked. How: This renders each link and sets aria-current on it while its route matches.
 import { useState } from 'react';        // What: Use State. Why: The phone menu opens and closes from the toggle. How: This holds whether it's open.
 
 
@@ -58,9 +58,11 @@ const NAV_LIN_ARR = [ // What: Navigation Link Array. Why: The bar links to ever
  *
  * @summary
  * Renders the bar. On a phone the links sit in a menu the toggle opens, and
- * choosing a link closes it. React Router's NavLink adds the active class to
- * the link whose route matches, which the bar's stylesheet marks, and the Home
- * link matches only the root path exactly, since every path starts with it.
+ * choosing a link closes it; the toggle reports the menu's state through
+ * aria-expanded and the menu carries data-mobile-menu-open while open. React
+ * Router's NavLink marks the link whose route matches with aria-current,
+ * which the bar's stylesheet styles, and the Home link matches only the root
+ * path exactly, since every path starts with it.
  * The brand's paw print is hidden from screen readers as decoration, so the
  * link is announced by the name alone, and the links sit in a navigation
  * landmark labelled Main, so screen readers can tell it from the footer's.
@@ -115,14 +117,15 @@ function NavBarCom () : React.JSX.Element {
 
 
 				<button
-					className={ ` hamburger   ${ menOpeBoo ? 'open' : '' } ` }
+					className='hamburger'
 
 					type='button'
 
+					aria-expanded={ menOpeBoo }
 					aria-label='Toggle menu'
 
 					onClick={ () => setMenOpeBoo( ( preOpeBoo ) => !preOpeBoo ) }
-				>{ /* What: Hamburger Button Element. Why: On a phone the links sit in a menu. How: This opens or closes it, turning its three bars into a cross while it's open. */ }
+				>{ /* What: Hamburger Button Element. Why: On a phone the links sit in a menu. How: This opens or closes it, tells screen readers whether it's open through aria-expanded, and turns its three bars into a cross while it is. */ }
 
 
 					<span />{ /* What: Hamburger Bar Span Element. Why: The toggle draws as three bars. How: This is one of them. */ }
@@ -135,10 +138,12 @@ function NavBarCom () : React.JSX.Element {
 				</button>
 
 				<nav
-					className={ ` navbar-links   ${ menOpeBoo ? 'open' : '' } ` }
+					className='navbar-links'
+
+					data-mobile-menu-open={ menOpeBoo || undefined } // What: Mobile Menu Open Flag. Why: On a phone the links show only while the menu is open. How: This marks the nav while menOpeBoo is true, and drops the attribute otherwise.
 
 					aria-label='Main'
-				>{ /* What: Navigation Bar Links Nav Element. Why: The page links sit in a row on wide screens and drop down as the menu on a phone, and the bar's navigation landmark needs a label to tell it from the footer's. How: This holds a link to each page, labelled Main, shown on a phone only while open. */ }
+				>{ /* What: Navigation Bar Links Nav Element. Why: The page links sit in a row on wide screens and drop down as the menu on a phone, and the bar's navigation landmark needs a label to tell it from the footer's. How: This holds a link to each page, labelled Main, shown on a phone only while it carries data-mobile-menu-open. */ }
 
 
 					{ NAV_LIN_ARR.map( ( linRecObj ) => ( // What: Page Link Map. Why: Each page gets a link. How: This renders one link per row.
@@ -153,7 +158,7 @@ function NavBarCom () : React.JSX.Element {
 							to={ linRecObj.patStr }
 
 							onClick={ () => setMenOpeBoo( false ) }
-						>{ /* What: Navigation Link. Why: Each link takes the visitor to its page. How: This routes to the row's path, marks itself active there, and closes the phone menu. */ }
+						>{ /* What: Navigation Link. Why: Each link takes the visitor to its page. How: This routes to the row's path, carries aria-current there, and closes the phone menu. */ }
 							{ linRecObj.labStr }
 						</NavLink>
 
