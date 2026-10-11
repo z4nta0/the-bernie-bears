@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import './Home.css'
 import portraitBoth from '../assets/portrait-both.jpg'
 

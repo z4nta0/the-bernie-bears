@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router'
 import Navbar from './components/Navbar.tsx'
 import Footer from './components/Footer.tsx'
 import Home from './pages/Home.tsx'
