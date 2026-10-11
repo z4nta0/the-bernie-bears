@@ -1,0 +1,458 @@
+
+
+
+/**
+ * contact.module.css = Contact Page Module
+ *
+ * @summary
+ * Styles for ConPagCom: the page fading up into place, the gradient header,
+ * the info column with its three white contact cards and the cream collab
+ * note, the white panel with its two pill buttons, and the closing gradient
+ * band with its row of emoji and script line. The two columns stack below
+ * 768px. The pill buttons are the home page's, copied in, and the band's
+ * column takes the page's shared container values with its centered text
+ * merged in from what used to be an inline style. Every transition and the
+ * entrance are off under reduced motion.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region page-enter */
+
+.page-enter { /* What: Page Enter Wrapper. Why: The page should arrive gently rather than appear at once. How: This plays the shared fade-up once as the page mounts, holding its first frame until it starts. */
+
+
+	animation : global(fadeInUp) 0.55s ease both;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Page Enter Wrapper. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.page-enter { /* What: Still Page Enter Wrapper. Why: The page should simply appear. How: This turns the animation off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+
+/* #region page-header */
+
+.page-header { /* What: Page Header. Why: The page opens with its title on a soft band. How: This fills a centered band with a cream to lavender gradient and a darker cream rule below. */
+
+
+	background    : linear-gradient(135deg, var(--main-pale) 0%, var(--main) 50%, var(--secondary-pale) 100%);
+	border-bottom : 2px solid var(--main-dark);
+	padding       : 5rem 2rem 4rem;
+	text-align    : center;
+
+
+}
+
+.page-header-title { /* What: Page Header Title. Why: The page's heading is its biggest text. How: This sets it very large, growing with the screen, with a small gap below. */
+
+
+	font-size     : clamp(2.5rem, 5vw, 4.5rem);
+	margin-bottom : 0.75rem;
+
+
+}
+
+.page-header-sub { /* What: Page Header Sub Line. Why: A short line under the heading sets the tone. How: This sets it a little large, italic, in the mid grey. */
+
+
+	color      : var(--text-mid);
+	font-size  : 1.1rem;
+	font-style : italic;
+
+
+}
+
+/* #endregion page-header */
+
+
+
+/* #region contact-section */
+
+.contact-section { /* What: Contact Section. Why: The ways to get in touch sit in the page's centered column. How: This holds them within a 1,100px column with room above and below. */
+
+
+	margin    : 0 auto;
+	max-width : 1100px;
+	padding   : 5rem 2rem;
+
+
+}
+
+
+/* #region contact-grid */
+
+.contact-grid { /* What: Contact Grid. Why: The info and the panel sit side by side on wide screens. How: This sets them in two columns, the panel's a little wider, aligned to the top. */
+
+
+	align-items           : start;
+	display               : grid;
+	gap                   : 4rem;
+	grid-template-columns : 1fr 1.4fr;
+
+
+}
+@media ( max-width : 768px ) { /* What: Narrow Contact Grid. Why: The two columns don't fit side by side on a narrow screen. How: This applies 768px wide and below. */
+
+
+	.contact-grid { /* What: Stacked Contact Grid. Why: A narrow screen reads the info above the panel. How: This stacks them in one column with a smaller gap. */
+
+
+		gap                   : 2.5rem;
+		grid-template-columns : 1fr;
+
+
+	}
+
+
+}
+
+
+.contact-info-title { /* What: Contact Info Title. Why: The column needs a heading. How: This sets it large with room below. */
+
+
+	font-size     : 2.2rem;
+	margin-bottom : 1rem;
+
+
+}
+
+.contact-info-text { /* What: Contact Info Text. Why: A short line says what kind of messages are welcome. How: This sets it airy in the mid grey, with room below. */
+
+
+	color         : var(--text-mid);
+	font-size     : 0.98rem;
+	line-height   : 1.8;
+	margin-bottom : 2rem;
+
+
+}
+
+
+/* #region contact-cards */
+
+.contact-cards { /* What: Contact Cards. Why: The ways to get in touch stack as cards. How: This stacks them with gaps and room below. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : 1rem;
+	margin-bottom  : 2rem;
+
+
+}
+
+
+/* #region contact-card */
+
+.contact-card { /* What: Contact Card. Why: Each way to get in touch is a card. How: This sets the emoji beside the label and value on a white card with rounded corners, a cream border, and a soft shadow. */
+
+
+	align-items   : center;
+	background    : white;
+	border        : 1px solid var(--main);
+	border-radius : var(--radius-lg);
+	box-shadow    : var(--shadow-soft);
+	display       : flex;
+	gap           : 1rem;
+	padding       : 1.1rem 1.4rem;
+
+
+}
+
+.contact-icon { /* What: Contact Icon. Why: Each card opens with an emoji. How: This sizes it and keeps it from shrinking. */
+
+
+	flex-shrink : 0;
+	font-size   : 1.6rem;
+
+
+}
+
+.contact-card-label { /* What: Contact Card Label. Why: Each card names what it offers. How: This sets the label small and bold in the dark text color, on its own line. */
+
+
+	color         : var(--text-dark);
+	display       : block;
+	font-size     : 0.85rem;
+	font-weight   : 700;
+	margin-bottom : 0.2rem;
+
+
+}
+
+
+/* #region contact-card-value */
+
+.contact-card-value { /* What: Contact Card Value. Why: Each card's detail sits under its label. How: This sets it small in the mid grey, with no margin. */
+
+
+	color     : var(--text-mid);
+	font-size : 0.88rem;
+	margin    : 0;
+
+
+}
+
+.contact-card-link { /* What: Contact Card Link. Why: The email address should read as a link by more than its color. How: This sets it bold and underlined in the dark text color. */
+
+
+	color           : var(--text-dark);
+	font-weight     : 600;
+	text-decoration : underline;
+
+
+}
+
+/* #endregion contact-card-value */
+
+/* #endregion contact-card */
+
+/* #endregion contact-cards */
+
+
+
+/* #region contact-note */
+
+.contact-note { /* What: Contact Note. Why: Collab requests should stand apart from the cards. How: This sets the bear beside the note on a pale cream panel with a cream border and rounded corners. */
+
+
+	align-items   : flex-start;
+	background    : var(--main-pale);
+	border        : 1px solid var(--main);
+	border-radius : var(--radius-lg);
+	display       : flex;
+	gap           : 0.75rem;
+	padding       : 1.1rem 1.4rem;
+
+
+}
+
+.contact-note-icon { /* What: Contact Note Icon. Why: The note opens with a bear. How: This sizes it, keeps it from shrinking, and nudges it down to line up with the text. */
+
+
+	flex-shrink : 0;
+	font-size   : 1.4rem;
+	margin-top  : 0.1rem;
+
+
+}
+
+.contact-note-text { /* What: Contact Note Text. Why: The note's request is its content. How: This sets it small and airy in the mid grey, with no margin. */
+
+
+	color       : var(--text-mid);
+	font-size   : 0.85rem;
+	line-height : 1.65;
+	margin      : 0;
+
+
+}
+
+/* #endregion contact-note */
+
+
+
+/* #region contact-panel */
+
+.contact-panel { /* What: Contact Panel. Why: The ways to send a message stand out as their own panel. How: This sets a white panel with rounded corners, a cream border, and a soft shadow. */
+
+
+	background    : white;
+	border        : 2px solid var(--main);
+	border-radius : var(--radius-xl);
+	box-shadow    : var(--shadow-card);
+	padding       : 2.5rem;
+
+
+}
+@media ( max-width : 768px ) { /* What: Narrow Contact Panel. Why: The panel's roomy padding crowds a narrow screen. How: This applies 768px wide and below. */
+
+
+	.contact-panel { /* What: Compact Contact Panel. Why: A narrow screen needs its room for the words and buttons. How: This trims the padding. */
+
+
+		padding : 1.75rem;
+
+
+	}
+
+
+}
+
+.contact-panel-title { /* What: Contact Panel Title. Why: The panel says what it's for. How: This sets the heading large with room below. */
+
+
+	font-size     : 2.2rem;
+	margin-bottom : 1rem;
+
+
+}
+
+.contact-panel-text { /* What: Contact Panel Text. Why: Visitors should know where their message goes. How: This sets the line airy in the mid grey, with room below. */
+
+
+	color         : var(--text-mid);
+	font-size     : 0.98rem;
+	line-height   : 1.8;
+	margin-bottom : 2rem;
+
+
+}
+
+
+/* #region contact-panel-buttons */
+
+.contact-panel-buttons { /* What: Contact Panel Buttons. Why: The two ways to send a message sit together. How: This sets them in a row that wraps. */
+
+
+	display   : flex;
+	flex-wrap : wrap;
+	gap       : 1rem;
+
+
+}
+
+.btn { /* What: Button. Why: The panel's actions read as bold pills, the same as the home page's. How: This sets a pill with bold text, a transparent border its variants can color, and an eased change on hover. */
+
+
+	align-items     : center;
+	border          : 2px solid transparent;
+	border-radius   : var(--radius-pill);
+	cursor          : pointer;
+	display         : inline-flex;
+	font-family     : var(--font-body);
+	font-size       : 0.95rem;
+	font-weight     : 700;
+	gap             : 0.4rem;
+	padding         : 0.85rem 2rem;
+	text-decoration : none;
+	transition      : all 0.25s ease;
+
+
+}
+.btn-primary { /* What: Primary Button. Why: The main action should stand out. How: This fills the pill lavender with white text and a soft lavender shadow. */
+
+
+	background : var(--secondary);
+	box-shadow : 0 6px 24px rgba(209, 175, 226, 0.4);
+	color      : white;
+
+
+}
+.btn-primary:hover { /* What: Hovered Primary Button. Why: A button should respond to the pointer. How: This deepens the lavender, lifts the pill 2px, and spreads its shadow. */
+
+
+	background : var(--secondary-dark);
+	box-shadow : 0 10px 32px rgba(209, 175, 226, 0.5);
+	transform  : translateY(-2px);
+
+
+}
+.btn-outline { /* What: Outline Button. Why: The second action should read as lighter than the first. How: This leaves the pill clear with sage text and a sage border. */
+
+
+	background   : transparent;
+	border-color : var(--accent);
+	color        : var(--accent);
+
+
+}
+.btn-outline:hover { /* What: Hovered Outline Button. Why: A button should respond to the pointer. How: This tints the pill pale sage and lifts it 2px. */
+
+
+	background : var(--accent-pale);
+	transform  : translateY(-2px);
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button. Why: Someone who asked for less motion shouldn't see the buttons animate. How: This applies only when the reduced-motion preference is set. */
+
+
+	.btn { /* What: Motionless Button. Why: The hover looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion contact-panel-buttons */
+
+/* #endregion contact-panel */
+
+/* #endregion contact-grid */
+
+/* #endregion contact-section */
+
+
+
+/* #region contact-footer-wave */
+
+.contact-footer-wave { /* What: Contact Footer Wave. Why: The page closes on a warm note. How: This fills a band with a pale sage to lavender gradient under a cream rule. */
+
+
+	background : linear-gradient(135deg, var(--accent-pale) 0%, var(--secondary-pale) 100%);
+	border-top : 2px solid var(--main);
+	padding    : 3.5rem 2rem;
+
+
+}
+
+
+/* #region container */
+
+.container { /* What: Contact Footer Wave Container. Why: The closing words sit centered in the page's centered column. How: This holds them within the page's 1,100px column and its side padding, the shared container values, with its text centered. */
+
+
+	margin     : 0 auto;
+	max-width  : 1100px;
+	padding    : 0 2rem;
+	text-align : center;
+
+
+}
+
+.wave-bears { /* What: Wave Bears. Why: A row of bears and a paw leads into the closing line. How: This sets the emoji large and widely spaced, with room below. */
+
+
+	font-size      : 2.5rem;
+	letter-spacing : 0.5rem;
+	margin-bottom  : 0.75rem;
+
+
+}
+
+.wave-text { /* What: Wave Text. Why: The page ends warmly. How: This sets the closing line in the script font in deep lavender. */
+
+
+	color       : var(--secondary-dark);
+	font-family : var(--font-script);
+	font-size   : 1.4rem;
+
+
+}
+
+/* #endregion container */
+
+/* #endregion contact-footer-wave */
+
+/* #endregion page-enter */
+
+
