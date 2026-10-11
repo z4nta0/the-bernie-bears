@@ -24,7 +24,7 @@
 .page-enter { /* What: Page Enter Wrapper. Why: The page should arrive gently rather than appear at once. How: This plays the shared fade-up once as the page mounts, holding its first frame until it starts. */
 
 
-	animation : global(fadeInUp) 0.55s ease both;
+	animation : global( fadeInUp ) 0.55s ease both;
 
 
 }
@@ -48,8 +48,8 @@
 .page-header { /* What: Page Header. Why: The page opens with its title on a soft band. How: This fills a centered band with a cream to lavender gradient and a darker cream rule below. */
 
 
-	background    : linear-gradient(135deg, var(--main-pale) 0%, var(--main) 50%, var(--secondary-pale) 100%);
-	border-bottom : 2px solid var(--main-dark);
+	background    : linear-gradient( 135deg, var( --bac-pag-col ) 0%, var( --bac-hig-col ) 50%, var( --acc-tin-col ) 100% ); /* Background Page Color = #f7f7e2, Background Highlight Color = #ececb6, Accent Tint Color = #f3eaf9 */
+	border-bottom : 2px solid var( --bor-str-col );                                                                          /* Border Strong Color = #d6d69a */
 	padding       : 5rem 2rem 4rem;
 	text-align    : center;
 
@@ -59,7 +59,7 @@
 .page-header-title { /* What: Page Header Title. Why: The page's heading is its biggest text. How: This sets it very large, growing with the screen, with a small gap below. */
 
 
-	font-size     : clamp(2.5rem, 5vw, 4.5rem);
+	font-size     : clamp( 2.5rem, 5vw, 4.5rem );
 	margin-bottom : 0.75rem;
 
 
@@ -68,7 +68,7 @@
 .page-header-sub { /* What: Page Header Sub Line. Why: A short line under the heading sets the tone. How: This sets it a little large, italic, in the mid grey. */
 
 
-	color      : var(--text-mid);
+	color      : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
 	font-size  : 1.1rem;
 	font-style : italic;
 
@@ -122,7 +122,7 @@
 .about-intro-copy { /* What: About Intro Copy. Why: The story's paragraphs should read easily. How: This sets them airy in the mid grey, with a gap after each. */
 
 
-	color         : var(--text-mid);
+	color         : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
 	font-size     : 1rem;
 	line-height   : 1.8;
 	margin-bottom : 1rem;
@@ -149,11 +149,11 @@
 
 
 	align-items     : center;
-	background      : white;
-	border          : 3px dashed var(--accent-light);
-	border-radius   : var(--radius-xl);
-	box-shadow      : var(--shadow-card);
-	color           : var(--text-light);
+	background      : var( --bac-sur-col );            /* Background Surface Color = #ffffff */
+	border          : 3px dashed var( --acc-lig-col ); /* Accent Light Color = #ceb1dd */
+	border-radius   : var( --radius-xl );
+	box-shadow      : var( --shadow-card );
+	color           : var( --tex-mut-col );            /* Text Muted Color = #717171 */
 	display         : flex;
 	flex-direction  : column;
 	font-size       : 0.9rem;
@@ -184,14 +184,14 @@
 
 
 
-.paw-divider { /* What: Paw Divider. Why: A row of paw prints separates the story from the girls' cards. How: This centers three widely spaced sage paws, a little faded, with room above and below. */
+.paw-divider { /* What: Paw Divider. Why: A row of paw prints separates the story from the girls' cards. How: This centers three widely spaced paws, a little faded, with room above and below. */
 
 
-	color          : var(--accent);
+	color          : var( --tex-mai-col ); /* Text Main Color = #2c2c2c */ /* What: Emoji Text Color. Why: Emoji draw in their own colors whatever the text color is, while axe still checks this one for contrast. How: The main text color passes at the row's opacity and changes nothing on screen. */
 	font-size      : 1.4rem;
 	letter-spacing : 0.5rem;
 	margin         : 2rem 0;
-	opacity        : 0.7;
+	opacity        : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
 	text-align     : center;
 
 
@@ -214,7 +214,7 @@
 .section-title { /* What: Section Title. Why: The cards need a heading. How: This centers it large, growing with the screen, with room below. */
 
 
-	font-size     : clamp(2rem, 4vw, 3rem);
+	font-size     : clamp( 2rem, 4vw, 3rem );
 	margin-bottom : 2.5rem;
 	text-align    : center;
 
@@ -253,10 +253,10 @@
 .dog-card { /* What: Dog Card. Why: Each sister gets a card of her own. How: This stacks her photo and details in a white card with rounded corners, a cream border, and a soft shadow, easing its lift. */
 
 
-	background     : white;
-	border         : 2px solid var(--main);
-	border-radius  : var(--radius-xl);
-	box-shadow     : var(--shadow-card);
+	background     : var( --bac-sur-col );           /* Background Surface Color = #ffffff */
+	border         : 2px solid var( --bor-mai-col ); /* Border Main Color = #ececb6 */
+	border-radius  : var( --radius-xl );
+	box-shadow     : var( --shadow-card );
 	display        : flex;
 	flex-direction : column;
 	gap            : 1.5rem;
@@ -268,22 +268,22 @@
 .dog-card:hover { /* What: Hovered Dog Card. Why: A card should respond to the pointer. How: This lifts it 6px and deepens its shadow. */
 
 
-	box-shadow : var(--shadow-hover);
-	transform  : translateY(-6px);
+	box-shadow : var( --shadow-hover );
+	transform  : translateY( -6px );
 
 
 }
 .dog-card--lilah { /* What: Lilah Dog Card. Why: Each sister has her own accent. How: This edges Lilah's card in lavender along the top. */
 
 
-	border-top : 5px solid var(--secondary);
+	border-top : 5px solid var( --acc-mai-col ); /* Accent Main Color = #d1afe2 */
 
 
 }
 .dog-card--norah { /* What: Norah Dog Card. Why: Each sister has her own accent. How: This edges Norah's card in sage along the top. */
 
 
-	border-top : 5px solid var(--accent);
+	border-top : 5px solid var( --acc-sec-col ); /* Accent Secondary Color = #8bad89 */
 
 
 }
@@ -308,8 +308,8 @@
 
 
 	align-items     : center;
-	background      : var(--main-pale);
-	border          : 3px dashed var(--main-dark);
+	background      : var( --bac-pag-col );            /* Background Page Color = #f7f7e2 */
+	border          : 3px dashed var( --bor-str-col ); /* Border Strong Color = #d6d69a */
 	border-radius   : 50%;
 	display         : flex;
 	flex-direction  : column;
@@ -341,9 +341,9 @@
 .dog-badge { /* What: Dog Badge. Why: The badge says where each sister stands in the family. How: This sets small, bold, uppercase lavender text on a pale lavender pill. */
 
 
-	background     : var(--secondary-pale);
-	border-radius  : var(--radius-pill);
-	color          : var(--secondary-dark);
+	background     : var( --acc-tin-col ); /* Accent Tint Color = #f3eaf9 */
+	border-radius  : var( --radius-pill );
+	color          : var( --acc-dar-col ); /* Accent Dark Color ~= #7e5b93 */
 	display        : inline-block;
 	font-size      : 0.78rem;
 	font-weight    : 700;
@@ -357,8 +357,8 @@
 .dog-badge--norah { /* What: Norah Dog Badge. Why: Norah's badge matches her card's accent. How: This sets it sage on a pale sage pill. */
 
 
-	background : var(--accent-pale);
-	color      : var(--accent);
+	background : var( --acs-tin-col ); /* Accent-Secondary Tint Color = #ddeadc */
+	color      : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #4f6f4e */
 
 
 }
@@ -375,7 +375,7 @@
 .dog-card-text { /* What: Dog Card Text. Why: Each card describes its sister. How: This sets the paragraph airy in the mid grey. */
 
 
-	color       : var(--text-mid);
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
 	font-size   : 0.95rem;
 	line-height : 1.75;
 
@@ -399,10 +399,10 @@
 .dog-trait { /* What: Dog Trait. Why: Each trait reads as a chip. How: This sets small, bold, mid grey text on a pale cream pill with a cream border. */
 
 
-	background    : var(--main-pale);
-	border        : 1px solid var(--main);
-	border-radius : var(--radius-pill);
-	color         : var(--text-mid);
+	background    : var( --bac-pag-col );           /* Background Page Color = #f7f7e2 */
+	border        : 1px solid var( --bor-mai-col ); /* Border Main Color = #ececb6 */
+	border-radius : var( --radius-pill );
+	color         : var( --tex-sec-col );           /* Text Secondary Color = #5a5a5a */
 	font-size     : 0.82rem;
 	font-weight   : 600;
 	padding       : 0.35rem 0.8rem;
@@ -425,7 +425,7 @@
 .fun-facts { /* What: Fun Facts Section. Why: The page closes on quick facts on a colored band. How: This fills the band with a lavender to sage gradient. */
 
 
-	background : linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+	background : linear-gradient( 135deg, var( --acc-mai-col ) 0%, var( --acc-sec-col ) 100% ); /* Accent Main Color = #d1afe2, Accent Secondary Color = #8bad89 */
 	padding    : 5rem 2rem;
 
 
@@ -447,8 +447,8 @@
 .fun-facts-title { /* What: Fun Facts Title. Why: The facts need a heading that reads on the gradient. How: This centers it large and white, growing with the screen, with room below. */
 
 
-	color         : white;
-	font-size     : clamp(2rem, 4vw, 3rem);
+	color         : var( --tex-mai-col ); /* Text Main Color = #2c2c2c */
+	font-size     : clamp( 2rem, 4vw, 3rem );
 	margin-bottom : 2.5rem;
 	text-align    : center;
 
@@ -463,7 +463,7 @@
 
 	display               : grid;
 	gap                   : 1.5rem;
-	grid-template-columns : repeat(auto-fit, minmax(160px, 1fr));
+	grid-template-columns : repeat( auto-fit, minmax( 160px, 1fr ) );
 	margin-top            : 1rem;
 
 
@@ -476,10 +476,10 @@
 
 
 	align-items     : center;
-	backdrop-filter : blur(8px);
-	background      : rgba(255,255,255,0.2);
-	border          : 1px solid rgba(255,255,255,0.3);
-	border-radius   : var(--radius-lg);
+	backdrop-filter : blur( 8px );
+	background      : oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-006-rec ) );           /* Background Surface Color = #ffffff, Core-Design-Number to the Power of 6 Reciprocal ~= 0.185 */
+	border          : 1px solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-004-rec ) ); /* Background Surface Color = #ffffff, Core-Design-Number to the Power of 4 Reciprocal ~= 0.325 */
+	border-radius   : var( --radius-lg );
 	display         : flex;
 	flex-direction  : column;
 	gap             : 0.4rem;
@@ -492,7 +492,7 @@
 .fact-card:hover { /* What: Hovered Fact Card. Why: A card should respond to the pointer. How: This lifts it 4px. */
 
 
-	transform : translateY(-4px);
+	transform : translateY( -4px );
 
 
 }
@@ -521,7 +521,7 @@
 .fact-value { /* What: Fact Value. Why: The fact itself is the card's focus. How: This sets it bold and white. */
 
 
-	color       : white;
+	color       : var( --tex-mai-col ); /* Text Main Color = #2c2c2c */
 	font-size   : 0.95rem;
 	font-weight : 700;
 
@@ -531,7 +531,7 @@
 .fact-label { /* What: Fact Label. Why: Each fact says what it's about, quietly. How: This sets it small, spaced, and uppercase in translucent white. */
 
 
-	color          : rgba(255,255,255,0.75);
+	color          : var( --tex-mai-col ); /* Text Main Color = #2c2c2c */
 	font-size      : 0.78rem;
 	letter-spacing : 0.08em;
 	text-transform : uppercase;

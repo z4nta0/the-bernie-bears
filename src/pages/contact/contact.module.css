@@ -25,7 +25,7 @@
 .page-enter { /* What: Page Enter Wrapper. Why: The page should arrive gently rather than appear at once. How: This plays the shared fade-up once as the page mounts, holding its first frame until it starts. */
 
 
-	animation : global(fadeInUp) 0.55s ease both;
+	animation : global( fadeInUp ) 0.55s ease both;
 
 
 }
@@ -49,8 +49,8 @@
 .page-header { /* What: Page Header. Why: The page opens with its title on a soft band. How: This fills a centered band with a cream to lavender gradient and a darker cream rule below. */
 
 
-	background    : linear-gradient(135deg, var(--main-pale) 0%, var(--main) 50%, var(--secondary-pale) 100%);
-	border-bottom : 2px solid var(--main-dark);
+	background    : linear-gradient( 135deg, var( --bac-pag-col ) 0%, var( --bac-hig-col ) 50%, var( --acc-tin-col ) 100% ); /* Background Page Color = #f7f7e2, Background Highlight Color = #ececb6, Accent Tint Color = #f3eaf9 */
+	border-bottom : 2px solid var( --bor-str-col );                                                                          /* Border Strong Color = #d6d69a */
 	padding       : 5rem 2rem 4rem;
 	text-align    : center;
 
@@ -60,7 +60,7 @@
 .page-header-title { /* What: Page Header Title. Why: The page's heading is its biggest text. How: This sets it very large, growing with the screen, with a small gap below. */
 
 
-	font-size     : clamp(2.5rem, 5vw, 4.5rem);
+	font-size     : clamp( 2.5rem, 5vw, 4.5rem );
 	margin-bottom : 0.75rem;
 
 
@@ -69,7 +69,7 @@
 .page-header-sub { /* What: Page Header Sub Line. Why: A short line under the heading sets the tone. How: This sets it a little large, italic, in the mid grey. */
 
 
-	color      : var(--text-mid);
+	color      : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
 	font-size  : 1.1rem;
 	font-style : italic;
 
@@ -133,7 +133,7 @@
 .contact-info-text { /* What: Contact Info Text. Why: A short line says what kind of messages are welcome. How: This sets it airy in the mid grey, with room below. */
 
 
-	color         : var(--text-mid);
+	color         : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
 	font-size     : 0.98rem;
 	line-height   : 1.8;
 	margin-bottom : 2rem;
@@ -162,10 +162,10 @@
 
 
 	align-items   : center;
-	background    : white;
-	border        : 1px solid var(--main);
-	border-radius : var(--radius-lg);
-	box-shadow    : var(--shadow-soft);
+	background    : var( --bac-sur-col );           /* Background Surface Color = #ffffff */
+	border        : 1px solid var( --bor-mai-col ); /* Border Main Color = #ececb6 */
+	border-radius : var( --radius-lg );
+	box-shadow    : var( --shadow-soft );
 	display       : flex;
 	gap           : 1rem;
 	padding       : 1.1rem 1.4rem;
@@ -185,7 +185,7 @@
 .contact-card-label { /* What: Contact Card Label. Why: Each card names what it offers. How: This sets the label small and bold in the dark text color, on its own line. */
 
 
-	color         : var(--text-dark);
+	color         : var( --tex-mai-col ); /* Text Main Color = #2c2c2c */
 	display       : block;
 	font-size     : 0.85rem;
 	font-weight   : 700;
@@ -200,7 +200,7 @@
 .contact-card-value { /* What: Contact Card Value. Why: Each card's detail sits under its label. How: This sets it small in the mid grey, with no margin. */
 
 
-	color     : var(--text-mid);
+	color     : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
 	font-size : 0.88rem;
 	margin    : 0;
 
@@ -210,7 +210,7 @@
 .contact-card-link { /* What: Contact Card Link. Why: The email address should read as a link by more than its color. How: This sets it bold and underlined in the dark text color. */
 
 
-	color           : var(--text-dark);
+	color           : var( --tex-mai-col ); /* Text Main Color = #2c2c2c */
 	font-weight     : 600;
 	text-decoration : underline;
 
@@ -231,9 +231,9 @@
 
 
 	align-items   : flex-start;
-	background    : var(--main-pale);
-	border        : 1px solid var(--main);
-	border-radius : var(--radius-lg);
+	background    : var( --bac-pag-col );           /* Background Page Color = #f7f7e2 */
+	border        : 1px solid var( --bor-mai-col ); /* Border Main Color = #ececb6 */
+	border-radius : var( --radius-lg );
 	display       : flex;
 	gap           : 0.75rem;
 	padding       : 1.1rem 1.4rem;
@@ -254,7 +254,7 @@
 .contact-note-text { /* What: Contact Note Text. Why: The note's request is its content. How: This sets it small and airy in the mid grey, with no margin. */
 
 
-	color       : var(--text-mid);
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
 	font-size   : 0.85rem;
 	line-height : 1.65;
 	margin      : 0;
@@ -271,10 +271,10 @@
 .contact-panel { /* What: Contact Panel. Why: The ways to send a message stand out as their own panel. How: This sets a white panel with rounded corners, a cream border, and a soft shadow. */
 
 
-	background    : white;
-	border        : 2px solid var(--main);
-	border-radius : var(--radius-xl);
-	box-shadow    : var(--shadow-card);
+	background    : var( --bac-sur-col );           /* Background Surface Color = #ffffff */
+	border        : 2px solid var( --bor-mai-col ); /* Border Main Color = #ececb6 */
+	border-radius : var( --radius-xl );
+	box-shadow    : var( --shadow-card );
 	padding       : 2.5rem;
 
 
@@ -305,7 +305,7 @@
 .contact-panel-text { /* What: Contact Panel Text. Why: Visitors should know where their message goes. How: This sets the line airy in the mid grey, with room below. */
 
 
-	color         : var(--text-mid);
+	color         : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
 	font-size     : 0.98rem;
 	line-height   : 1.8;
 	margin-bottom : 2rem;
@@ -331,10 +331,10 @@
 
 	align-items     : center;
 	border          : 2px solid transparent;
-	border-radius   : var(--radius-pill);
+	border-radius   : var( --radius-pill );
 	cursor          : pointer;
 	display         : inline-flex;
-	font-family     : var(--font-body);
+	font-family     : var( --fon-fam-mai ); /* Font Family Main = 'Nunito', sans-serif */
 	font-size       : 0.95rem;
 	font-weight     : 700;
 	gap             : 0.4rem;
@@ -347,18 +347,18 @@
 .btn-primary { /* What: Primary Button. Why: The main action should stand out. How: This fills the pill lavender with white text and a soft lavender shadow. */
 
 
-	background : var(--secondary);
-	box-shadow : 0 6px 24px rgba(209, 175, 226, 0.4);
-	color      : white;
+	background : var( --acc-mai-col );                                                           /* Accent Main Color = #d1afe2 */
+	box-shadow : 0 6px 24px oklch( from var( --acc-mai-col ) l c h / var( --cdn-pow-003-rec ) ); /* Accent Main Color = #d1afe2, Core-Design-Number to the Power of 3 Reciprocal ~= 0.430 */
+	color      : var( --tex-acc-col );                                                           /* Text Accent Color = #2c2c2c */
 
 
 }
 .btn-primary:hover { /* What: Hovered Primary Button. Why: A button should respond to the pointer. How: This deepens the lavender, lifts the pill 2px, and spreads its shadow. */
 
 
-	background : var(--secondary-dark);
-	box-shadow : 0 10px 32px rgba(209, 175, 226, 0.5);
-	transform  : translateY(-2px);
+	background : var( --acc-hov-col );                                       /* Accent Hover Color = #b48fcb */
+	box-shadow : 0 10px 32px oklch( from var( --acc-mai-col ) l c h / 0.5 ); /* Accent Main Color = #d1afe2 @ 0.5 opacity */
+	transform  : translateY( -2px );
 
 
 }
@@ -366,16 +366,16 @@
 
 
 	background   : transparent;
-	border-color : var(--accent);
-	color        : var(--accent);
+	border-color : var( --acc-sec-col ); /* Accent Secondary Color = #8bad89 */
+	color        : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #4f6f4e */
 
 
 }
 .btn-outline:hover { /* What: Hovered Outline Button. Why: A button should respond to the pointer. How: This tints the pill pale sage and lifts it 2px. */
 
 
-	background : var(--accent-pale);
-	transform  : translateY(-2px);
+	background : var( --acs-tin-col ); /* Accent-Secondary Tint Color = #ddeadc */
+	transform  : translateY( -2px );
 
 
 }
@@ -408,8 +408,8 @@
 .contact-footer-wave { /* What: Contact Footer Wave. Why: The page closes on a warm note. How: This fills a band with a pale sage to lavender gradient under a cream rule. */
 
 
-	background : linear-gradient(135deg, var(--accent-pale) 0%, var(--secondary-pale) 100%);
-	border-top : 2px solid var(--main);
+	background : linear-gradient( 135deg, var( --acs-tin-col ) 0%, var( --acc-tin-col ) 100% ); /* Accent-Secondary Tint Color = #ddeadc, Accent Tint Color = #f3eaf9 */
+	border-top : 2px solid var( --bor-mai-col );                                                /* Border Main Color = #ececb6 */
 	padding    : 3.5rem 2rem;
 
 
@@ -442,8 +442,8 @@
 .wave-text { /* What: Wave Text. Why: The page ends warmly. How: This sets the closing line in the script font in deep lavender. */
 
 
-	color       : var(--secondary-dark);
-	font-family : var(--font-script);
+	color       : var( --acc-dar-col ); /* Accent Dark Color ~= #7e5b93 */
+	font-family : var( --fon-fam-bra ); /* Font Family Brand = 'Dancing Script', cursive */
 	font-size   : 1.4rem;
 
 

@@ -22,8 +22,8 @@
 .footer { /* What: Site Footer. Why: Every page ends on a dark band set apart from the content above. How: This fills it with the dark text color, sets its text cream, pads it, and pushes it to the bottom of a short page. */
 
 
-	background : var(--text-dark);
-	color      : var(--main-pale);
+	background : var( --bac-inv-col ); /* Background Inverse Color = #2c2c2c */
+	color      : var( --bac-pag-col ); /* Background Page Color = #f7f7e2 */
 	margin-top : auto;
 	padding    : 3rem 0 2rem;
 
@@ -51,9 +51,9 @@
 .footer-logo { /* What: Footer Logo Name. Why: The footer names the brand. How: This sets the name large in the script font, in lavender, on its own line. */
 
 
-	color         : var(--secondary);
+	color         : var( --acc-mai-col ); /* Accent Main Color = #d1afe2 */
 	display       : block;
-	font-family   : var(--font-script);
+	font-family   : var( --fon-fam-bra ); /* Font Family Brand = 'Dancing Script', cursive */
 	font-size     : 1.8rem;
 	margin-bottom : 0.4rem;
 
@@ -63,7 +63,7 @@
 .footer-tagline { /* What: Footer Tagline. Why: The tagline sits quietly under the name. How: This sets it small, grey, and italic. */
 
 
-	color      : var(--text-light);
+	color      : var( --tex-inm-col ); /* Text Inverse-Muted Color = #9a9a9a */
 	font-size  : 0.9rem;
 	font-style : italic;
 
@@ -87,7 +87,7 @@
 .footer-link { /* What: Footer Link. Why: The links should read clearly on the dark band. How: This sets them small and bold in cream, with no underline, easing their color. */
 
 
-	color           : var(--main-pale);
+	color           : var( --bac-pag-col ); /* Background Page Color = #f7f7e2 */
 	font-size       : 0.9rem;
 	font-weight     : 600;
 	text-decoration : none;
@@ -98,7 +98,7 @@
 .footer-link:hover { /* What: Hovered Footer Link. Why: A link should respond to the pointer. How: This turns it the warmer cream. */
 
 
-	color : var(--main);
+	color : var( --bac-hig-col ); /* Background Highlight Color = #ececb6 */
 
 
 }
@@ -122,8 +122,8 @@
 .footer-copy { /* What: Footer Copyright. Why: The footer ends with the copyright, set apart from the links. How: This sets it small and grey across the column's full width, under a faint rule. */
 
 
-	border-top  : 1px solid rgba(255,255,255,0.08);
-	color       : var(--text-light);
+	border-top  : 1px solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-009-rec ) ); /* Background Surface Color = #ffffff, Core-Design-Number to the Power of 9 Reciprocal ~= 0.080 */
+	color       : var( --tex-inm-col );                                                          /* Text Inverse-Muted Color = #9a9a9a */
 	font-size   : 0.8rem;
 	padding-top : 1rem;
 	text-align  : center;

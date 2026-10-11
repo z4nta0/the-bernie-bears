@@ -151,8 +151,8 @@ const SOC_LIN_ARR = [ // What: Social Link Array. Why: The page lists every plac
 	{ // What: Shop Card. Why: The brand's own store is where fans can support the girls, and this site exists to promote it. How: This card links to the main site's shop.
 
 
-		bacStr : 'var( --accent-pale )', // Accent Pale = #ddeadc
-		colStr : 'var( --accent )', // Accent = #8BAD89
+		bacStr : 'var( --acs-tin-col )', // Accent-Secondary Tint Color = #ddeadc
+		colStr : 'var( --acs-dar-col )', // Accent-Secondary Dark Color ~= #4f6f4e
 		hanStr : 'theberniebears.com',
 		plaStr : 'Shop',
 		urlStr : 'https://theberniebears.com/collections/all',

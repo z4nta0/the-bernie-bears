@@ -26,7 +26,7 @@
 .page-enter { /* What: Page Enter Wrapper. Why: The page should arrive gently rather than appear at once. How: This plays the shared fade-up once as the page mounts, holding its first frame until it starts. */
 
 
-	animation : global(fadeInUp) 0.55s ease both;
+	animation : global( fadeInUp ) 0.55s ease both;
 
 
 }
@@ -82,7 +82,7 @@
 .hero-eyebrow { /* What: Hero Eyebrow. Why: A short line leads into the title. How: This sets it small, bold, sage, spaced, and uppercase. */
 
 
-	color          : var(--accent);
+	color          : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #4f6f4e */
 	font-size      : 1rem;
 	font-weight    : 600;
 	letter-spacing : 0.1em;
@@ -95,11 +95,11 @@
 .hero-title { /* What: Hero Title. Why: The girls' brand name is the page's headline. How: This sets it very large in deep lavender, growing with the screen, tightly leaded, with a soft lavender glow. */
 
 
-	color         : var(--secondary-dark);
-	font-size     : clamp(3rem, 6vw, 5.5rem);
+	color         : var( --acc-dar-col );                                                             /* Accent Dark Color ~= #7e5b93 */
+	font-size     : clamp( 3rem, 6vw, 5.5rem );
 	line-height   : 1.05;
 	margin-bottom : 1.2rem;
-	text-shadow   : 2px 4px 16px rgba(209, 175, 226, 0.3);
+	text-shadow   : 2px 4px 16px oklch( from var( --acc-mai-col ) l c h / var( --cdn-pow-004-rec ) ); /* Accent Main Color = #d1afe2, Core-Design-Number to the Power of 4 Reciprocal ~= 0.325 */
 
 
 }
@@ -107,7 +107,7 @@
 .hero-sub { /* What: Hero Sub Line. Why: The pitch says who the girls are. How: This sets it a little large in the mid grey, airy, and no wider than a comfortable line. */
 
 
-	color         : var(--text-mid);
+	color         : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
 	font-size     : 1.1rem;
 	line-height   : 1.7;
 	margin-bottom : 2rem;
@@ -160,10 +160,10 @@
 
 	align-items     : center;
 	border          : 2px solid transparent;
-	border-radius   : var(--radius-pill);
+	border-radius   : var( --radius-pill );
 	cursor          : pointer;
 	display         : inline-flex;
-	font-family     : var(--font-body);
+	font-family     : var( --fon-fam-mai ); /* Font Family Main = 'Nunito', sans-serif */
 	font-size       : 0.95rem;
 	font-weight     : 700;
 	gap             : 0.4rem;
@@ -176,18 +176,18 @@
 .btn-primary { /* What: Primary Button. Why: The main action should stand out. How: This fills the pill lavender with white text and a soft lavender shadow. */
 
 
-	background : var(--secondary);
-	box-shadow : 0 6px 24px rgba(209, 175, 226, 0.4);
-	color      : white;
+	background : var( --acc-mai-col );                                                           /* Accent Main Color = #d1afe2 */
+	box-shadow : 0 6px 24px oklch( from var( --acc-mai-col ) l c h / var( --cdn-pow-003-rec ) ); /* Accent Main Color = #d1afe2, Core-Design-Number to the Power of 3 Reciprocal ~= 0.430 */
+	color      : var( --tex-acc-col );                                                           /* Text Accent Color = #2c2c2c */
 
 
 }
 .btn-primary:hover { /* What: Hovered Primary Button. Why: A button should respond to the pointer. How: This deepens the lavender, lifts the pill 2px, and spreads its shadow. */
 
 
-	background : var(--secondary-dark);
-	box-shadow : 0 10px 32px rgba(209, 175, 226, 0.5);
-	transform  : translateY(-2px);
+	background : var( --acc-hov-col );                                       /* Accent Hover Color = #b48fcb */
+	box-shadow : 0 10px 32px oklch( from var( --acc-mai-col ) l c h / 0.5 ); /* Accent Main Color = #d1afe2 @ 0.5 opacity */
+	transform  : translateY( -2px );
 
 
 }
@@ -195,33 +195,33 @@
 
 
 	background   : transparent;
-	border-color : var(--accent);
-	color        : var(--accent);
+	border-color : var( --acc-sec-col ); /* Accent Secondary Color = #8bad89 */
+	color        : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #4f6f4e */
 
 
 }
 .btn-outline:hover { /* What: Hovered Outline Button. Why: A button should respond to the pointer. How: This tints the pill pale sage and lifts it 2px. */
 
 
-	background : var(--accent-pale);
-	transform  : translateY(-2px);
+	background : var( --acs-tin-col ); /* Accent-Secondary Tint Color = #ddeadc */
+	transform  : translateY( -2px );
 
 
 }
 .btn-white { /* What: White Button. Why: The banner's action sits on a colored gradient. How: This fills the pill white with deep lavender text and a soft shadow. */
 
 
-	background : white;
-	box-shadow : 0 6px 24px rgba(0,0,0,0.12);
-	color      : var(--secondary-dark);
+	background : var( --bac-sur-col );                                       /* Background Surface Color = #ffffff */
+	box-shadow : 0 6px 24px oklch( from var( --sha-mai-col ) l c h / 0.12 ); /* Shadow Main Color = #000000 @ 0.12 opacity */
+	color      : var( --acc-dar-col );                                       /* Accent Dark Color ~= #7e5b93 */
 
 
 }
 .btn-white:hover { /* What: Hovered White Button. Why: A button should respond to the pointer. How: This lifts the pill 2px and spreads its shadow. */
 
 
-	box-shadow : 0 10px 32px rgba(0,0,0,0.18);
-	transform  : translateY(-2px);
+	box-shadow : 0 10px 32px oklch( from var( --sha-mai-col ) l c h / var( --cdn-pow-006-rec ) ); /* Shadow Main Color = #000000, Core-Design-Number to the Power of 6 Reciprocal ~= 0.185 */
+	transform  : translateY( -2px );
 
 
 }
@@ -273,7 +273,7 @@
 
 
 	animation     : blobMorph 8s ease-in-out infinite;
-	background    : radial-gradient(ellipse at 40% 40%, var(--main) 0%, var(--accent-pale) 60%, var(--secondary-pale) 100%);
+	background    : radial-gradient( ellipse at 40% 40%, var( --bac-hig-col ) 0%, var( --acs-tin-col ) 60%, var( --acc-tin-col ) 100% ); /* Background Highlight Color = #ececb6, Accent-Secondary Tint Color = #ddeadc, Accent Tint Color = #f3eaf9 */
 	border-radius : 60% 40% 55% 45% / 50% 60% 40% 50%;
 	height        : 420px;
 	position      : absolute;
@@ -346,9 +346,9 @@
 .hero-img-frame { /* What: Hero Image Frame. Why: The portrait sits in a rounded white frame above the blob. How: This sizes a 360px rounded square with a white border and a soft shadow, clipping the photo to it. */
 
 
-	border        : 4px solid white;
-	border-radius : var(--radius-xl);
-	box-shadow    : var(--shadow-card);
+	border        : 4px solid var( --bac-sur-col ); /* Background Surface Color = #ffffff */
+	border-radius : var( --radius-xl );
+	box-shadow    : var( --shadow-card );
 	height        : 360px;
 	overflow      : hidden;
 	position      : relative;
@@ -391,11 +391,11 @@
 
 
 	animation     : badgeFloat 3s ease-in-out infinite;
-	background    : white;
-	border        : 2px solid var(--accent-light);
-	border-radius : var(--radius-pill);
-	box-shadow    : var(--shadow-soft);
-	color         : var(--secondary-dark);
+	background    : var( --bac-sur-col );           /* Background Surface Color = #ffffff */
+	border        : 2px solid var( --acc-lig-col ); /* Accent Light Color = #ceb1dd */
+	border-radius : var( --radius-pill );
+	box-shadow    : var( --shadow-soft );
+	color         : var( --acc-dar-col );           /* Accent Dark Color ~= #7e5b93 */
 	font-size     : 0.9rem;
 	font-weight   : 700;
 	padding       : 0.4rem 1rem;
@@ -468,7 +468,7 @@
 	100% {
 
 
-		transform : translateY(0);
+		transform : translateY( 0 );
 
 
 	}
@@ -476,7 +476,7 @@
 	50% {
 
 
-		transform : translateY(-8px);
+		transform : translateY( -8px );
 
 
 	}
@@ -490,14 +490,14 @@
 
 
 
-.paw-divider { /* What: Paw Divider. Why: A row of paw prints separates the hero from the cards. How: This centers three widely spaced sage paws, a little faded, with room above and below. */
+.paw-divider { /* What: Paw Divider. Why: A row of paw prints separates the hero from the cards. How: This centers three widely spaced paws, a little faded, with room above and below. */
 
 
-	color          : var(--accent);
+	color          : var( --tex-mai-col ); /* Text Main Color = #2c2c2c */ /* What: Emoji Text Color. Why: Emoji draw in their own colors whatever the text color is, while axe still checks this one for contrast. How: The main text color passes at the row's opacity and changes nothing on screen. */
 	font-size      : 1.4rem;
 	letter-spacing : 0.5rem;
 	margin         : 2rem 0;
-	opacity        : 0.7;
+	opacity        : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
 	text-align     : center;
 
 
@@ -520,7 +520,7 @@
 .section-title { /* What: Section Title. Why: The cards need a heading. How: This centers it large, growing with the screen, with the About page's bottom margin, which has always won on this page too. */
 
 
-	font-size     : clamp(2rem, 4vw, 3rem);
+	font-size     : clamp( 2rem, 4vw, 3rem );
 	margin-bottom : 2.5rem;
 	text-align    : center;
 
@@ -530,7 +530,7 @@
 .section-sub { /* What: Section Sub Line. Why: A short line sets up the cards. How: This centers it in the mid grey, no wider than a comfortable line, with room below. */
 
 
-	color         : var(--text-mid);
+	color         : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
 	font-size     : 1rem;
 	margin-bottom : 3rem;
 	margin-left   : auto;
@@ -549,7 +549,7 @@
 
 	display               : grid;
 	gap                   : 1.5rem;
-	grid-template-columns : repeat(auto-fit, minmax(220px, 1fr));
+	grid-template-columns : repeat( auto-fit, minmax( 220px, 1fr ) );
 
 
 }
@@ -560,10 +560,10 @@
 .feature-card { /* What: Feature Card. Why: Each card sums up one part of life with the girls. How: This sets a centered white card with rounded corners, a cream border, and a soft shadow, easing every change. */
 
 
-	background    : white;
-	border        : 1px solid var(--main);
-	border-radius : var(--radius-lg);
-	box-shadow    : var(--shadow-card);
+	background    : var( --bac-sur-col );           /* Background Surface Color = #ffffff */
+	border        : 1px solid var( --bor-mai-col ); /* Border Main Color = #ececb6 */
+	border-radius : var( --radius-lg );
+	box-shadow    : var( --shadow-card );
 	padding       : 2rem 1.5rem;
 	text-align    : center;
 	transition    : all 0.3s ease;
@@ -573,9 +573,9 @@
 .feature-card:hover { /* What: Hovered Feature Card. Why: A card should respond to the pointer. How: This lifts it 6px, deepens its shadow, and tints its border lavender. */
 
 
-	border-color : var(--accent-light);
-	box-shadow   : var(--shadow-hover);
-	transform    : translateY(-6px);
+	border-color : var( --acc-lig-col ); /* Accent Light Color = #ceb1dd */
+	box-shadow   : var( --shadow-hover );
+	transform    : translateY( -6px );
 
 
 }
@@ -614,7 +614,7 @@
 .feature-card-text { /* What: Feature Card Text. Why: Each card says a little more. How: This sets its sentence small and airy in the mid grey. */
 
 
-	color       : var(--text-mid);
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
 	font-size   : 0.9rem;
 	line-height : 1.65;
 
@@ -634,7 +634,7 @@
 .cta-banner { /* What: Call To Action Banner. Why: The page ends by sending visitors to follow the girls. How: This fills a centered band with a lavender to sage gradient, with room above it. */
 
 
-	background : linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+	background : linear-gradient( 135deg, var( --acc-mai-col ) 0%, var( --acc-sec-col ) 100% ); /* Accent Main Color = #d1afe2, Accent Secondary Color = #8bad89 */
 	margin-top : 4rem;
 	padding    : 5rem 2rem;
 	text-align : center;
@@ -658,8 +658,8 @@
 .cta-banner-title { /* What: Call To Action Banner Title. Why: The invitation should read on the gradient. How: This sets it large and white, growing with the screen. */
 
 
-	color         : white;
-	font-size     : clamp(2rem, 4vw, 3rem);
+	color         : var( --tex-mai-col ); /* Text Main Color = #2c2c2c */
+	font-size     : clamp( 2rem, 4vw, 3rem );
 	margin-bottom : 1rem;
 
 
@@ -668,7 +668,7 @@
 .cta-banner-text { /* What: Call To Action Banner Text. Why: The line under the invitation should read on the gradient too. How: This sets it a little large in nearly opaque white, with room below. */
 
 
-	color         : rgba(255,255,255,0.92);
+	color         : var( --tex-mai-col ); /* Text Main Color = #2c2c2c */
 	font-size     : 1.05rem;
 	margin-bottom : 2rem;
 

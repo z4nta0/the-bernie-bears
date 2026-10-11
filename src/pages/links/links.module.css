@@ -8,11 +8,11 @@
  * Styles for LinPagCom: the page fading up into place, the gradient header,
  * the intro line, the column of social and shop cards, each with a stripe,
  * icon tile, handle, and arrow in its brand color, which slide right on hover,
- * and the closing band. The cards' border still reads --pink-pale and
- * --pink-soft from an older palette, which no longer exist, so the cards draw
- * no border at all, exactly as before; step 9's color pass gives them one.
- * The band's column takes the page's shared container values. Every
- * animation and transition is off under reduced motion.
+ * and the closing band. Each card draws a cream border that turns light
+ * lavender on hover; it used to read two tokens from an older pink palette
+ * that no longer existed, so it drew no border at all. The band's column takes
+ * the page's shared container values. Every animation and transition is off
+ * under reduced motion.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -25,7 +25,7 @@
 .page-enter { /* What: Page Enter Wrapper. Why: The page should arrive gently rather than appear at once. How: This plays the shared fade-up once as the page mounts, holding its first frame until it starts. */
 
 
-	animation : global(fadeInUp) 0.55s ease both;
+	animation : global( fadeInUp ) 0.55s ease both;
 
 
 }
@@ -49,8 +49,8 @@
 .page-header { /* What: Page Header. Why: The page opens with its title on a soft band. How: This fills a centered band with a cream to lavender gradient and a darker cream rule below. */
 
 
-	background    : linear-gradient(135deg, var(--main-pale) 0%, var(--main) 50%, var(--secondary-pale) 100%);
-	border-bottom : 2px solid var(--main-dark);
+	background    : linear-gradient( 135deg, var( --bac-pag-col ) 0%, var( --bac-hig-col ) 50%, var( --acc-tin-col ) 100% ); /* Background Page Color = #f7f7e2, Background Highlight Color = #ececb6, Accent Tint Color = #f3eaf9 */
+	border-bottom : 2px solid var( --bor-str-col );                                                                          /* Border Strong Color = #d6d69a */
 	padding       : 5rem 2rem 4rem;
 	text-align    : center;
 
@@ -60,7 +60,7 @@
 .page-header-title { /* What: Page Header Title. Why: The page's heading is its biggest text. How: This sets it very large, growing with the screen, with a small gap below. */
 
 
-	font-size     : clamp(2.5rem, 5vw, 4.5rem);
+	font-size     : clamp( 2.5rem, 5vw, 4.5rem );
 	margin-bottom : 0.75rem;
 
 
@@ -69,7 +69,7 @@
 .page-header-sub { /* What: Page Header Sub Line. Why: A short line under the heading sets the tone. How: This sets it a little large, italic, in the mid grey. */
 
 
-	color      : var(--text-mid);
+	color      : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
 	font-size  : 1.1rem;
 	font-style : italic;
 
@@ -95,7 +95,7 @@
 .links-intro { /* What: Links Intro. Why: A short line says there's a place for every kind of fan. How: This centers it a little large in the mid grey, no wider than a comfortable line, with room below. */
 
 
-	color         : var(--text-mid);
+	color         : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
 	font-size     : 1.05rem;
 	margin-bottom : 3rem;
 	margin-left   : auto;
@@ -124,14 +124,14 @@
 
 /* #region social-card */
 
-.social-card { /* What: Social Card. Why: Each card takes the visitor to one of the girls' pages, or the brand's shop. How: This sets the icon, words, and arrow in a row on a white card with rounded corners and a soft shadow, clipping its stripe to the corners and easing every change. */
+.social-card { /* What: Social Card. Why: Each card takes the visitor to one of the girls' pages, or the brand's shop. How: This sets the icon, words, and arrow in a row on a white card with a cream border, rounded corners, and a soft shadow, clipping its stripe to the corners and easing every change. */
 
 
 	align-items     : center;
-	background      : white;
-	border          : 2px solid var(--pink-pale); /* What: Missing Border Color. Why: --pink-pale no longer exists, so this whole declaration is dropped and the card draws no border, exactly as on the live site. How: Step 9's color pass gives the card a real border. */
-	border-radius   : var(--radius-lg);
-	box-shadow      : var(--shadow-card);
+	background      : var( --bac-sur-col );           /* Background Surface Color = #ffffff */
+	border          : 2px solid var( --bor-mai-col ); /* Border Main Color = #ececb6 */
+	border-radius   : var( --radius-lg );
+	box-shadow      : var( --shadow-card );
 	color           : inherit;
 	display         : flex;
 	gap             : 1.5rem;
@@ -146,7 +146,7 @@
 .social-card::before { /* What: Social Card Stripe. Why: Each card is marked with its brand color. How: This draws a 5px stripe down the card's left edge in the color the card hands it through --card-color. */
 
 
-	background    : var(--card-color);
+	background    : var( --card-color );
 	border-radius : 3px 0 0 3px;
 	bottom        : 0;
 	content       : '';
@@ -157,12 +157,12 @@
 
 
 }
-.social-card:hover { /* What: Hovered Social Card. Why: A card should respond to the pointer. How: This slides it 6px right and deepens its shadow. */
+.social-card:hover { /* What: Hovered Social Card. Why: A card should respond to the pointer. How: This slides it 6px right, deepens its shadow, and turns its border light lavender. */
 
 
-	border-color : var(--pink-soft); /* What: Missing Hover Border Color. Why: --pink-soft no longer exists, so this declaration is dropped, as on the live site. How: Step 9's color pass sets a real hover border. */
-	box-shadow   : var(--shadow-hover);
-	transform    : translateX(6px);
+	border-color : var( --acc-lig-col ); /* Accent Light Color = #ceb1dd */
+	box-shadow   : var( --shadow-hover );
+	transform    : translateX( 6px );
 
 
 }
@@ -238,7 +238,7 @@
 .social-platform { /* What: Social Platform. Why: The card names its platform quietly. How: This sets it small, bold, spaced, and uppercase in the light grey. */
 
 
-	color          : var(--text-light);
+	color          : var( --tex-mut-col ); /* Text Muted Color = #717171 */
 	font-size      : 0.78rem;
 	font-weight    : 700;
 	letter-spacing : 0.1em;
@@ -251,7 +251,7 @@
 .social-handle { /* What: Social Handle. Why: The account to look for should stand out. How: This sets it large and bold in the script font, in the color the card sets on it. */
 
 
-	font-family   : var(--font-script);
+	font-family   : var( --fon-fam-bra ); /* Font Family Brand = 'Dancing Script', cursive */
 	font-size     : 1.4rem;
 	font-weight   : 700;
 	margin-bottom : 0.4rem;
@@ -262,7 +262,7 @@
 .social-desc { /* What: Social Description. Why: The card says what's there. How: This sets its sentence small and airy in the mid grey. */
 
 
-	color       : var(--text-mid);
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
 	font-size   : 0.88rem;
 	line-height : 1.6;
 
@@ -285,7 +285,7 @@
 .social-card:hover .social-card-arrow { /* What: Hovered Social Card Arrow. Why: The arrow points the way as the card responds. How: This nudges it 4px right while its card is hovered. */
 
 
-	transform : translateX(4px);
+	transform : translateX( 4px );
 
 
 }
@@ -316,8 +316,8 @@
 .social-cta { /* What: Social Call To Action. Why: The page ends by asking visitors to follow along. How: This fills a centered band with a pale sage to lavender gradient under a cream rule. */
 
 
-	background : linear-gradient(135deg, var(--accent-pale) 0%, var(--secondary-pale) 100%);
-	border-top : 2px solid var(--main);
+	background : linear-gradient( 135deg, var( --acs-tin-col ) 0%, var( --acc-tin-col ) 100% ); /* Accent-Secondary Tint Color = #ddeadc, Accent Tint Color = #f3eaf9 */
+	border-top : 2px solid var( --bor-mai-col );                                                /* Border Main Color = #ececb6 */
 	padding    : 4rem 2rem;
 	text-align : center;
 
@@ -340,7 +340,7 @@
 .social-cta-title { /* What: Social Call To Action Title. Why: The page closes on an invitation. How: This sets it large, growing with the screen, with room below. */
 
 
-	font-size     : clamp(1.8rem, 3vw, 2.5rem);
+	font-size     : clamp( 1.8rem, 3vw, 2.5rem );
 	margin-bottom : 1rem;
 
 
@@ -349,7 +349,7 @@
 .social-cta-text { /* What: Social Call To Action Text. Why: A short line says how to keep up. How: This centers it airy in the mid grey, no wider than a comfortable line. */
 
 
-	color       : var(--text-mid);
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
 	font-size   : 1rem;
 	line-height : 1.7;
 	margin      : 0 auto;
