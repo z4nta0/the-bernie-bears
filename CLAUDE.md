@@ -54,6 +54,35 @@ Decided 2026-10-11.
   removed, and the Contact page sends visitors to the main site's Contact Us
   page, with the email as a `mailto:` link.
 
+## Directory structure
+Decided 2026-10-11, matching tonys-toppers' adaptation of the user-level
+"### Directory structure" layout to a website with routes rather than a web
+app with tabs.
+```
+src/
+  main.tsx               entry point
+  app.tsx                React Router setup, the bar, and the footer
+  assets/                fonts/ (the self-hosted fonts)
+  pages/
+    home/                the home page and the hero portrait
+    about/               the About page and its three photos
+    links/               the Social Links page
+    contact/             the Contact page
+  ui/                    components every page uses (nav, footer)
+  styles/                global CSS only (fonts.css, styles.css)
+```
+Outside `src/`: `public/` (the favicon and Netlify's `_redirects`) and
+`tests/` (see "## Test suites").
+- **`pages/` takes the place of `tabs/`.** Each route gets its own folder,
+  and an image only that page shows lives beside it. The 404 page gets
+  `pages/not-found/` in step 11.
+- **A page's main file is named after its folder** (`pages/links/links.tsx`,
+  not `social-links.tsx`), matching its route.
+- **The bar and footer live in `ui/`** as `nav.tsx` and `footer.tsx`, since
+  every page shows them.
+- **`public/favicon.svg`** is the paw icon, served at a fixed address since
+  browsers ask for it themselves; step 11 adds the raster icons beside it.
+
 ## Unused files
 Decided 2026-10-11, the same as tonys-toppers. An unused image is listed for
 the user to confirm before it's removed. Any other file that nothing
@@ -154,7 +183,20 @@ passes on `close-out`.
 5. **Directory structure**, matching tonys-toppers: kebab-case files, a
    folder per route under `pages/`, the bar and footer in `ui/`, the fonts
    (Dancing Script and Nunito) self-hosted, and the Netlify fallback moved
-   from `netlify.toml` to `public/_redirects`.
+   from `netlify.toml` to `public/_redirects`. Done 2026-10-11 in four
+   commits: the fallback moved to `public/_redirects` (`netlify.toml` held
+   nothing else); the source files moved with only their import paths
+   changed and a byte-for-byte identical build; the photos moved beside their
+   pages and the paw icon to `public/favicon.svg`; and the fonts self-hosted
+   from the same latin files Google served, each a variable font declared
+   across its full weight range. Self-hosting settled the Firefox flake from
+   step 4: Firefox spaced the Nunito text a fraction of a pixel differently
+   than it had from Google (enough to move the hero line's paw emoji about
+   1px), so its two home baselines and Chromium's home phone baseline (58
+   pixels in the "Norah" badge, 2 levels off) were refreshed once, and three
+   reruns then matched in every engine. Chromium's Contact note corner still
+   flakes now and then (a 9 by 3px spot on any of the box's corners, 2
+   levels off); a failure there gets a rerun, not new baselines.
 6. **Formatting, naming, and comment pass**, one file per commit, including
    `vite.config.ts` (adding the shipped-page minifier) and `index.html`, with
    the copy fixes (no em dashes) and every decorative emoji hidden from
