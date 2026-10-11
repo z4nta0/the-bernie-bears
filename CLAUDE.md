@@ -200,10 +200,63 @@ passes on `close-out`.
 6. **Formatting, naming, and comment pass**, one file per commit, including
    `vite.config.ts` (adding the shipped-page minifier) and `index.html`, with
    the copy fixes (no em dashes) and every decorative emoji hidden from
-   screen readers.
+   screen readers. Done 2026-10-11: `vite.config.ts`, `index.html` (its mount
+   element renamed `appMouDiv`), `tsconfig.app.json`, and every TypeScript
+   file under `src/`, each checked by every suite, with baselines refreshed
+   only for reworded copy. The components are now `AppRooCom`, `NavBarCom`,
+   `SitFooCom`, `HomPagCom`, `AboPagCom`, `LinPagCom`, and `ConPagCom`, and
+   `BrowserRouter` moved up into `main.tsx`.
+   - **Accessibility fixes along the way**: both navigation landmarks are
+     labelled (Main and Footer), and every decorative emoji, arrow, and icon
+     is hidden from screen readers, through a hidden span where the text
+     isn't a flex container and through an `aria-label` where it is (the
+     home banner button), while the footer's heart is announced as love.
+     That cleared every glyph and landmark failure. The trait chips'
+     selector became `.dog-traits > span`, so a hidden span inside a chip
+     doesn't get a chip's styling.
+   - **The active bar link's inline style went**: the stylesheet's
+     `.nav-link.active` rule already set the same four values and wins on
+     hover, which the capture harness confirmed (no difference at rest,
+     hovered, or focused, in any engine).
+   - **`app.tsx` keeps its imports in their original order**, not
+     alphabetical: each page's file loads a global stylesheet, and `home.css`
+     and `about.css` both define `.section-title`, whose About margin has
+     always won on both pages. Alphabetizing them shrank both pages, so each
+     import says why it stays put, until step 8's modules end the collision.
+   - **Sequencing**: the Social Links and Contact pages got their step 7
+     rebuild and their formatting in one commit each, rather than formatting
+     markup the next step replaced.
 7. **Content fixes**: the six real social links with SVG icons and the
    Shop card, the "Official Site" footer link, and the Contact page rebuilt
-   without the form (see "## Content").
+   without the form (see "## Content"). Done 2026-10-11.
+   - **Social Links**: the six profiles and a Shop card for
+     `https://theberniebears.com/collections/all`, in `SOC_LIN_ARR`. The
+     platform icons are Simple Icons 16.35.0 paths (CC0), inlined and drawn
+     at `1em` in their tile, and the shop's is a plain bag drawn for the page.
+     The four existing cards keep their colors and copy; X (black) and
+     Pinterest (#BD081C) use their brand colors, and the Shop card the site's
+     sage accent. The X, Pinterest, and Shop descriptions are new copy for
+     the user to review.
+   - **Contact**: the form, which never sent anything, is gone, along with
+     its styles. A panel offers "Open the Contact Form" (the main site's
+     Contact Us page, in a new tab) and "Email Us", and the email card's
+     address is an underlined link in the dark text color, so it adds no
+     contrast failure. Removing the form also fixed the page's sideways
+     scrolling at 320px and 769px.
+   - **Footer**: an Official Site link to `https://theberniebears.com/`
+     joins the page links, wrapping to its own centered line on phones.
+   - **Footer colors fixed**: the footer read three `--pink-*` tokens from an
+     older palette that no longer exist, so its brand name and page links
+     were invisible on the live site. They now read `--main-pale` (text and
+     links), `--secondary` (the name), and `--main` (link hover).
+   - **External links** keep `rel='noopener noreferrer'`. Dropping
+     `noreferrer` on the links to the main site would let its analytics see
+     the visits this site sends; that's a question for the user.
+   - **Found for later**: `links.css` still reads `--pink-pale` and
+     `--pink-soft` for the social cards' border and hover border, which
+     therefore draw no border at all (step 9). `about.css` holds the
+     `.page-header` rules the Links and Contact pages also use, and the
+     unused rules for the photo placeholders' old text (step 8).
 8. **Hooks and CSS modules**: `aria-current` and `aria-expanded` in place of
    the active link's inline style and the menu's `open` class, the closed
    phone menu out of the Tab order, a `.module.css` per component, and every
