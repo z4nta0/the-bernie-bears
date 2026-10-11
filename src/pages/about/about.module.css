@@ -457,13 +457,13 @@
 
 /* #region facGriDiv */
 
-.facGriDiv { /* What: Facts Grid Div. Why: The facts should fill the row and wrap on a narrow screen. How: This fits as many 160px columns as the row allows. */
+.facGriDiv { /* What: Facts Grid Div. Why: The facts should fill the row and wrap on a narrow screen. How: This fits as many columns as the row allows, each at least the p08 rhythm step or a horizontal step as the screen grows, never wider than the row. */
 
 
 	display               : grid;
-	gap                   : var( --spa-ver-p02 ) clamp( var( --spa-hor-bas ), var( --hor-rhy-014 ), var( --spa-hor-p02 ) ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base ~= 14.572px, Horizontal Rhythm 14 ~= 49.625px @ 1,920px width, Spacing Horizontal Base Plus 2 ~= 25.572px */
-	grid-template-columns : repeat( auto-fit, minmax( 160px, 1fr ) );
-	margin-top            : var( --spa-ver-bas );                                                                           /* Spacing Vertical Base ~= 14.572px */
+	gap                   : var( --spa-ver-p02 ) clamp( var( --spa-hor-bas ), var( --hor-rhy-014 ), var( --spa-hor-p02 ) );                   /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base ~= 14.572px, Horizontal Rhythm 14 ~= 49.625px @ 1,920px width, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	grid-template-columns : repeat( auto-fit, minmax( min( max( calc( var( --ver-rhy-p08 ) * 1rem ), var( --hor-rhy-017 ) ), 100% ), 1fr ) ); /* Vertical Rhythm Base Plus 8 ~= 138.199px, Horizontal Rhythm 17 ~= 115.363px @ 1,920px width */
+	margin-top            : var( --spa-ver-bas );                                                                                             /* Spacing Vertical Base ~= 14.572px */
 
 
 }

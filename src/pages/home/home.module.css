@@ -545,12 +545,12 @@
 
 /* #region feaGriDiv */
 
-.feaGriDiv { /* What: Features Grid Div. Why: The cards should fill the row and wrap on a narrow screen. How: This fits as many 220px columns as the row allows. */
+.feaGriDiv { /* What: Features Grid Div. Why: The cards should fill the row and wrap on a narrow screen. How: This fits as many columns as the row allows, each at least the p09 rhythm step or a horizontal step as the screen grows, never wider than the row. */
 
 
 	display               : grid;
-	gap                   : var( --spa-ver-p02 ) clamp( var( --spa-hor-bas ), var( --hor-rhy-014 ), var( --spa-hor-p02 ) ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base ~= 14.572px, Horizontal Rhythm 14 ~= 49.625px @ 1,920px width, Spacing Horizontal Base Plus 2 ~= 25.572px */
-	grid-template-columns : repeat( auto-fit, minmax( 220px, 1fr ) );
+	gap                   : var( --spa-ver-p02 ) clamp( var( --spa-hor-bas ), var( --hor-rhy-014 ), var( --spa-hor-p02 ) );                   /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base ~= 14.572px, Horizontal Rhythm 14 ~= 49.625px @ 1,920px width, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	grid-template-columns : repeat( auto-fit, minmax( min( max( calc( var( --ver-rhy-p09 ) * 1rem ), var( --hor-rhy-019 ) ), 100% ), 1fr ) ); /* Vertical Rhythm Base Plus 9 ~= 183.074px, Horizontal Rhythm 19 ~= 202.448px @ 1,920px width */
 
 
 }
