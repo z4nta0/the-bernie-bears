@@ -107,7 +107,12 @@ passes on `close-out`.
      checks too.
    - **Not yet done**: the four files whose imports moved keep their old
      formatting until step 6.
-3. **ESLint**, set up from the sibling projects' `eslint.config.ts`.
+3. **ESLint**, set up from the sibling projects' `eslint.config.ts`. Done
+   2026-10-11 with tonys-toppers' copy unchanged and the sibling projects'
+   versions; the source lints with no findings. `npm run build` now type
+   checks first, as in the siblings, `tsconfig.node.json` type checks the
+   config too, and `package.json` and `tsconfig.node.json` follow the JSON
+   rule (the other tsconfig files wait for step 6).
 4. **Playwright and axe** in all three engines, with baseline screenshots of
    every route at phone and desktop widths and the open phone menu, taken
    before anything moves. Its dev server runs on port 5193 (the siblings use
