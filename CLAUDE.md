@@ -438,6 +438,21 @@ passes on `close-out`.
       cartoon's CSS height is `auto`, since its new height attribute
       otherwise overrode its square aspect ratio. Every changed pixel in the
       refreshed baselines sits inside a photo.
+    - **SEO**: done 2026-10-11. Each page renders its own head tags, which
+      React 19 moves into the head and removes when the page changes: Home
+      ("Lilah & Norah, the Bernie Bears | Bernese Mountain Dogs") and Social
+      Links ("Follow Lilah & Norah | The Bernie Bears") a title, a
+      description of 100 to 125 characters, and a canonical address; About,
+      Contact, and the 404 page a title and `noindex`. `index.html` keeps
+      only the fallback title, the author, and the JSON-LD graph (this
+      domain's `WebSite`, published by The Bernie Bears, an `Organization`
+      whose `url` is theberniebears.com, with the Contact page's email and
+      the six profiles in `sameAs`), since React adds a page's description or
+      canonical beside one in `index.html` rather than replacing it. The
+      build compacts the JSON-LD and fails on invalid JSON. `public/` gains
+      `robots.txt` (every crawler allowed) and a sitemap of Home and Social
+      Links. Off-site, for the user after deploy: submit the sitemap to
+      Google Search Console and Bing.
 12. **Close-out**: the README rewritten (it still describes the placeholder
     site), the full rule audit passes, and the version bump to 1.0.0 (asked
     for by the user 2026-10-11: remind them when close-out finishes).
@@ -478,5 +493,9 @@ bar's paw) when waiting for the page to settle.
   link, expecting each new page to open at its top, and checks that back
   returns to the earlier position. Step 11 adds the interaction feedback
   checks beside it.
-- `npm test` runs every suite. The SEO suite joins in step 11, as in
-  tonys-toppers.
+- `npm run test:seo` (added 2026-10-11): each page's head loaded directly
+  and while moving between pages (the one title, the one description and
+  canonical on Home and Social Links, `noindex` and neither on the others),
+  the structured data against the profile links and email the pages show,
+  and the crawler files.
+- `npm test` runs every suite.

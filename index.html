@@ -12,9 +12,16 @@
 
 		<meta charset='UTF-8' />                                                 <!-- What: Character Set Meta. Why: The browser has to decode the page as UTF-8 before it reads anything else. How: This sits first in the head, inside the first 1,024 bytes the browser checks. -->
 		<meta name='viewport' content='width=device-width, initial-scale=1.0' /> <!-- What: Viewport Meta. Why: Phones should lay the site out at device width instead of a zoomed-out desktop width. How: This sets the layout width to the device's and starts at no zoom. -->
-		<title>The Bernie Bears</title>                                          <!-- What: Page Title Element. Why: The tab, bookmarks, and search listings name the page by its title. How: This names the site; step 11's SEO pass gives each route its own. -->
+		<title>The Bernie Bears</title>                                          <!-- What: Page Title Element. Why: The tab names the site even before the page's script runs. How: This is the fallback, since each page renders its own title, which React 19 places ahead of this one. -->
 
 		<!-- #endregion Document -->
+
+
+		<!-- #region Search -->
+
+		<meta name='author' content='The Bernie Bears' /> <!-- What: Author Meta. Why: Search engines and link preview inspectors look for who a page belongs to, and on a real brand's site that's the brand itself. How: This names The Bernie Bears. --> <!-- Each page renders its own description, canonical link, or noindex tag, since React 19 adds those beside any in this file rather than replacing them. -->
+
+		<!-- #endregion Search -->
 
 
 		<!-- #region Icons -->
@@ -22,6 +29,44 @@
 		<link href='/favicon.svg' rel='icon' type='image/svg+xml' /> <!-- What: SVG Icon Link. Why: Modern browsers prefer a vector favicon that stays sharp at any tab density. How: This points at the paw print in public/. -->
 
 		<!-- #endregion Icons -->
+
+
+		<!-- #region Structured Data -->
+
+		<script type='application/ld+json'>
+			{
+				"@context": "https://schema.org",
+				"@graph": [
+					{
+						"@type": "Organization",
+						"@id": "https://theberniebears.com/#organization",
+						"name": "The Bernie Bears",
+						"url": "https://theberniebears.com/",
+						"email": "hello@theberniebears.com",
+						"sameAs": [
+							"https://www.instagram.com/theberniebears",
+							"https://www.youtube.com/@theberniebears",
+							"https://www.tiktok.com/@theberniebears",
+							"https://x.com/theberniebears",
+							"https://www.pinterest.com/theberniebears/",
+							"https://www.facebook.com/theberniebears"
+						]
+					},
+					{
+						"@type": "WebSite",
+						"@id": "https://theberniebears.dog/#website",
+						"name": "The Bernie Bears",
+						"url": "https://theberniebears.dog/",
+						"inLanguage": "en-US",
+						"publisher": {
+							"@id": "https://theberniebears.com/#organization"
+						}
+					}
+				]
+			}
+		</script><!-- What: Site Structured Data Script. Why: Search engines read JSON-LD to tell who a site belongs to, and this site should point them at the brand's main site rather than compete with it. How: This describes this domain as a WebSite published by The Bernie Bears, an Organization whose home is theberniebears.com, with the email the Contact page shows and the six profiles the Social Links page lists. -->
+
+		<!-- #endregion Structured Data -->
 
 
 	</head>
