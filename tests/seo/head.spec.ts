@@ -19,18 +19,21 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The head helpe
  * @summary
  * Checks the site's SEO setup in whichever engine the project runs. The site
  * is tertiary to the brand's main site, theberniebears.com, so only Home and
- * Social Links are indexed: each has its own title, one description of 100
- * to 125 characters, and one canonical address on this domain. About,
- * Contact, and the 404 page carry noindex and neither tag. Every page names
- * the brand as its author and has one h1, and moving between pages swaps the
- * tags rather than piling them up. The structured data describes this site as
- * a WebSite published by The Bernie Bears, whose home is the main site, with
- * the six profiles the Social Links page links to and the email the Contact
- * page offers. The social preview tags are complete, use absolute addresses,
- * and match the home page's title and description; the card they point at is
- * a 1,200x630 JPEG under 300 KB; and every icon the head links to is served,
- * the PNGs at the size their links promise. robots.txt lets every crawler in
- * and names the sitemap, which lists Home and Social Links alone.
+ * Social Links are indexed: each has its own title, a description of 100 to
+ * 125 characters, and one canonical address on this domain. About, Contact,
+ * and the 404 page carry noindex and no canonical link. Every page has exactly
+ * one description, index.html's, which Social Links swaps for its own, names
+ * the brand as its author, and has one h1, and moving between pages swaps the
+ * tags rather than piling them up. The raw page, read without running the
+ * site's script the way link checkers read it, carries the home page's full
+ * title and description. The structured data describes this site as a WebSite
+ * published by The Bernie Bears, whose home is the main site, with the six
+ * profiles the Social Links page links to and the email the Contact page
+ * offers. The social preview tags are complete, use absolute addresses, and
+ * match the home page's title and description; the card they point at is a
+ * 1,200x630 JPEG under 300 KB; and every icon the head links to is served, the
+ * PNGs at the size their links promise. robots.txt lets every crawler in and
+ * names the sitemap, which lists Home and Social Links alone.
  *
  * Sections:
  *  - Constants
@@ -45,6 +48,7 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The head helpe
 
 // #region Constants
 
+const HOM_DES_STR = 'Meet Lilah and Norah, two Bernese Mountain Dog sisters sharing bear hugs, silly videos, and fluffy fun. Follow along!'; // What: Home Description String. Why: The raw page and the social tags carry the home page's description, and Social Links has to show its own instead. How: This is the description index.html carries.
 const LIV_URL_STR = 'https://theberniebears.dog/'; // What: Live URL String. Why: The canonical links, structured data, and sitemap must all name the live address. How: This is the site's production root.
 const MAI_URL_STR = 'https://theberniebears.com/'; // What: Main URL String. Why: The structured data has to send search engines to the brand's main site. How: This is the main site's root.
 
@@ -137,10 +141,10 @@ const SOC_KEY_ARR = [ // What: Social Key Array. Why: The social preview rule li
  *
  * @summary
  * Checks that the page showing now has the head its row describes: its exact
- * title, the brand as author, and one h1. A page with a canonical address has
- * that one canonical link, one description of 100 to 125 characters, and no
- * robots tag; a page without one has a noindex robots tag and neither a
- * description nor a canonical link. Counting the tags also catches a
+ * title, exactly one description, the brand as author, and one h1. A page
+ * with a canonical address has that one canonical link, a description of 100
+ * to 125 characters, and no robots tag; a page without one has a noindex
+ * robots tag and no canonical link. Counting the tags also catches a
  * navigation that left the previous page's tags behind.
  *
  * @author z4nta0 <https://github.com/z4nta0>
@@ -167,6 +171,8 @@ async function hedCheFun ( curPagObj : Page, hedRowObj : typeof PAG_HED_ARR[ num
 
 	await expect( curPagObj.locator( 'meta[name="author"]' ) ).toHaveAttribute( 'content', 'The Bernie Bears' ); // What: Author Assertion. Why: A real brand's site names the brand as its author. How: This checks the author tag.
 
+	await expect( curPagObj.locator( 'meta[name="description"]' ) ).toHaveCount( 1 ); // What: Single Description Assertion. Why: Two descriptions leave search engines to guess. How: This checks there's exactly one, index.html's, on every page.
+
 	await expect( curPagObj.getByRole( 'heading', { level : 1 } ) ).toHaveCount( 1 ); // What: Single Heading Assertion. Why: One h1 tells search engines and screen readers what the page is about. How: This checks there's exactly one.
 
 
@@ -176,7 +182,7 @@ async function hedCheFun ( curPagObj : Page, hedRowObj : typeof PAG_HED_ARR[ num
 
 		await expect( curPagObj.locator( 'meta[name="robots"]' ) ).toHaveAttribute( 'content', 'noindex' ); // What: Noindex Assertion. Why: Search engines must leave the page out. How: This checks the one robots tag says noindex.
 
-		await expect( curPagObj.locator( 'meta[name="description"], link[rel="canonical"]' ) ).toHaveCount( 0 ); // What: No Index Tags Assertion. Why: A page kept out of search has no use for a description or canonical address, and one left over from the previous page would contradict it. How: This checks there are none.
+		await expect( curPagObj.locator( 'link[rel="canonical"]' ) ).toHaveCount( 0 ); // What: No Canonical Assertion. Why: A page kept out of search has no use for a canonical address, and one left over from the previous page would contradict it. How: This checks there's none.
 
 
 	}
@@ -187,7 +193,6 @@ async function hedCheFun ( curPagObj : Page, hedRowObj : typeof PAG_HED_ARR[ num
 		const desConStr = await curPagObj.locator( 'meta[name="description"]' ).getAttribute( 'content' ) ?? ''; // What: Description Content String. Why: The description's length is checked against what listings show. How: This reads the one description's text.
 
 
-		await expect( curPagObj.locator( 'meta[name="description"]' ) ).toHaveCount( 1 ); // What: Single Description Assertion. Why: Two descriptions leave search engines to guess. How: This checks there's exactly one.
 
 		expect( desConStr.length ).toBeGreaterThanOrEqual( 100 ); // What: Description Minimum Assertion. Why: A summary that's too short wastes the space a listing gives it. How: This checks it runs at least 100 characters.
 
@@ -246,6 +251,8 @@ test( 'moving between pages swaps their head tags', async ( { page : curPagObj }
 
 	await hedCheFun( curPagObj, PAG_HED_ARR[ 1 ] ); // What: Social Links Head Check. Why: About's noindex must be gone and Social Links' own tags in place. How: This checks Social Links' head.
 
+	await expect( curPagObj.locator( 'meta[name="description"]' ) ).not.toHaveAttribute( 'content', HOM_DES_STR ); // What: Own Description Assertion. Why: Social Links should describe itself, not repeat the home page. How: This checks the one description no longer reads as the home page's.
+
 
 } );
 
@@ -277,6 +284,25 @@ test( 'the structured data points to the main site and matches the pages', async
 	await curPagObj.goto( '/contact' ); // What: Contact Open Call. Why: The data's email has to be the one the Contact page offers. How: This loads it.
 
 	await expect( curPagObj.locator( `a[href="mailto:${ orgNodObj.email }"]` ).first() ).toBeAttached(); // What: Email Shown Assertion. Why: The email in the data has to be one the site offers. How: This checks the Contact page links to it.
+
+
+} );
+
+
+
+test( 'the raw page carries the home title and description for script-free readers', async ( { request : reqConObj } ) => { // What: Raw Head Test. Why: Link checkers and many crawlers read the page without running the site's script, so the title and description have to be in index.html itself. How: This fetches the root as raw HTML and checks both.
+
+
+	const rawHtmStr = await ( await reqConObj.get( '/' ) ).text(); // What: Raw HTML String. Why: The page is read the way a script-free reader reads it. How: This fetches the root's HTML without a browser.
+
+
+	const titTexStr = rawHtmStr.match( /<title>([^<]*)<\/title>/ )?.[ 1 ].replace( /&amp;/g, '&' ) ?? ''; // What: Title Text String. Why: The raw title is checked as written. How: This reads the title element's text and decodes its ampersand.
+
+	expect( titTexStr ).toBe( PAG_HED_ARR[ 0 ].titStr ); // What: Raw Title Assertion. Why: The raw page should name the home page in full, not the bare site name. How: This checks it matches the home page's title.
+
+	expect( titTexStr.length ).toBeGreaterThanOrEqual( 50 ); // What: Raw Title Length Assertion. Why: Checkers flag a title that leaves most of a listing's room unused. How: This checks it runs at least 50 characters.
+
+	expect( rawHtmStr ).toContain( `<meta name='description' content='${ HOM_DES_STR }' />` ); // What: Raw Description Assertion. Why: Checkers and crawlers without the script need a description to show. How: This checks the raw page carries the home page's.
 
 
 } );
