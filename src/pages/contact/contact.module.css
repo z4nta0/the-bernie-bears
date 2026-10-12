@@ -207,12 +207,40 @@
 
 }
 
-.infEmaAnc { /* What: Info Email Anchor. Why: The email address should read as a link by more than its color. How: This sets it bold and underlined in the dark text color. */
+.infEmaAnc { /* What: Info Email Anchor. Why: The email address should read as a link by more than its color. How: This sets it bold and underlined in the dark text color, easing its hover, press, and focus. */
 
 
 	color           : var( --tex-mai-col ); /* Text Main Color = #2c2c2c */
 	font-weight     : 600;
 	text-decoration : underline;
+	transition      : color var( --dur-tra-p01 ) var( --mot-sta-eas ), opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.infEmaAnc:hover { /* What: Hovered Info Email Anchor. Why: A link should respond to the pointer. How: This turns it the deep lavender. */
+
+
+	color : var( --acc-dar-col ); /* Accent Dark Color ~= #7e5b93 */
+
+
+}
+.infEmaAnc:active { /* What: Pressed Info Email Anchor. Why: A press should register before the email opens. How: This dims the link slightly while it's held, as every text link does on press. */
+
+
+	opacity : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Info Email Anchor. Why: Someone who asked for less motion should see the link's looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.infEmaAnc { /* What: Motionless Info Email Anchor. Why: The hover, press, and focus looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
 
 
 }
@@ -326,38 +354,87 @@
 
 }
 
-.butBasAnc { /* What: Button Base Anchor. Why: The panel's actions read as bold pills, the same as the home page's. How: This sets a pill with bold text, a transparent border its variants can color, and an eased change on hover. */
+.butBasAnc { /* What: Button Base Anchor. Why: The panel's actions read as bold pills, the same as the home page's. How: This sets a pill with bold text and a transparent border its variants can color, its own stacking layer for the shadow layers below, and eased changes on hover, press, and focus. */
 
 
 	align-items     : center;
-	border          : var( --bor-wid-lar ) solid transparent;        /* Border Width Large ~= 2.035px */
+	border          : var( --bor-wid-lar ) solid transparent;    /* Border Width Large ~= 2.035px */
 	border-radius   : 999px;
 	cursor          : pointer;
 	display         : inline-flex;
-	font-family     : var( --fon-fam-mai );                          /* Font Family Main = 'Nunito', sans-serif */
-	font-size       : var( --fon-siz-p01 );                          /* Font Size Base Plus 1 ~= 14.572px */
+	font-family     : var( --fon-fam-mai );                      /* Font Family Main = 'Nunito', sans-serif */
+	font-size       : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight     : 700;
-	gap             : var( --spa-hor-m03 );                          /* Spacing Horizontal Base Minus 3 ~= 6.268px */
-	padding         : var( --spa-ver-bas ) var( --spa-hor-p03 );     /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	gap             : var( --spa-hor-m03 );                      /* Spacing Horizontal Base Minus 3 ~= 6.268px */
+	isolation       : isolate;
+	padding         : var( --spa-ver-bas ) var( --spa-hor-p03 ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	position        : relative;
 	text-decoration : none;
-	transition      : all var( --dur-tra-p02 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
+	transition      : background var( --dur-tra-p02 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
-.butBasAnc--primary { /* What: Primary Button Base Anchor. Why: The main action should stand out. How: This fills the pill lavender with white text and a soft lavender shadow. */
+.butBasAnc::before,
+.butBasAnc::after { /* What: Button Base Anchor Shadow Layers. Why: The lift deepens a button's shadow, and fading between two shadows runs on the compositor where easing the shadow itself would repaint it every frame. How: Each layer covers the button's whole border box behind its content, rounded like it, holding one shadow its variant gives it, and fades its opacity. */
+
+
+	border-radius  : inherit;
+	content        : '';
+	inset          : calc( var( --bor-wid-lar ) * -1 );                 /* Border Width Large ~= -2.035px */
+	pointer-events : none;
+	position       : absolute;
+	transition     : opacity var( --dur-tra-p02 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
+	z-index        : -1;
+
+
+}
+.butBasAnc::after { /* What: Button Base Anchor Hover Shadow Layer. Why: The deeper shadow shows only while hovered. How: This starts it hidden. */
+
+
+	opacity : 0;
+
+
+}
+.butBasAnc:hover::before { /* What: Hovered Button Base Anchor Resting Shadow Layer. Why: The resting shadow gives way to the deeper one. How: This fades it out. */
+
+
+	opacity : 0;
+
+
+}
+.butBasAnc:hover::after { /* What: Hovered Button Base Anchor Hover Shadow Layer. Why: A lifted button casts a deeper shadow. How: This fades the deeper shadow in. */
+
+
+	opacity : 1;
+
+
+}
+.butBasAnc--primary { /* What: Primary Button Base Anchor. Why: The main action should stand out. How: This fills the pill lavender with dark text. */
 
 
 	background : var( --acc-mai-col ); /* Accent Main Color = #d1afe2 */
-	box-shadow : var( --ele-med-sha );
 	color      : var( --tex-acc-col ); /* Text Accent Color = #2c2c2c */
 
 
 }
-.butBasAnc--primary:hover { /* What: Hovered Primary Button Base Anchor. Why: A button should respond to the pointer. How: This deepens the lavender, lifts the pill 2px, and spreads its shadow. */
+.butBasAnc--primary::before { /* What: Shadowed Button Base Anchor Resting Shadow Layer. Why: The filled buttons rest on a soft lavender shadow. How: This gives their resting layer the medium elevation. */
+
+
+	box-shadow : var( --ele-med-sha );
+
+
+}
+.butBasAnc--primary::after { /* What: Shadowed Button Base Anchor Hover Shadow Layer. Why: The filled buttons' shadow deepens as they lift. How: This gives their hover layer the large elevation. */
+
+
+	box-shadow : var( --ele-lar-sha );
+
+
+}
+.butBasAnc--primary:hover { /* What: Hovered Primary Button Base Anchor. Why: A button should respond to the pointer. How: This deepens the lavender and lifts the pill 2px while its shadow layers cross-fade. */
 
 
 	background : var( --acc-hov-col );                            /* Accent Hover Color = #b48fcb */
-	box-shadow : var( --ele-lar-sha );
 	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
@@ -379,10 +456,19 @@
 
 
 }
+.butBasAnc:active { /* What: Pressed Button Base Anchor. Why: A press should register before anything else happens. How: This presses the pill in slightly, which also undoes its hover lift, after every variant so it wins over their hovers. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, a literal since no scale step lands within 10%. */
+
+
+}
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button Base Anchor. Why: Someone who asked for less motion shouldn't see the buttons animate. How: This applies only when the reduced-motion preference is set. */
 
 
-	.butBasAnc { /* What: Motionless Button Base Anchor. Why: The hover looks should simply switch. How: This turns the transition off. */
+	.butBasAnc,
+	.butBasAnc::before,
+	.butBasAnc::after { /* What: Motionless Button Base Anchor. Why: The hover, press, and focus looks and the shadow layers should simply switch, the lift and press still applying at once. How: This turns their transitions off. */
 
 
 		transition : none;
@@ -442,9 +528,9 @@
 .wavTexPar { /* What: Wave Text Paragraph. Why: The page ends warmly. How: This sets the closing line in the script font in a deep lavender dark enough for the band. */
 
 
-	color       : oklch( from var( --acc-dar-col ) calc( l - 0.02 ) c h ); /* Accent Dark Color ~= #7e5b93, darkened by 0.02 ~= #78558d */ /* What: Darker Wave Text Color. Why: The deep lavender reaches only 4.44:1 against the sage end of the band's gradient, under the 4.5:1 this size of text needs. How: This darkens it a touch for this line alone, to about 4.85:1 at the gradient's darkest point. */
-	font-family : var( --fon-fam-bra );                                  /* Font Family Brand = 'Dancing Script', cursive */
-	font-size   : var( --fon-siz-p02 );                                  /* Font Size Base Plus 2 ~= 19.304px */
+	color       : oklch( from var( --acc-dar-col ) calc( l - 0.02 ) c h ); /* Accent Dark Color ~= #7e5b93 */ /* What: Darker Wave Text Color. Why: The deep lavender reaches only 4.44:1 against the sage end of the band's gradient, under the 4.5:1 this size of text needs. How: This darkens it a touch for this line alone, to about 4.85:1 at the gradient's darkest point. */
+	font-family : var( --fon-fam-bra );                                    /* Font Family Brand = 'Dancing Script', cursive */
+	font-size   : var( --fon-siz-p02 );                                    /* Font Size Base Plus 2 ~= 19.304px */
 
 
 }

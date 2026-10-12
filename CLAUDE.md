@@ -412,10 +412,11 @@ passes on `close-out`.
      `h1`, not a heading of its own), and Home's redundant link alerts (the
      logo beside the bar's Home link, and the bar's Social Links beside the
      closing banner's link to the same page), which are expected pairs.
-11. **New features**: the 404 page, security headers (`public/_headers`),
-    image optimization (originals in `design/photos/`, WebP copies written by
-    a script, an SVG favicon plus the raster favicon set), the SEO pass and
-    social preview card per "## Kind of site", and interaction feedback.
+11. **New features** (done 2026-10-11): the 404 page, security headers
+    (`public/_headers`), image optimization (originals in `design/photos/`,
+    WebP copies written by a script, an SVG favicon plus the raster favicon
+    set), the SEO pass and social preview card per "## Kind of site", and
+    interaction feedback.
     - **404 page**: done 2026-10-11 in `pages/not-found/`, reached by the
       router's catch-all route. It reuses the other pages' gradient header
       (an `h1`, a line in the girls' voice, and the Contact page's two pill
@@ -472,6 +473,24 @@ passes on `close-out`.
       description with `twitter:site` set to `@theberniebears`, and the
       structured data's logo and image. Off-site, for the user after deploy:
       check the card with a preview checker such as opengraph.xyz.
+    - **Interaction feedback**: done 2026-10-11. Every link and button
+      grows the siblings' focus ring in from a zero-width outline (the global
+      rule in `styles.css`), with the footer handing its links the light
+      lavender (`--foc-rin-col`) so the ring shows on the dark band, and
+      every control with its own transition lists the two outline
+      properties. Buttons, the toggle, and the social cards press in to
+      0.97; text and pill links dim. New hovers: the brand name darkens, the
+      toggle's bars darken (now the dark lavender at rest, since the light
+      lavender failed 3:1 against the white bar), the current bar link
+      deepens, and Contact's email turns lavender. The pill buttons and the
+      feature and sister cards fade between two shadow layers instead of
+      easing `box-shadow`; the social cards keep the eased shadow, since they
+      clip their corners for the stripe. The cards lift 2px, within the
+      rule's range, instead of 4px to 6px. The phone menu fades and settles in
+      as it opens and back out as it closes, leaving the tab order only once
+      it's gone. `tests/interaction/feedback.spec.ts`, from tonys-toppers,
+      checks every control's hover, press, and focus on every state in all
+      three engines, and that reduced motion stops them moving.
 12. **Close-out**: the README rewritten (it still describes the placeholder
     site), the full rule audit passes, and the version bump to 1.0.0 (asked
     for by the user 2026-10-11: remind them when close-out finishes).
@@ -510,8 +529,10 @@ bar's paw) when waiting for the page to settle.
   `navigation.spec.ts` (added 2026-10-11) follows each page's footer link from
   the bottom of the page, the current page's own bar link, and a phone menu
   link, expecting each new page to open at its top, and checks that back
-  returns to the earlier position. Step 11 adds the interaction feedback
-  checks beside it.
+  returns to the earlier position. `feedback.spec.ts` hovers, presses, and
+  focuses every reachable control on every state, failing on any that
+  doesn't respond or whose focus ring doesn't ease in, and checks that
+  reduced motion stops them moving.
 - `npm run test:seo` (added 2026-10-11): each page's head loaded directly
   and while moving between pages (the one title, the one description and
   canonical on Home and Social Links, `noindex` and neither on the others),

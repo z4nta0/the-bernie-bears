@@ -139,7 +139,7 @@
 	padding         : var( --spa-ver-p02 ) clamp( var( --spa-hor-p01 ), var( --hor-rhy-014 ), var( --spa-hor-p03 ) ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 1 ~= 19.304px, Horizontal Rhythm 14 ~= 49.625px @ 1,920px width, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	position        : relative;
 	text-decoration : none;
-	transition      : all var( --dur-tra-p02 ) var( --mot-sta-eas );                                                  /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
+	transition      : border-color var( --dur-tra-p02 ) var( --mot-sta-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */ /* What: Animated Elevation Shadow. Why: A compositor version would fade in a shadow held by a pseudo-element, but the card clips its contents to its rounded corners for its colored stripe, so that shadow would be clipped away. How: The shadow eases on the card itself, which only repaints the one card. */
 
 
 }
@@ -163,6 +163,13 @@
 	border-color : var( --acc-lig-col );               /* Accent Light Color = #ceb1dd */
 	box-shadow   : var( --ele-lar-sha );
 	transform    : translateX( var( --spa-hor-m03 ) ); /* Spacing Horizontal Base Minus 3 ~= 6.268px */
+
+
+}
+.socCarAnc:active { /* What: Pressed Social Card Anchor. Why: A press should register before the platform opens. How: This presses the card in slightly, which also undoes its hover nudge. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, a literal since no scale step lands within 10%. */
 
 
 }

@@ -153,38 +153,89 @@
 
 }
 
-.butBasAnc { /* What: Button Base Anchor. Why: The page's actions read as bold pills, shared by the hero and the banner. How: This sets a pill with bold text, a transparent border its variants can color, and an eased change on hover. */
+.butBasAnc { /* What: Button Base Anchor. Why: The page's actions read as bold pills, shared by the hero and the banner. How: This sets a pill with bold text and a transparent border its variants can color, its own stacking layer for the shadow layers below, and eased changes on hover, press, and focus. */
 
 
 	align-items     : center;
-	border          : var( --bor-wid-lar ) solid transparent;        /* Border Width Large ~= 2.035px */
+	border          : var( --bor-wid-lar ) solid transparent;    /* Border Width Large ~= 2.035px */
 	border-radius   : 999px;
 	cursor          : pointer;
 	display         : inline-flex;
-	font-family     : var( --fon-fam-mai );                          /* Font Family Main = 'Nunito', sans-serif */
-	font-size       : var( --fon-siz-p01 );                          /* Font Size Base Plus 1 ~= 14.572px */
+	font-family     : var( --fon-fam-mai );                      /* Font Family Main = 'Nunito', sans-serif */
+	font-size       : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight     : 700;
-	gap             : var( --spa-hor-m03 );                          /* Spacing Horizontal Base Minus 3 ~= 6.268px */
-	padding         : var( --spa-ver-bas ) var( --spa-hor-p03 );     /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	gap             : var( --spa-hor-m03 );                      /* Spacing Horizontal Base Minus 3 ~= 6.268px */
+	isolation       : isolate;
+	padding         : var( --spa-ver-bas ) var( --spa-hor-p03 ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	position        : relative;
 	text-decoration : none;
-	transition      : all var( --dur-tra-p02 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
+	transition      : background var( --dur-tra-p02 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
-.butBasAnc--primary { /* What: Primary Button Base Anchor. Why: The main action should stand out. How: This fills the pill lavender with white text and a soft lavender shadow. */
+.butBasAnc::before,
+.butBasAnc::after { /* What: Button Base Anchor Shadow Layers. Why: The lift deepens a button's shadow, and fading between two shadows runs on the compositor where easing the shadow itself would repaint it every frame. How: Each layer covers the button's whole border box behind its content, rounded like it, holding one shadow its variant gives it, and fades its opacity. */
+
+
+	border-radius  : inherit;
+	content        : '';
+	inset          : calc( var( --bor-wid-lar ) * -1 );                 /* Border Width Large ~= -2.035px */
+	pointer-events : none;
+	position       : absolute;
+	transition     : opacity var( --dur-tra-p02 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
+	z-index        : -1;
+
+
+}
+.butBasAnc::after { /* What: Button Base Anchor Hover Shadow Layer. Why: The deeper shadow shows only while hovered. How: This starts it hidden. */
+
+
+	opacity : 0;
+
+
+}
+.butBasAnc:hover::before { /* What: Hovered Button Base Anchor Resting Shadow Layer. Why: The resting shadow gives way to the deeper one. How: This fades it out. */
+
+
+	opacity : 0;
+
+
+}
+.butBasAnc:hover::after { /* What: Hovered Button Base Anchor Hover Shadow Layer. Why: A lifted button casts a deeper shadow. How: This fades the deeper shadow in. */
+
+
+	opacity : 1;
+
+
+}
+.butBasAnc--primary { /* What: Primary Button Base Anchor. Why: The main action should stand out. How: This fills the pill lavender with dark text. */
 
 
 	background : var( --acc-mai-col ); /* Accent Main Color = #d1afe2 */
-	box-shadow : var( --ele-med-sha );
 	color      : var( --tex-acc-col ); /* Text Accent Color = #2c2c2c */
 
 
 }
-.butBasAnc--primary:hover { /* What: Hovered Primary Button Base Anchor. Why: A button should respond to the pointer. How: This deepens the lavender, lifts the pill 2px, and spreads its shadow. */
+.butBasAnc--primary::before,
+.butBasAnc--white::before { /* What: Shadowed Button Base Anchor Resting Shadow Layer. Why: The filled buttons rest on a soft lavender shadow. How: This gives their resting layer the medium elevation. */
+
+
+	box-shadow : var( --ele-med-sha );
+
+
+}
+.butBasAnc--primary::after,
+.butBasAnc--white::after { /* What: Shadowed Button Base Anchor Hover Shadow Layer. Why: The filled buttons' shadow deepens as they lift. How: This gives their hover layer the large elevation. */
+
+
+	box-shadow : var( --ele-lar-sha );
+
+
+}
+.butBasAnc--primary:hover { /* What: Hovered Primary Button Base Anchor. Why: A button should respond to the pointer. How: This deepens the lavender and lifts the pill 2px while its shadow layers cross-fade. */
 
 
 	background : var( --acc-hov-col );                            /* Accent Hover Color = #b48fcb */
-	box-shadow : var( --ele-lar-sha );
 	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
@@ -206,27 +257,34 @@
 
 
 }
-.butBasAnc--white { /* What: White Button Base Anchor. Why: The banner's action sits on a colored gradient. How: This fills the pill white with deep lavender text and a soft shadow. */
+.butBasAnc--white { /* What: White Button Base Anchor. Why: The banner's action sits on a colored gradient. How: This fills the pill white with deep lavender text. */
 
 
 	background : var( --bac-sur-col ); /* Background Surface Color = #ffffff */
-	box-shadow : var( --ele-med-sha );
 	color      : var( --acc-dar-col ); /* Accent Dark Color ~= #7e5b93 */
 
 
 }
-.butBasAnc--white:hover { /* What: Hovered White Button Base Anchor. Why: A button should respond to the pointer. How: This lifts the pill 2px and spreads its shadow. */
+.butBasAnc--white:hover { /* What: Hovered White Button Base Anchor. Why: A button should respond to the pointer. How: This lifts the pill 2px while its shadow layers cross-fade. */
 
 
-	box-shadow : var( --ele-lar-sha );
-	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+	transform : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+
+
+}
+.butBasAnc:active { /* What: Pressed Button Base Anchor. Why: A press should register before anything else happens. How: This presses the pill in slightly, which also undoes its hover lift, after every variant so it wins over their hovers. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, a literal since no scale step lands within 10%. */
 
 
 }
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button Base Anchor. Why: Someone who asked for less motion shouldn't see the buttons animate. How: This applies only when the reduced-motion preference is set. */
 
 
-	.butBasAnc { /* What: Motionless Button Base Anchor. Why: The hover looks should simply switch. How: This turns the transition off. */
+	.butBasAnc,
+	.butBasAnc::before,
+	.butBasAnc::after { /* What: Motionless Button Base Anchor. Why: The hover, press, and focus looks and the shadow layers should simply switch, the lift and press still applying at once. How: This turns their transitions off. */
 
 
 		transition : none;
@@ -504,32 +562,77 @@
 
 /* #region feaCarDiv */
 
-.feaCarDiv { /* What: Feature Card Div. Why: Each card sums up one part of life with the girls. How: This sets a centered white card with rounded corners, a cream border, and a soft shadow, easing every change. */
+.feaCarDiv { /* What: Feature Card Div. Why: Each card sums up one part of life with the girls. How: This sets a centered white card with rounded corners, a cream border, on a soft shadow layer, easing every change. */
 
 
-	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
-	border        : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #ececb6 */
-	border-radius : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
-	box-shadow    : var( --ele-med-sha );
-	padding       : var( --spa-ver-p03 ) var( --spa-hor-p02 );       /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	background    : var( --bac-sur-col );                                                                                        /* Background Surface Color = #ffffff */
+	border        : var( --bor-wid-bas ) solid var( --bor-mai-col );                                                             /* Border Width Base ~= 1.160px, Border Main Color = #ececb6 */
+	border-radius : var( --rad-bor-xla );                                                                                        /* Radius Border Extra Large ~= 19.304px */
+	isolation     : isolate;
+	padding       : var( --spa-ver-p03 ) var( --spa-hor-p02 );                                                                   /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	position      : relative;
 	text-align    : center;
-	transition    : all var( --dur-tra-p02 ) var( --mot-sta-eas );   /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
+	transition    : border-color var( --dur-tra-p02 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
 
 
 }
-.feaCarDiv:hover { /* What: Hovered Feature Card Div. Why: A card should respond to the pointer. How: This lifts it 6px, deepens its shadow, and tints its border lavender. */
+.feaCarDiv::before,
+.feaCarDiv::after { /* What: Feature Card Div Shadow Layers. Why: The lift deepens the card's shadow, and fading between two shadows runs on the compositor where easing the shadow itself would repaint it every frame. How: Each layer covers the card's whole border box behind its content, rounded like it, holding one shadow, and fades its opacity. */
+
+
+	border-radius  : inherit;
+	content        : '';
+	inset          : calc( var( --bor-wid-bas ) * -1 );                 /* Border Width Base ~= -1.160px */
+	pointer-events : none;
+	position       : absolute;
+	transition     : opacity var( --dur-tra-p02 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
+	z-index        : -1;
+
+
+}
+.feaCarDiv::before { /* What: Feature Card Div Resting Shadow Layer. Why: The card rests on a soft lavender shadow. How: This gives the layer the medium elevation. */
+
+
+	box-shadow : var( --ele-med-sha );
+
+
+}
+.feaCarDiv::after { /* What: Feature Card Div Hover Shadow Layer. Why: A lifted card casts a deeper shadow. How: This gives the layer the large elevation, hidden until hovered. */
+
+
+	box-shadow : var( --ele-lar-sha );
+	opacity    : 0;
+
+
+}
+.feaCarDiv:hover { /* What: Hovered Feature Card Div. Why: A card should respond to the pointer. How: This lifts it 2px and tints its border lavender while its shadow layers cross-fade. */
 
 
 	border-color : var( --acc-lig-col );                            /* Accent Light Color = #ceb1dd */
-	box-shadow   : var( --ele-lar-sha );
-	transform    : translateY( calc( var( --spa-ver-m03 ) * -1 ) ); /* Spacing Vertical Base Minus 3 ~= -6.268px */
+	transform    : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+
+
+}
+.feaCarDiv:hover::before { /* What: Hovered Feature Card Div Resting Shadow Layer. Why: The resting shadow gives way to the deeper one. How: This fades it out. */
+
+
+	opacity : 0;
+
+
+}
+.feaCarDiv:hover::after { /* What: Hovered Feature Card Div Hover Shadow Layer. Why: A lifted card casts a deeper shadow. How: This fades the deeper shadow in. */
+
+
+	opacity : 1;
 
 
 }
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Feature Card Div. Why: Someone who asked for less motion shouldn't see the cards rise. How: This applies only when the reduced-motion preference is set. */
 
 
-	.feaCarDiv { /* What: Motionless Feature Card Div. Why: The hover look should simply switch. How: This turns the transition off. */
+	.feaCarDiv,
+	.feaCarDiv::before,
+	.feaCarDiv::after { /* What: Motionless Feature Card Div. Why: The hover look and the shadow layers should simply switch, the lift still applying at once. How: This turns their transitions off. */
 
 
 		transition : none;

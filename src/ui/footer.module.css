@@ -22,6 +22,8 @@
 .sitFooFoo { /* What: Site Footer Footer. Why: Every page ends on a dark band set apart from the content above. How: This fills it with the dark text color, sets its text cream, pads it, and pushes it to the bottom of a short page. */
 
 
+	--foc-rin-col : var( --acc-lig-col ); /* Accent Light Color = #ceb1dd */ /* What: Focus Ring Color. Why: The dark lavender ring would barely show on the dark band. How: This hands every link in the footer the light lavender instead, which keeps 3:1 against it. */
+
 	background : var( --bac-inv-col );                        /* Background Inverse Color = #2c2c2c */
 	color      : var( --bac-pag-col );                        /* Background Page Color = #f7f7e2 */
 	margin-top : auto;
@@ -87,11 +89,11 @@
 .fooLinAnc { /* What: Footer Link Anchor. Why: The links should read clearly on the dark band. How: This sets them small and bold in cream, with no underline, easing their color. */
 
 
-	color           : var( --bac-pag-col );                            /* Background Page Color = #f7f7e2 */
-	font-size       : var( --fon-siz-p01 );                            /* Font Size Base Plus 1 ~= 14.572px */
+	color           : var( --bac-pag-col ); /* Background Page Color = #f7f7e2 */
+	font-size       : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight     : 600;
 	text-decoration : none;
-	transition      : color var( --dur-tra-p01 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease */
+	transition      : color var( --dur-tra-p01 ) var( --mot-sta-eas ), opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -99,6 +101,13 @@
 
 
 	color : var( --bac-hig-col ); /* Background Highlight Color = #ececb6 */
+
+
+}
+.fooLinAnc:active { /* What: Pressed Footer Link Anchor. Why: A press should register before the page changes. How: This dims the link slightly while it's held, as every text link does on press. */
+
+
+	opacity : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
 
 
 }
