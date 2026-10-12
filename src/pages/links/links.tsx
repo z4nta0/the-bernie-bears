@@ -152,7 +152,7 @@ function LinPagCom () : React.JSX.Element {
 
 					<h1 className={ cssModObj.pagTitHea }>Follow the Bears</h1>{ /* What: Page Title Heading Element. Why: The page's heading says what it's for. How: This names the page. */ }
 
-					<p className={ cssModObj.pagSubPar }>Find Lilah & Norah on all their favorite platforms</p>{ /* What: Page Sub Paragraph Element. Why: A short line says where to look. How: This shows it under the heading. */ }
+					<p className={ cssModObj.pagSubPar }>Find Lilah & Norah on all their favorite platforms</p>{ /* What: Page Subtitle Paragraph Element. Why: A short line says where to look. How: This shows it under the heading. */ }
 
 
 				</section>
@@ -202,10 +202,10 @@ function LinPagCom () : React.JSX.Element {
 										height='1em'
 										viewBox='0 0 24 24'
 										width='1em'
-									>{ /* What: Social Card Icon SVG Element. Why: The platform's mark stays sharp at any size. How: This draws the row's path at the tile's font size, in the tile's color. */ }
+									>{ /* What: Social Icon SVG Element. Why: The platform's mark stays sharp at any size. How: This draws the row's path at the tile's font size, in the tile's color. */ }
 
 
-										<path d={ socLinObj.icoStr } />{ /* What: Social Card Icon Path Element. Why: The mark is one path. How: This draws the row's path data. */ }
+										<path d={ socLinObj.icoStr } />{ /* What: Social Icon Path Element. Why: The mark is one path. How: This draws the row's path data. */ }
 
 
 									</svg>

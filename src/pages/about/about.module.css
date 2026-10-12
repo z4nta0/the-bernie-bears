@@ -65,12 +65,15 @@
 
 }
 
-.pagSubPar { /* What: Page Sub Paragraph. Why: A short line under the heading sets the tone. How: This sets it a little large, italic, in the mid grey. */
+.pagSubPar { /* What: Page Subtitle Paragraph. Why: A short line under the heading sets the tone, in lines short enough to read as secondary text. How: This sets it a little large, italic, in the mid grey, centered and no wider than the small text width cap. */
 
 
-	color      : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
-	font-size  : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
-	font-style : italic;
+	color        : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
+	font-size    : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	font-style   : italic;
+	margin-left  : auto;
+	margin-right : auto;
+	max-width    : var( --tex-wid-sma ); /* Text Width Small ~= 22.047em */
 
 
 }
@@ -450,7 +453,7 @@
 
 }
 
-.sisTraSpa { /* What: Sister Trait Span. Why: Each trait reads as a chip. How: This sets small, bold, mid grey text on a pale cream pill with a cream border. */
+.sisTraSpa { /* What: Sister Trait Span. Why: Each trait reads as a chip. How: This sets bold, mid grey text at the body size on a pale cream pill with a cream border. */
 
 
 	background    : var( --bac-pag-col );                            /* Background Page Color = #f7f7e2 */

@@ -45,7 +45,6 @@
 }
 
 
-
 /* #region homHerSec */
 
 .homHerSec { /* What: Home Hero Section. Why: The home page opens with the welcome beside the girls' portrait. How: This sets the two side by side in a centered grid whose height follows its content. */
@@ -113,13 +112,14 @@
 
 
 }
-@media ( max-width : 880px ) { /* What: Narrow Hero Lede Paragraph. Why: The stacked hero centers its pitch across the column. How: This applies 880px wide and below. */
+@media ( max-width : 880px ) { /* What: Narrow Hero Lede Paragraph. Why: The stacked hero centers its pitch in the column. How: This applies 880px wide and below. */
 
 
-	.herLedPar { /* What: Full Width Hero Lede Paragraph. Why: A width cap would leave the centered pitch off balance. How: This lifts the cap so the pitch spans the column. */
+	.herLedPar { /* What: Centered Hero Lede Paragraph. Why: The stacked hero centers its pitch, which should still read at a comfortable line length. How: This keeps the width cap and centers the capped pitch in the column. */
 
 
-		max-width : 100%;
+		margin-left  : auto;
+		margin-right : auto;
 
 
 	}
@@ -265,10 +265,11 @@
 
 
 }
-.butBasAnc--white:hover { /* What: Hovered White Button Base Anchor. Why: A button should respond to the pointer. How: This lifts the pill 2px while its shadow layers cross-fade. */
+.butBasAnc--white:hover { /* What: Hovered White Button Base Anchor. Why: A button should respond to the pointer. How: This tints the pill cream and lifts it 2px while its shadow layers cross-fade. */
 
 
-	transform : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+	background : var( --bac-pag-col );                            /* Background Page Color = #f7f7e2 */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }
@@ -387,7 +388,7 @@
 
 /* #region porFraDiv */
 
-.porFraDiv { /* What: Portrait Frame Div. Why: The portrait sits in a rounded white frame above the blob. How: This sizes a rounded square, one step smaller than the blob and growing with the screen from the p11 rhythm step, with a white border and a soft shadow, clipping the photo to it. */
+.porFraDiv { /* What: Portrait Frame Div. Why: The portrait sits in a rounded white frame above the blob. How: This sizes a rounded square, one step smaller than the blob and growing with the screen from the p11 rhythm step, with a white border and a soft shadow, clipping the photo to it, at z-index 1 above the blob (0). */
 
 
 	aspect-ratio  : 1;
@@ -417,7 +418,7 @@
 /* #endregion porFraDiv */
 
 
-.floBadDiv { /* What: Floating Badge Div. Why: The badges name the girls in the portrait. How: This sets each name as a white pill with a lavender border above the portrait, bobbing gently, forever. */
+.floBadDiv { /* What: Floating Badge Div. Why: The badges name the girls in the portrait. How: This sets each name as a white pill with a lavender border at z-index 2, above the portrait frame (1), bobbing gently, forever. */
 
 
 	animation     : floBadDivLoopFloat var( --dur-ani-p11 ) var( --mot-sta-eas ) infinite; /* Duration Animation Base Plus 11 ~= 3,480.0ms, Motion Standard Easing = ease */
@@ -717,12 +718,15 @@
 
 }
 
-.ctaTexPar { /* What: Call-To-Action Text Paragraph. Why: The line under the invitation should read on the gradient too. How: This sets it a little large in the dark main text color, with room below. */
+.ctaTexPar { /* What: Call-To-Action Text Paragraph. Why: The line under the invitation should read on the gradient too. How: This sets it a little large in the dark main text color, centered and no wider than a comfortable line, with room below. */
 
 
 	color         : var( --tex-mai-col ); /* Text Main Color = #2c2c2c */
 	font-size     : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	margin-bottom : var( --spa-ver-p03 ); /* Spacing Vertical Base Plus 3 ~= 33.876px */
+	margin-left   : auto;
+	margin-right  : auto;
+	max-width     : var( --tex-wid-sma ); /* Text Width Small ~= 22.047em */
 
 
 }

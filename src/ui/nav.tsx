@@ -271,7 +271,7 @@ function NavBarCom () : React.JSX.Element {
 						<div
 							className={ cssModObj.menConDiv }
 
-							style={ { '--nav-ite-ind' : NAV_LIN_ARR.length } as React.CSSProperties } // What: Menu Contents Index. Why: The block fades in after the last link. How: This hands it the next place in the stagger. // What: Type Assertion Note. Why: React's style type doesn't list custom properties. How: The stylesheet reads this one by name.
+							style={ { '--nav-ite-ind' : NAV_LIN_ARR.length } as React.CSSProperties } // What: Navigation Item Index. Why: The block fades in after the last link. How: This hands it the next place in the stagger. // What: Type Assertion Note. Why: React's style type doesn't list custom properties. How: The stylesheet reads this one by name.
 						>{ /* What: Menu Contents Div Element. Why: A phone menu of four links alone felt bare, and following the girls is the site's purpose. How: This holds the profiles, the main site link, and the tagline under the links, shown only in the phone menu. */ }
 
 

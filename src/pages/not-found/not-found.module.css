@@ -45,7 +45,6 @@
 }
 
 
-
 /* #region pagHeaSec */
 
 .pagHeaSec { /* What: Page Header Section. Why: The 404 page is only its band, which should reach from the bar down to the footer. How: This fills the page with a cream to lavender gradient, without the other pages' rule below it since the footer meets it directly, and centers its contents both ways. */
@@ -71,12 +70,15 @@
 
 }
 
-.pagSubPar { /* What: Page Subtitle Paragraph. Why: A short line under the heading sets the tone. How: This sets it a little large, italic, in the mid grey. */
+.pagSubPar { /* What: Page Subtitle Paragraph. Why: A short line under the heading sets the tone. How: This sets it a little large, italic, in the mid grey, centered and no wider than a comfortable line. */
 
 
-	color      : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
-	font-size  : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
-	font-style : italic;
+	color        : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
+	font-size    : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	font-style   : italic;
+	margin-left  : auto;
+	margin-right : auto;
+	max-width    : var( --tex-wid-sma ); /* Text Width Small ~= 22.047em */
 
 
 }
@@ -159,14 +161,14 @@
 
 
 }
-.butBasAnc--primary::before { /* What: Shadowed Button Base Anchor Resting Shadow Layer. Why: The filled button rests on a soft lavender shadow. How: This gives its resting layer the medium elevation. */
+.butBasAnc--primary::before { /* What: Primary Button Base Anchor Resting Shadow Layer. Why: The filled button rests on a soft lavender shadow. How: This gives its resting layer the medium elevation. */
 
 
 	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
 
 
 }
-.butBasAnc--primary::after { /* What: Shadowed Button Base Anchor Hover Shadow Layer. Why: The filled button's shadow deepens as it lifts. How: This gives its hover layer the large elevation. */
+.butBasAnc--primary::after { /* What: Primary Button Base Anchor Hover Shadow Layer. Why: The filled button's shadow deepens as it lifts. How: This gives its hover layer the large elevation. */
 
 
 	box-shadow : var( --ele-lar-sha ); /* Elevation Large Shadow, about 0 19.3px 44.9px -14.6px plus 0 6.3px 14.6px -3.6px */

@@ -87,7 +87,7 @@ function ConPagCom () : React.JSX.Element {
 
 					<h1 className={ cssModObj.pagTitHea }>Say Hello!</h1>{ /* What: Page Title Heading Element. Why: The page's heading invites visitors to get in touch. How: This names the page. */ }
 
-					<p className={ cssModObj.pagSubPar }>We'd love to hear from you! Lilah & Norah are always listening <span aria-hidden='true'>🐾</span></p>{ /* What: Page Sub Paragraph Element. Why: A short line sets a friendly tone. How: This shows it under the heading, ending in a paw print hidden from screen readers. */ }
+					<p className={ cssModObj.pagSubPar }>We'd love to hear from you! Lilah & Norah are always listening <span aria-hidden='true'>🐾</span></p>{ /* What: Page Subtitle Paragraph Element. Why: A short line sets a friendly tone. How: This shows it under the heading, ending in a paw print hidden from screen readers. */ }
 
 
 				</section>

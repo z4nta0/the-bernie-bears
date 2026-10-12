@@ -19,11 +19,11 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The helpers dr
  * @summary
  * Checks that moving between pages behaves like a multi-page site, in
  * whichever engine the project runs. A client-side router keeps the scroll
- * position when it swaps pages, so app.tsx's useScrTopFun puts every
- * link-driven navigation back at the top. Footer links clicked at the bottom
- * of each page open the next page at its top, the current page's own bar
- * link scrolls back to the top, a phone menu link does the same, and back
- * returns the visitor to where they were rather than to the top.
+ * position when it swaps pages, so the useScrTopFun hook the app root calls
+ * puts every link-driven navigation back at the top. Footer links clicked at
+ * the bottom of each page open the next page at its top, the current page's
+ * own bar link scrolls back to the top, a phone menu link does the same, and
+ * back returns the visitor to where they were rather than to the top.
  *
  * Sections:
  *  - Constants

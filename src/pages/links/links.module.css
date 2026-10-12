@@ -64,12 +64,15 @@
 
 }
 
-.pagSubPar { /* What: Page Sub Paragraph. Why: A short line under the heading sets the tone. How: This sets it a little large, italic, in the mid grey. */
+.pagSubPar { /* What: Page Subtitle Paragraph. Why: A short line under the heading sets the tone, in lines short enough to read as secondary text. How: This sets it a little large, italic, in the mid grey, centered and no wider than the small text width cap. */
 
 
-	color      : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
-	font-size  : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
-	font-style : italic;
+	color        : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
+	font-size    : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	font-style   : italic;
+	margin-left  : auto;
+	margin-right : auto;
+	max-width    : var( --tex-wid-sma ); /* Text Width Small ~= 22.047em */
 
 
 }
@@ -90,7 +93,7 @@
 
 }
 
-.linIntPar { /* What: Links Intro Paragraph. Why: A short line says there's a place for every kind of fan. How: This centers it a little large in the mid grey, no wider than a comfortable line, with room below. */
+.linIntPar { /* What: Links Intro Paragraph. Why: A short line says there's a place for every kind of fan. How: This centers it in the mid grey, no wider than a comfortable line, with room below. */
 
 
 	color         : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
@@ -267,7 +270,7 @@
 
 }
 
-.socDesPar { /* What: Social Description Paragraph. Why: The card says what's there, in lines short enough to read easily. How: This sets its sentence small and airy in the mid grey, no wider than the text width cap. */
+.socDesPar { /* What: Social Description Paragraph. Why: The card says what's there, in lines short enough to read easily. How: This sets its sentence airy in the mid grey, no wider than the text width cap. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */

@@ -42,6 +42,11 @@ import { writeFileSync } from 'node:fs';          // What: Write File Sync. Why:
 
 // #region Constants
 
+const PAG_DIR_STR = fileURLToPath( new URL( '../../src/pages/', import.meta.url ) ); // What: Pages Directory String. Why: Each photo is written beside the page that shows it. How: This resolves src/pages, which each row's folder is joined to.
+const PHO_DIR_STR = fileURLToPath( new URL( './', import.meta.url ) );               // What: Photo Directory String. Why: The originals live beside this script. How: This resolves this script's own folder.
+
+
+
 type PhoRecTyp = { pagStr : string, souStr : string, squBoo : boolean, widNum : number }; // What: Photo Record Type. Why: Each photo is rebuilt from the same four facts. How: This names its page folder, its original's file name, whether it's cropped to a centered square, and its largest width in pixels.
 
 // #region PHO_REC_ARR
@@ -81,9 +86,7 @@ const PHO_REC_ARR : PhoRecTyp[] = [ // What: Photo Record Array. Why: The script
 
 
 
-const PAG_DIR_STR = fileURLToPath( new URL( '../../src/pages/', import.meta.url ) ); // What: Pages Directory String. Why: Each photo is written beside the page that shows it. How: This resolves src/pages, which each row's folder is joined to.
-const PHO_DIR_STR = fileURLToPath( new URL( './', import.meta.url ) );               // What: Photo Directory String. Why: The originals live beside this script. How: This resolves this script's own folder.
-const QUA_VAL_NUM = 0.85;                                                            // What: Quality Value Number. Why: This is the lowest WebP quality that showed no difference from the originals at 3x zoom, on the portrait's fur and the cartoon's outlines alike. How: Every photo is encoded at it.
+const QUA_VAL_NUM = 0.85; // What: Quality Value Number. Why: This is the lowest WebP quality that showed no difference from the originals at 3x zoom, on the portrait's fur and the cartoon's outlines alike. How: Every photo is encoded at it.
 
 // #endregion Constants
 
@@ -176,7 +179,7 @@ await broInsObj.close(); // What: Browser Close Call. Why: The script should exi
 
 
 
-for ( const [ pagStr, sizRowArr ] of sizRowMap ) { // What: Sizes File Loop. Why: Each page folder gets its own sizes file. How: This lays out and writes one file per page.
+for ( const [ pagFolStr, sizRowArr ] of sizRowMap ) { // What: Sizes File Loop. Why: Each page folder gets its own sizes file. How: This lays out and writes one file per page.
 
 
 	sizRowArr.sort( ( rowOneArr, rowTwoArr ) => rowOneArr[ 0 ].localeCompare( rowTwoArr[ 0 ] ) ); // What: Size Row Sort. Why: The sizes file should list its rows in a stable order. How: This sorts them by file name.
@@ -186,6 +189,11 @@ for ( const [ pagStr, sizRowArr ] of sizRowMap ) { // What: Sizes File Loop. Why
 	const heiWidNum = Math.max( ...sizRowArr.map( ( sizCurArr ) => String( sizCurArr[ 1 ] ).length ) ) + 1; // What: Height Width Number. Why: Every row's width field starts in one column after the longest height. How: This measures the longest height plus its comma.
 	const widWidNum = Math.max( ...sizRowArr.map( ( sizCurArr ) => String( sizCurArr[ 2 ] ).length ) );     // What: Width Width Number. Why: Every row's closing brace lines up after the longest width. How: This measures the longest width.
 	const sizLinArr = sizRowArr.map( ( [ filNamStr, heiValNum, widValNum ], rowIndNum ) => `\t${ `'${ filNamStr }'`.padEnd( keyWidNum ) } : { heiNum : ${ `${ heiValNum },`.padEnd( heiWidNum ) } widNum : ${ String( widValNum ).padEnd( widWidNum ) } }${ rowIndNum < sizRowArr.length - 1 ? ',' : '' }` ); // What: Size Line Array. Why: Each row is one aligned line of the sizes object. How: This pads every name, height, and width to its column, with a comma on every row but the last.
+
+
+
+	const pagWorStr = `${ pagFolStr[ 0 ].toUpperCase() }${ pagFolStr.slice( 1 ) }`; // What: Page Word String. Why: The sizes file's type and its comment name the page the file belongs to. How: This capitalizes the page folder's name, such as home to Home.
+	const phsTypStr = `${ pagWorStr.slice( 0, 3 ) }PhsTyp`;                          // What: Photo-Size Type String. Why: Type names are unique across the codebase, so each page's sizes type needs its own name. How: This joins the page word's first three letters to Phs (Photo-Size) and Typ, such as HomPhsTyp.
 
 
 	const sizTexStr = `
@@ -213,7 +221,7 @@ for ( const [ pagStr, sizRowArr ] of sizRowMap ) { // What: Sizes File Loop. Why
 
 // #region Constants
 
-type PhoSizTyp = { heiNum : number, widNum : number }; // What: Photo Size Type. Why: Every photo's size has the same shape. How: This names its height and width in pixels.
+type ${ phsTypStr } = { heiNum : number, widNum : number }; // What: ${ pagWorStr } Photo-Size Type. Why: Every photo's size has the same shape. How: This names its height and width in pixels.
 
 /**
  * PHO_SIZ_OBJ = Photo Sizes Object
@@ -227,7 +235,7 @@ type PhoSizTyp = { heiNum : number, widNum : number }; // What: Photo Size Type.
  *
 */
 
-const PHO_SIZ_OBJ : Record< string, PhoSizTyp > = { // What: Photo Sizes Object. Why: Every img element needs its photo's intrinsic size. How: The page looks each photo's size up by its file name.
+const PHO_SIZ_OBJ : Record< string, ${ phsTypStr } > = { // What: Photo Sizes Object. Why: Every img element needs its photo's intrinsic size. How: The page looks each photo's size up by its file name.
 
 
 ${ sizLinArr.join( '\n' ) }
@@ -249,7 +257,7 @@ export { PHO_SIZ_OBJ }; // What: Named Exports. Why: The page's img elements rea
 `; // What: Sizes Text String. Why: The sizes file follows the same formatting rules as every other file, so it's written from this template. How: This fills the template with the sorted rows.
 
 
-	writeFileSync( `${ PAG_DIR_STR }${ pagStr }/photo-sizes.ts`, sizTexStr ); // What: Sizes Write Call. Why: The page reads its photos' sizes from this file. How: This saves it in the page's folder.
+	writeFileSync( `${ PAG_DIR_STR }${ pagFolStr }/photo-sizes.ts`, sizTexStr ); // What: Sizes Write Call. Why: The page reads its photos' sizes from this file. How: This saves it in the page's folder.
 
 
 }

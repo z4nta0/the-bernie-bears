@@ -298,7 +298,7 @@
 .navTogBut[aria-expanded='true'] .togBarSpa:nth-child( 1 ) { /* What: Open Top Toggle Bar Span. Why: The open toggle shows a cross. How: This drops the top bar to the middle and tilts it one way. */
 
 
-	transform : translateY( calc( var( --ver-rhy-m02 ) * 1rem ) ) rotate( 45deg ); /* Vertical Rhythm Base Minus 2 ~= 8.304px */
+	transform : translateY( calc( var( --ver-rhy-m02 ) * 1rem ) ) rotate( 45deg ); /* Vertical Rhythm Base Minus 2 ~= 8.304px */ /* What: Bar Drop Distance. Why: The top bar has to land exactly on the middle one. How: One bar (m05) plus one gap (m04) sums to m02, so this reads that rhythm step rather than a spacing step. */
 
 
 }
@@ -312,7 +312,7 @@
 .navTogBut[aria-expanded='true'] .togBarSpa:nth-child( 3 ) { /* What: Open Bottom Toggle Bar Span. Why: The open toggle shows a cross. How: This lifts the bottom bar to the middle and tilts it the other way. */
 
 
-	transform : translateY( calc( var( --ver-rhy-m02 ) * -1rem ) ) rotate( -45deg ); /* Vertical Rhythm Base Minus 2 ~= -8.304px */
+	transform : translateY( calc( var( --ver-rhy-m02 ) * -1rem ) ) rotate( -45deg ); /* Vertical Rhythm Base Minus 2 ~= -8.304px */ /* What: Bar Lift Distance. Why: The bottom bar has to land exactly on the middle one. How: One bar (m05) plus one gap (m04) sums to m02, so this reads that rhythm step rather than a spacing step. */
 
 
 }
@@ -581,7 +581,7 @@
 
 /* #region menSocAnc */
 
-.menSocAnc { /* What: Menu Social Anchor. Why: Each icon is a comfortable tap target. How: This centers the mark in a round tile about 45px across, the platform's colors set on the element, easing its lift, press, and focus. */
+.menSocAnc { /* What: Menu Social Anchor. Why: Each icon is a comfortable tap target. How: This centers the mark in a round tile about 45px across, the platform's colors set on the element, easing its tint, lift, press, and focus. */
 
 
 	align-items     : center;
@@ -590,14 +590,15 @@
 	font-size       : var( --fon-siz-p02 );                /* Font Size Base Plus 2 ~= 19.304px */
 	height          : calc( var( --ver-rhy-p04 ) * 1rem ); /* Vertical Rhythm Base Plus 4 ~= 44.876px */
 	justify-content : center;
-	transition      : transform var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	transition      : filter var( --dur-tra-p01 ) var( --mot-sta-eas ), transform var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 	width           : calc( var( --ver-rhy-p04 ) * 1rem ); /* Vertical Rhythm Base Plus 4 ~= 44.876px */
 
 
 }
-.menSocAnc:hover { /* What: Hovered Menu Social Anchor. Why: A tile should respond to the pointer. How: This lifts it 2px. */
+.menSocAnc:hover { /* What: Hovered Menu Social Anchor. Why: A tile should respond to the pointer. How: This deepens its colors a little and lifts it 2px. */
 
 
+	filter    : brightness( 0.9 );                               /* What: Hover Tint. Why: Each tile wears its platform's own colors, so no one color shift suits them all. How: This darkens whatever colors the tile has by a tenth, a literal since it tunes a look rather than a size. */
 	transform : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
@@ -612,7 +613,7 @@
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Menu Social Anchor. Why: Someone who asked for less motion shouldn't see the tiles move. How: This applies only when the reduced-motion preference is set. */
 
 
-	.menSocAnc { /* What: Motionless Menu Social Anchor. Why: The lift and press should apply at once. How: This turns the transition off. */
+	.menSocAnc { /* What: Motionless Menu Social Anchor. Why: The tint, lift, and press should apply at once. How: This turns the transition off. */
 
 
 		transition : none;
