@@ -518,7 +518,32 @@ passes on `close-out`.
       `tests/interaction/menu.spec.ts` checks the open menu and each way out.
 12. **Close-out**: the README rewritten (it still describes the placeholder
     site), the full rule audit passes, and the version bump to 1.0.0 (asked
-    for by the user 2026-10-11: remind them when close-out finishes).
+    for by the user 2026-10-11: remind them when close-out finishes). The
+    README and the audit are done 2026-10-12; the bump is left to the user.
+    - **README**: rewritten to describe the finished site and its role
+      beside theberniebears.com, following tonys-toppers'.
+    - **Design scripts type checked**: `tsconfig.design.json`, copied from
+      tonys-toppers, brings `design/` under the type check.
+    - **Rule audit**: four rounds, each by fresh reviewers reading every file
+      against both CLAUDE.md files, found 89, 44, 15, and 13 findings. Most
+      were comments left stale by earlier steps, plus blank lines,
+      alignment, labels, and a few names (Head truncated to `hed`, now on
+      the user-level miscorrections list). The real problems fixed along the
+      way:
+      - text past the measure: the hero pitch, the closing banner, the
+        About and Contact paragraphs, the page subtitles, and the menu and
+        footer taglines, now all capped and checked by a scripted sweep
+        of every paragraph at fifteen widths in all three engines;
+      - hovers with no color shift: the white banner button, the menu's
+        social tiles, and the sister and fact cards;
+      - a social card slide wider than the feedback rule allows;
+      - WebKit showing no press when a social card's empty space was
+        pressed;
+      - the brand link leaving the phone menu open, and the page inert,
+        when tapped with the menu open (now covered by `menu.spec.ts`).
+    - **Left as is**: the footer's copyright line runs 66 characters, past
+      the 60 for secondary text, since capping it would also shorten the
+      full-width rule above it (raised with the user).
 
 ## Test suites
 Added 2026-10-11, adapted from tonys-toppers'. Playwright suites live in
