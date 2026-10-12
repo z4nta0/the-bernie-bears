@@ -71,9 +71,11 @@ src/
   ui/                    what every page uses (nav, footer, scroll-top)
   styles/                global CSS only (fonts.css, styles.css)
 ```
-Outside `src/`: `public/` (the favicon and Netlify's `_redirects` and
-`_headers`), `design/` (the original photos and the script that renders
-them), and `tests/` (see "## Test suites").
+Outside `src/`: `public/` (the favicon set, the social preview card,
+`robots.txt`, the sitemap, and Netlify's `_redirects` and `_headers`),
+`design/` (the original photos, the preview card's source, and the scripts
+that render the photos, the card, and the icons), and `tests/` (see "## Test
+suites").
 - **`pages/` takes the place of `tabs/`.** Each route gets its own folder,
   and an image only that page shows lives beside it. The 404 page gets
   `pages/not-found/` in step 11.
@@ -456,6 +458,20 @@ passes on `close-out`.
       `robots.txt` (every crawler allowed) and a sitemap of Home and Social
       Links. Off-site, for the user after deploy: submit the sitemap to
       Google Search Console and Bing.
+    - **Social previews and favicon set**: done 2026-10-11. `npm run
+      og-image` captures `design/og-image/card.html` (the cartoon logo, the
+      main site's own icon, in About's dashed white card over the page
+      headers' gradient, above "Follow Lilah & Norah" in Dancing Script) as
+      `public/og-image.jpg`, a JPEG at quality 90 (about 45 KB), since as a
+      PNG it came to 337 KB and 85 left ringing around the script at 3x
+      zoom. `npm run icons` renders the ICO, the 16 to 512px PNGs, and an
+      inset apple touch icon on white from `public/favicon.svg`, the pink
+      paw, kept pink by the user's choice to match the girls' bows and the
+      main site's cover. The head gains `theme-color` (the brand lavender),
+      the full Open Graph and Twitter tags matching Home's title and
+      description with `twitter:site` set to `@theberniebears`, and the
+      structured data's logo and image. Off-site, for the user after deploy:
+      check the card with a preview checker such as opengraph.xyz.
 12. **Close-out**: the README rewritten (it still describes the placeholder
     site), the full rule audit passes, and the version bump to 1.0.0 (asked
     for by the user 2026-10-11: remind them when close-out finishes).

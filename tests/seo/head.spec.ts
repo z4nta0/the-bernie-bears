@@ -26,8 +26,11 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The head helpe
  * tags rather than piling them up. The structured data describes this site as
  * a WebSite published by The Bernie Bears, whose home is the main site, with
  * the six profiles the Social Links page links to and the email the Contact
- * page offers. robots.txt lets every crawler in and names the sitemap, which
- * lists Home and Social Links alone.
+ * page offers. The social preview tags are complete, use absolute addresses,
+ * and match the home page's title and description; the card they point at is
+ * a 1,200x630 JPEG under 300 KB; and every icon the head links to is served,
+ * the PNGs at the size their links promise. robots.txt lets every crawler in
+ * and names the sitemap, which lists Home and Social Links alone.
  *
  * Sections:
  *  - Constants
@@ -77,6 +80,49 @@ const PAG_HED_ARR = [ // What: Page Head Array. Why: Every page's head is checke
 ];
 
 // #endregion PAG_HED_ARR
+
+
+
+// #region SOC_KEY_ARR
+
+/**
+ * SOC_KEY_ARR = Social Key Array
+ *
+ * @summary
+ * Every Open Graph and Twitter tag key a complete social preview card needs,
+ * per the social preview rule, plus twitter:site, since the brand has a real
+ * X account. Every row is one tag key the home page must carry, so no row
+ * needs a comment of its own.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+const SOC_KEY_ARR = [ // What: Social Key Array. Why: The social preview rule lists every tag a complete card needs. How: Each entry names one Open Graph or Twitter tag the page must carry.
+
+
+	'og:description',
+	'og:image',
+	'og:image:alt',
+	'og:image:height',
+	'og:image:type',
+	'og:image:width',
+	'og:locale',
+	'og:site_name',
+	'og:title',
+	'og:type',
+	'og:url',
+	'twitter:card',
+	'twitter:description',
+	'twitter:image',
+	'twitter:image:alt',
+	'twitter:site',
+	'twitter:title'
+
+
+];
+
+// #endregion SOC_KEY_ARR
 
 // #endregion Constants
 
@@ -262,6 +308,119 @@ test( 'the sitemap lists Home and Social Links alone', async ( { request : reqCo
 
 
 } );
+
+
+
+test( 'the social preview tags are complete', async ( { page : curPagObj } ) => { // What: Social Tags Test. Why: A link shared anywhere should show a full card that matches the page. How: This loads the home page and checks every social tag, its absolute URLs, and its copy against the page's own title and description.
+
+
+	await curPagObj.goto( '/' ); // What: Home Load Call. Why: Link scrapers read the page every route shares. How: This opens the home page.
+
+
+	const socTagArr = await curPagObj.locator( 'meta[property^="og:"], meta[name^="twitter:"]' ).evaluateAll( ( tagEleArr ) => tagEleArr.map( ( tagCurEle ) => [ tagCurEle.getAttribute( 'property' ) || tagCurEle.getAttribute( 'name' ) || '', tagCurEle.getAttribute( 'content' ) || '' ] ) ); // What: Social Tag Array. Why: Every social tag is checked by its key and value. How: This reads each Open Graph and Twitter tag as a key and content pair.
+	const socTagObj = Object.fromEntries( socTagArr ); // What: Social Tag Object. Why: Tags are easier to check by key. How: This turns the pairs into an object.
+
+
+	expect( Object.keys( socTagObj ) ).toEqual( expect.arrayContaining( SOC_KEY_ARR ) ); // What: Complete Tags Assertion. Why: A missing tag leaves part of the card blank. How: This checks every required key is present, allowing optional extras.
+
+	expect( [ socTagObj[ 'og:image' ], socTagObj[ 'og:url' ], socTagObj[ 'twitter:image' ] ] ).toEqual( [ `${ LIV_URL_STR }og-image.jpg`, LIV_URL_STR, `${ LIV_URL_STR }og-image.jpg` ] ); // What: Absolute URLs Assertion. Why: Scrapers can't resolve a relative address. How: This checks each URL tag names the live https address.
+
+	expect( [ socTagObj[ 'og:image:type' ], socTagObj[ 'og:image:width' ], socTagObj[ 'og:image:height' ] ] ).toEqual( [ 'image/jpeg', '1200', '630' ] ); // What: Image Facts Assertion. Why: The tags have to describe the file they point at. How: This checks the type and size they give.
+
+	expect( socTagObj[ 'twitter:site' ] ).toBe( '@theberniebears' ); // What: X Account Assertion. Why: The card should name the brand's real X account, the one the Social Links page lists. How: This checks the site tag.
+
+	expect( [ socTagObj[ 'og:title' ], socTagObj[ 'twitter:title' ] ] ).toEqual( [ await curPagObj.title(), await curPagObj.title() ] ); // What: Title Match Assertion. Why: A card should name the page the way its tab does. How: This checks both card titles match the page title.
+
+	expect( [ socTagObj[ 'og:description' ], socTagObj[ 'twitter:description' ] ] ).toEqual( Array( 2 ).fill( await curPagObj.locator( 'meta[name="description"]' ).getAttribute( 'content' ) ) ); // What: Description Match Assertion. Why: A card should sum the page up the way its search listing does. How: This checks both card descriptions match the page's description.
+
+
+} );
+
+
+
+test( 'the social preview image is a 1,200x630 JPEG under 300 KB', async ( { request : reqConObj } ) => { // What: Preview Image Test. Why: The social tags promise a 1,200x630 card small enough for WhatsApp. How: This fetches the image, checks its byte count, and reads its size from the JPEG's frame header.
+
+
+	const imaResObj = await reqConObj.get( '/og-image.jpg' ); // What: Image Response Object. Why: The image has to exist where the tags point. How: This fetches it from the site.
+	const jpgBufObj = await imaResObj.body();                 // What: JPEG Buffer Object. Why: The image's size is written in its frame header. How: This reads the response bytes.
+
+	let segOffNum = 2; // What: Segment Offset Number. Why: A JPEG's size sits in its frame segment, after a varying run of other segments. How: This starts just past the file's opening marker.
+
+
+	while ( segOffNum < jpgBufObj.length && ( jpgBufObj[ segOffNum + 1 ] < 0xC0 || jpgBufObj[ segOffNum + 1 ] > 0xC2 ) ) segOffNum += 2 + jpgBufObj.readUInt16BE( segOffNum + 2 ); // What: Frame Segment Search. Why: The frame segment's marker is 0xC0, 0xC1, or 0xC2, and every segment before it gives its own length. How: This hops from segment to segment until it lands on the frame.
+
+
+
+	expect( imaResObj.headers()[ 'content-type' ] ).toBe( 'image/jpeg' ); // What: JPEG Type Assertion. Why: The tags promise a JPEG. How: This checks the served type.
+
+	expect( jpgBufObj.length ).toBeLessThan( 300 * 1024 ); // What: JPEG Bytes Assertion. Why: WhatsApp drops a preview image of 300 KB or more. How: This checks the file's byte count.
+
+	expect( [ jpgBufObj.readUInt16BE( segOffNum + 7 ), jpgBufObj.readUInt16BE( segOffNum + 5 ) ] ).toEqual( [ 1200, 630 ] ); // What: JPEG Size Assertion. Why: The tags promise 1,200 by 630 pixels. How: This reads the width and height the frame segment stores after its marker, length, and precision.
+
+
+} );
+
+
+
+test( 'every icon the head links to is served at its size', async ( { page : curPagObj, request : reqConObj } ) => { // What: Icons Test. Why: Browsers and apps fetch the icons the head names, and a missing or wrong-sized one shows a blank or blurry mark. How: This reads every icon link and checks each file exists and, for PNGs, has the size its link promises.
+
+
+	await curPagObj.goto( '/' ); // What: Home Load Call. Why: The icon links live in the page's head. How: This opens the home page.
+
+
+	const icoLinArr = await curPagObj.locator( 'link[rel="icon"], link[rel="apple-touch-icon"]' ).evaluateAll( ( linEleArr ) => linEleArr.map( ( linCurEle ) => [ linCurEle.getAttribute( 'href' ) || '', linCurEle.getAttribute( 'sizes' ) || '' ] ) ); // What: Icon Link Array. Why: Each icon is checked against its own link. How: This reads every icon link's address and size.
+
+
+	expect( icoLinArr.length ).toBe( 7 ); // What: Icon Count Assertion. Why: The set is the SVG, the ICO, four PNG sizes, and the Apple touch icon. How: This checks all seven are linked.
+
+
+	for ( const [ icoHreStr, icoSizStr ] of icoLinArr ) { // What: Icon Check Loop. Why: Every linked icon has to be real. How: This fetches each one in turn.
+
+
+		const icoResObj = await reqConObj.get( icoHreStr ); // What: Icon Response Object. Why: The icon has to exist where its link points. How: This fetches it.
+		const icoBufObj = await icoResObj.body();           // What: Icon Buffer Object. Why: A PNG's size is written in its header. How: This reads the bytes.
+
+
+		expect( icoResObj.ok() ).toBe( true ); // What: Icon Served Assertion. Why: A missing icon falls through to the app's HTML. How: This checks the file is served.
+
+
+
+		if ( icoHreStr.endsWith( '.svg' ) ) { // What: SVG Icon Guard. Why: The SVG mark has no fixed size to check. How: This checks it's served as an SVG and moves on.
+
+
+			expect( icoResObj.headers()[ 'content-type' ] ).toContain( 'image/svg+xml' ); // What: SVG Type Assertion. Why: Browsers only draw an SVG favicon served as one. How: This checks the served type.
+
+
+
+			continue; // What: SVG Skip. Why: The size checks below don't apply to it. How: This moves on to the next icon.
+
+
+		}
+
+
+
+		if ( icoSizStr === 'any' ) { // What: ICO Header Guard. Why: favicon.ico isn't a PNG and has no single size. How: This checks its header marks it an icon file and moves on.
+
+
+			expect( icoBufObj.readUInt16LE( 2 ) ).toBe( 1 ); // What: ICO Type Assertion. Why: The file has to be a real icon file. How: This checks its header's type field reads 1.
+
+
+
+			continue; // What: ICO Skip. Why: The PNG size check below doesn't apply to it. How: This moves on to the next icon.
+
+
+		}
+
+
+
+		expect( `${ icoBufObj.readUInt32BE( 16 ) }x${ icoBufObj.readUInt32BE( 20 ) }` ).toBe( icoSizStr ); // What: PNG Icon Size Assertion. Why: Each PNG should be the size its link promises. How: This reads the width and height from its header.
+
+
+	}
+
+
+} );
+
 
 // #endregion Module Init
 

@@ -1,0 +1,147 @@
+<!doctype html><!-- What: Document Type Declaration. Why: Browsers render the page in standards mode only with a doctype. How: This declares HTML5. -->
+
+
+
+<html lang='en'><!-- What: Root HTML Element. Why: The card is set in English text. How: This marks the document as English. -->
+
+
+	<head><!-- What: Document Head Element. Why: The card's fonts and layout load before it's captured. How: This holds them in the sections below. -->
+
+
+		<!-- #region Document -->
+
+		<meta charset='UTF-8' />                            <!-- What: Character Set Meta. Why: The card's text has to decode as UTF-8. How: This sits first in the head. -->
+		<title>The Bernie Bears Social Preview Card</title> <!-- What: Page Title Element. Why: The file should say what it is when opened in a browser. How: This names the card. -->
+
+		<!-- #endregion Document -->
+
+
+		<!-- #region Card Styles -->
+
+		<style>/* What: Card Style Element. Why: The card is one fixed-size image, styled here from the site's own fonts and tokens. How: This imports the site's font faces and global stylesheet, then lays out the card. */
+
+
+			@import url( '../../src/styles/fonts.css' );  /* What: Site Fonts Import. Why: The card should be set in the site's own typefaces. How: This loads the site's font faces, whose file paths resolve from that stylesheet's own folder. */
+			@import url( '../../src/styles/styles.css' ); /* What: Site Styles Import. Why: The card should read the site's colors and scale rather than copies of them. How: This loads the global tokens and base styles, including the 11px root the rem steps assume. */
+
+
+
+			/* #region carBodBod */
+
+			.carBodBod { /* What: Card Body Body. Why: The card fills the whole 1,200x630 capture on the gradient the site's page headers open with. How: This sizes it in literal pixels, the image's own fixed size, paints the cream to lavender gradient, and centers its column both ways. */
+
+
+				align-items     : center;
+				background      : linear-gradient( 135deg, var( --bac-pag-col ) 0%, var( --bac-hig-col ) 50%, var( --acc-tin-col ) 100% ); /* Background Page Color = #f7f7e2, Background Highlight Color = #ececb6, Accent Tint Color = #f3eaf9 */
+				display         : flex;
+				height          : 630px;
+				justify-content : center;
+				overflow        : hidden;
+				width           : 1200px;
+
+
+			}
+
+
+			/* #region carColDiv */
+
+			.carColDiv { /* What: Card Column Div. Why: Some apps crop the card to its center square, so everything that matters sits inside the middle 630px. How: This stacks the logo and the tagline in one centered column. */
+
+
+				align-items    : center;
+				display        : flex;
+				flex-direction : column;
+				text-align     : center;
+
+
+			}
+
+
+			/* #region logFraDiv */
+
+			.logFraDiv { /* What: Logo Frame Div. Why: The cartoon logo sits in the same white card with a dashed lavender edge the About page gives it. How: This sizes the square card at the site's own p11 rhythm step and centers the logo in it. */
+
+
+				align-items     : center;
+				background      : var( --bac-sur-col );                             /* Background Surface Color = #ffffff */
+				border          : var( --bor-wid-xla ) dashed var( --acc-lig-col ); /* Border Width Extra Large ~= 3.571px, Accent Light Color = #ceb1dd */
+				border-radius   : var( --rad-bor-xla );                             /* Radius Border Extra Large ~= 19.304px */
+				box-shadow      : var( --ele-med-sha );
+				display         : flex;
+				height          : calc( var( --ver-rhy-p11 ) * 1rem );              /* Vertical Rhythm Base Plus 11 ~= 321.273px */
+				justify-content : center;
+				width           : calc( var( --ver-rhy-p11 ) * 1rem );              /* Vertical Rhythm Base Plus 11 ~= 321.273px */
+
+
+			}
+
+			.logCarIma { /* What: Logo Cartoon Image. Why: The brand's cartoon logo, the one the main site uses as its icon, makes the card recognizable at a glance. How: This sizes it a little inside its card with softly rounded corners, as on the About page. */
+
+
+				border-radius : var( --rad-bor-med );                                       /* Radius Border Medium = 11px */
+				display       : block;
+				height        : calc( var( --ver-rhy-p11 ) * 1rem - var( --spa-ver-p01 ) ); /* Vertical Rhythm Base Plus 11 ~= 321.273px, Spacing Vertical Base Plus 1 ~= 19.304px */
+				width         : calc( var( --ver-rhy-p11 ) * 1rem - var( --spa-ver-p01 ) ); /* Vertical Rhythm Base Plus 11 ~= 321.273px, Spacing Vertical Base Plus 1 ~= 19.304px */
+
+
+			}
+
+			/* #endregion logFraDiv */
+
+
+			.carTagPar { /* What: Card Tagline Paragraph. Why: The card's one line says what the site is for, large enough to read at thumbnail size. How: This sets it in the brand's script font in the headings' dark lavender. */
+
+
+				color       : var( --acc-dar-col ); /* Accent Dark Color ~= #7e5b93 */
+				font-family : var( --fon-fam-bra ); /* Font Family Brand = 'Dancing Script', cursive */
+				font-size   : var( --fon-siz-p06 ); /* Font Size Base Plus 6 ~= 59.447px */
+				line-height : var( --ver-rhy-m01 ); /* Vertical Rhythm Base Minus 1 = 1 */
+				margin-top  : var( --spa-ver-p03 ); /* Spacing Vertical Base Plus 3 ~= 33.876px */
+
+
+			}
+
+			/* #endregion carColDiv */
+
+			/* #endregion carBodBod */
+
+
+		</style>
+
+		<!-- #endregion Card Styles -->
+
+
+	</head>
+
+
+
+	<body class='carBodBod'><!-- What: Card Body Body Element. Why: This is the card itself. How: Its single column holds everything the image shows. -->
+
+
+		<div class='carColDiv'><!-- What: Card Column Div Element. Why: The card's content sits in one centered column. How: This stacks the logo and the tagline. -->
+
+
+			<div class='logFraDiv'><!-- What: Logo Frame Div Element. Why: The logo sits in a white card, as on the About page. How: This frames it. -->
+
+
+				<img
+					class='logCarIma'
+
+					src='../../src/pages/about/group-photo.webp'
+
+					alt='Cartoon logo of Lilah and Norah, The Bernie Bears'
+				/><!-- What: Logo Cartoon Image Element. Why: The brand's logo makes the card recognizable at a glance. How: This loads the same image the About page shows. -->
+
+
+			</div>
+
+			<p class='carTagPar'>Follow Lilah &amp; Norah</p><!-- What: Card Tagline Paragraph Element. Why: The line says what the site is for. How: This shows it in the script font. -->
+
+
+		</div>
+
+
+	</body>
+
+
+</html>
