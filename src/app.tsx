@@ -3,14 +3,15 @@
 
 // #region Imports
 
-import { AboPagCom } from './pages/about/about.tsx';     // What: About Page Component. Why: The About route shows the girls' story. How: The about route renders it.
-import { ConPagCom } from './pages/contact/contact.tsx'; // What: Contact Page Component. Why: The Contact route shows the ways to get in touch. How: The contact route renders it.
-import { HomPagCom } from './pages/home/home.tsx';       // What: Home Page Component. Why: The site's root address is its home page. How: The home route renders it.
-import { LinPagCom } from './pages/links/links.tsx';     // What: Links Page Component. Why: The Social Links route lists every place to follow the girls. How: The links route renders it.
-import { NavBarCom } from './ui/nav.tsx';                // What: Navigation Bar Component. Why: Every page starts with the shared bar. How: This renders above the routes.
-import { Route     } from 'react-router';                // What: Route. Why: Each page is matched to its path. How: This declares one route per page.
-import { Routes    } from 'react-router';                // What: Routes. Why: Only one page should render for any path. How: This renders the first route whose path matches.
-import { SitFooCom } from './ui/footer.tsx';             // What: Site Footer Component. Why: Every page ends with the shared footer. How: This renders below the routes.
+import { AboPagCom    } from './pages/about/about.tsx';     // What: About Page Component. Why: The About route shows the girls' story. How: The about route renders it.
+import { ConPagCom    } from './pages/contact/contact.tsx'; // What: Contact Page Component. Why: The Contact route shows the ways to get in touch. How: The contact route renders it.
+import { HomPagCom    } from './pages/home/home.tsx';       // What: Home Page Component. Why: The site's root address is its home page. How: The home route renders it.
+import { LinPagCom    } from './pages/links/links.tsx';     // What: Links Page Component. Why: The Social Links route lists every place to follow the girls. How: The links route renders it.
+import { NavBarCom    } from './ui/nav.tsx';                // What: Navigation Bar Component. Why: Every page starts with the shared bar. How: This renders above the routes.
+import { Route        } from 'react-router';                // What: Route. Why: Each page is matched to its path. How: This declares one route per page.
+import { Routes       } from 'react-router';                // What: Routes. Why: Only one page should render for any path. How: This renders the first route whose path matches.
+import { SitFooCom    } from './ui/footer.tsx';             // What: Site Footer Component. Why: Every page ends with the shared footer. How: This renders below the routes.
+import { useScrTopFun } from './ui/scroll-top.ts';          // What: Use Scroll Top Function. Why: A new page should open at its top rather than where the last one was scrolled. How: The app root calls it once, and it scrolls on every link-driven navigation.
 
 // #endregion Imports
 
@@ -23,7 +24,8 @@ import { SitFooCom } from './ui/footer.tsx';             // What: Site Footer Co
  * The site's root component, mounted by main.tsx inside the router: the bar,
  * the main landmark holding whichever page the address matches, and the
  * footer, stacked in a column at least as tall as the screen so the footer
- * sits at the bottom of a short page. A new page is added as another route
+ * sits at the bottom of a short page. It also returns the window to the top
+ * after each link-driven navigation. A new page is added as another route
  * here.
  *
  * Sections:
@@ -47,7 +49,8 @@ import { SitFooCom } from './ui/footer.tsx';             // What: Site Footer Co
  * The top of the component tree: renders the bar, the page the address
  * matches inside the main landmark, and the footer, so every page shares the
  * same frame. The main landmark grows to fill the column, which keeps the
- * footer at the bottom of the screen on a short page.
+ * footer at the bottom of the screen on a short page. It calls useScrTopFun
+ * once, so every link-driven navigation opens the new page at its top.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -63,6 +66,10 @@ import { SitFooCom } from './ui/footer.tsx';             // What: Site Footer Co
 */
 
 function AppRooCom () : React.JSX.Element {
+
+
+	useScrTopFun(); // What: Scroll Top Call. Why: Every link to another page should open it at its top. How: This runs the hook once from the root, which stays mounted across every route.
+
 
 
 	return (

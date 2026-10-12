@@ -68,7 +68,7 @@ src/
     about/               the About page and its three photos
     links/               the Social Links page
     contact/             the Contact page
-  ui/                    components every page uses (nav, footer)
+  ui/                    what every page uses (nav, footer, scroll-top)
   styles/                global CSS only (fonts.css, styles.css)
 ```
 Outside `src/`: `public/` (the favicon and Netlify's `_redirects`) and
@@ -82,6 +82,14 @@ Outside `src/`: `public/` (the favicon and Netlify's `_redirects`) and
   every page shows them.
 - **`public/favicon.svg`** is the paw icon, served at a fixed address since
   browsers ask for it themselves; step 11 adds the raster icons beside it.
+
+## Page navigation
+Decided 2026-10-11, per "## Multi-Page React Sites: Scroll Position" in the
+user-level rules. `ui/scroll-top.ts`'s `useScrTopFun`, called once in
+`AppRooCom`, opens every link-driven page change at the top (instantly,
+despite the global smooth scroll), scrolls a link's `#hash` target into view
+instead when it has one, and leaves back and forward to the browser, which
+returns the visitor to where they were.
 
 ## Unused files
 Decided 2026-10-11, the same as tonys-toppers. An unused image is listed for
@@ -431,5 +439,11 @@ bar's paw) when waiting for the page to settle.
   breakpoints and the pixel past each included), failing on sideways
   scrolling, an unclipped element past either edge, text spilling its box,
   or two reachable controls overlapping.
-- `npm test` runs every suite. The interaction and SEO suites join in step
-  11, as in tonys-toppers.
+- `npm run test:interaction`: checks how the site behaves when used.
+  `navigation.spec.ts` (added 2026-10-11) follows each page's footer link from
+  the bottom of the page, the current page's own bar link, and a phone menu
+  link, expecting each new page to open at its top, and checks that back
+  returns to the earlier position. Step 11 adds the interaction feedback
+  checks beside it.
+- `npm test` runs every suite. The SEO suite joins in step 11, as in
+  tonys-toppers.
