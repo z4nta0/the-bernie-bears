@@ -491,6 +491,23 @@ passes on `close-out`.
       it's gone. `tests/interaction/feedback.spec.ts`, from tonys-toppers,
       checks every control's hover, press, and focus on every state in all
       three engines, and that reduced motion stops them moving.
+    - **Phone menu extras and scrim** (asked for by the user 2026-10-11,
+      after the siblings' menus): under the links the menu adds "Follow
+      Lilah & Norah" over a row of the six profile icons (the user's pick
+      over an Official Site button), a "Visit the Official Site" link, and
+      the footer's tagline, centered like the links, with every row fading
+      in after the last. The six profiles moved to `ui/social-profiles.ts`,
+      which the Social Links page and the menu both read. A scrim in the
+      scrim role (the main text color at about 43%) dims the page while the
+      menu is open; the bar sits at `z-index` 4 and the scrim at 3, above
+      the hero's badges at 2, instead of the bar's old 100. As in
+      tonys-toppers and reese-roofing, the open menu makes the page inert,
+      tapping the scrim or pressing Escape closes it (Escape returning
+      focus to the toggle), and widening the screen past 640px closes it.
+      The icons on both pages pass the pointer through to their links, since
+      WebKit didn't show a link pressed when the press landed on an SVG
+      shape, which the feedback suite caught on the X icon.
+      `tests/interaction/menu.spec.ts` checks the open menu and each way out.
 12. **Close-out**: the README rewritten (it still describes the placeholder
     site), the full rule audit passes, and the version bump to 1.0.0 (asked
     for by the user 2026-10-11: remind them when close-out finishes).
@@ -529,10 +546,11 @@ bar's paw) when waiting for the page to settle.
   `navigation.spec.ts` (added 2026-10-11) follows each page's footer link from
   the bottom of the page, the current page's own bar link, and a phone menu
   link, expecting each new page to open at its top, and checks that back
-  returns to the earlier position. `feedback.spec.ts` hovers, presses, and
-  focuses every reachable control on every state, failing on any that
-  doesn't respond or whose focus ring doesn't ease in, and checks that
-  reduced motion stops them moving.
+  returns to the earlier position. `menu.spec.ts` checks the phone menu's
+  scrim, the inert page behind it, and each way out. `feedback.spec.ts`
+  hovers, presses, and focuses every reachable control on every state, failing
+  on any that doesn't respond or whose focus ring doesn't ease in, and checks
+  that reduced motion stops them moving.
 - `npm run test:seo` (added 2026-10-11): each page's head loaded directly
   and while moving between pages (the one title, the one description and
   canonical on Home and Social Links, `noindex` and neither on the others),

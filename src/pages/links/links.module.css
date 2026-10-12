@@ -201,6 +201,9 @@
 
 }
 
+
+/* #region socIcoDiv */
+
 .socIcoDiv { /* What: Social Icon Div. Why: Each card opens with its platform's mark on a pale tile. How: This sizes a rounded tile about 59px square, centers the icon in it, and keeps it from shrinking, its font size setting the icon's. */
 
 
@@ -230,6 +233,16 @@
 
 
 }
+
+.socIcoSvg { /* What: Social Icon SVG. Why: A press anywhere on the tile should register as a press on the card. How: This keeps the icon from catching the pointer. */
+
+
+	pointer-events : none; /* What: Pass-Through Pointer. Why: WebKit doesn't mark a link pressed when the press lands on an SVG shape inside it, so a tap on a logo's middle showed no press feedback. How: This lets every tap fall through the icon to the link itself. */
+
+
+}
+
+/* #endregion socIcoDiv */
 
 
 /* #region socBodDiv */
