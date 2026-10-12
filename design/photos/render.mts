@@ -112,7 +112,7 @@ for ( const phoRecObj of PHO_REC_ARR ) { // What: Photo Record Loop. Why: Each o
 	const souUrlStr = `data:image/jpeg;base64,${ readFileSync( `${ PHO_DIR_STR }${ phoRecObj.souStr }` ).toString( 'base64' ) }`; // What: Source URL String. Why: A canvas drawn from a file URL can't be read back, while one drawn from data can. How: This reads the original as a data URL.
 
 
-	const encResObj = await encPagObj.evaluate( async ( [ souUrlStr, squBoo, widNum, quaValNum ] ) => { // What: Encode Result Object. Why: The browser crops, scales, and encodes the photo. How: This decodes the original, draws its kept part onto a canvas at the fitted size, and returns the WebP data and size.
+	const encResObj = await encPagObj.evaluate( async ( [ souUrlStr, squCroBoo, fitWidNum, quaValNum ] ) => { // What: Encode Result Object. Why: The browser crops, scales, and encodes the photo. How: This decodes the original, draws its kept part onto a canvas at the fitted size, and returns the WebP data and size.
 
 
 		const souImaEle = new Image(); // What: Source Image Element. Why: The original has to be decoded before it's drawn. How: This creates an image to load it into.
@@ -124,11 +124,11 @@ for ( const phoRecObj of PHO_REC_ARR ) { // What: Photo Record Loop. Why: Each o
 
 
 		const sidMinNum = Math.min( souImaEle.naturalWidth, souImaEle.naturalHeight ); // What: Side Minimum Number. Why: A centered square is as wide as the original's shorter side. How: This reads the shorter side.
-		const keeHeiNum = squBoo ? sidMinNum : souImaEle.naturalHeight;                // What: Kept Height Number. Why: A square crop keeps only the shorter side's height. How: This picks it, or the whole height.
-		const keeWidNum = squBoo ? sidMinNum : souImaEle.naturalWidth;                 // What: Kept Width Number. Why: A square crop keeps only the shorter side's width. How: This picks it, or the whole width.
-		const scaValNum = Math.min( 1, widNum / keeWidNum );                           // What: Scale Value Number. Why: The photo fits its width but is never enlarged. How: This takes the smaller of 1 and the fitting scale.
-		const outHeiNum = Math.round( keeHeiNum * scaValNum );                         // What: Output Height Number. Why: The canvas is the fitted size. How: This scales the kept height.
-		const outWidNum = Math.round( keeWidNum * scaValNum );                         // What: Output Width Number. Why: The canvas is the fitted size. How: This scales the kept width.
+		const kepHeiNum = squCroBoo ? sidMinNum : souImaEle.naturalHeight;             // What: Kept Height Number. Why: A square crop keeps only the shorter side's height. How: This picks it, or the whole height.
+		const kepWidNum = squCroBoo ? sidMinNum : souImaEle.naturalWidth;              // What: Kept Width Number. Why: A square crop keeps only the shorter side's width. How: This picks it, or the whole width.
+		const scaValNum = Math.min( 1, fitWidNum / kepWidNum );                        // What: Scale Value Number. Why: The photo fits its width but is never enlarged. How: This takes the smaller of 1 and the fitting scale.
+		const outHeiNum = Math.round( kepHeiNum * scaValNum );                         // What: Output Height Number. Why: The canvas is the fitted size. How: This scales the kept height.
+		const outWidNum = Math.round( kepWidNum * scaValNum );                         // What: Output Width Number. Why: The canvas is the fitted size. How: This scales the kept width.
 		const outCanEle = document.createElement( 'canvas' );                          // What: Output Canvas Element. Why: The photo is redrawn at its new size. How: This creates the canvas.
 
 
@@ -141,7 +141,7 @@ for ( const phoRecObj of PHO_REC_ARR ) { // What: Photo Record Loop. Why: Each o
 
 		outConObj.imageSmoothingQuality = 'high'; // What: Smoothing Quality Assignment. Why: A large downscale should stay sharp without jagged edges. How: This asks for the browser's best resampling.
 
-		outConObj.drawImage( souImaEle, ( souImaEle.naturalWidth - keeWidNum ) / 2, ( souImaEle.naturalHeight - keeHeiNum ) / 2, keeWidNum, keeHeiNum, 0, 0, outWidNum, outHeiNum ); // What: Photo Draw Call. Why: The kept part of the original fills the canvas. How: This draws the centered crop, or the whole photo, scaled to the canvas.
+		outConObj.drawImage( souImaEle, ( souImaEle.naturalWidth - kepWidNum ) / 2, ( souImaEle.naturalHeight - kepHeiNum ) / 2, kepWidNum, kepHeiNum, 0, 0, outWidNum, outHeiNum ); // What: Photo Draw Call. Why: The kept part of the original fills the canvas. How: This draws the centered crop, or the whole photo, scaled to the canvas.
 
 
 
@@ -193,7 +193,7 @@ for ( const [ pagFolStr, sizRowArr ] of sizRowMap ) { // What: Sizes File Loop. 
 
 
 	const pagWorStr = `${ pagFolStr[ 0 ].toUpperCase() }${ pagFolStr.slice( 1 ) }`; // What: Page Word String. Why: The sizes file's type and its comment name the page the file belongs to. How: This capitalizes the page folder's name, such as home to Home.
-	const phsTypStr = `${ pagWorStr.slice( 0, 3 ) }PhsTyp`;                          // What: Photo-Size Type String. Why: Type names are unique across the codebase, so each page's sizes type needs its own name. How: This joins the page word's first three letters to Phs (Photo-Size) and Typ, such as HomPhsTyp.
+	const phsTypStr = `${ pagWorStr.slice( 0, 3 ) }PhsTyp`;                         // What: Photo-Size Type String. Why: Type names are unique across the codebase, so each page's sizes type needs its own name. How: This joins the page word's first three letters to Phs (Photo-Size) and Typ, such as HomPhsTyp.
 
 
 	const sizTexStr = `

@@ -130,8 +130,8 @@
 	/* #region Border Width Tokens */
 
 	--bor-wid-sma : calc( var( --ver-rhy-m12 ) * 1rem ); /* What: Border Width Small ~= 0.499px. Why: This is the scale's hairline step, which nothing on this site draws yet. How: This multiplies the m12 rhythm step by 1rem, which browsers snap to whole pixels. */
-	--bor-wid-bas : calc( var( --ver-rhy-m09 ) * 1rem ); /* What: Border Width Base ~= 1.160px. Why: Card, chip, and note outlines and the current bar link's border share one thin width. How: This multiplies the m09 rhythm step by 1rem, which browsers snap to 1px. */
-	--bor-wid-lar : calc( var( --ver-rhy-m07 ) * 1rem ); /* What: Border Width Large ~= 2.035px. Why: The bar's, bands', and panels' rules and the outline buttons draw a heavier line. How: This multiplies the m07 rhythm step by 1rem, which browsers snap to 2px. */
+	--bor-wid-bas : calc( var( --ver-rhy-m09 ) * 1rem ); /* What: Border Width Base ~= 1.160px. Why: Card, chip, and note outlines, the current bar link's border, and the footer's copyright divider share one thin width. How: This multiplies the m09 rhythm step by 1rem, which browsers snap to 1px. */
+	--bor-wid-lar : calc( var( --ver-rhy-m07 ) * 1rem ); /* What: Border Width Large ~= 2.035px. Why: The bar's, bands', and panels' rules, the sister and social cards, the floating badges, the pill buttons, and the focus ring draw a heavier line. How: This multiplies the m07 rhythm step by 1rem, which browsers snap to 2px. */
 	--bor-wid-xla : calc( var( --ver-rhy-m05 ) * 1rem ); /* What: Border Width Extra Large ~= 3.572px. Why: The dashed photo frames, the hero portrait's frame, and the dog cards' colored tops draw the heaviest line. How: This multiplies the m05 rhythm step by 1rem, which browsers snap to 3px. */
 
 	/* #endregion Border Width Tokens */
@@ -152,10 +152,10 @@
 	--bac-hig-col : var( --bor-mai-col );                                     /* What: Background Highlight Color. Why: The brand's cream yellow fills the current page's bar link, warms the gradients, and lights the footer's hovered links, a highlight rather than a surface. How: This reads the main border color, the same cream, and this site's own role for it. */
 	--bac-hov-col : ;                                                         /* What: Background Hover Color. Why: The standard role set includes a hover overlay. How: This site's hovers use their own colors, so it stays empty. */
 	--bac-inv-col : var( --tex-mai-col );                                     /* What: Background Inverse Color. Why: The footer sits on a dark band. How: This reads the main text color. */
-	--bac-pag-col : #f7f7e2;                                                  /* What: Background Page Color = #f7f7e2. Why: The page sits on a pale cream. How: The body, the trait chips, the collab note, and the footer's light text read it. */
-	--bac-sur-col : #ffffff;                                                  /* What: Background Surface Color = #ffffff. Why: Cards, panels, and the bar sit on white. How: Every card, panel, badge, and white button reads it. */
+	--bac-pag-col : #f7f7e2;                                                  /* What: Background Page Color = #f7f7e2. Why: The page sits on a pale cream. How: The body, the page header gradients, the trait chips, the sister photo frames, the collab note, the white button's hover, the scrollbar track, and the footer's light text read it. */
+	--bac-sur-col : #ffffff;                                                  /* What: Background Surface Color = #ffffff. Why: Cards, panels, and the bar sit on white. How: Every card, panel, badge, and white button, the bar and the phone menu, the portrait frame's border, and the footer's divider read it. */
 	--bor-mai-col : #ececb6;                                                  /* What: Border Main Color = #ececb6. Why: The brand's cream yellow draws the site's borders and dividers. How: Card, bar, and band borders read it. */
-	--bor-str-col : #d6d69a;                                                  /* What: Border Strong Color = #d6d69a. Why: Some edges need a deeper cream to hold up. How: The page header's rule, the current bar link's border, and the round photo frames read it. */
+	--bor-str-col : #d6d69a;                                                  /* What: Border Strong Color = #d6d69a. Why: Some edges need a deeper cream to hold up. How: The page header's rule, the current bar link's border and hover fill, and the round photo frames read it. */
 	--err-dar-col : ;                                                         /* What: Error Dark Color. Why: The standard role set includes the error family. How: This site shows no errors, so it stays empty. */
 	--err-mai-col : ;                                                         /* What: Error Main Color. Why: The standard role set includes the error family. How: This site shows no errors, so it stays empty. */
 	--err-tin-col : ;                                                         /* What: Error Tint Color. Why: The standard role set includes the error family. How: This site shows no errors, so it stays empty. */
@@ -375,7 +375,7 @@
 	/* #region Text Width Tokens */
 
 	--tex-wid-sma : calc( var( --cdn-pow-011 ) * 1em ); /* What: Text Width Small ~= 22.047em. Why: Subtitles read best near 50 characters a line. How: Nunito averages about 2.27 characters per em, so this gives about 50, and every page header's subtitle, the home page's section subtitle, and its closing banner's line read it. */
-	--tex-wid-bas : calc( var( --cdn-pow-012 ) * 1em ); /* What: Text Width Base ~= 29.207em. Why: Paragraphs read best near 66 characters a line. How: Nunito averages about 2.27 characters per em, so this gives about 66, and the hero's pitch, the links intro, the About page's story paragraph, the sisters' card text, the social cards' descriptions, and the Social Links closing band's line read it. *
+	--tex-wid-bas : calc( var( --cdn-pow-012 ) * 1em ); /* What: Text Width Base ~= 29.207em. Why: Paragraphs read best near 66 characters a line. How: Nunito averages about 2.27 characters per em, so this gives about 66, and the hero's pitch, the links intro, the About page's story paragraph, the sisters' card text, the social cards' descriptions, and the Social Links closing band's line read it. */
 
 	/* #endregion Text Width Tokens */
 

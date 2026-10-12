@@ -159,12 +159,12 @@
 
 
 }
-.socCarAnc:hover { /* What: Hovered Social Card Anchor. Why: A card should respond to the pointer. How: This slides it 6px right, deepens its shadow, and turns its border light lavender. */
+.socCarAnc:hover { /* What: Hovered Social Card Anchor. Why: A card should respond to the pointer. How: This nudges it about 3.5px right, deepens its shadow, and turns its border light lavender. */
 
 
 	border-color : var( --acc-lig-col );               /* Accent Light Color = #ceb1dd */
 	box-shadow   : var( --ele-lar-sha );               /* Elevation Large Shadow, about 0 19.3px 44.9px -14.6px plus 0 6.3px 14.6px -3.6px */
-	transform    : translateX( var( --spa-hor-m03 ) ); /* Spacing Horizontal Base Minus 3 ~= 6.268px */
+	transform    : translateX( var( --spa-hor-m05 ) ); /* Spacing Horizontal Base Minus 5 ~= 3.572px */
 
 
 }

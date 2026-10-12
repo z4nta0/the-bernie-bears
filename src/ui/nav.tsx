@@ -195,7 +195,9 @@ function NavBarCom () : React.JSX.Element {
 						className={ cssModObj.navBraAnc }
 
 						to='/'
-					>{ /* What: Brand Navigation Link. Why: The brand is the way back to the home page. How: This links to the root path. */ }
+
+						onClick={ () => setMenOpeBoo( false ) }
+					>{ /* What: Brand Navigation Link. Why: The brand is the way back to the home page. How: This links to the root path and closes the phone menu, so the page it opens isn't left inert behind it. */ }
 
 
 						<span

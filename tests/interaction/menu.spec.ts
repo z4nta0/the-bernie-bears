@@ -22,8 +22,8 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The helper dri
  * inert, so keyboard and screen reader users stay in the bar, and the menu
  * offers a row of the girls' six profiles. The usual ways out each close it
  * and give the page back: tapping the scrim, pressing Escape, which also
- * returns focus to the toggle, and widening the screen past the phone
- * layout, which hides the toggle.
+ * returns focus to the toggle, tapping the brand, which also goes home, and
+ * widening the screen past the phone layout, which hides the toggle.
  *
  * Sections:
  *  - Helpers
@@ -131,6 +131,24 @@ test( 'Escape closes the menu and returns focus to the toggle', async ( { page :
 	await expect( curPagObj.getByRole( 'button', { name : 'Toggle menu' } ) ).toBeFocused(); // What: Focus Return Assertion. Why: The visitor should be back where they opened the menu. How: This checks the toggle has focus.
 
 	await expect( curPagObj.locator( '[inert]' ) ).toHaveCount( 0 ); // What: Page Restored Assertion. Why: The page has to be usable again. How: This checks nothing is left inert.
+
+
+} );
+
+
+
+test( 'tapping the brand goes home and closes the menu', async ( { page : curPagObj } ) => { // What: Brand Close Test. Why: The brand stays tappable above the open menu, and the home page it opens shouldn't be left inert behind a menu still open. How: This taps the brand and checks the address, the menu, and the main content.
+
+
+	await menOpeFun( curPagObj ); // What: Menu Open Call. Why: The check needs the menu open on a page other than Home. How: This opens and checks it on About.
+
+	await curPagObj.getByRole( 'banner' ).getByRole( 'link', { exact : true, name : 'The Bernie Bears' } ).click(); // What: Brand Tap Call. Why: The brand is the way home from the open menu. How: This taps the bar's brand link.
+
+	await expect( curPagObj ).toHaveURL( '/' ); // What: Home Assertion. Why: The brand links to the home page. How: This waits for the address to change.
+
+	await expect( curPagObj.getByRole( 'button', { name : 'Toggle menu' } ) ).toHaveAttribute( 'aria-expanded', 'false' ); // What: Closed State Assertion. Why: The tap should close the menu. How: This checks the toggle reports it closed.
+
+	await expect( curPagObj.locator( 'main[inert]' ) ).toHaveCount( 0 ); // What: Main Restored Assertion. Why: The home page's content has to be usable. How: This checks the main content is no longer inert.
 
 
 } );

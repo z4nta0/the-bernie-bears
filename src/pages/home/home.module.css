@@ -76,7 +76,7 @@
 
 }
 
-.herEyePar { /* What: Hero Eyebrow Paragraph. Why: A short line leads into the title. How: This sets it small, bold, sage, spaced, and uppercase. */
+.herEyePar { /* What: Hero Eyebrow Paragraph. Why: A short line leads into the title. How: This sets it bold, sage, spaced, and uppercase. */
 
 
 	color          : var( --acs-dar-col );                   /* Accent-Secondary Dark Color ~= #4f6f4e */
@@ -664,7 +664,7 @@
 
 }
 
-.feaTexPar { /* What: Feature Text Paragraph. Why: Each card says a little more. How: This sets its sentence small and airy in the mid grey. */
+.feaTexPar { /* What: Feature Text Paragraph. Why: Each card says a little more. How: This sets its sentence airy in the mid grey. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
@@ -718,7 +718,7 @@
 
 }
 
-.ctaTexPar { /* What: Call-To-Action Text Paragraph. Why: The line under the invitation should read on the gradient too. How: This sets it a little large in the dark main text color, centered and no wider than a comfortable line, with room below. */
+.ctaTexPar { /* What: Call-To-Action Text Paragraph. Why: The line under the invitation should read on the gradient too. How: This sets it in the dark main text color, centered and no wider than a comfortable line, with room below. */
 
 
 	color         : var( --tex-mai-col ); /* Text Main Color = #2c2c2c */

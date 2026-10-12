@@ -265,19 +265,19 @@
 
 /* #region sisCarDiv */
 
-.sisCarDiv { /* What: Sister Card Div. Why: Each sister gets a card of her own. How: This stacks her photo and details in a white card with rounded corners, a cream border, on a soft shadow layer, easing its lift. */
+.sisCarDiv { /* What: Sister Card Div. Why: Each sister gets a card of her own. How: This stacks her photo and details in a white card with rounded corners, a cream border, on a soft shadow layer, easing its border tint and lift. */
 
 
-	background     : var( --bac-sur-col );                                                                           /* Background Surface Color = #ffffff */
-	border         : var( --bor-wid-lar ) solid var( --bor-mai-col );                                                /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
-	border-radius  : var( --rad-bor-xla );                                                                           /* Radius Border Extra Large ~= 19.304px */
+	background     : var( --bac-sur-col );                                                                                        /* Background Surface Color = #ffffff */
+	border         : var( --bor-wid-lar ) solid var( --bor-mai-col );                                                             /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
+	border-radius  : var( --rad-bor-xla );                                                                                        /* Radius Border Extra Large ~= 19.304px */
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --spa-ver-p02 );                                                                           /* Spacing Vertical Base Plus 2 ~= 25.572px */
+	gap            : var( --spa-ver-p02 );                                                                                        /* Spacing Vertical Base Plus 2 ~= 25.572px */
 	isolation      : isolate;
-	padding        : var( --spa-ver-p04 ) clamp( var( --spa-hor-p02 ), var( --hor-rhy-015 ), var( --spa-hor-p04 ) ); /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px, Horizontal Rhythm 15 ~= 65.739px @ 1,920px width, Spacing Horizontal Base Plus 4 ~= 44.876px */
+	padding        : var( --spa-ver-p04 ) clamp( var( --spa-hor-p02 ), var( --hor-rhy-015 ), var( --spa-hor-p04 ) );              /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px, Horizontal Rhythm 15 ~= 65.739px @ 1,920px width, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	position       : relative;
-	transition     : transform var( --dur-tra-p02 ) var( --mot-sta-eas );                                            /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
+	transition     : border-color var( --dur-tra-p02 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
 
 
 }
@@ -310,10 +310,13 @@
 
 
 }
-.sisCarDiv:hover { /* What: Hovered Sister Card Div. Why: A card should respond to the pointer. How: This lifts it 2px while its shadow layers cross-fade. */
+.sisCarDiv:hover { /* What: Hovered Sister Card Div. Why: A card should respond to the pointer. How: This tints its side and bottom borders light lavender, leaving the sister's colored top, and lifts it 2px while its shadow layers cross-fade. */
 
 
-	transform : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+	border-bottom-color : var( --acc-lig-col );                            /* Accent Light Color = #ceb1dd */
+	border-left-color   : var( --acc-lig-col );                            /* Accent Light Color = #ceb1dd */
+	border-right-color  : var( --acc-lig-col );                            /* Accent Light Color = #ceb1dd */
+	transform           : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }
@@ -532,27 +535,28 @@
 
 /* #region facCarDiv */
 
-.facCarDiv { /* What: Fact Card Div. Why: Each fact is a frosted card on the band. How: This stacks the fact's emoji, value, and label, centered, in a translucent white card that frosts the band behind it, easing its lift. */
+.facCarDiv { /* What: Fact Card Div. Why: Each fact is a frosted card on the band. How: This stacks the fact's emoji, value, and label, centered, in a translucent white card that frosts the band behind it, easing its frost and lift. */
 
 
 	align-items     : center;
-	backdrop-filter : blur( calc( var( --ver-rhy-m02 ) * 1rem ) );                                                    /* Vertical Rhythm Base Minus 2 ~= 8.304px */
-	background      : oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-006-rec ) );                            /* Background Surface Color = #ffffff, Core-Design-Number to the Power of 6 Reciprocal ~= 0.185 */
-	border          : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-004-rec ) ); /* Border Width Base ~= 1.160px, Background Surface Color = #ffffff, Core-Design-Number to the Power of 4 Reciprocal ~= 0.325 */
-	border-radius   : var( --rad-bor-xla );                                                                           /* Radius Border Extra Large ~= 19.304px */
+	backdrop-filter : blur( calc( var( --ver-rhy-m02 ) * 1rem ) );                                                                     /* Vertical Rhythm Base Minus 2 ~= 8.304px */
+	background      : oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-006-rec ) );                                             /* Background Surface Color = #ffffff, Core-Design-Number to the Power of 6 Reciprocal ~= 0.185 */
+	border          : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-004-rec ) );                  /* Border Width Base ~= 1.160px, Background Surface Color = #ffffff, Core-Design-Number to the Power of 4 Reciprocal ~= 0.325 */
+	border-radius   : var( --rad-bor-xla );                                                                                            /* Radius Border Extra Large ~= 19.304px */
 	display         : flex;
 	flex-direction  : column;
-	gap             : var( --spa-ver-m03 );                                                                           /* Spacing Vertical Base Minus 3 ~= 6.268px */
-	padding         : var( --spa-ver-p02 ) var( --spa-hor-bas );                                                      /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base ~= 14.572px */
+	gap             : var( --spa-ver-m03 );                                                                                            /* Spacing Vertical Base Minus 3 ~= 6.268px */
+	padding         : var( --spa-ver-p02 ) var( --spa-hor-bas );                                                                       /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base ~= 14.572px */
 	text-align      : center;
-	transition      : transform var( --dur-tra-p02 ) var( --mot-sta-eas );                                            /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
+	transition      : background-color var( --dur-tra-p02 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
 
 
 }
-.facCarDiv:hover { /* What: Hovered Fact Card Div. Why: A card should respond to the pointer. How: This lifts it 2px. */
+.facCarDiv:hover { /* What: Hovered Fact Card Div. Why: A card should respond to the pointer. How: This brightens its frost and lifts it 2px. */
 
 
-	transform : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+	background : oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-004-rec ) ); /* Background Surface Color = #ffffff, Core-Design-Number to the Power of 4 Reciprocal ~= 0.325 */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) );                     /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }
