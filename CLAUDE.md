@@ -418,7 +418,10 @@ passes on `close-out`.
       router's catch-all route. It reuses the other pages' gradient header
       (an `h1`, a line in the girls' voice, and the Contact page's two pill
       buttons, Back Home and Follow Along to Social Links), with its own
-      title and `noindex`. That cleared the last accessibility failure.
+      title and `noindex`. That cleared the last accessibility failure. At
+      the user's request its band then stretched from the bar to the footer
+      (the app's main element became a flex column so a page can fill it),
+      with its content centered both ways and its bottom rule dropped.
     - **Security headers**: done 2026-10-11, the siblings' `_headers` with
       `form-action 'none'` (the site has no forms) and Referrer-Policy
       `strict-origin-when-cross-origin` instead of `same-origin`, so the

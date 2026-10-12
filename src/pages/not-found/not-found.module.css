@@ -5,11 +5,12 @@
  * not-found.module.css = Not Found Page Module
  *
  * @summary
- * Styles for NotFouCom: the page fading up into place, and the gradient
- * header the other pages open with, here holding the heading, a short line,
- * and the two pill buttons centered beneath them. The header, buttons, and
- * entrance are the Contact page's, copied in, and the entrance and the
- * buttons' transitions are off under reduced motion.
+ * Styles for NotFouCom: the page fading up into place, and the gradient header
+ * the other pages open with, here filling the space between the bar and the
+ * footer, with the heading, a short line, and the two pill buttons centered in
+ * it both ways. The header, buttons, and entrance are the Contact page's,
+ * copied in, with the header stretched and its bottom rule dropped here, and
+ * the entrance and the buttons' transitions are off under reduced motion.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -19,10 +20,13 @@
 
 /* #region pagEntDiv */
 
-.pagEntDiv { /* What: Page Enter Div. Why: The page should arrive gently rather than appear at once. How: This plays the shared fade-up once as the page mounts, holding its first frame until it starts. */
+.pagEntDiv { /* What: Page Enter Div. Why: The page should arrive gently rather than appear at once, and fill the space between the bar and the footer. How: This plays the shared fade-up once as the page mounts, holding its first frame until it starts, and grows to fill the app's main element as a flex column the band can stretch in. */
 
 
-	animation : global( pageEnterFadeIn ) var( --dur-ani-p05 ) var( --mot-sta-eas ) both; /* Duration Animation Base Plus 5 ~= 643.9ms, Motion Standard Easing = ease */
+	animation      : global( pageEnterFadeIn ) var( --dur-ani-p05 ) var( --mot-sta-eas ) both; /* Duration Animation Base Plus 5 ~= 643.9ms, Motion Standard Easing = ease */
+	display        : flex;
+	flex           : 1;
+	flex-direction : column;
 
 
 }
@@ -43,13 +47,16 @@
 
 /* #region pagHedSec */
 
-.pagHedSec { /* What: Page Header Section. Why: The page opens with its title on a soft band. How: This fills a centered band with a cream to lavender gradient and a darker cream rule below. */
+.pagHedSec { /* What: Page Header Section. Why: The 404 page is only its band, which should reach from the bar down to the footer. How: This fills the page with a cream to lavender gradient, without the other pages' rule below it since the footer meets it directly, and centers its contents both ways. */
 
 
-	background    : linear-gradient( 135deg, var( --bac-pag-col ) 0%, var( --bac-hig-col ) 50%, var( --acc-tin-col ) 100% ); /* Background Page Color = #f7f7e2, Background Highlight Color = #ececb6, Accent Tint Color = #f3eaf9 */
-	border-bottom : var( --bor-wid-lar ) solid var( --bor-str-col );                                                         /* Border Width Large ~= 2.035px, Border Strong Color = #d6d69a */
-	padding       : var( --spa-ver-p06 ) var( --gut-sid-pad ) var( --spa-ver-p05 );                                          /* Spacing Vertical Base Plus 6 ~= 78.751px, Gutter Side Padding, about 19.304px - 44.876px, Spacing Vertical Base Plus 5 ~= 59.447px */
-	text-align    : center;
+	background      : linear-gradient( 135deg, var( --bac-pag-col ) 0%, var( --bac-hig-col ) 50%, var( --acc-tin-col ) 100% ); /* Background Page Color = #f7f7e2, Background Highlight Color = #ececb6, Accent Tint Color = #f3eaf9 */
+	display         : flex;
+	flex            : 1;
+	flex-direction  : column;
+	justify-content : center;
+	padding         : var( --spa-ver-p05 ) var( --gut-sid-pad );                                                               /* Spacing Vertical Base Plus 5 ~= 59.447px, Gutter Side Padding, about 19.304px - 44.876px */
+	text-align      : center;
 
 
 }

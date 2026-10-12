@@ -92,7 +92,13 @@ function AppRooCom () : React.JSX.Element {
 
 
 
-			<main style={{ flex : 1 }}>{ /* What: App Main Element. Why: Each page's content is the main landmark, and it should fill the space between the bar and the footer. How: This holds whichever page the address matches and grows to fill the column. */ }
+			<main
+				style={{
+					display       : 'flex',
+					flex          : 1,
+					flexDirection : 'column'
+				}}
+			>{ /* What: App Main Element. Why: Each page's content is the main landmark, and it should fill the space between the bar and the footer. How: This holds whichever page the address matches, grows to fill the column, and stacks the page as a flex column, so a page such as the 404 page can stretch to fill it too. */ }
 
 
 				<Routes>{ /* What: Page Routes. Why: Only one page should render for any path. How: This renders the first route below whose path matches. */ }
