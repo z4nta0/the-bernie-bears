@@ -364,27 +364,35 @@ passes on `close-out`.
      site's own 1,100px column. The social list caps at a vertical rhythm
      step, `p14` (about 747px, from 720px), added with `p13`.
    - **Pictures**: the hero box is a square as wide as its column, and the
-     blob, portrait frame, and About's group frame grow from their rhythm
-     sizes with a horizontal step but never past their column, which ends
-     About's overflow at 320px and 360px. Below 768px the hero keeps its
-     fixed sizes.
+     blob and portrait frame grow from their rhythm sizes with a horizontal
+     step but never past their column. About's group frame stays at `p11`
+     (about 321px, as on the live site, since growing it looked out of scale
+     beside the intro) and shrinks only where its column is narrower, which
+     ends About's overflow at 320px and 360px.
    - **Layout**: every section, the bar, and the footer pad their sides with
-     the gutter; the grid gaps and the larger cards' side padding are
-     horizontal steps clamped between spacing steps; the 640px and 768px
-     breakpoints stay.
-   - **Grids**: card minimums are `p09` (features) and `p08` (facts), rising
-     with a horizontal step and never wider than the row. Six facts now share
-     a row from about 1,280px up; uneven rows remain in a narrower band
-     (features 3+1 around 670px to 880px, facts 5+1 around 1,024px), as the
-     old fixed minimums had at other widths.
-   - **To switch to the vertical rhythm**, revert these commits, newest
-     first: `git revert ba37525 01a278a 300e87a` (grid minimums, layout
-     spacing, then tokens and pictures). Tested: it stops twice, on the
-     nav's row comment (keep the later wording, "a row about 79px tall",
-     with "1,100px column" back in it) and on the rendering baselines, which
-     are regenerated afterward anyway. Reverting `300e87a` brings back
-     About's overflow at 320px and 360px, so the frames then need their own
-     fix on the vertical rhythm before the widths move onto its steps.
+     the gutter, and the larger cards' side padding and the hero, intro,
+     contact, and sisters gaps are horizontal steps clamped between spacing
+     steps.
+   - **Hero** (after the user's comparison): its height follows its content
+     instead of holding 88% of the viewport, which left empty space on tall
+     windows, and it stacks at 880px instead of 768px (the user asked for
+     about 850px, and no breakpoint sat near it; 880px is reese-roofing's).
+     The other pages keep 640px and 768px. In the stacked hero the name
+     badges sit at the box's edges and the blob hides behind the same-sized
+     frame, as on the live site.
+   - **Grids** (after the user's comparison): never a short last row. The
+     features show four, two, or one columns and the facts six, three, two,
+     or one, each grid's column minimum stepping between whole shares of the
+     row once the cards fit at their minimum width (`--fea-car-wid`, `p09`,
+     and `--fac-car-wid`, `p08`, each rising with a horizontal step). Their
+     column gap stays at `--spa-hor-p02` so the math can read it.
+   - **To switch to the vertical rhythm**, the fluid layout came in three
+     commits: `300e87a` (tokens and pictures), `01a278a` (layout spacing),
+     and `ba37525` (grid minimums). The fixes from the user's comparison
+     build on them (`851c6dd` hero height, `a0ec488` hero breakpoint,
+     `ac9f161` group photo, `3c5e355` even grid columns), so switching means
+     redoing the widths on vertical rhythm steps while keeping those fixes,
+     rather than a plain `git revert`.
    - **Accessibility review**: axe reports no violations apart from the 404
      page's missing `h1` (step 11). Its undecided results are all contrast
      over gradients and the translucent bar; measured against every gradient
@@ -424,7 +432,7 @@ bar's paw) when waiting for the page to settle.
   are captured on Linux. After an intended visual change, refresh with `npm
   run test:rendering -- --update-snapshots` and commit the baselines with it.
 - `npm run test:responsive`: measures every route, the 404 page, and the
-  open menu at 13 widths from 320 to 1,920px (the 640px and 768px
+  open menu at 15 widths from 320 to 1,920px (the 640px, 768px, and 880px
   breakpoints and the pixel past each included), failing on sideways
   scrolling, an unclipped element past either edge, text spilling its box,
   or two reachable controls overlapping.
