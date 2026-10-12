@@ -429,7 +429,7 @@
 
 }
 
-.wavEmoPar { /* What: Wave Emoji Paragraph. Why: A row of bears and a paw leads into the closing line. How: This sets the emoji large and widely spaced, with room below. */
+.wavEmoDiv { /* What: Wave Emoji Div. Why: A row of bears and a paw leads into the closing line. How: This sets the emoji large and widely spaced, with room below. */
 
 
 	font-size      : var( --fon-siz-p05 );                   /* Font Size Base Plus 5 ~= 44.876px */

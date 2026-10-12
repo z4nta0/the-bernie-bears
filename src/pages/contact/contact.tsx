@@ -252,11 +252,11 @@ function ConPagCom () : React.JSX.Element {
 				<div className={ cssModObj.wavInnDiv }>{ /* What: Wave Inner Div Element. Why: The closing words sit centered in the page's column. How: This holds the emoji row and the line. */ }
 
 
-					<p
-						className={ cssModObj.wavEmoPar }
+					<div
+						className={ cssModObj.wavEmoDiv }
 
 						aria-hidden='true'
-					>🐻 🐾 🐻</p>{ /* What: Wave Emoji Paragraph Element. Why: A row of bears and a paw leads into the closing line. How: This shows them, hidden from screen readers as decoration. */ }
+					>🐻 🐾 🐻</div>{ /* What: Wave Emoji Div Element. Why: A row of bears and a paw leads into the closing line. How: This shows them, hidden from screen readers as decoration. */ }
 
 					<p className={ cssModObj.wavTexPar }>Lilah & Norah can't wait to hear from you!</p>{ /* What: Wave Text Paragraph Element. Why: The page ends warmly. How: This shows the closing line in the script font. */ }
 

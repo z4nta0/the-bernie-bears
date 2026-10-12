@@ -400,8 +400,15 @@ passes on `close-out`.
      page's missing `h1` (step 11). Its undecided results are all contrast
      over gradients and the translucent bar; measured against every gradient
      stop, everything passes except Contact's closing line, which takes a
-     slightly darker lavender (4.85:1). Left for the user: a WAVE pass, the
-     bar's text while photos scroll under it, and a screen reader listen.
+     slightly darker lavender (4.85:1). Left for the user: the bar's text
+     while photos scroll under it, and a screen reader listen.
+   - **WAVE** (run by the user 2026-10-11): no errors, and Social Links
+     clean. Contact's emoji row was a paragraph hidden from screen readers,
+     so it became a `div` like the paw dividers, clearing its "possible
+     heading" alert. Kept as they are: About's tagline (a subtitle under the
+     `h1`, not a heading of its own), and Home's redundant link alerts (the
+     logo beside the bar's Home link, and the bar's Social Links beside the
+     closing banner's link to the same page), which are expected pairs.
 11. **New features**: the 404 page, security headers (`public/_headers`),
     image optimization (originals in `design/photos/`, WebP copies written by
     a script, an SVG favicon plus the raster favicon set), the SEO pass and
