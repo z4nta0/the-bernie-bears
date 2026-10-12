@@ -171,6 +171,7 @@
 
 	aspect-ratio  : 1;
 	border-radius : var( --rad-bor-med );                                           /* Radius Border Medium = 11px */
+	height        : auto;                                                           /* What: Automatic Height. Why: The img's height attribute, there so the page doesn't shift while the cartoon loads, would otherwise fix it at the file's 608px. How: auto hands the height back to aspect-ratio, which squares it to the width. */
 	width         : calc( 100% - var( --spa-hor-p01 ) + var( --bor-wid-xla ) * 2 ); /* Spacing Horizontal Base Plus 1 ~= 19.304px, Border Width Extra Large ~= 3.571px */
 
 
@@ -250,26 +251,69 @@
 
 /* #region sisCarDiv */
 
-.sisCarDiv { /* What: Sister Card Div. Why: Each sister gets a card of her own. How: This stacks her photo and details in a white card with rounded corners, a cream border, and a soft shadow, easing its lift. */
+.sisCarDiv { /* What: Sister Card Div. Why: Each sister gets a card of her own. How: This stacks her photo and details in a white card with rounded corners, a cream border, on a soft shadow layer, easing its lift. */
 
 
-	background     : var( --bac-sur-col );                                                                                      /* Background Surface Color = #ffffff */
-	border         : var( --bor-wid-lar ) solid var( --bor-mai-col );                                                           /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
-	border-radius  : var( --rad-bor-xla );                                                                                      /* Radius Border Extra Large ~= 19.304px */
-	box-shadow     : var( --ele-med-sha );
+	background     : var( --bac-sur-col );                                                                           /* Background Surface Color = #ffffff */
+	border         : var( --bor-wid-lar ) solid var( --bor-mai-col );                                                /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
+	border-radius  : var( --rad-bor-xla );                                                                           /* Radius Border Extra Large ~= 19.304px */
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --spa-ver-p02 );                                                                                      /* Spacing Vertical Base Plus 2 ~= 25.572px */
-	padding        : var( --spa-ver-p04 ) clamp( var( --spa-hor-p02 ), var( --hor-rhy-015 ), var( --spa-hor-p04 ) );            /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px, Horizontal Rhythm 15 ~= 65.739px @ 1,920px width, Spacing Horizontal Base Plus 4 ~= 44.876px */
-	transition     : transform var( --dur-tra-p02 ) var( --mot-sta-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
+	gap            : var( --spa-ver-p02 );                                                                           /* Spacing Vertical Base Plus 2 ~= 25.572px */
+	isolation      : isolate;
+	padding        : var( --spa-ver-p04 ) clamp( var( --spa-hor-p02 ), var( --hor-rhy-015 ), var( --spa-hor-p04 ) ); /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px, Horizontal Rhythm 15 ~= 65.739px @ 1,920px width, Spacing Horizontal Base Plus 4 ~= 44.876px */
+	position       : relative;
+	transition     : transform var( --dur-tra-p02 ) var( --mot-sta-eas );                                            /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
 
 
 }
-.sisCarDiv:hover { /* What: Hovered Sister Card Div. Why: A card should respond to the pointer. How: This lifts it 6px and deepens its shadow. */
+.sisCarDiv::before,
+.sisCarDiv::after { /* What: Sister Card Div Shadow Layers. Why: The lift deepens the card's shadow, and fading between two shadows runs on the compositor where easing the shadow itself would repaint it every frame. How: Each layer covers the card's whole border box behind its content, rounded like it, holding one shadow, and fades its opacity. */
+
+
+	border-radius  : inherit;
+	content        : '';
+	inset          : calc( var( --bor-wid-xla ) * -1 ) calc( var( --bor-wid-lar ) * -1 ) calc( var( --bor-wid-lar ) * -1 ); /* Border Width Extra Large ~= -3.571px, Border Width Large ~= -2.035px */
+	pointer-events : none;
+	position       : absolute;
+	transition     : opacity var( --dur-tra-p02 ) var( --mot-sta-eas );                                                     /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
+	z-index        : -1;
+
+
+}
+.sisCarDiv::before { /* What: Sister Card Div Resting Shadow Layer. Why: The card rests on a soft lavender shadow. How: This gives the layer the medium elevation. */
+
+
+	box-shadow : var( --ele-med-sha );
+
+
+}
+.sisCarDiv::after { /* What: Sister Card Div Hover Shadow Layer. Why: A lifted card casts a deeper shadow. How: This gives the layer the large elevation, hidden until hovered. */
 
 
 	box-shadow : var( --ele-lar-sha );
-	transform  : translateY( calc( var( --spa-ver-m03 ) * -1 ) ); /* Spacing Vertical Base Minus 3 ~= -6.268px */
+	opacity    : 0;
+
+
+}
+.sisCarDiv:hover { /* What: Hovered Sister Card Div. Why: A card should respond to the pointer. How: This lifts it 2px while its shadow layers cross-fade. */
+
+
+	transform : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+
+
+}
+.sisCarDiv:hover::before { /* What: Hovered Sister Card Div Resting Shadow Layer. Why: The resting shadow gives way to the deeper one. How: This fades it out. */
+
+
+	opacity : 0;
+
+
+}
+.sisCarDiv:hover::after { /* What: Hovered Sister Card Div Hover Shadow Layer. Why: A lifted card casts a deeper shadow. How: This fades the deeper shadow in. */
+
+
+	opacity : 1;
 
 
 }
@@ -290,7 +334,9 @@
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Sister Card Div. Why: Someone who asked for less motion shouldn't see the cards rise. How: This applies only when the reduced-motion preference is set. */
 
 
-	.sisCarDiv { /* What: Motionless Sister Card Div. Why: The hover look should simply switch. How: This turns the transition off. */
+	.sisCarDiv,
+	.sisCarDiv::before,
+	.sisCarDiv::after { /* What: Motionless Sister Card Div. Why: The hover look and the shadow layers should simply switch, the lift still applying at once. How: This turns their transitions off. */
 
 
 		transition : none;
@@ -464,7 +510,7 @@
 
 	display               : grid;
 	gap                   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
-	grid-template-columns : repeat( auto-fill, minmax( max( calc( ( 100% - var( --spa-hor-p02 ) * 5 ) / 6 - 0.1px ), min( calc( ( 100% - var( --spa-hor-p02 ) * 2 ) / 3 - 0.1px ), calc( ( var( --fac-car-wid ) * 6 + var( --spa-hor-p02 ) * 5 - 100% ) * 999 ) ), min( calc( ( 100% - var( --spa-hor-p02 ) ) / 2 - 0.1px ), calc( ( var( --fac-car-wid ) * 3 + var( --spa-hor-p02 ) * 2 - 100% ) * 999 ) ), min( 100%, calc( ( var( --fac-car-wid ) * 2 + var( --spa-hor-p02 ) - 100% ) * 999 ) ) ), 1fr ) ); /* Spacing Horizontal Base Plus 2 ~= 25.572px, Fact Card Width, set above */ /* What: Six Three Two One Columns. Why: The grid should never leave a short last row. How: The column minimum is a sixth of the row once six facts fit at their minimum, a third once three do, half once two do, and the whole row otherwise, each switch made by a difference multiplied by 999 that turns hugely positive or negative as the row passes that width, and each share trimmed by 0.1px so rounding never drops a column. */
+	grid-template-columns : repeat( auto-fill, minmax( max( calc( ( 100% - var( --spa-hor-p02 ) * 5 ) / 6 - 0.1px ), min( calc( ( 100% - var( --spa-hor-p02 ) * 2 ) / 3 - 0.1px ), calc( ( var( --fac-car-wid ) * 6 + var( --spa-hor-p02 ) * 5 - 100% ) * 999 ) ), min( calc( ( 100% - var( --spa-hor-p02 ) ) / 2 - 0.1px ), calc( ( var( --fac-car-wid ) * 3 + var( --spa-hor-p02 ) * 2 - 100% ) * 999 ) ), min( 100%, calc( ( var( --fac-car-wid ) * 2 + var( --spa-hor-p02 ) - 100% ) * 999 ) ) ), 1fr ) ); /* Spacing Horizontal Base Plus 2 ~= 25.572px */ /* What: Six Three Two One Columns. Why: The grid should never leave a short last row. How: The column minimum is a sixth of the row once six facts fit at their minimum, a third once three do, half once two do, and the whole row otherwise, each switch made by a difference multiplied by 999 that turns hugely positive or negative as the row passes that width, and each share trimmed by 0.1px so rounding never drops a column. */
 	margin-top            : var( --spa-ver-bas );                      /* Spacing Vertical Base ~= 14.572px */
 
 
@@ -490,10 +536,10 @@
 
 
 }
-.facCarDiv:hover { /* What: Hovered Fact Card Div. Why: A card should respond to the pointer. How: This lifts it 4px. */
+.facCarDiv:hover { /* What: Hovered Fact Card Div. Why: A card should respond to the pointer. How: This lifts it 2px. */
 
 
-	transform : translateY( -4px );
+	transform : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }

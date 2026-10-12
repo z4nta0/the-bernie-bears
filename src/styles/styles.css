@@ -159,7 +159,7 @@
 	--err-mai-col : ;                                                         /* What: Error Main Color. Why: The standard role set includes the error family. How: This site shows no errors, so it stays empty. */
 	--err-tin-col : ;                                                         /* What: Error Tint Color. Why: The standard role set includes the error family. How: This site shows no errors, so it stays empty. */
 	--foc-rin-col : var( --acc-dar-col );                                     /* What: Focus Ring Color. Why: Keyboard focus rings need 3:1 against the page. How: This reads the dark lavender text shade; step 11's interaction pass draws the rings in it. */
-	--scr-mai-col : ;                                                         /* What: Scrim Main Color. Why: The standard role set includes a scrim. How: This site dims nothing behind a layer, so it stays empty. */
+	--scr-mai-col : var( --tex-mai-col );                                     /* What: Scrim Main Color. Why: The open phone menu dims the page behind it. How: This reads the main text color, and the scrim reads it at about 43% opacity. */
 	--sha-mai-col : var( --acc-mai-col );                                     /* What: Shadow Main Color. Why: The site's shadows have always carried a soft lavender tint, part of its gentle look. How: This reads the main accent, and every elevation shadow casts it at its own alphas. */
 	--suc-dar-col : ;                                                         /* What: Success Dark Color. Why: The standard role set includes the success family. How: This site shows no success notes, so it stays empty. */
 	--suc-mai-col : ;                                                         /* What: Success Main Color. Why: The standard role set includes the success family. How: This site shows no success notes, so it stays empty. */
@@ -504,6 +504,40 @@ button { /* What: Buttons. Why: Buttons should use the site's font and show they
 
 	cursor      : pointer;
 	font-family : var( --fon-fam-mai ); /* Font Family Main = 'Nunito', sans-serif */
+
+
+}
+
+a,
+button { /* What: Focus Ring Controls. Why: Keyboard focus should ease in rather than snap, in a ring that suits the band it's in. How: This gives every link and button a zero-width outline in the focus ring color, held a little away from it, ready to grow in on focus. */
+
+
+	outline        : 0 solid var( --foc-rin-col );                                                                                      /* Focus Ring Color ~= #7e5b93 */ /* What: Zero Width Outline. Why: A zero width stays invisible, even in forced colors mode, until something is focused. How: The focused rule below grows it. */
+	outline-offset : calc( var( --ver-rhy-m03 ) * 1rem );                                                                               /* Vertical Rhythm Base Minus 3 ~= 6.268px */
+	transition     : outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+a:focus-visible,
+button:focus-visible { /* What: Focused Focus Ring Controls. Why: A keyboard user has to see where focus is. How: This grows the ring to its full width and draws it in close, so it eases in; every element with its own transition lists the two outline properties so the ease survives. */
+
+
+	outline-offset : var( --bor-wid-lar ); /* Border Width Large ~= 2.035px */
+	outline-width  : var( --bor-wid-lar ); /* Border Width Large ~= 2.035px */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Focus Ring Controls. Why: Someone who asked for less motion should see the ring appear at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	a,
+	button { /* What: Motionless Focus Ring Controls. Why: The ring should simply appear. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
 
 
 }

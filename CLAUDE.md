@@ -64,15 +64,18 @@ src/
   app.tsx                React Router setup, the bar, and the footer
   assets/                fonts/ (the self-hosted fonts)
   pages/
-    home/                the home page and the hero portrait
-    about/               the About page and its three photos
+    home/                the home page, its portrait, its photo sizes
+    about/               the About page, its three photos, their sizes
     links/               the Social Links page
     contact/             the Contact page
   ui/                    what every page uses (nav, footer, scroll-top)
   styles/                global CSS only (fonts.css, styles.css)
 ```
-Outside `src/`: `public/` (the favicon and Netlify's `_redirects`) and
-`tests/` (see "## Test suites").
+Outside `src/`: `public/` (the favicon set, the social preview card,
+`robots.txt`, the sitemap, and Netlify's `_redirects` and `_headers`),
+`design/` (the original photos, the preview card's source, and the scripts
+that render the photos, the card, and the icons), and `tests/` (see "## Test
+suites").
 - **`pages/` takes the place of `tabs/`.** Each route gets its own folder,
   and an image only that page shows lives beside it. The 404 page gets
   `pages/not-found/` in step 11.
@@ -409,12 +412,105 @@ passes on `close-out`.
      `h1`, not a heading of its own), and Home's redundant link alerts (the
      logo beside the bar's Home link, and the bar's Social Links beside the
      closing banner's link to the same page), which are expected pairs.
-11. **New features**: the 404 page, security headers (`public/_headers`),
-    image optimization (originals in `design/photos/`, WebP copies written by
-    a script, an SVG favicon plus the raster favicon set), the SEO pass and
-    social preview card per "## Kind of site", and interaction feedback.
+11. **New features** (done 2026-10-11): the 404 page, security headers
+    (`public/_headers`), image optimization (originals in `design/photos/`,
+    WebP copies written by a script, an SVG favicon plus the raster favicon
+    set), the SEO pass and social preview card per "## Kind of site", and
+    interaction feedback.
+    - **404 page**: done 2026-10-11 in `pages/not-found/`, reached by the
+      router's catch-all route. It reuses the other pages' gradient header
+      (an `h1`, a line in the girls' voice, and the Contact page's two pill
+      buttons, Back Home and Follow Along to Social Links), with its own
+      title and `noindex`. That cleared the last accessibility failure. At
+      the user's request its band then stretched from the bar to the footer
+      (the app's main element became a flex column so a page can fill it),
+      with its content centered both ways and its bottom rule dropped.
+    - **Security headers**: done 2026-10-11, the siblings' `_headers` with
+      `form-action 'none'` (the site has no forms) and Referrer-Policy
+      `strict-origin-when-cross-origin` instead of `same-origin`, so the
+      main site and the platforms still see the visits this site sends (the
+      user's choice in step 7), and Vite emitting every asset as a file
+      (`assetsInlineLimit: 0`). Checked by serving the build with the
+      headers: no violations on any page or the phone menu in all three
+      engines, with both fonts and every photo loading.
+    - **Images**: done 2026-10-11. The four originals live in
+      `design/photos/`, and `npm run photos` writes WebP copies beside their
+      pages at twice their largest shown size, at 0.85 quality (the lowest
+      with no difference at 3x zoom on the portrait's fur and the cartoon's
+      outlines), plus a `photo-sizes.ts` per page that the img elements read
+      for their width and height. The portrait and the sisters' photos are
+      cut to the centered square their frames already showed. 1,321 KB came
+      down to 219 KB. Lilah's and Norah's photos load lazily, and the
+      cartoon's CSS height is `auto`, since its new height attribute
+      otherwise overrode its square aspect ratio. Every changed pixel in the
+      refreshed baselines sits inside a photo.
+    - **SEO**: done 2026-10-11. Each page renders its own head tags, which
+      React 19 moves into the head and removes when the page changes: Home
+      ("Lilah & Norah, the Bernie Bears | Bernese Mountain Dogs") and Social
+      Links ("Follow Lilah & Norah | The Bernie Bears") a title, a
+      description of 100 to 125 characters, and a canonical address; About,
+      Contact, and the 404 page a title and `noindex`. `index.html` keeps
+      only the fallback title, the author, and the JSON-LD graph (this
+      domain's `WebSite`, published by The Bernie Bears, an `Organization`
+      whose `url` is theberniebears.com, with the Contact page's email and
+      the six profiles in `sameAs`), since React adds a page's description or
+      canonical beside one in `index.html` rather than replacing it. The
+      build compacts the JSON-LD and fails on invalid JSON. `public/` gains
+      `robots.txt` (every crawler allowed) and a sitemap of Home and Social
+      Links. Off-site, for the user after deploy: submit the sitemap to
+      Google Search Console and Bing.
+    - **Social previews and favicon set**: done 2026-10-11. `npm run
+      og-image` captures `design/og-image/card.html` (the cartoon logo, the
+      main site's own icon, in About's dashed white card over the page
+      headers' gradient, above "Follow Lilah & Norah" in Dancing Script) as
+      `public/og-image.jpg`, a JPEG at quality 90 (about 45 KB), since as a
+      PNG it came to 337 KB and 85 left ringing around the script at 3x
+      zoom. `npm run icons` renders the ICO, the 16 to 512px PNGs, and an
+      inset apple touch icon on white from `public/favicon.svg`, the pink
+      paw, kept pink by the user's choice to match the girls' bows and the
+      main site's cover. The head gains `theme-color` (the brand lavender),
+      the full Open Graph and Twitter tags matching Home's title and
+      description with `twitter:site` set to `@theberniebears`, and the
+      structured data's logo and image. Off-site, for the user after deploy:
+      check the card with a preview checker such as opengraph.xyz.
+    - **Interaction feedback**: done 2026-10-11. Every link and button
+      grows the siblings' focus ring in from a zero-width outline (the global
+      rule in `styles.css`), with the footer handing its links the light
+      lavender (`--foc-rin-col`) so the ring shows on the dark band, and
+      every control with its own transition lists the two outline
+      properties. Buttons, the toggle, and the social cards press in to
+      0.97; text and pill links dim. New hovers: the brand name darkens, the
+      toggle's bars darken (now the dark lavender at rest, since the light
+      lavender failed 3:1 against the white bar), the current bar link
+      deepens, and Contact's email turns lavender. The pill buttons and the
+      feature and sister cards fade between two shadow layers instead of
+      easing `box-shadow`; the social cards keep the eased shadow, since they
+      clip their corners for the stripe. The cards lift 2px, within the
+      rule's range, instead of 4px to 6px. The phone menu fades and settles in
+      as it opens and back out as it closes, leaving the tab order only once
+      it's gone. `tests/interaction/feedback.spec.ts`, from tonys-toppers,
+      checks every control's hover, press, and focus on every state in all
+      three engines, and that reduced motion stops them moving.
+    - **Phone menu extras and scrim** (asked for by the user 2026-10-11,
+      after the siblings' menus): under the links the menu adds "Follow
+      Lilah & Norah" over a row of the six profile icons (the user's pick
+      over an Official Site button), a "Visit the Official Site" link, and
+      the footer's tagline, centered like the links, with every row fading
+      in after the last. The six profiles moved to `ui/social-profiles.ts`,
+      which the Social Links page and the menu both read. A scrim in the
+      scrim role (the main text color at about 43%) dims the page while the
+      menu is open; the bar sits at `z-index` 4 and the scrim at 3, above
+      the hero's badges at 2, instead of the bar's old 100. As in
+      tonys-toppers and reese-roofing, the open menu makes the page inert,
+      tapping the scrim or pressing Escape closes it (Escape returning
+      focus to the toggle), and widening the screen past 640px closes it.
+      The icons on both pages pass the pointer through to their links, since
+      WebKit didn't show a link pressed when the press landed on an SVG
+      shape, which the feedback suite caught on the X icon.
+      `tests/interaction/menu.spec.ts` checks the open menu and each way out.
 12. **Close-out**: the README rewritten (it still describes the placeholder
-    site), the full rule audit passes, and the version bump.
+    site), the full rule audit passes, and the version bump to 1.0.0 (asked
+    for by the user 2026-10-11: remind them when close-out finishes).
 
 ## Test suites
 Added 2026-10-11, adapted from tonys-toppers'. Playwright suites live in
@@ -450,7 +546,14 @@ bar's paw) when waiting for the page to settle.
   `navigation.spec.ts` (added 2026-10-11) follows each page's footer link from
   the bottom of the page, the current page's own bar link, and a phone menu
   link, expecting each new page to open at its top, and checks that back
-  returns to the earlier position. Step 11 adds the interaction feedback
-  checks beside it.
-- `npm test` runs every suite. The SEO suite joins in step 11, as in
-  tonys-toppers.
+  returns to the earlier position. `menu.spec.ts` checks the phone menu's
+  scrim, the inert page behind it, and each way out. `feedback.spec.ts`
+  hovers, presses, and focuses every reachable control on every state, failing
+  on any that doesn't respond or whose focus ring doesn't ease in, and checks
+  that reduced motion stops them moving.
+- `npm run test:seo` (added 2026-10-11): each page's head loaded directly
+  and while moving between pages (the one title, the one description and
+  canonical on Home and Social Links, `noindex` and neither on the others),
+  the structured data against the profile links and email the pages show,
+  and the crawler files.
+- `npm test` runs every suite.

@@ -1,0 +1,229 @@
+
+
+
+/**
+ * not-found.module.css = Not Found Page Module
+ *
+ * @summary
+ * Styles for NotFouCom: the page fading up into place, and the gradient header
+ * the other pages open with, here filling the space between the bar and the
+ * footer, with the heading, a short line, and the two pill buttons centered in
+ * it both ways. The header, buttons, and entrance are the Contact page's,
+ * copied in, with the header stretched and its bottom rule dropped here, and
+ * the entrance and the buttons' transitions are off under reduced motion.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region pagEntDiv */
+
+.pagEntDiv { /* What: Page Enter Div. Why: The page should arrive gently rather than appear at once, and fill the space between the bar and the footer. How: This plays the shared fade-up once as the page mounts, holding its first frame until it starts, and grows to fill the app's main element as a flex column the band can stretch in. */
+
+
+	animation      : global( pageEnterFadeIn ) var( --dur-ani-p05 ) var( --mot-sta-eas ) both; /* Duration Animation Base Plus 5 ~= 643.9ms, Motion Standard Easing = ease */
+	display        : flex;
+	flex           : 1;
+	flex-direction : column;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Page Enter Div. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.pagEntDiv { /* What: Still Page Enter Div. Why: The page should simply appear. How: This turns the animation off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+
+/* #region pagHedSec */
+
+.pagHedSec { /* What: Page Header Section. Why: The 404 page is only its band, which should reach from the bar down to the footer. How: This fills the page with a cream to lavender gradient, without the other pages' rule below it since the footer meets it directly, and centers its contents both ways. */
+
+
+	background      : linear-gradient( 135deg, var( --bac-pag-col ) 0%, var( --bac-hig-col ) 50%, var( --acc-tin-col ) 100% ); /* Background Page Color = #f7f7e2, Background Highlight Color = #ececb6, Accent Tint Color = #f3eaf9 */
+	display         : flex;
+	flex            : 1;
+	flex-direction  : column;
+	justify-content : center;
+	padding         : var( --spa-ver-p05 ) var( --gut-sid-pad );                                                               /* Spacing Vertical Base Plus 5 ~= 59.447px, Gutter Side Padding, about 19.304px - 44.876px */
+	text-align      : center;
+
+
+}
+
+.pagTitHea { /* What: Page Title Heading. Why: The page's heading is its biggest text. How: This sets it very large, growing with the screen, with a small gap below. */
+
+
+	font-size     : clamp( var( --fon-siz-p05 ), 5vw, var( --fon-siz-p07 ) ); /* Font Size Base Plus 5 ~= 44.876px, Font Size Base Plus 7 ~= 78.751px */
+	margin-bottom : var( --spa-ver-m01 );                                     /* Spacing Vertical Base Minus 1 = 11px */
+
+
+}
+
+.pagSubPar { /* What: Page Sub Paragraph. Why: A short line under the heading sets the tone. How: This sets it a little large, italic, in the mid grey. */
+
+
+	color      : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
+	font-size  : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	font-style : italic;
+
+
+}
+
+
+/* #region nofActDiv */
+
+.nofActDiv { /* What: Not-Found Actions Div. Why: The page's two ways onward sit together under its line. How: This centers them in a row that wraps, with room above. */
+
+
+	display         : flex;
+	flex-wrap       : wrap;
+	gap             : var( --spa-ver-bas ) var( --spa-hor-bas ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base ~= 14.572px */
+	justify-content : center;
+	margin-top      : var( --spa-ver-p03 );                      /* Spacing Vertical Base Plus 3 ~= 33.876px */
+
+
+}
+
+.butBasAnc { /* What: Button Base Anchor. Why: The page's ways onward read as bold pills, the same as the home page's. How: This sets a pill with bold text and a transparent border its variants can color, its own stacking layer for the shadow layers below, and eased changes on hover, press, and focus. */
+
+
+	align-items     : center;
+	border          : var( --bor-wid-lar ) solid transparent;    /* Border Width Large ~= 2.035px */
+	border-radius   : 999px;
+	cursor          : pointer;
+	display         : inline-flex;
+	font-family     : var( --fon-fam-mai );                      /* Font Family Main = 'Nunito', sans-serif */
+	font-size       : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
+	font-weight     : 700;
+	gap             : var( --spa-hor-m03 );                      /* Spacing Horizontal Base Minus 3 ~= 6.268px */
+	isolation       : isolate;
+	padding         : var( --spa-ver-bas ) var( --spa-hor-p03 ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	position        : relative;
+	text-decoration : none;
+	transition      : background var( --dur-tra-p02 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.butBasAnc::before,
+.butBasAnc::after { /* What: Button Base Anchor Shadow Layers. Why: The lift deepens a button's shadow, and fading between two shadows runs on the compositor where easing the shadow itself would repaint it every frame. How: Each layer covers the button's whole border box behind its content, rounded like it, holding one shadow its variant gives it, and fades its opacity. */
+
+
+	border-radius  : inherit;
+	content        : '';
+	inset          : calc( var( --bor-wid-lar ) * -1 );                 /* Border Width Large ~= -2.035px */
+	pointer-events : none;
+	position       : absolute;
+	transition     : opacity var( --dur-tra-p02 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
+	z-index        : -1;
+
+
+}
+.butBasAnc::after { /* What: Button Base Anchor Hover Shadow Layer. Why: The deeper shadow shows only while hovered. How: This starts it hidden. */
+
+
+	opacity : 0;
+
+
+}
+.butBasAnc:hover::before { /* What: Hovered Button Base Anchor Resting Shadow Layer. Why: The resting shadow gives way to the deeper one. How: This fades it out. */
+
+
+	opacity : 0;
+
+
+}
+.butBasAnc:hover::after { /* What: Hovered Button Base Anchor Hover Shadow Layer. Why: A lifted button casts a deeper shadow. How: This fades the deeper shadow in. */
+
+
+	opacity : 1;
+
+
+}
+.butBasAnc--primary { /* What: Primary Button Base Anchor. Why: The main action should stand out. How: This fills the pill lavender with dark text. */
+
+
+	background : var( --acc-mai-col ); /* Accent Main Color = #d1afe2 */
+	color      : var( --tex-acc-col ); /* Text Accent Color = #2c2c2c */
+
+
+}
+.butBasAnc--primary::before { /* What: Shadowed Button Base Anchor Resting Shadow Layer. Why: The filled buttons rest on a soft lavender shadow. How: This gives their resting layer the medium elevation. */
+
+
+	box-shadow : var( --ele-med-sha );
+
+
+}
+.butBasAnc--primary::after { /* What: Shadowed Button Base Anchor Hover Shadow Layer. Why: The filled buttons' shadow deepens as they lift. How: This gives their hover layer the large elevation. */
+
+
+	box-shadow : var( --ele-lar-sha );
+
+
+}
+.butBasAnc--primary:hover { /* What: Hovered Primary Button Base Anchor. Why: A button should respond to the pointer. How: This deepens the lavender and lifts the pill 2px while its shadow layers cross-fade. */
+
+
+	background : var( --acc-hov-col );                            /* Accent Hover Color = #b48fcb */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+
+
+}
+.butBasAnc--outline { /* What: Outline Button Base Anchor. Why: The second action should read as lighter than the first. How: This leaves the pill clear with sage text and a sage border. */
+
+
+	background   : transparent;
+	border-color : var( --acc-sec-col ); /* Accent Secondary Color = #8bad89 */
+	color        : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #4f6f4e */
+
+
+}
+.butBasAnc--outline:hover { /* What: Hovered Outline Button Base Anchor. Why: A button should respond to the pointer. How: This tints the pill pale sage and lifts it 2px. */
+
+
+	background : var( --acs-tin-col );                            /* Accent-Secondary Tint Color = #ddeadc */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+
+
+}
+.butBasAnc:active { /* What: Pressed Button Base Anchor. Why: A press should register before anything else happens. How: This presses the pill in slightly, which also undoes its hover lift, after every variant so it wins over their hovers. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, a literal since no scale step lands within 10%. */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button Base Anchor. Why: Someone who asked for less motion shouldn't see the buttons animate. How: This applies only when the reduced-motion preference is set. */
+
+
+	.butBasAnc,
+	.butBasAnc::before,
+	.butBasAnc::after { /* What: Motionless Button Base Anchor. Why: The hover, press, and focus looks and the shadow layers should simply switch, the lift and press still applying at once. How: This turns their transitions off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion nofActDiv */
+
+/* #endregion pagHedSec */
+
+/* #endregion pagEntDiv */
+
+
