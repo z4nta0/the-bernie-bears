@@ -446,19 +446,27 @@ passes on `close-out`.
       refreshed baselines sits inside a photo.
     - **SEO**: done 2026-10-11. Each page renders its own head tags, which
       React 19 moves into the head and removes when the page changes: Home
-      ("Lilah & Norah, the Bernie Bears | Bernese Mountain Dogs") and Social
-      Links ("Follow Lilah & Norah | The Bernie Bears") a title, a
-      description of 100 to 125 characters, and a canonical address; About,
-      Contact, and the 404 page a title and `noindex`. `index.html` keeps
-      only the fallback title, the author, and the JSON-LD graph (this
-      domain's `WebSite`, published by The Bernie Bears, an `Organization`
-      whose `url` is theberniebears.com, with the Contact page's email and
-      the six profiles in `sameAs`), since React adds a page's description or
-      canonical beside one in `index.html` rather than replacing it. The
+      a canonical address, Social Links ("Follow Lilah & Norah | The Bernie
+      Bears") a title and a canonical address, and About, Contact, and the
+      404 page a title and `noindex`. `index.html` carries the home page's
+      title ("Lilah & Norah, the Bernie Bears | Bernese Mountain Dogs") and
+      its description, the site's one description tag, plus the author and
+      the JSON-LD graph (this domain's `WebSite`, published by The Bernie
+      Bears, an `Organization` whose `url` is theberniebears.com, with the
+      Contact page's email and the six profiles in `sameAs`). React adds a
+      page's own description beside one in `index.html` rather than
+      replacing it, so Social Links swaps the one tag's text for its own
+      through `ui/page-description.ts`'s `usePagDesFun` while it shows. The
       build compacts the JSON-LD and fails on invalid JSON. `public/` gains
       `robots.txt` (every crawler allowed) and a sitemap of Home and Social
-      Links. Off-site, for the user after deploy: submit the sitemap to
-      Google Search Console and Bing.
+      Links. The user submitted the sitemap to Google Search Console and
+      Bing, and confirmed the security headers, after the deploy.
+      - **Raw head fix** (2026-10-11, after the deploy): opengraph.xyz, which
+        reads the raw HTML without running the script, found only the
+        fallback title "The Bernie Bears" (16 characters) and no
+        description, since both came from React. So `index.html` now carries
+        the home page's title and description, and the SEO suite checks the
+        raw page the same way.
     - **Social previews and favicon set**: done 2026-10-11. `npm run
       og-image` captures `design/og-image/card.html` (the cartoon logo, the
       main site's own icon, in About's dashed white card over the page

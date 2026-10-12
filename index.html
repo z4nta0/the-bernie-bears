@@ -10,16 +10,17 @@
 
 		<!-- #region Document -->
 
-		<meta charset='UTF-8' />                                                 <!-- What: Character Set Meta. Why: The browser has to decode the page as UTF-8 before it reads anything else. How: This sits first in the head, inside the first 1,024 bytes the browser checks. -->
-		<meta name='viewport' content='width=device-width, initial-scale=1.0' /> <!-- What: Viewport Meta. Why: Phones should lay the site out at device width instead of a zoomed-out desktop width. How: This sets the layout width to the device's and starts at no zoom. -->
-		<title>The Bernie Bears</title>                                          <!-- What: Page Title Element. Why: The tab names the site even before the page's script runs. How: This is the fallback, since each page renders its own title, which React 19 places ahead of this one. -->
+		<meta charset='UTF-8' />                                                   <!-- What: Character Set Meta. Why: The browser has to decode the page as UTF-8 before it reads anything else. How: This sits first in the head, inside the first 1,024 bytes the browser checks. -->
+		<meta name='viewport' content='width=device-width, initial-scale=1.0' />   <!-- What: Viewport Meta. Why: Phones should lay the site out at device width instead of a zoomed-out desktop width. How: This sets the layout width to the device's and starts at no zoom. -->
+		<title>Lilah &amp; Norah, the Bernie Bears | Bernese Mountain Dogs</title> <!-- What: Page Title Element. Why: Link checkers and crawlers that never run the site's script read only this file, so it carries the home page's title in full. How: Every other page renders its own title, which React 19 places ahead of this one. -->
 
 		<!-- #endregion Document -->
 
 
 		<!-- #region Search -->
 
-		<meta name='author' content='The Bernie Bears' /> <!-- What: Author Meta. Why: Search engines and link preview inspectors look for who a page belongs to, and on a real brand's site that's the brand itself. How: This names The Bernie Bears. --> <!-- Each page renders its own description, canonical link, or noindex tag, since React 19 adds those beside any in this file rather than replacing them. -->
+		<meta name='author'      content='The Bernie Bears' /> <!-- What: Author Meta. Why: Search engines and link preview inspectors look for who a page belongs to, and on a real brand's site that's the brand itself. How: This names The Bernie Bears. -->
+		<meta name='description' content='Meet Lilah and Norah, two Bernese Mountain Dog sisters sharing bear hugs, silly videos, and fluffy fun. Follow along!' /> <!-- What: Description Meta. Why: Search listings show a summary under the title, and checkers and crawlers that never run the site's script read only this file. How: This carries the home page's description, the one description tag the site has, which the Social Links page swaps for its own while it shows. --> <!-- Each page renders its own canonical link or noindex tag, and every page but Home its own title, since React 19 adds those beside any in this file rather than replacing them. -->
 
 		<!-- #endregion Search -->
 

@@ -6,7 +6,8 @@
 import cssModObj from './links.module.css'; // What: CSS Module Object. Why: The Social Links page is styled in its own module, whose class names Vite hashes. How: Every element reads its class from this object.
 
 
-import { SOC_PRO_ARR } from '../../ui/social-profiles.ts'; // What: Social Profile Array. Why: The page's first six cards are the girls' profiles, which the phone menu lists too. How: This imports the shared rows.
+import { SOC_PRO_ARR  } from '../../ui/social-profiles.ts';  // What: Social Profile Array. Why: The page's first six cards are the girls' profiles, which the phone menu lists too. How: This imports the shared rows.
+import { usePagDesFun } from '../../ui/page-description.ts'; // What: Use Page Description Function. Why: The page's search description differs from the home page's, which index.html carries. How: This swaps it in while the page shows.
 
 // #endregion Imports
 
@@ -96,15 +97,16 @@ const SOC_LIN_ARR = [ // What: Social Link Array. Why: The page lists every plac
  * hidden from screen readers as decoration, so each card is announced by its
  * platform, handle, and sentence.
  *
- * It also sets the page's title, description, and canonical address, which
- * React moves into the document head while the page is shown.
+ * It also sets the page's title and canonical address, which React moves
+ * into the document head while the page is shown, and swaps the head's one
+ * description for its own through usePagDesFun until the page leaves.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
  * @param props - This component does not use any props.
  *
- * @returns The Social Links page's title, description, canonical link,
- *          and wrapper div.
+ * @returns The Social Links page's title, canonical link, and wrapper
+ *          div.
  *
  * @example
  * ```tsx
@@ -116,6 +118,10 @@ const SOC_LIN_ARR = [ // What: Social Link Array. Why: The page lists every plac
 function LinPagCom () : React.JSX.Element {
 
 
+	usePagDesFun( 'Follow Lilah and Norah, the Bernie Bears, on Instagram, TikTok, YouTube, Facebook, X, and Pinterest for bear hugs and fun.' ); // What: Page Description Call. Why: Search listings show a summary of the page under its title, and this page's differs from the home page's. How: This swaps the head's one description for this one while the page shows.
+
+
+
 	return (
 
 
@@ -123,12 +129,6 @@ function LinPagCom () : React.JSX.Element {
 
 
 			<title>Follow Lilah & Norah | The Bernie Bears</title>{ /* What: Page Title Element. Why: Search listings and tabs should say this page is where to follow the girls. How: React 19 moves this title into the document head while the page is shown, ahead of index.html's fallback. */ }
-
-			<meta
-				name='description'
-
-				content='Follow Lilah and Norah, the Bernie Bears, on Instagram, TikTok, YouTube, Facebook, X, and Pinterest for bear hugs and fun.'
-			/>{ /* What: Description Meta Element. Why: Search listings show a summary of the page under its title. How: React 19 moves this tag into the document head while the page is shown; index.html carries none, so there's only ever one. */ }
 
 			<link
 				href='https://theberniebears.dog/links'

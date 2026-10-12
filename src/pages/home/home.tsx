@@ -124,15 +124,15 @@ const FEA_CAR_ARR = [ // What: Feature Card Array. Why: The home page sums up li
  * by its words alone, since wrapping its paw in a hidden span would trade the
  * space before it for the button's flex gap.
  *
- * It also sets the page's title, description, and canonical address, which
- * React moves into the document head while the page is shown.
+ * It also sets the page's canonical address, which React moves into the
+ * document head while the page is shown; its title and description are
+ * index.html's own, which every other page swaps for its own.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
  * @param props - This component does not use any props.
  *
- * @returns The home page's title, description, canonical link, and
- *          wrapper div.
+ * @returns The home page's canonical link and wrapper div.
  *
  * @example
  * ```tsx
@@ -149,14 +149,6 @@ function HomPagCom () : React.JSX.Element {
 
 		<>{ /* What: Home Page Fragment. Why: The page's head tags and its content render side by side. How: This groups them without adding an element. */ }
 
-
-			<title>Lilah & Norah, the Bernie Bears | Bernese Mountain Dogs</title>{ /* What: Page Title Element. Why: Search listings and tabs name the site's front page by its title, which leads with the girls. How: React 19 moves this title into the document head while the page is shown, ahead of index.html's fallback. */ }
-
-			<meta
-				name='description'
-
-				content='Meet Lilah and Norah, two Bernese Mountain Dog sisters sharing bear hugs, silly videos, and fluffy fun. Follow along!'
-			/>{ /* What: Description Meta Element. Why: Search listings show a summary of the page under its title. How: React 19 moves this tag into the document head while the page is shown; index.html carries none, so there's only ever one. */ }
 
 			<link
 				href='https://theberniebears.dog/'
