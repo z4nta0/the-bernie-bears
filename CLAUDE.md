@@ -414,7 +414,8 @@ passes on `close-out`.
     a script, an SVG favicon plus the raster favicon set), the SEO pass and
     social preview card per "## Kind of site", and interaction feedback.
 12. **Close-out**: the README rewritten (it still describes the placeholder
-    site), the full rule audit passes, and the version bump.
+    site), the full rule audit passes, and the version bump to 1.0.0 (asked
+    for by the user 2026-10-11: remind them when close-out finishes).
 
 ## Test suites
 Added 2026-10-11, adapted from tonys-toppers'. Playwright suites live in
