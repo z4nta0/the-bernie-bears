@@ -400,8 +400,8 @@ passes on `close-out`.
      page's missing `h1` (step 11). Its undecided results are all contrast
      over gradients and the translucent bar; measured against every gradient
      stop, everything passes except Contact's closing line, which takes a
-     slightly darker lavender (4.85:1). Left for the user: the bar's text
-     while photos scroll under it, and a screen reader listen.
+     slightly darker lavender (4.85:1). The user checked the bar's text by
+     eye and with WAVE while photos scroll under it, and it holds up.
    - **WAVE** (run by the user 2026-10-11): no errors, and Social Links
      clean. Contact's emoji row was a paragraph hidden from screen readers,
      so it became a `div` like the paw dividers, clearing its "possible
