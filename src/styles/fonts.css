@@ -1,0 +1,54 @@
+
+
+
+/**
+ * fonts.css = Fonts
+ *
+ * @summary
+ * The site's self-hosted fonts: Dancing Script for the headings and the brand
+ * name, and Nunito for everything else, replacing the Google Fonts stylesheet
+ * and preconnect links index.html used to load, so a visit makes no requests
+ * to a third party. Each file is the same latin subset Google served for the
+ * weights the site asked for, which covers every character the copy uses
+ * except its emoji, arrows, and symbols; none of Google's files for either
+ * family has those, so they keep rendering from a fallback font as before.
+ * Both files are variable across weights, read from each font's fvar table, so
+ * each face declares its whole range: Dancing Script 400 to 700 and Nunito 200
+ * to 1000. The page uses Dancing Script at 400 and 700 and Nunito at 400 to
+ * 700, all weights Google's own faces declared, so nothing draws differently.
+ * Neither family has an italic file, so the italic captions are slanted from
+ * the upright Nunito by the browser, exactly as before. The files live in
+ * src/assets/fonts/ and are pulled in through url(), so Vite fingerprints
+ * them.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+@font-face { /* What: Dancing Script Font Face. Why: Dancing Script is the display font for the headings and the brand name. How: This loads its latin variable file across its full 400 to 700 weight range, showing fallback text until it arrives. */
+
+
+	font-display : swap;
+	font-family  : 'Dancing Script';
+	font-style   : normal;
+	font-weight  : 400 700;
+	src          : url( '../assets/fonts/dancing-script-latin-normal.woff2' ) format( 'woff2' );
+
+
+}
+
+@font-face { /* What: Nunito Font Face. Why: Nunito is the body font for paragraphs, labels, buttons, and the form. How: This loads its latin variable file across its full 200 to 1000 weight range, showing fallback text until it arrives. */
+
+
+	font-display : swap;
+	font-family  : 'Nunito';
+	font-style   : normal;
+	font-weight  : 200 1000;
+	src          : url( '../assets/fonts/nunito-latin-normal.woff2' ) format( 'woff2' );
+
+
+}
+
+

@@ -1,0 +1,319 @@
+
+
+
+/**
+ * nav.module.css = Navigation Bar Module
+ *
+ * @summary
+ * Styles for NavBarCom: the frosted bar that sticks to the top of the page,
+ * with the brand (a bouncing paw and the name in the script font) on the left
+ * and the page links as pills on the right, the current page's filled in. On
+ * screens 640px wide or narrower the links move into a panel below the bar,
+ * shown only while the three-bar toggle has it open, and the toggle's bars
+ * turn into a cross. The bar's states are attributes rather than classes:
+ * aria-expanded on the toggle, data-mobile-menu-open on the links, and
+ * aria-current on the current page's link. The bar's width and side padding
+ * are the page's shared container values, merged into its own rule.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region navBarHed */
+
+.navBarHed { /* What: Navigation Bar Header. Why: The bar stays at the top of the screen over the page. How: This sticks it to the top above the page's content, frosts what scrolls under it, and edges it with a cream rule and a soft shadow. */
+
+
+	backdrop-filter : blur( calc( var( --ver-rhy-m01 ) * 1rem ) );     /* Vertical Rhythm Base Minus 1 = 11px */
+	background      : oklch( from var( --bac-sur-col ) l c h / 0.92 ); /* Background Surface Color = #ffffff @ 0.92 opacity */
+	border-bottom   : var( --bor-wid-lar ) solid var( --bor-mai-col ); /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
+	box-shadow      : var( --ele-med-sha );
+	position        : sticky;
+	top             : 0;
+	z-index         : 100;
+
+
+}
+
+
+/* #region navInnDiv */
+
+.navInnDiv { /* What: Navigation Inner Div. Why: The brand, toggle, and links share one row in the page's centered column. How: This spreads them across a row about 79px tall within the page's capped column and its side padding. */
+
+
+	align-items     : center;
+	display         : flex;
+	height          : calc( var( --ver-rhy-p06 ) * 1rem ); /* Vertical Rhythm Base Plus 6 ~= 78.751px */
+	justify-content : space-between;
+	margin          : 0 auto;
+	max-width       : var( --con-max-wid );                /* Container Maximum Width ~= 1,094.093px */
+	padding         : 0 var( --gut-sid-pad );              /* Gutter Side Padding, about 19.304px - 44.876px */
+
+
+}
+
+
+/* #region navBraAnc */
+
+.navBraAnc { /* What: Navigation Brand Anchor. Why: The paw and the name read as one link home. How: This sets the paw beside the name, with no underline. */
+
+
+	align-items     : center;
+	display         : flex;
+	gap             : var( --spa-hor-m02 ); /* Spacing Horizontal Base Minus 2 ~= 8.304px */
+	text-decoration : none;
+
+
+}
+
+.pawIcoSpa { /* What: Paw Icon Span. Why: A bouncing paw gives the brand some life. How: This sizes the paw and rocks it gently, forever. */
+
+
+	animation : pawIcoSpaLoopBounce var( --dur-ani-p10 ) var( --mot-sta-eas ) infinite; /* Duration Animation Base Plus 10 ~= 2,627.0ms, Motion Standard Easing = ease */
+	font-size : var( --fon-siz-p03 );                                                   /* Font Size Base Plus 3 ~= 25.572px */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Paw Icon Span. Why: Someone who asked for less motion shouldn't see the paw bounce. How: This applies only when the reduced-motion preference is set. */
+
+
+	.pawIcoSpa { /* What: Still Paw Icon Span. Why: The paw should simply sit beside the name. How: This turns the animation off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+@keyframes pawIcoSpaLoopBounce { /* What: Paw Icon Span Loop Bounce. Why: The paw rocks so the brand feels playful. How: This tilts it left at rest and right, a little larger, at the halfway point. */
+
+
+	0%,
+	100% {
+
+
+		transform : rotate( -10deg ) scale( 1 );
+
+
+	}
+
+	50% {
+
+
+		transform : rotate( 10deg ) scale( 1.1 );
+
+
+	}
+
+
+}
+
+.braNamSpa { /* What: Brand Name Span. Why: The bar names the site. How: This sets the name large and bold in the script font, in the deep lavender, spaced a little. */
+
+
+	color          : var( --acc-dar-col );                   /* Accent Dark Color ~= #7e5b93 */
+	font-family    : var( --fon-fam-bra );                   /* Font Family Brand = 'Dancing Script', cursive */
+	font-size      : var( --fon-siz-p03 );                   /* Font Size Base Plus 3 ~= 25.572px */
+	font-weight    : 700;
+	letter-spacing : calc( var( --cdn-pow-014-rec ) * 1em ); /* Core-Design-Number to the Power of 14 Reciprocal ~= 0.020em */
+
+
+}
+
+/* #endregion navBraAnc */
+
+
+/* #region navTogBut */
+
+.navTogBut { /* What: Navigation Toggle Button. Why: Wide screens show the links in the bar, so the toggle stays hidden there. How: This hides it, and stacks its bars on a bare, borderless button once a narrow screen shows it. */
+
+
+	background     : none;
+	border         : none;
+	cursor         : pointer;
+	display        : none;
+	flex-direction : column;
+	gap            : var( --spa-ver-m04 );                      /* Spacing Vertical Base Minus 4 ~= 4.732px */
+	padding        : var( --spa-ver-m05 ) var( --spa-hor-m05 ); /* Spacing Vertical Base Minus 5 ~= 3.572px, Spacing Horizontal Base Minus 5 ~= 3.572px */
+
+
+}
+@media ( max-width : 640px ) { /* What: Narrow Navigation Toggle Button. Why: The links don't fit the bar on a narrow screen, so the toggle has to show. How: This applies 640px wide and below. */
+
+
+	.navTogBut { /* What: Shown Navigation Toggle Button. Why: The menu needs a way to open. How: This shows the toggle as a column of bars. */
+
+
+		display : flex;
+
+
+	}
+
+
+}
+
+.togBarSpa { /* What: Toggle Bar Span. Why: The toggle draws as three lavender bars. How: This sizes and rounds each bar, easing every change so the cross forms smoothly. */
+
+
+	background       : var( --acc-mai-col );                          /* Accent Main Color = #d1afe2 */
+	border-radius    : var( --rad-bor-xsm );                          /* Radius Border Extra Small ~= 3.571px */
+	display          : block;
+	height           : calc( var( --ver-rhy-m05 ) * 1rem );           /* Vertical Rhythm Base Minus 5 ~= 3.572px */
+	transform-origin : center;
+	transition       : all var( --dur-tra-p02 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
+	width            : calc( var( --ver-rhy-p02 ) * 1rem );           /* Vertical Rhythm Base Plus 2 ~= 25.572px */
+
+
+}
+.navTogBut[aria-expanded='true'] .togBarSpa:nth-child(1) { /* What: Open Top Toggle Bar Span. Why: The open toggle shows a cross. How: This drops the top bar to the middle and tilts it one way. */
+
+
+	transform : translateY( calc( var( --ver-rhy-m02 ) * 1rem ) ) rotate( 45deg ); /* Vertical Rhythm Base Minus 2 ~= 8.304px */
+
+
+}
+.navTogBut[aria-expanded='true'] .togBarSpa:nth-child(2) { /* What: Open Middle Toggle Bar Span. Why: The cross has only two strokes. How: This fades the middle bar out. */
+
+
+	opacity : 0;
+
+
+}
+.navTogBut[aria-expanded='true'] .togBarSpa:nth-child(3) { /* What: Open Bottom Toggle Bar Span. Why: The open toggle shows a cross. How: This lifts the bottom bar to the middle and tilts it the other way. */
+
+
+	transform : translateY( calc( var( --ver-rhy-m02 ) * -1rem ) ) rotate( -45deg ); /* Vertical Rhythm Base Minus 2 ~= -8.304px */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Toggle Bar Span. Why: Someone who asked for less motion shouldn't see the bars move. How: This applies only when the reduced-motion preference is set. */
+
+
+	.togBarSpa { /* What: Motionless Toggle Bar Span. Why: The bars should simply switch between three lines and a cross. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion navTogBut */
+
+
+/* #region navLinNav */
+
+.navLinNav { /* What: Navigation Links Nav. Why: Wide screens show the page links in a row in the bar. How: This lines them up with small gaps. */
+
+
+	align-items : center;
+	display     : flex;
+	gap         : var( --spa-hor-m05 ); /* Spacing Horizontal Base Minus 5 ~= 3.572px */
+
+
+}
+@media ( max-width : 640px ) { /* What: Narrow Navigation Links Nav. Why: The links don't fit the bar on a narrow screen. How: This applies 640px wide and below. */
+
+
+	.navLinNav { /* What: Closed Navigation Links Nav. Why: On a narrow screen the links become a panel below the bar, out of the way until the toggle opens it. How: This stacks them on a white panel across the screen under the bar, hidden while closed, which also keeps its links out of the Tab order. */
+
+
+		background     : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
+		border-bottom  : var( --bor-wid-lar ) solid var( --bor-mai-col ); /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
+		box-shadow     : var( --ele-lar-sha );
+		display        : none;
+		flex-direction : column;
+		gap            : var( --spa-ver-m02 );                            /* Spacing Vertical Base Minus 2 ~= 8.304px */
+		left           : 0;
+		padding        : var( --spa-ver-bas ) var( --spa-hor-bas );       /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base ~= 14.572px */
+		position       : absolute;
+		right          : 0;
+		top            : calc( var( --ver-rhy-p06 ) * 1rem );             /* Vertical Rhythm Base Plus 6 ~= 78.751px */
+
+
+	}
+	.navLinNav[data-mobile-menu-open] { /* What: Open Navigation Links Nav. Why: The panel shows its links once the toggle opens it. How: This shows the panel while data-mobile-menu-open is set. */
+
+
+		display : flex;
+
+
+	}
+
+
+}
+
+.navLinAnc { /* What: Navigation Link Anchor. Why: Each link names a page as a soft pill. How: This sets it bold in the body font with pill padding and rounding, easing every change. */
+
+
+	border-radius : 999px;
+	color         : var( --tex-sec-col );                          /* Text Secondary Color = #5a5a5a */
+	font-family   : var( --fon-fam-mai );                          /* Font Family Main = 'Nunito', sans-serif */
+	font-size     : var( --fon-siz-p01 );                          /* Font Size Base Plus 1 ~= 14.572px */
+	font-weight   : 600;
+	padding       : var( --spa-ver-m02 ) var( --spa-hor-bas );     /* Spacing Vertical Base Minus 2 ~= 8.304px, Spacing Horizontal Base ~= 14.572px */
+	position      : relative;
+	transition    : all var( --dur-tra-p01 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease */
+
+
+}
+.navLinAnc:hover { /* What: Hovered Navigation Link Anchor. Why: A link should respond to the pointer. How: This tints the pill pale lavender with deep lavender text. */
+
+
+	background : var( --acc-tin-col ); /* Accent Tint Color = #f3eaf9 */
+	color      : var( --acc-dar-col ); /* Accent Dark Color ~= #7e5b93 */
+
+
+}
+.navLinAnc[aria-current='page'] { /* What: Current Navigation Link Anchor. Why: The link for the page being shown should stand out. How: This fills the pill cream with dark text, a darker cream border, and a soft shadow, winning over the hover look by coming after it. */
+
+
+	background : var( --bac-hig-col );                            /* Background Highlight Color = #ececb6 */
+	border     : var( --bor-wid-bas ) solid var( --bor-str-col ); /* Border Width Base ~= 1.160px, Border Strong Color = #d6d69a */
+	box-shadow : var( --ele-sma-sha );
+	color      : var( --tex-mai-col );                            /* Text Main Color = #2c2c2c */
+
+
+}
+@media ( max-width : 640px ) { /* What: Narrow Navigation Link Anchor. Why: The menu's links stack down the panel and are tapped rather than clicked. How: This applies 640px wide and below. */
+
+
+	.navLinAnc { /* What: Full Width Navigation Link Anchor. Why: A wide, centered target is easier to tap. How: This stretches the pill across the panel and centers its text. */
+
+
+		padding    : var( --spa-ver-m01 ) var( --spa-hor-m01 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Minus 1 = 11px */
+		text-align : center;
+		width      : 100%;
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Navigation Link Anchor. Why: Someone who asked for less motion shouldn't see the links animate. How: This applies only when the reduced-motion preference is set. */
+
+
+	.navLinAnc { /* What: Motionless Navigation Link Anchor. Why: The hover and current looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion navLinNav */
+
+/* #endregion navInnDiv */
+
+/* #endregion navBarHed */
+
+
