@@ -71,8 +71,8 @@ src/
   ui/                    what every page uses (nav, footer, scroll-top)
   styles/                global CSS only (fonts.css, styles.css)
 ```
-Outside `src/`: `public/` (the favicon and Netlify's `_redirects`) and
-`tests/` (see "## Test suites").
+Outside `src/`: `public/` (the favicon and Netlify's `_redirects` and
+`_headers`) and `tests/` (see "## Test suites").
 - **`pages/` takes the place of `tabs/`.** Each route gets its own folder,
   and an image only that page shows lives beside it. The 404 page gets
   `pages/not-found/` in step 11.
@@ -418,6 +418,14 @@ passes on `close-out`.
       (an `h1`, a line in the girls' voice, and the Contact page's two pill
       buttons, Back Home and Follow Along to Social Links), with its own
       title and `noindex`. That cleared the last accessibility failure.
+    - **Security headers**: done 2026-10-11, the siblings' `_headers` with
+      `form-action 'none'` (the site has no forms) and Referrer-Policy
+      `strict-origin-when-cross-origin` instead of `same-origin`, so the
+      main site and the platforms still see the visits this site sends (the
+      user's choice in step 7), and Vite emitting every asset as a file
+      (`assetsInlineLimit: 0`). Checked by serving the build with the
+      headers: no violations on any page or the phone menu in all three
+      engines, with both fonts and every photo loading.
 12. **Close-out**: the README rewritten (it still describes the placeholder
     site), the full rule audit passes, and the version bump to 1.0.0 (asked
     for by the user 2026-10-11: remind them when close-out finishes).
