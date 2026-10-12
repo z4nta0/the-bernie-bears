@@ -1,0 +1,164 @@
+
+
+
+/**
+ * not-found.module.css = Not Found Page Module
+ *
+ * @summary
+ * Styles for NotFouCom: the page fading up into place, and the gradient
+ * header the other pages open with, here holding the heading, a short line,
+ * and the two pill buttons centered beneath them. The header, buttons, and
+ * entrance are the Contact page's, copied in, and the entrance and the
+ * buttons' transitions are off under reduced motion.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region pagEntDiv */
+
+.pagEntDiv { /* What: Page Enter Div. Why: The page should arrive gently rather than appear at once. How: This plays the shared fade-up once as the page mounts, holding its first frame until it starts. */
+
+
+	animation : global( pageEnterFadeIn ) var( --dur-ani-p05 ) var( --mot-sta-eas ) both; /* Duration Animation Base Plus 5 ~= 643.9ms, Motion Standard Easing = ease */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Page Enter Div. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.pagEntDiv { /* What: Still Page Enter Div. Why: The page should simply appear. How: This turns the animation off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+
+/* #region pagHedSec */
+
+.pagHedSec { /* What: Page Header Section. Why: The page opens with its title on a soft band. How: This fills a centered band with a cream to lavender gradient and a darker cream rule below. */
+
+
+	background    : linear-gradient( 135deg, var( --bac-pag-col ) 0%, var( --bac-hig-col ) 50%, var( --acc-tin-col ) 100% ); /* Background Page Color = #f7f7e2, Background Highlight Color = #ececb6, Accent Tint Color = #f3eaf9 */
+	border-bottom : var( --bor-wid-lar ) solid var( --bor-str-col );                                                         /* Border Width Large ~= 2.035px, Border Strong Color = #d6d69a */
+	padding       : var( --spa-ver-p06 ) var( --gut-sid-pad ) var( --spa-ver-p05 );                                          /* Spacing Vertical Base Plus 6 ~= 78.751px, Gutter Side Padding, about 19.304px - 44.876px, Spacing Vertical Base Plus 5 ~= 59.447px */
+	text-align    : center;
+
+
+}
+
+.pagTitHea { /* What: Page Title Heading. Why: The page's heading is its biggest text. How: This sets it very large, growing with the screen, with a small gap below. */
+
+
+	font-size     : clamp( var( --fon-siz-p05 ), 5vw, var( --fon-siz-p07 ) ); /* Font Size Base Plus 5 ~= 44.876px, Font Size Base Plus 7 ~= 78.751px */
+	margin-bottom : var( --spa-ver-m01 );                                     /* Spacing Vertical Base Minus 1 = 11px */
+
+
+}
+
+.pagSubPar { /* What: Page Sub Paragraph. Why: A short line under the heading sets the tone. How: This sets it a little large, italic, in the mid grey. */
+
+
+	color      : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
+	font-size  : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	font-style : italic;
+
+
+}
+
+
+/* #region nofActDiv */
+
+.nofActDiv { /* What: Not-Found Actions Div. Why: The page's two ways onward sit together under its line. How: This centers them in a row that wraps, with room above. */
+
+
+	display         : flex;
+	flex-wrap       : wrap;
+	gap             : var( --spa-ver-bas ) var( --spa-hor-bas ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base ~= 14.572px */
+	justify-content : center;
+	margin-top      : var( --spa-ver-p03 );                      /* Spacing Vertical Base Plus 3 ~= 33.876px */
+
+
+}
+
+.butBasAnc { /* What: Button Base Anchor. Why: The page's ways onward read as bold pills, the same as the home page's. How: This sets a pill with bold text, a transparent border its variants can color, and an eased change on hover. */
+
+
+	align-items     : center;
+	border          : var( --bor-wid-lar ) solid transparent;        /* Border Width Large ~= 2.035px */
+	border-radius   : 999px;
+	cursor          : pointer;
+	display         : inline-flex;
+	font-family     : var( --fon-fam-mai );                          /* Font Family Main = 'Nunito', sans-serif */
+	font-size       : var( --fon-siz-p01 );                          /* Font Size Base Plus 1 ~= 14.572px */
+	font-weight     : 700;
+	gap             : var( --spa-hor-m03 );                          /* Spacing Horizontal Base Minus 3 ~= 6.268px */
+	padding         : var( --spa-ver-bas ) var( --spa-hor-p03 );     /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	text-decoration : none;
+	transition      : all var( --dur-tra-p02 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
+
+
+}
+.butBasAnc--primary { /* What: Primary Button Base Anchor. Why: The main action should stand out. How: This fills the pill lavender with dark text and a soft lavender shadow. */
+
+
+	background : var( --acc-mai-col ); /* Accent Main Color = #d1afe2 */
+	box-shadow : var( --ele-med-sha );
+	color      : var( --tex-acc-col ); /* Text Accent Color = #2c2c2c */
+
+
+}
+.butBasAnc--primary:hover { /* What: Hovered Primary Button Base Anchor. Why: A button should respond to the pointer. How: This deepens the lavender, lifts the pill 2px, and spreads its shadow. */
+
+
+	background : var( --acc-hov-col );                            /* Accent Hover Color = #b48fcb */
+	box-shadow : var( --ele-lar-sha );
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+
+
+}
+.butBasAnc--outline { /* What: Outline Button Base Anchor. Why: The second action should read as lighter than the first. How: This leaves the pill clear with sage text and a sage border. */
+
+
+	background   : transparent;
+	border-color : var( --acc-sec-col ); /* Accent Secondary Color = #8bad89 */
+	color        : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #4f6f4e */
+
+
+}
+.butBasAnc--outline:hover { /* What: Hovered Outline Button Base Anchor. Why: A button should respond to the pointer. How: This tints the pill pale sage and lifts it 2px. */
+
+
+	background : var( --acs-tin-col );                            /* Accent-Secondary Tint Color = #ddeadc */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button Base Anchor. Why: Someone who asked for less motion shouldn't see the buttons animate. How: This applies only when the reduced-motion preference is set. */
+
+
+	.butBasAnc { /* What: Motionless Button Base Anchor. Why: The hover looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion nofActDiv */
+
+/* #endregion pagHedSec */
+
+/* #endregion pagEntDiv */
+
+

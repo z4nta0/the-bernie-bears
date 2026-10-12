@@ -413,6 +413,11 @@ passes on `close-out`.
     image optimization (originals in `design/photos/`, WebP copies written by
     a script, an SVG favicon plus the raster favicon set), the SEO pass and
     social preview card per "## Kind of site", and interaction feedback.
+    - **404 page**: done 2026-10-11 in `pages/not-found/`, reached by the
+      router's catch-all route. It reuses the other pages' gradient header
+      (an `h1`, a line in the girls' voice, and the Contact page's two pill
+      buttons, Back Home and Follow Along to Social Links), with its own
+      title and `noindex`. That cleared the last accessibility failure.
 12. **Close-out**: the README rewritten (it still describes the placeholder
     site), the full rule audit passes, and the version bump to 1.0.0 (asked
     for by the user 2026-10-11: remind them when close-out finishes).

@@ -3,15 +3,16 @@
 
 // #region Imports
 
-import { AboPagCom    } from './pages/about/about.tsx';     // What: About Page Component. Why: The About route shows the girls' story. How: The about route renders it.
-import { ConPagCom    } from './pages/contact/contact.tsx'; // What: Contact Page Component. Why: The Contact route shows the ways to get in touch. How: The contact route renders it.
-import { HomPagCom    } from './pages/home/home.tsx';       // What: Home Page Component. Why: The site's root address is its home page. How: The home route renders it.
-import { LinPagCom    } from './pages/links/links.tsx';     // What: Links Page Component. Why: The Social Links route lists every place to follow the girls. How: The links route renders it.
-import { NavBarCom    } from './ui/nav.tsx';                // What: Navigation Bar Component. Why: Every page starts with the shared bar. How: This renders above the routes.
-import { Route        } from 'react-router';                // What: Route. Why: Each page is matched to its path. How: This declares one route per page.
-import { Routes       } from 'react-router';                // What: Routes. Why: Only one page should render for any path. How: This renders the first route whose path matches.
-import { SitFooCom    } from './ui/footer.tsx';             // What: Site Footer Component. Why: Every page ends with the shared footer. How: This renders below the routes.
-import { useScrTopFun } from './ui/scroll-top.ts';          // What: Use Scroll Top Function. Why: A new page should open at its top rather than where the last one was scrolled. How: The app root calls it once, and it scrolls on every link-driven navigation.
+import { AboPagCom    } from './pages/about/about.tsx';         // What: About Page Component. Why: The About route shows the girls' story. How: The about route renders it.
+import { ConPagCom    } from './pages/contact/contact.tsx';     // What: Contact Page Component. Why: The Contact route shows the ways to get in touch. How: The contact route renders it.
+import { HomPagCom    } from './pages/home/home.tsx';           // What: Home Page Component. Why: The site's root address is its home page. How: The home route renders it.
+import { LinPagCom    } from './pages/links/links.tsx';         // What: Links Page Component. Why: The Social Links route lists every place to follow the girls. How: The links route renders it.
+import { NavBarCom    } from './ui/nav.tsx';                    // What: Navigation Bar Component. Why: Every page starts with the shared bar. How: This renders above the routes.
+import { NotFouCom    } from './pages/not-found/not-found.tsx'; // What: Not Found Component. Why: Unknown addresses need a page of their own. How: The catch-all route renders it.
+import { Route        } from 'react-router';                    // What: Route. Why: Each page is matched to its path. How: This declares one route per page.
+import { Routes       } from 'react-router';                    // What: Routes. Why: Only one page should render for any path. How: This renders the first route whose path matches.
+import { SitFooCom    } from './ui/footer.tsx';                 // What: Site Footer Component. Why: Every page ends with the shared footer. How: This renders below the routes.
+import { useScrTopFun } from './ui/scroll-top.ts';              // What: Use Scroll Top Function. Why: A new page should open at its top rather than where the last one was scrolled. How: The app root calls it once, and it scrolls on every link-driven navigation.
 
 // #endregion Imports
 
@@ -26,7 +27,8 @@ import { useScrTopFun } from './ui/scroll-top.ts';          // What: Use Scroll 
  * footer, stacked in a column at least as tall as the screen so the footer
  * sits at the bottom of a short page. It also returns the window to the top
  * after each link-driven navigation. A new page is added as another route
- * here.
+ * here, above the catch-all route that sends every unknown address to the
+ * 404 page.
  *
  * Sections:
  *  - Components
@@ -121,6 +123,13 @@ function AppRooCom () : React.JSX.Element {
 						element={ <ConPagCom /> }
 						path='/contact'
 					/>{ /* What: Contact Route. Why: The ways to get in touch have their own page. How: This renders ConPagCom at /contact. */ }
+
+
+
+					<Route
+						element={ <NotFouCom /> }
+						path='*' // What: Catch-All Path. Why: Any address the site doesn't have should land on the 404 page. How: The asterisk matches every path no earlier route claimed.
+					/>{ /* What: Not Found Route. Why: Unknown paths need a page of their own. How: This renders NotFouCom for every other path. */ }
 
 
 				</Routes>
