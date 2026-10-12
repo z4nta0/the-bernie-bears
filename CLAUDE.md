@@ -541,9 +541,11 @@ passes on `close-out`.
         pressed;
       - the brand link leaving the phone menu open, and the page inert,
         when tapped with the menu open (now covered by `menu.spec.ts`).
-    - **Left as is**: the footer's copyright line runs 66 characters, past
-      the 60 for secondary text, since capping it would also shorten the
-      full-width rule above it (raised with the user).
+    - **Footer** (decided by the user 2026-10-12): the tagline keeps its
+      cap, being one continuous run of text, while the copyright line runs
+      66 characters uncapped, a call made for this line alone rather than a
+      rule. The copyright line now sits centered between its rule and the
+      page's end, its top padding matching the footer's bottom padding.
 
 ## Test suites
 Added 2026-10-11, adapted from tonys-toppers'. Playwright suites live in
