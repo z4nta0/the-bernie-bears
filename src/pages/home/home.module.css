@@ -253,14 +253,14 @@
 
 
 }
-@media ( max-width : 880px ) { /* What: Narrow Hero Visual Div. Why: The portrait shrinks on a narrow screen. How: This applies 880px wide and below. */
+@media ( max-width : 880px ) { /* What: Narrow Hero Visual Div. Why: The stacked hero's portrait shouldn't spread its blob and badges across the whole column. How: This applies 880px wide and below. */
 
 
-	.herVisDiv { /* What: Shorter Hero Visual Div. Why: The smaller portrait needs less room. How: This drops the square shape and trims the box to the p11 rhythm step. */
+	.herVisDiv { /* What: Smaller Hero Visual Div. Why: The blob, portrait, and badges should keep the two-column layout's proportions around a smaller portrait. How: This centers the square box at the p11 rhythm step, never wider than the column, so the blob fills it, the portrait sits one step smaller inside it, and the badges sit just off the portrait's corners. */
 
 
-		aspect-ratio : auto;
-		height       : calc( var( --ver-rhy-p11 ) * 1rem ); /* Vertical Rhythm Base Plus 11 ~= 321.273px */
+		justify-self : center;
+		width        : min( calc( var( --ver-rhy-p11 ) * 1rem ), 100% ); /* Vertical Rhythm Base Plus 11 ~= 321.273px */
 
 
 	}
@@ -268,7 +268,7 @@
 
 }
 
-.herBloDiv { /* What: Hero Blob Div. Why: A soft shape behind the portrait adds warmth. How: This sizes a square that grows with the screen from the p12 rhythm step but never past its column, draws a cream to sage to lavender blob behind the portrait and morphs its outline slowly, forever. */
+.herBloDiv { /* What: Hero Blob Div. Why: A soft shape behind the portrait adds warmth. How: This sizes a square that grows with the screen from the p12 rhythm step but never past its box, draws a cream to sage to lavender blob behind the portrait and morphs its outline slowly, forever. */
 
 
 	animation     : herBloDivLoopMorph var( --dur-ani-p14 ) var( --mot-sta-eas ) infinite;                                               /* Duration Animation Base Plus 14 ~= 8,090.0ms, Motion Standard Easing = ease */
@@ -278,20 +278,6 @@
 	position      : absolute;
 	width         : min( max( calc( var( --ver-rhy-p12 ) * 1rem ), var( --hor-rhy-023 ) ), 100% );                                       /* Vertical Rhythm Base Plus 12 ~= 425.596px, Horizontal Rhythm 23 ~= 623.458px @ 1,920px width */
 	z-index       : 0;
-
-
-}
-@media ( max-width : 880px ) { /* What: Narrow Hero Blob Div. Why: The blob shrinks with the portrait. How: This applies 880px wide and below. */
-
-
-	.herBloDiv { /* What: Smaller Hero Blob Div. Why: The blob should match the smaller portrait. How: This sizes it to the p10 rhythm step. */
-
-
-		height : calc( var( --ver-rhy-p10 ) * 1rem ); /* Vertical Rhythm Base Plus 10 ~= 242.522px */
-		width  : calc( var( --ver-rhy-p10 ) * 1rem ); /* Vertical Rhythm Base Plus 10 ~= 242.522px */
-
-
-	}
 
 
 }
@@ -356,20 +342,6 @@
 
 
 }
-@media ( max-width : 880px ) { /* What: Narrow Portrait Frame Div. Why: The portrait shrinks on a narrow screen. How: This applies 880px wide and below. */
-
-
-	.porFraDiv { /* What: Smaller Portrait Frame Div. Why: A full-size frame crowds a narrow screen. How: This sizes it to the p10 rhythm step. */
-
-
-		height : calc( var( --ver-rhy-p10 ) * 1rem ); /* Vertical Rhythm Base Plus 10 ~= 242.522px */
-		width  : calc( var( --ver-rhy-p10 ) * 1rem ); /* Vertical Rhythm Base Plus 10 ~= 242.522px */
-
-
-	}
-
-
-}
 
 .porPhoIma { /* What: Portrait Photo Image. Why: The photo fills its frame. How: This covers the frame, centered, cropping what doesn't fit. */
 
@@ -412,38 +384,12 @@
 
 
 }
-@media ( max-width : 880px ) { /* What: Narrow Lilah Floating Badge Div. Why: A badge past the frame's edge would leave a narrow screen. How: This applies 880px wide and below. */
-
-
-	.floBadDiv--lilah { /* What: Inset Lilah Floating Badge Div. Why: The badge should stay on screen. How: This aligns it with the box's left edge. */
-
-
-		left : 0;
-
-
-	}
-
-
-}
 .floBadDiv--norah { /* What: Norah Floating Badge Div. Why: Norah's badge sits by the portrait's lower right. How: This places it there and starts its bob half a cycle after Lilah's. */
 
 
 	animation-delay : calc( var( --dur-ani-p11 ) / 2 ); /* Duration Animation Base Plus 11 ~= 3,480.0ms */
 	bottom          : 15%;
 	right           : -5%;
-
-
-}
-@media ( max-width : 880px ) { /* What: Narrow Norah Floating Badge Div. Why: A badge past the frame's edge would leave a narrow screen. How: This applies 880px wide and below. */
-
-
-	.floBadDiv--norah { /* What: Inset Norah Floating Badge Div. Why: The badge should stay on screen. How: This aligns it with the box's right edge. */
-
-
-		right : 0;
-
-
-	}
 
 
 }
@@ -550,7 +496,7 @@
 
 	display               : grid;
 	gap                   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
-	grid-template-columns : repeat( auto-fill, minmax( max( calc( ( 100% - var( --spa-hor-p02 ) * 3 ) / 4 - 0.1px ), min( calc( ( 100% - var( --spa-hor-p02 ) ) / 2 - 0.1px ), calc( ( var( --fea-car-wid ) * 4 + var( --spa-hor-p02 ) * 3 - 100% ) * 999 ) ), min( 100%, calc( ( var( --fea-car-wid ) * 2 + var( --spa-hor-p02 ) - 100% ) * 999 ) ) ), 1fr ) ); /* Spacing Horizontal Base Plus 2 ~= 25.572px, Feature Card Width, set above */ /* What: Four Two One Columns. Why: The grid should never leave a lone card on its own row. How: The column minimum is a quarter of the row once four cards fit at their minimum, half once two do, and the whole row otherwise, each switch made by a difference multiplied by 999 that turns hugely positive or negative as the row passes that width, and each share trimmed by 0.1px so rounding never drops a column. */
+	grid-template-columns : repeat( auto-fill, minmax( max( calc( ( 100% - var( --spa-hor-p02 ) * 3 ) / 4 - 0.1px ), min( calc( ( 100% - var( --spa-hor-p02 ) ) / 2 - 0.1px ), calc( ( var( --fea-car-wid ) * 4 + var( --spa-hor-p02 ) * 3 - 100% ) * 999 ) ), min( 100%, calc( ( var( --fea-car-wid ) * 2 + var( --spa-hor-p02 ) - 100% ) * 999 ) ) ), 1fr ) ); /* Spacing Horizontal Base Plus 2 ~= 25.572px */ /* What: Four Two One Columns. Why: The grid should never leave a lone card on its own row. How: The column minimum is a quarter of the row once four cards fit at their minimum, half once two do, and the whole row otherwise, each switch made by a difference multiplied by 999 that turns hugely positive or negative as the row passes that width, and each share trimmed by 0.1px so rounding never drops a column. */
 
 
 }

@@ -377,9 +377,12 @@ passes on `close-out`.
      instead of holding 88% of the viewport, which left empty space on tall
      windows, and it stacks at 880px instead of 768px (the user asked for
      about 850px, and no breakpoint sat near it; 880px is reese-roofing's).
-     The other pages keep 640px and 768px. In the stacked hero the name
-     badges sit at the box's edges and the blob hides behind the same-sized
-     frame, as on the live site.
+     The other pages keep 640px and 768px. The stacked hero's picture box is
+     a centered square at `p11` (never wider than the column) rather than the
+     column's full width, so the blob fills it and shows around the portrait
+     one step smaller, and the badges sit just off the portrait's corners,
+     the two-column proportions. On the live site the badges sat at the
+     column's edges and the blob hid behind a portrait of its own size.
    - **Grids** (after the user's comparison): never a short last row. The
      features show four, two, or one columns and the facts six, three, two,
      or one, each grid's column minimum stepping between whole shares of the
