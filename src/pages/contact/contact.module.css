@@ -8,8 +8,8 @@
  * Styles for ConPagCom: the page fading up into place, the gradient header,
  * the info column with its three white contact cards and the cream collab
  * note, the white panel with its two pill buttons, and the closing gradient
- * band with its row of emoji and script line. The two columns stack below
- * 768px. The pill buttons are the home page's, copied in, and the band's
+ * band with its row of emoji and script line. The two columns stack at 768px
+ * and below. The pill buttons are the home page's, copied in, and the band's
  * column takes the page's shared container values with its centered text
  * merged in from what used to be an inline style. Every transition and the
  * entrance are off under reduced motion.
@@ -44,9 +44,9 @@
 }
 
 
-/* #region pagHedSec */
+/* #region pagHeaSec */
 
-.pagHedSec { /* What: Page Header Section. Why: The page opens with its title on a soft band. How: This fills a centered band with a cream to lavender gradient and a darker cream rule below. */
+.pagHeaSec { /* What: Page Header Section. Why: The page opens with its title on a soft band. How: This fills a centered band with a cream to lavender gradient and a darker cream rule below. */
 
 
 	background    : linear-gradient( 135deg, var( --bac-pag-col ) 0%, var( --bac-hig-col ) 50%, var( --acc-tin-col ) 100% ); /* Background Page Color = #f7f7e2, Background Highlight Color = #ececb6, Accent Tint Color = #f3eaf9 */
@@ -76,7 +76,7 @@
 
 }
 
-/* #endregion pagHedSec */
+/* #endregion pagHeaSec */
 
 
 
@@ -120,7 +120,6 @@
 
 }
 
-
 .infTitHea { /* What: Info Title Heading. Why: The column needs a heading. How: This sets it large with room below. */
 
 
@@ -140,6 +139,7 @@
 
 
 }
+
 
 
 /* #region infLisDiv */
@@ -165,7 +165,7 @@
 	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
 	border        : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #ececb6 */
 	border-radius : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
-	box-shadow    : var( --ele-sma-sha );
+	box-shadow    : var( --ele-sma-sha );                            /* Elevation Small Shadow, about 0 1.2px 2px */
 	display       : flex;
 	gap           : var( --spa-hor-bas );                            /* Spacing Horizontal Base ~= 14.572px */
 	padding       : var( --spa-ver-p01 ) var( --spa-hor-p01 );       /* Spacing Vertical Base Plus 1 ~= 19.304px, Spacing Horizontal Base Plus 1 ~= 19.304px */
@@ -302,7 +302,7 @@
 	background    : var( --bac-sur-col );                                                                           /* Background Surface Color = #ffffff */
 	border        : var( --bor-wid-lar ) solid var( --bor-mai-col );                                                /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
 	border-radius : var( --rad-bor-xla );                                                                           /* Radius Border Extra Large ~= 19.304px */
-	box-shadow    : var( --ele-med-sha );
+	box-shadow    : var( --ele-med-sha );                                                                           /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
 	padding       : var( --spa-ver-p04 ) clamp( var( --spa-hor-p02 ), var( --hor-rhy-015 ), var( --spa-hor-p04 ) ); /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px, Horizontal Rhythm 15 ~= 65.739px @ 1,920px width, Spacing Horizontal Base Plus 4 ~= 44.876px */
 
 
@@ -417,17 +417,17 @@
 
 
 }
-.butBasAnc--primary::before { /* What: Shadowed Button Base Anchor Resting Shadow Layer. Why: The filled buttons rest on a soft lavender shadow. How: This gives their resting layer the medium elevation. */
+.butBasAnc--primary::before { /* What: Primary Button Base Anchor Resting Shadow Layer. Why: The filled button rests on a soft lavender shadow. How: This gives its resting layer the medium elevation. */
 
 
-	box-shadow : var( --ele-med-sha );
+	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
 
 
 }
-.butBasAnc--primary::after { /* What: Shadowed Button Base Anchor Hover Shadow Layer. Why: The filled buttons' shadow deepens as they lift. How: This gives their hover layer the large elevation. */
+.butBasAnc--primary::after { /* What: Primary Button Base Anchor Hover Shadow Layer. Why: The filled button's shadow deepens as it lifts. How: This gives its hover layer the large elevation. */
 
 
-	box-shadow : var( --ele-lar-sha );
+	box-shadow : var( --ele-lar-sha ); /* Elevation Large Shadow, about 0 19.3px 44.9px -14.6px plus 0 6.3px 14.6px -3.6px */
 
 
 }

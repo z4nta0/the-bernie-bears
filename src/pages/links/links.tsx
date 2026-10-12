@@ -43,10 +43,18 @@ import { usePagDesFun } from '../../ui/page-description.ts'; // What: Use Page D
  *
  * @summary
  * The girls' six social profiles, then the brand's shop, in the order the page
- * shows them. The profiles come from SOC_PRO_ARR, shared with the phone menu,
- * where every field is described. The shop's row has the same shape, with
- * its colors read from the theme and its icon a plain bag drawn for this
- * page.
+ * shows them. The profiles come from SOC_PRO_ARR, shared with the phone menu.
+ * The shop's row has the same shape, with its colors read from the theme and
+ * its icon a plain bag drawn for this page, so its fields carry no comments
+ * of their own beyond the colors' token values:
+ * - `bacStr` (String): Background String, the icon tile's pale tint.
+ * - `colStr` (String): Color String, the card's stripe, icon, handle, and
+ *   arrow color.
+ * - `desStr` (String): Description String, the card's sentence.
+ * - `hanStr` (String): Handle String, the address shown.
+ * - `icoStr` (String): Icon String, the icon's SVG path data.
+ * - `plaStr` (String): Platform String, the card's name.
+ * - `urlStr` (String): URL String, the card's address.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -105,8 +113,7 @@ const SOC_LIN_ARR = [ // What: Social Link Array. Why: The page lists every plac
  *
  * @param props - This component does not use any props.
  *
- * @returns The Social Links page's title, canonical link, and wrapper
- *          div.
+ * @returns The Social Links page's title, canonical link, and wrapper div.
  *
  * @example
  * ```tsx
@@ -140,7 +147,7 @@ function LinPagCom () : React.JSX.Element {
 			<div className={ cssModObj.pagEntDiv }>{ /* What: Page Enter Div Element. Why: The Social Links page fades up into place like every other page. How: This holds the page's sections. */ }
 
 
-				<section className={ cssModObj.pagHedSec }>{ /* What: Page Header Section Element. Why: The page opens with its title. How: This holds the heading and a short line under it. */ }
+				<section className={ cssModObj.pagHeaSec }>{ /* What: Page Header Section Element. Why: The page opens with its title. How: This holds the heading and a short line under it. */ }
 
 
 					<h1 className={ cssModObj.pagTitHea }>Follow the Bears</h1>{ /* What: Page Title Heading Element. Why: The page's heading says what it's for. How: This names the page. */ }
@@ -191,13 +198,11 @@ function LinPagCom () : React.JSX.Element {
 
 
 									<svg
-										className={ cssModObj.socIcoSvg }
-
 										fill='currentColor'
 										height='1em'
 										viewBox='0 0 24 24'
 										width='1em'
-									>{ /* What: Social Icon SVG Element. Why: The platform's mark stays sharp at any size. How: This draws the row's path at the tile's font size, in the tile's color. */ }
+									>{ /* What: Social Card Icon SVG Element. Why: The platform's mark stays sharp at any size. How: This draws the row's path at the tile's font size, in the tile's color. */ }
 
 
 										<path d={ socLinObj.icoStr } />{ /* What: Social Card Icon Path Element. Why: The mark is one path. How: This draws the row's path data. */ }

@@ -81,12 +81,12 @@ function NotFouCom () : React.JSX.Element {
 			<div className={ cssModObj.pagEntDiv }>{ /* What: Page Enter Div Element. Why: The 404 page fades up into place like every other page. How: This holds the page's header. */ }
 
 
-				<section className={ cssModObj.pagHedSec }>{ /* What: Page Header Section Element. Why: The page opens with its title like every other page. How: This holds the heading, a short line, and the ways onward. */ }
+				<section className={ cssModObj.pagHeaSec }>{ /* What: Page Header Section Element. Why: The page opens with its title like every other page. How: This holds the heading, a short line, and the ways onward. */ }
 
 
 					<h1 className={ cssModObj.pagTitHea }>Page Not Found</h1>{ /* What: Page Title Heading Element. Why: The heading says the address doesn't lead anywhere. How: This names what happened. */ }
 
-					<p className={ cssModObj.pagSubPar }>Lilah & Norah sniffed everywhere, but this page has wandered off <span aria-hidden='true'>🐾</span></p>{ /* What: Page Sub Paragraph Element. Why: A short line keeps the girls' playful voice. How: This shows it under the heading, ending in a paw print hidden from screen readers. */ }
+					<p className={ cssModObj.pagSubPar }>Lilah & Norah sniffed everywhere, but this page has wandered off <span aria-hidden='true'>🐾</span></p>{ /* What: Page Subtitle Paragraph Element. Why: A short line keeps the girls' playful voice. How: This shows it under the heading, ending in a paw print hidden from screen readers. */ }
 
 					<div className={ cssModObj.nofActDiv }>{ /* What: Not-Found Actions Div Element. Why: The visitor needs clear ways onward. How: This holds the two buttons, centered in a row that wraps. */ }
 
@@ -95,13 +95,16 @@ function NotFouCom () : React.JSX.Element {
 							className={` ${ cssModObj.butBasAnc }   ${ cssModObj.butBasAncPrimary } `}
 
 							to='/'
-						>Back Home</Link>{ /* What: Button Base Anchor Element. Why: Home is the natural place to start over. How: This returns to the home page. */ }
+						>Back Home</Link>{ /* What: Back Home Link. Why: Home is the natural place to start over. How: This returns to the home page. */ }
+
+
+
 
 						<Link
 							className={` ${ cssModObj.butBasAnc }   ${ cssModObj.butBasAncOutline } `}
 
 							to='/links'
-						>Follow Along</Link>{ /* What: Button Base Anchor Element. Why: Following the girls is the site's main action. How: This opens the Social Links page. */ }
+						>Follow Along</Link>{ /* What: Follow Along Link. Why: Following the girls is the site's main action. How: This opens the Social Links page. */ }
 
 
 					</div>

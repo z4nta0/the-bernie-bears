@@ -39,7 +39,7 @@
 
 }
 
-@font-face { /* What: Nunito Font Face. Why: Nunito is the body font for paragraphs, labels, buttons, and the form. How: This loads its latin variable file across its full 200 to 1000 weight range, showing fallback text until it arrives. */
+@font-face { /* What: Nunito Font Face. Why: Nunito is the body font for paragraphs, labels, and buttons. How: This loads its latin variable file across its full 200 to 1000 weight range, showing fallback text until it arrives. */
 
 
 	font-display : swap;

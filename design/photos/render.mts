@@ -95,6 +95,7 @@ const broInsObj = await chromium.launch();   // What: Browser Instance Object. W
 const encPagObj = await broInsObj.newPage(); // What: Encode Page Object. Why: The canvas work runs in a page. How: This opens a blank one.
 
 
+
 const sizRowMap = new Map< string, [ string, number, number ][] >(); // What: Size Row Map. Why: Each page's sizes file lists only that page's photos. How: This collects each photo's name, height, and width under its page folder.
 
 let befBytNum = 0; // What: Before Bytes Number. Why: The run reports how much smaller the photos got. How: This adds up the originals' sizes.
@@ -104,7 +105,7 @@ let aftBytNum = 0; // What: After Bytes Number. Why: The run reports how much sm
 for ( const phoRecObj of PHO_REC_ARR ) { // What: Photo Record Loop. Why: Each original is rebuilt the same way. How: This crops, scales, encodes, and writes one photo per pass.
 
 
-	const filNamStr = phoRecObj.souStr.slice( 0, -4 ); // What: File Name String. Why: The WebP and its sizes row take the original's name without its extension. How: This cuts the extension off.
+	const filNamStr = phoRecObj.souStr.slice( 0, -4 );                                                                            // What: File Name String. Why: The WebP and its sizes row take the original's name without its extension. How: This cuts the extension off.
 	const souUrlStr = `data:image/jpeg;base64,${ readFileSync( `${ PHO_DIR_STR }${ phoRecObj.souStr }` ).toString( 'base64' ) }`; // What: Source URL String. Why: A canvas drawn from a file URL can't be read back, while one drawn from data can. How: This reads the original as a data URL.
 
 

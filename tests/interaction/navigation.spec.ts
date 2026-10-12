@@ -38,6 +38,8 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The helpers dr
 
 // #region Constants
 
+// #region PAG_LIN_ARR
+
 /**
  * PAG_LIN_ARR = Page Link Array
  *
@@ -63,6 +65,8 @@ const PAG_LIN_ARR = [ // What: Page Link Array. Why: Every page is checked as a 
 
 
 ];
+
+// #endregion PAG_LIN_ARR
 
 // #endregion Constants
 
@@ -121,7 +125,6 @@ for ( const [ froIndNum, froLinObj ] of PAG_LIN_ARR.entries() ) { // What: Start
 
 
 	const nexLinObj = PAG_LIN_ARR[ ( froIndNum + 1 ) % PAG_LIN_ARR.length ]; // What: Next Link Object. Why: Each page links on to another. How: This picks the next page in the list, wrapping from the last back to Home.
-
 
 
 	test( `the footer's ${ nexLinObj.labStr } link from the bottom of ${ froLinObj.labStr } opens at the top`, async ( { page : curPagObj } ) => { // What: Footer Link Test. Why: A link clicked at the end of a page should open the next page at its top. How: This scrolls to the bottom, clicks the footer link, and checks the offset.

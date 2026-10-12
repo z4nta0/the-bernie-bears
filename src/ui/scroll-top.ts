@@ -70,7 +70,6 @@ function useScrTopFun () : void {
 	const navTypStr = useNavigationType(); // What: Navigation Type String. Why: Back and forward should keep the browser's restored position. How: This holds PUSH, REPLACE, or POP for the latest navigation.
 
 
-
 	useLayoutEffect( () => { // What: Scroll Reset Effect. Why: A new page should open at its top, or at the section its link names. How: This runs after each navigation commits and before the browser paints it.
 
 

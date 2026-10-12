@@ -123,7 +123,7 @@ function AboPagCom () : React.JSX.Element {
 			<div className={ cssModObj.pagEntDiv }>{ /* What: Page Enter Div Element. Why: The About page fades up into place like every other page. How: This holds the page's sections. */ }
 
 
-				<section className={ cssModObj.pagHedSec }>{ /* What: Page Header Section Element. Why: The page opens with its title. How: This holds the heading and a short line under it. */ }
+				<section className={ cssModObj.pagHeaSec }>{ /* What: Page Header Section Element. Why: The page opens with its title. How: This holds the heading and a short line under it. */ }
 
 
 					<h1 className={ cssModObj.pagTitHea }>Meet the Girls</h1>{ /* What: Page Title Heading Element. Why: The page's heading says who it's about. How: This names the page. */ }
@@ -339,7 +339,7 @@ function AboPagCom () : React.JSX.Element {
 					<div className={ cssModObj.facInnDiv }>{ /* What: Facts Inner Div Element. Why: The facts sit in the page's centered column. How: This holds the heading and the grid. */ }
 
 
-						<h2 className={ cssModObj.facTitHea }>Fun Facts</h2>{ /* What: Facts Title Heading Element. Why: The facts need a heading that reads on the gradient. How: This names them in white. */ }
+						<h2 className={ cssModObj.facTitHea }>Fun Facts</h2>{ /* What: Facts Title Heading Element. Why: The facts need a heading that reads on the gradient. How: This names them in the main text color. */ }
 
 
 						<div className={ cssModObj.facGriDiv }>{ /* What: Facts Grid Div Element. Why: The facts sit in a grid that wraps on narrow screens. How: This lays them out. */ }

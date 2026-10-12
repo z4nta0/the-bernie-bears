@@ -13,14 +13,14 @@ import type { Page } from '@playwright/test'; // What: Page. Why: Opening a stat
  * states.ts = States
  *
  * @summary
- * The page states the accessibility and rendering suites visit, and the
- * helper that opens one; the responsive suite opens its own widths through the
- * same helper. A state is a page at a width, sometimes with something opened
- * on it: every route and the 404 page at phone and desktop widths, and the
- * mobile menu open on a phone. opeStaFun sizes the viewport, loads the page,
- * waits for the fonts, scrolls through the page so any lazily loaded image
- * loads, runs the state's own action, such as opening the menu, and then
- * waits for the page to stay still so nothing is measured mid-fade.
+ * The page states the accessibility, interaction, and rendering suites visit,
+ * and the helper that opens one; the responsive suite opens its own widths
+ * through the same helper. A state is a page at a width, sometimes with
+ * something opened on it: every route and the 404 page at phone and desktop
+ * widths, and the mobile menu open on a phone. opeStaFun sizes the viewport,
+ * loads the page, waits for the fonts, scrolls through the page so any lazily
+ * loaded image loads, runs the state's own action, such as opening the menu,
+ * and then waits for the page to stay still so nothing is measured mid-fade.
  *
  * Sections:
  *  - Types
@@ -63,9 +63,8 @@ type StaRecTyp = { // What: State Record Type. Why: Every check reads the same d
  * Every state the checks visit: each route (Home, About, Social Links, and
  * Contact) and the 404 page at a phone width (390px) and a desktop width
  * (1,440px), plus the mobile menu open at the phone width, since the menu is
- * only reachable there. Every row
- * shares the {@link StaRecTyp} shape, so its fields carry no comments of their
- * own:
+ * only reachable there. Every row shares the {@link StaRecTyp} shape, so its
+ * fields carry no comments of their own:
  * - `actFun` (Function): Action Function, run after the page loads to open
  *   something on it, such as the menu. Only the menu row has one.
  * - `heiNum` (Number): Height Number, the viewport height in CSS pixels.
@@ -86,7 +85,7 @@ const STA_REC_ARR : StaRecTyp[] = [ // What: State Record Array. Why: Every chec
 	{ heiNum : 844, ideStr : 'about-phone',       patStr : '/about',   widNum : 390  }, // What: About Phone State. Why: The phone layout stacks the page into one column and hides the bar's links behind the menu. How: This loads the About page at 390px.
 	{ heiNum : 900, ideStr : 'links-desktop',     patStr : '/links',   widNum : 1440 }, // What: Links Desktop State. Why: The Social Links page holds every platform card. How: This loads the Social Links page at 1,440px.
 	{ heiNum : 844, ideStr : 'links-phone',       patStr : '/links',   widNum : 390  }, // What: Links Phone State. Why: The phone layout stacks the page into one column and hides the bar's links behind the menu. How: This loads the Social Links page at 390px.
-	{ heiNum : 900, ideStr : 'contact-desktop',   patStr : '/contact', widNum : 1440 }, // What: Contact Desktop State. Why: The Contact page holds the contact details and the form. How: This loads the Contact page at 1,440px.
+	{ heiNum : 900, ideStr : 'contact-desktop',   patStr : '/contact', widNum : 1440 }, // What: Contact Desktop State. Why: The Contact page holds the ways to get in touch and the contact panel. How: This loads the Contact page at 1,440px.
 	{ heiNum : 844, ideStr : 'contact-phone',     patStr : '/contact', widNum : 390  }, // What: Contact Phone State. Why: The phone layout stacks the page into one column and hides the bar's links behind the menu. How: This loads the Contact page at 390px.
 	{ heiNum : 900, ideStr : 'not-found-desktop', patStr : '/missing', widNum : 1440 }, // What: Not Found Desktop State. Why: Every unknown address lands on the 404 page. How: This loads an address the site doesn't have at 1,440px.
 	{ heiNum : 844, ideStr : 'not-found-phone',   patStr : '/missing', widNum : 390  }, // What: Not Found Phone State. Why: The phone bar hides its links behind the menu on the 404 page too. How: This loads an address the site doesn't have at 390px.
@@ -302,7 +301,7 @@ async function opeStaFun ( curPagObj : Page, staRecObj : StaRecTyp ) : Promise< 
 
 // #region Exports
 
-export { opeStaFun, STA_REC_ARR, type StaRecTyp }; // What: Named Exports. Why: The accessibility, rendering, and responsive specs share these states and their opener. How: This exports the state list, its type, and the helper that opens one.
+export { opeStaFun, STA_REC_ARR, type StaRecTyp }; // What: Named Exports. Why: The accessibility, interaction, rendering, and responsive specs share these states and their opener. How: This exports the state list, its type, and the helper that opens one.
 
 // #endregion Exports
 

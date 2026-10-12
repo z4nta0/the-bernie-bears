@@ -54,7 +54,7 @@ import { useEffect } from 'react'; // What: Use Effect. Why: The description has
  *
  * @example
  * ```ts
- * usePagDesFun('Follow Lilah and Norah, the Bernie Bears, on Instagram...') // => void
+ * usePagDesFun('Follow Lilah and Norah on Instagram...') // => void
  * ```
  *
 */

@@ -82,7 +82,7 @@ function ConPagCom () : React.JSX.Element {
 			<div className={ cssModObj.pagEntDiv }>{ /* What: Page Enter Div Element. Why: The Contact page fades up into place like every other page. How: This holds the page's sections. */ }
 
 
-				<section className={ cssModObj.pagHedSec }>{ /* What: Page Header Section Element. Why: The page opens with its title. How: This holds the heading and a short line under it. */ }
+				<section className={ cssModObj.pagHeaSec }>{ /* What: Page Header Section Element. Why: The page opens with its title. How: This holds the heading and a short line under it. */ }
 
 
 					<h1 className={ cssModObj.pagTitHea }>Say Hello!</h1>{ /* What: Page Title Heading Element. Why: The page's heading invites visitors to get in touch. How: This names the page. */ }
@@ -147,6 +147,7 @@ function ConPagCom () : React.JSX.Element {
 
 
 								</div>
+
 
 
 								<div className={ cssModObj.infCarDiv }>{ /* What: Info Card Div Element. Why: Many fans reach out where they already follow the girls. How: This says to send a direct message. */ }

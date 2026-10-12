@@ -10,7 +10,7 @@
  * two sisters' cards with their round photos, badges, and trait chips, which
  * lift on hover, and the frosted fun fact cards on a lavender to sage band.
  * The facts' column takes the page's shared container values, and the
- * band's white heading has its own rule in place of an inline style. Every
+ * band's heading has its own rule in place of an inline style. Every
  * animation and transition is off under reduced motion.
  *
  * @author z4nta0 <https://github.com/z4nta0>
@@ -43,9 +43,9 @@
 }
 
 
-/* #region pagHedSec */
+/* #region pagHeaSec */
 
-.pagHedSec { /* What: Page Header Section. Why: The page opens with its title on a soft band. How: This fills a centered band with a cream to lavender gradient and a darker cream rule below. */
+.pagHeaSec { /* What: Page Header Section. Why: The page opens with its title on a soft band. How: This fills a centered band with a cream to lavender gradient and a darker cream rule below. */
 
 
 	background    : linear-gradient( 135deg, var( --bac-pag-col ) 0%, var( --bac-hig-col ) 50%, var( --acc-tin-col ) 100% ); /* Background Page Color = #f7f7e2, Background Highlight Color = #ececb6, Accent Tint Color = #f3eaf9 */
@@ -75,7 +75,7 @@
 
 }
 
-/* #endregion pagHedSec */
+/* #endregion pagHeaSec */
 
 
 
@@ -109,7 +109,6 @@
 
 }
 
-
 .intTitHea { /* What: Intro Title Heading. Why: The story needs a heading. How: This sets it large with room below. */
 
 
@@ -119,16 +118,32 @@
 
 }
 
-.intStoPar { /* What: Intro Story Paragraph. Why: The story's paragraphs should read easily. How: This sets them airy in the mid grey, with a gap after each. */
+.intStoPar { /* What: Intro Story Paragraph. Why: The story's paragraphs should read easily, never running past a comfortable line. How: This sets them airy in the mid grey, with a gap after each, no wider than the text width cap. */
 
 
 	color         : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
 	font-size     : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	line-height   : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
 	margin-bottom : var( --spa-ver-bas ); /* Spacing Vertical Base ~= 14.572px */
+	max-width     : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
 
 
 }
+@media ( max-width : 768px ) { /* What: Narrow Intro Story Paragraph. Why: The stacked story is centered, so its capped paragraphs should sit in the middle too. How: This applies 768px wide and below. */
+
+
+	.intStoPar { /* What: Centered Intro Story Paragraph. Why: A capped paragraph would otherwise hug the column's left edge. How: This centers it with automatic side margins. */
+
+
+		margin-left  : auto;
+		margin-right : auto;
+
+
+	}
+
+
+}
+
 
 
 /* #region intVisDiv */
@@ -151,15 +166,10 @@
 	align-items     : center;
 	aspect-ratio    : 1;
 	background      : var( --bac-sur-col );                             /* Background Surface Color = #ffffff */
-	border          : var( --bor-wid-xla ) dashed var( --acc-lig-col ); /* Border Width Extra Large ~= 3.571px, Accent Light Color = #ceb1dd */
+	border          : var( --bor-wid-xla ) dashed var( --acc-lig-col ); /* Border Width Extra Large ~= 3.572px, Accent Light Color = #ceb1dd */
 	border-radius   : var( --rad-bor-xla );                             /* Radius Border Extra Large ~= 19.304px */
-	box-shadow      : var( --ele-med-sha );
-	color           : var( --tex-mut-col );                             /* Text Muted Color = #717171 */
+	box-shadow      : var( --ele-med-sha );                             /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
 	display         : flex;
-	flex-direction  : column;
-	font-size       : var( --fon-siz-p01 );                             /* Font Size Base Plus 1 ~= 14.572px */
-	font-style      : italic;
-	gap             : var( --spa-ver-m01 );                             /* Spacing Vertical Base Minus 1 = 11px */
 	justify-content : center;
 	width           : min( calc( var( --ver-rhy-p11 ) * 1rem ), 100% ); /* Vertical Rhythm Base Plus 11 ~= 321.273px */
 
@@ -172,7 +182,7 @@
 	aspect-ratio  : 1;
 	border-radius : var( --rad-bor-med );                                           /* Radius Border Medium = 11px */
 	height        : auto;                                                           /* What: Automatic Height. Why: The img's height attribute, there so the page doesn't shift while the cartoon loads, would otherwise fix it at the file's 608px. How: auto hands the height back to aspect-ratio, which squares it to the width. */
-	width         : calc( 100% - var( --spa-hor-p01 ) + var( --bor-wid-xla ) * 2 ); /* Spacing Horizontal Base Plus 1 ~= 19.304px, Border Width Extra Large ~= 3.571px */
+	width         : calc( 100% - var( --spa-hor-p01 ) + var( --bor-wid-xla ) * 2 ); /* Spacing Horizontal Base Plus 1 ~= 19.304px, Border Width Extra Large ~= 3.572px */
 
 
 }
@@ -221,6 +231,7 @@
 
 
 }
+
 
 
 /* #region sisGriDiv */
@@ -273,7 +284,7 @@
 
 	border-radius  : inherit;
 	content        : '';
-	inset          : calc( var( --bor-wid-xla ) * -1 ) calc( var( --bor-wid-lar ) * -1 ) calc( var( --bor-wid-lar ) * -1 ); /* Border Width Extra Large ~= -3.571px, Border Width Large ~= -2.035px */
+	inset          : calc( var( --bor-wid-xla ) * -1 ) calc( var( --bor-wid-lar ) * -1 ) calc( var( --bor-wid-lar ) * -1 ); /* Border Width Extra Large ~= -3.572px, Border Width Large ~= -2.035px */
 	pointer-events : none;
 	position       : absolute;
 	transition     : opacity var( --dur-tra-p02 ) var( --mot-sta-eas );                                                     /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
@@ -284,14 +295,14 @@
 .sisCarDiv::before { /* What: Sister Card Div Resting Shadow Layer. Why: The card rests on a soft lavender shadow. How: This gives the layer the medium elevation. */
 
 
-	box-shadow : var( --ele-med-sha );
+	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
 
 
 }
 .sisCarDiv::after { /* What: Sister Card Div Hover Shadow Layer. Why: A lifted card casts a deeper shadow. How: This gives the layer the large elevation, hidden until hovered. */
 
 
-	box-shadow : var( --ele-lar-sha );
+	box-shadow : var( --ele-lar-sha ); /* Elevation Large Shadow, about 0 19.3px 44.9px -14.6px plus 0 6.3px 14.6px -3.6px */
 	opacity    : 0;
 
 
@@ -320,14 +331,14 @@
 .sisCarDiv--lilah { /* What: Lilah Sister Card Div. Why: Each sister has her own accent. How: This edges Lilah's card in lavender along the top. */
 
 
-	border-top : var( --bor-wid-xla ) solid var( --acc-mai-col ); /* Border Width Extra Large ~= 3.571px, Accent Main Color = #d1afe2 */
+	border-top : var( --bor-wid-xla ) solid var( --acc-mai-col ); /* Border Width Extra Large ~= 3.572px, Accent Main Color = #d1afe2 */
 
 
 }
 .sisCarDiv--norah { /* What: Norah Sister Card Div. Why: Each sister has her own accent. How: This edges Norah's card in sage along the top. */
 
 
-	border-top : var( --bor-wid-xla ) solid var( --acc-sec-col ); /* Border Width Extra Large ~= 3.571px, Accent Secondary Color = #8bad89 */
+	border-top : var( --bor-wid-xla ) solid var( --acc-sec-col ); /* Border Width Extra Large ~= 3.572px, Accent Secondary Color = #8bad89 */
 
 
 }
@@ -355,12 +366,9 @@
 
 	align-items     : center;
 	background      : var( --bac-pag-col );                             /* Background Page Color = #f7f7e2 */
-	border          : var( --bor-wid-xla ) dashed var( --bor-str-col ); /* Border Width Extra Large ~= 3.571px, Border Strong Color = #d6d69a */
+	border          : var( --bor-wid-xla ) dashed var( --bor-str-col ); /* Border Width Extra Large ~= 3.572px, Border Strong Color = #d6d69a */
 	border-radius   : 50%;
 	display         : flex;
-	flex-direction  : column;
-	font-size       : var( --fon-siz-p05 );                             /* Font Size Base Plus 5 ~= 44.876px */
-	gap             : var( --spa-ver-m05 );                             /* Spacing Vertical Base Minus 5 ~= 3.572px */
 	height          : calc( var( --ver-rhy-p08 ) * 1rem );              /* Vertical Rhythm Base Plus 8 ~= 138.199px */
 	justify-content : center;
 	margin          : 0 auto;
@@ -417,12 +425,13 @@
 
 }
 
-.sisTexPar { /* What: Sister Text Paragraph. Why: Each card describes its sister. How: This sets the paragraph airy in the mid grey. */
+.sisTexPar { /* What: Sister Text Paragraph. Why: Each card describes its sister, in lines short enough to read easily. How: This sets the paragraph airy in the mid grey, no wider than the text width cap. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
 	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+	max-width   : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
 
 
 }
@@ -489,7 +498,7 @@
 
 }
 
-.facTitHea { /* What: Facts Title Heading. Why: The facts need a heading that reads on the gradient. How: This centers it large and white, growing with the screen, with room below. */
+.facTitHea { /* What: Facts Title Heading. Why: The facts need a heading that reads on the gradient. How: This centers it large in the main text color, growing with the screen, with room below. */
 
 
 	color         : var( --tex-mai-col );                                     /* Text Main Color = #2c2c2c */
@@ -501,6 +510,7 @@
 }
 
 
+
 /* #region facGriDiv */
 
 .facGriDiv { /* What: Facts Grid Div. Why: The facts should fill every row evenly and wrap on a narrow screen. How: This shows the six facts as six columns, three, two, or one, never four or five, choosing the most that fit at the card's minimum width. */
@@ -510,7 +520,7 @@
 
 	display               : grid;
 	gap                   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
-	grid-template-columns : repeat( auto-fill, minmax( max( calc( ( 100% - var( --spa-hor-p02 ) * 5 ) / 6 - 0.1px ), min( calc( ( 100% - var( --spa-hor-p02 ) * 2 ) / 3 - 0.1px ), calc( ( var( --fac-car-wid ) * 6 + var( --spa-hor-p02 ) * 5 - 100% ) * 999 ) ), min( calc( ( 100% - var( --spa-hor-p02 ) ) / 2 - 0.1px ), calc( ( var( --fac-car-wid ) * 3 + var( --spa-hor-p02 ) * 2 - 100% ) * 999 ) ), min( 100%, calc( ( var( --fac-car-wid ) * 2 + var( --spa-hor-p02 ) - 100% ) * 999 ) ) ), 1fr ) ); /* Spacing Horizontal Base Plus 2 ~= 25.572px */ /* What: Six Three Two One Columns. Why: The grid should never leave a short last row. How: The column minimum is a sixth of the row once six facts fit at their minimum, a third once three do, half once two do, and the whole row otherwise, each switch made by a difference multiplied by 999 that turns hugely positive or negative as the row passes that width, and each share trimmed by 0.1px so rounding never drops a column. */
+	grid-template-columns : repeat( auto-fill, minmax( max( calc( ( 100% - var( --spa-hor-p02 ) * 5 ) / 6 - 0.1px ), min( calc( ( 100% - var( --spa-hor-p02 ) * 2 ) / 3 - 0.1px ), calc( ( var( --fac-car-wid ) * 6 + var( --spa-hor-p02 ) * 5 - 100% ) * 999 ) ), min( calc( ( 100% - var( --spa-hor-p02 ) ) / 2 - 0.1px ), calc( ( var( --fac-car-wid ) * 3 + var( --spa-hor-p02 ) * 2 - 100% ) * 999 ) ), min( 100%, calc( ( var( --fac-car-wid ) * 2 + var( --spa-hor-p02 ) - 100% ) * 999 ) ) ), 1fr ) ); /* Spacing Horizontal Base Plus 2 ~= 25.572px, Fact Card Width, set by its own rule */ /* What: Six Three Two One Columns. Why: The grid should never leave a short last row. How: The column minimum is a sixth of the row once six facts fit at their minimum, a third once three do, half once two do, and the whole row otherwise, each switch made by a difference multiplied by 999 that turns hugely positive or negative as the row passes that width, and each share trimmed by 0.1px so rounding never drops a column. */
 	margin-top            : var( --spa-ver-bas );                      /* Spacing Vertical Base ~= 14.572px */
 
 
@@ -565,7 +575,7 @@
 
 }
 
-.facValSpa { /* What: Fact Value Span. Why: The fact itself is the card's focus. How: This sets it bold and white. */
+.facValSpa { /* What: Fact Value Span. Why: The fact itself is the card's focus. How: This sets it bold in the main text color. */
 
 
 	color       : var( --tex-mai-col ); /* Text Main Color = #2c2c2c */
@@ -575,7 +585,7 @@
 
 }
 
-.facLabSpa { /* What: Fact Label Span. Why: Each fact says what it's about, quietly. How: This sets it small, spaced, and uppercase in translucent white. */
+.facLabSpa { /* What: Fact Label Span. Why: Each fact says what it's about, quietly. How: This sets it small, spaced, and uppercase in the main text color. */
 
 
 	color          : var( --tex-mai-col );                   /* Text Main Color = #2c2c2c */
