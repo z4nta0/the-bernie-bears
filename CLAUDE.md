@@ -61,14 +61,17 @@ app with tabs.
 ```
 src/
   main.tsx               entry point
-  app.tsx                React Router setup, the bar, and the footer
+  app.tsx                the route table, the bar, and the footer
   assets/                fonts/ (the self-hosted fonts)
   pages/
     home/                the home page, its portrait, its photo sizes
     about/               the About page, its three photos, their sizes
     links/               the Social Links page
     contact/             the Contact page
-  ui/                    what every page uses (nav, footer, scroll-top)
+    not-found/           the 404 page every unknown path shows
+  ui/                    what every page uses (the bar, the footer, the
+                         shared social profiles, the page description and
+                         scroll-to-top hooks)
   styles/                global CSS only (fonts.css, styles.css)
 ```
 Outside `src/`: `public/` (the favicon set, the social preview card,
@@ -77,14 +80,15 @@ Outside `src/`: `public/` (the favicon set, the social preview card,
 that render the photos, the card, and the icons), and `tests/` (see "## Test
 suites").
 - **`pages/` takes the place of `tabs/`.** Each route gets its own folder,
-  and an image only that page shows lives beside it. The 404 page gets
-  `pages/not-found/` in step 11.
+  and an image only that page shows lives beside it. The 404 page has
+  `pages/not-found/`.
 - **A page's main file is named after its folder** (`pages/links/links.tsx`,
   not `social-links.tsx`), matching its route.
 - **The bar and footer live in `ui/`** as `nav.tsx` and `footer.tsx`, since
   every page shows them.
 - **`public/favicon.svg`** is the paw icon, served at a fixed address since
-  browsers ask for it themselves; step 11 adds the raster icons beside it.
+  browsers ask for it themselves, with the raster icons rendered from it
+  beside it.
 
 ## Page navigation
 Decided 2026-10-11, per "## Multi-Page React Sites: Scroll Position" in the
