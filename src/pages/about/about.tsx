@@ -4,9 +4,12 @@
 // #region Imports
 
 import cssModObj from './about.module.css'; // What: CSS Module Object. Why: The About page is styled in its own module, whose class names Vite hashes. How: Every element reads its class from this object.
-import groJpgUrl from './group-photo.jpg';  // What: Group JPG URL. Why: The story sits beside a cartoon of both girls, and Vite fingerprints and checks an imported image. How: This imports the picture's built URL for the story's img.
-import lilJpgUrl from './lilah.jpg';        // What: Lilah JPG URL. Why: Lilah's card shows her photo, and Vite fingerprints and checks an imported image. How: This imports the photo's built URL for her card's img.
-import norJpgUrl from './norah.jpg';        // What: Norah JPG URL. Why: Norah's card shows her photo, and Vite fingerprints and checks an imported image. How: This imports the photo's built URL for her card's img.
+import groWebUrl from './group-photo.webp'; // What: Group WebP URL. Why: The story sits beside a cartoon of both girls, and Vite fingerprints and checks an imported image. How: This imports the picture's built URL for the story's img.
+import lilWebUrl from './lilah.webp';       // What: Lilah WebP URL. Why: Lilah's card shows her photo, and Vite fingerprints and checks an imported image. How: This imports the photo's built URL for her card's img.
+import norWebUrl from './norah.webp';       // What: Norah WebP URL. Why: Norah's card shows her photo, and Vite fingerprints and checks an imported image. How: This imports the photo's built URL for her card's img.
+
+
+import { PHO_SIZ_OBJ } from './photo-sizes.ts'; // What: Photo Sizes Object. Why: Each photo's img carries its intrinsic size, so the page doesn't shift while they load. How: This looks up each photo's width and height.
 
 // #endregion Imports
 
@@ -150,10 +153,12 @@ function AboPagCom () : React.JSX.Element {
 						<img
 							className={ cssModObj.groPhoIma }
 
-							src={ groJpgUrl }
+							height={ PHO_SIZ_OBJ[ 'group-photo' ].heiNum }
+							src={ groWebUrl }
+							width={ PHO_SIZ_OBJ[ 'group-photo' ].widNum }
 
 							alt='Cartoonized picture of The Bernie Bears, both Lilah and Norah'
-						/>{ /* What: Group Photo Image Element. Why: The story is about both girls. How: This loads the cartoon of the two of them. */ }
+						/>{ /* What: Group Photo Image Element. Why: The story is about both girls. How: This loads the cartoon of the two of them at its own width and height, so the card doesn't shift when it arrives. */ }
 
 
 					</div>
@@ -196,10 +201,13 @@ function AboPagCom () : React.JSX.Element {
 								<img
 									className={ cssModObj.sisPhoIma }
 
-									src={ lilJpgUrl }
+									height={ PHO_SIZ_OBJ[ 'lilah' ].heiNum }
+									loading='lazy'
+									src={ lilWebUrl }
+									width={ PHO_SIZ_OBJ[ 'lilah' ].widNum }
 
 									alt='Picture of Lilah, the older sister'
-								/>{ /* What: Sister Photo Image Element. Why: Lilah's card shows her. How: This loads her photo. */ }
+								/>{ /* What: Sister Photo Image Element. Why: Lilah's card shows her. How: This loads her photo only as it nears the screen, at its own width and height so the circle doesn't shift when it arrives. */ }
 
 
 							</div>
@@ -254,10 +262,13 @@ function AboPagCom () : React.JSX.Element {
 								<img
 									className={ cssModObj.sisPhoIma }
 
-									src={ norJpgUrl }
+									height={ PHO_SIZ_OBJ[ 'norah' ].heiNum }
+									loading='lazy'
+									src={ norWebUrl }
+									width={ PHO_SIZ_OBJ[ 'norah' ].widNum }
 
 									alt='Picture of Norah, the younger sister'
-								/>{ /* What: Sister Photo Image Element. Why: Norah's card shows her. How: This loads her photo. */ }
+								/>{ /* What: Sister Photo Image Element. Why: Norah's card shows her. How: This loads her photo only as it nears the screen, at its own width and height so the circle doesn't shift when it arrives. */ }
 
 
 							</div>

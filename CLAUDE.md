@@ -64,15 +64,16 @@ src/
   app.tsx                React Router setup, the bar, and the footer
   assets/                fonts/ (the self-hosted fonts)
   pages/
-    home/                the home page and the hero portrait
-    about/               the About page and its three photos
+    home/                the home page, its portrait, its photo sizes
+    about/               the About page, its three photos, their sizes
     links/               the Social Links page
     contact/             the Contact page
   ui/                    what every page uses (nav, footer, scroll-top)
   styles/                global CSS only (fonts.css, styles.css)
 ```
 Outside `src/`: `public/` (the favicon and Netlify's `_redirects` and
-`_headers`) and `tests/` (see "## Test suites").
+`_headers`), `design/` (the original photos and the script that renders
+them), and `tests/` (see "## Test suites").
 - **`pages/` takes the place of `tabs/`.** Each route gets its own folder,
   and an image only that page shows lives beside it. The 404 page gets
   `pages/not-found/` in step 11.
@@ -426,6 +427,17 @@ passes on `close-out`.
       (`assetsInlineLimit: 0`). Checked by serving the build with the
       headers: no violations on any page or the phone menu in all three
       engines, with both fonts and every photo loading.
+    - **Images**: done 2026-10-11. The four originals live in
+      `design/photos/`, and `npm run photos` writes WebP copies beside their
+      pages at twice their largest shown size, at 0.85 quality (the lowest
+      with no difference at 3x zoom on the portrait's fur and the cartoon's
+      outlines), plus a `photo-sizes.ts` per page that the img elements read
+      for their width and height. The portrait and the sisters' photos are
+      cut to the centered square their frames already showed. 1,321 KB came
+      down to 219 KB. Lilah's and Norah's photos load lazily, and the
+      cartoon's CSS height is `auto`, since its new height attribute
+      otherwise overrode its square aspect ratio. Every changed pixel in the
+      refreshed baselines sits inside a photo.
 12. **Close-out**: the README rewritten (it still describes the placeholder
     site), the full rule audit passes, and the version bump to 1.0.0 (asked
     for by the user 2026-10-11: remind them when close-out finishes).

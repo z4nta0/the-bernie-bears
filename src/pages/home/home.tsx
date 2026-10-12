@@ -3,11 +3,12 @@
 
 // #region Imports
 
-import cssModObj from './home.module.css';   // What: CSS Module Object. Why: The home page is styled in its own module, whose class names Vite hashes. How: Every element reads its class from this object.
-import porJpgUrl from './portrait-both.jpg'; // What: Portrait JPG URL. Why: The hero shows Lilah and Norah together, and Vite fingerprints and checks an imported image. How: This imports the photo's built URL for the hero's img.
+import cssModObj from './home.module.css';    // What: CSS Module Object. Why: The home page is styled in its own module, whose class names Vite hashes. How: Every element reads its class from this object.
+import porWebUrl from './portrait-both.webp'; // What: Portrait WebP URL. Why: The hero shows Lilah and Norah together, and Vite fingerprints and checks an imported image. How: This imports the photo's built URL for the hero's img.
 
 
-import { Link } from 'react-router'; // What: Link. Why: The hero and banner buttons move to other pages without a full page load. How: This renders each button as a router link.
+import { Link        } from 'react-router';     // What: Link. Why: The hero and banner buttons move to other pages without a full page load. How: This renders each button as a router link.
+import { PHO_SIZ_OBJ } from './photo-sizes.ts'; // What: Photo Sizes Object. Why: The portrait's img carries its intrinsic size, so the page doesn't shift while it loads. How: This looks up the portrait's width and height.
 
 // #endregion Imports
 
@@ -196,10 +197,12 @@ function HomPagCom () : React.JSX.Element {
 						<img
 							className={ cssModObj.porPhoIma }
 
-							src={ porJpgUrl }
+							height={ PHO_SIZ_OBJ[ 'portrait-both' ].heiNum }
+							src={ porWebUrl }
+							width={ PHO_SIZ_OBJ[ 'portrait-both' ].widNum }
 
 							alt='Lilah and Norah, the Bernie Bears'
-						/>{ /* What: Portrait Photo Image Element. Why: The hero shows the girls together. How: This loads their portrait. */ }
+						/>{ /* What: Portrait Photo Image Element. Why: The hero shows the girls together. How: This loads their portrait at its own width and height, so the frame doesn't shift when it arrives. */ }
 
 
 					</div>
