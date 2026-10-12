@@ -66,7 +66,7 @@ function usePagDesFun ( desTexStr : string ) : void {
 
 
 		const desMetEle = document.querySelector< HTMLMetaElement >( 'meta[name="description"]' )!; // What: Description Meta Element. Why: The one description tag is the one changed. How: This finds it in the head. // What: Non-Null Note. Why: TypeScript can't see the tag exists. How: index.html always carries it.
-		const preConStr = desMetEle.content;                                                         // What: Previous Content String. Why: The tag has to read as before once the page leaves. How: This keeps its current text.
+		const preConStr = desMetEle.content;                                                        // What: Previous Content String. Why: The tag has to read as before once the page leaves. How: This keeps its current text.
 
 
 		desMetEle.content = desTexStr; // What: Description Content Assignment. Why: The page shows its own description. How: This sets the tag's text.

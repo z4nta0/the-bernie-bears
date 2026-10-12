@@ -132,7 +132,7 @@ function LinPagCom () : React.JSX.Element {
 	return (
 
 
-		<>{ /* What: Social Links Page Fragment. Why: The page's head tags and its content render side by side. How: This groups them without adding an element. */ }
+		<>{ /* What: Links Page Fragment. Why: The page's head tags and its content render side by side. How: This groups them without adding an element. */ }
 
 
 			<title>Follow Lilah & Norah | The Bernie Bears</title>{ /* What: Page Title Element. Why: Search listings and tabs should say this page is where to follow the girls. How: React 19 moves this title into the document head while the page is shown, ahead of index.html's fallback. */ }

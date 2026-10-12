@@ -132,13 +132,14 @@
 
 }
 
-.infTexPar { /* What: Info Text Paragraph. Why: A short line says what kind of messages are welcome. How: This sets it airy in the mid grey, with room below. */
+.infTexPar { /* What: Info Text Paragraph. Why: A short line says what kind of messages are welcome. How: This sets it airy in the mid grey, no wider than the text width cap, with room below. */
 
 
 	color         : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
 	font-size     : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	line-height   : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
 	margin-bottom : var( --spa-ver-p03 ); /* Spacing Vertical Base Plus 3 ~= 33.876px */
+	max-width     : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
 
 
 }
@@ -282,13 +283,14 @@
 
 }
 
-.notTexPar { /* What: Note Text Paragraph. Why: The note's request is its content. How: This sets it small and airy in the mid grey, with no margin. */
+.notTexPar { /* What: Note Text Paragraph. Why: The note's request is its content. How: This sets it airy in the mid grey, no wider than the text width cap, with no margin. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
 	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
 	margin      : 0;
+	max-width   : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
 
 
 }
@@ -333,13 +335,14 @@
 
 }
 
-.panTexPar { /* What: Panel Text Paragraph. Why: Visitors should know where their message goes. How: This sets the line airy in the mid grey, with room below. */
+.panTexPar { /* What: Panel Text Paragraph. Why: Visitors should know where their message goes. How: This sets the line airy in the mid grey, no wider than the text width cap, with room below. */
 
 
 	color         : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
 	font-size     : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	line-height   : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
 	margin-bottom : var( --spa-ver-p03 ); /* Spacing Vertical Base Plus 3 ~= 33.876px */
+	max-width     : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
 
 
 }

@@ -266,7 +266,7 @@ function layProFun () : string[] {
 
 // #region Module Init
 
-for ( const layCasObj of LAY_CAS_ARR ) { // What: Case Loop. Why: The page and the open menu are measured. How: This declares each case's tests.
+for ( const layCasObj of LAY_CAS_ARR ) { // What: Case Loop. Why: Every page and the open menu are measured. How: This declares each case's tests.
 
 
 	for ( const widCurNum of WID_LIS_ARR.filter( ( widFilNum ) => !layCasObj.menBoo || widFilNum <= MEN_MAX_NUM ) ) { // What: Width Loop. Why: Each case is measured at every width it exists at. How: This declares one test per width, skipping menu widths past the breakpoint.

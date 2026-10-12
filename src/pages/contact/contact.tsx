@@ -125,7 +125,7 @@ function ConPagCom () : React.JSX.Element {
 									>📧</span>{ /* What: Info Icon Span Element. Why: Each card opens with an emoji. How: This shows an envelope, hidden from screen readers as decoration. */ }
 
 
-									<div>{ /* What: Contact Card Text Div Element. Why: The card's label and value read as one block. How: This stacks them, with no styling of its own. */ }
+									<div>{ /* What: Info Text Div Element. Why: The card's label and value read as one block. How: This stacks them, with no styling of its own. */ }
 
 
 										<strong className={ cssModObj.infLabStr }>Email Us</strong>{ /* What: Info Label Strong Element. Why: The card names what it offers. How: This shows the label above the value. */ }
@@ -159,7 +159,7 @@ function ConPagCom () : React.JSX.Element {
 										aria-hidden='true'
 									>📱</span>{ /* What: Info Icon Span Element. Why: Each card opens with an emoji. How: This shows a phone, hidden from screen readers as decoration. */ }
 
-									<div>{ /* What: Contact Card Text Div Element. Why: The card's label and value read as one block. How: This stacks them, with no styling of its own. */ }
+									<div>{ /* What: Info Text Div Element. Why: The card's label and value read as one block. How: This stacks them, with no styling of its own. */ }
 
 
 										<strong className={ cssModObj.infLabStr }>Social Media</strong>{ /* What: Info Label Strong Element. Why: The card names what it offers. How: This shows the label above the value. */ }
@@ -182,7 +182,7 @@ function ConPagCom () : React.JSX.Element {
 										aria-hidden='true'
 									>⏱️</span>{ /* What: Info Icon Span Element. Why: Each card opens with an emoji. How: This shows a stopwatch, hidden from screen readers as decoration. */ }
 
-									<div>{ /* What: Contact Card Text Div Element. Why: The card's label and value read as one block. How: This stacks them, with no styling of its own. */ }
+									<div>{ /* What: Info Text Div Element. Why: The card's label and value read as one block. How: This stacks them, with no styling of its own. */ }
 
 
 										<strong className={ cssModObj.infLabStr }>Response Time</strong>{ /* What: Info Label Strong Element. Why: The card names what it offers. How: This shows the label above the value. */ }

@@ -8,7 +8,7 @@
  * Styles for SitFooCom: the dark band that ends every page, holding one
  * centered column with the brand name in the script font, its italic tagline,
  * a wrapping row of page links that warm to a deeper cream on hover, and a
- * small copyright line under a faint rule. The column's width and side padding
+ * copyright line under a faint rule. The column's width and side padding
  * are the page's shared container values, merged into its own rule.
  *
  * @author z4nta0 <https://github.com/z4nta0>
@@ -62,7 +62,7 @@
 
 }
 
-.fooTagPar { /* What: Footer Tagline Paragraph. Why: The tagline sits quietly under the name. How: This sets it small, grey, and italic. */
+.fooTagPar { /* What: Footer Tagline Paragraph. Why: The tagline sits quietly under the name. How: This sets it grey and italic. */
 
 
 	color      : var( --tex-inm-col ); /* Text Inverse-Muted Color = #9a9a9a */
@@ -86,7 +86,7 @@
 
 }
 
-.fooLinAnc { /* What: Footer Link Anchor. Why: The links should read clearly on the dark band. How: This sets them small and bold in cream, with no underline, easing their color. */
+.fooLinAnc { /* What: Footer Link Anchor. Why: The links should read clearly on the dark band. How: This sets them bold in cream, with no underline, easing their color. */
 
 
 	color           : var( --bac-pag-col ); /* Background Page Color = #f7f7e2 */
@@ -128,7 +128,7 @@
 /* #endregion fooNavNav */
 
 
-.fooCopPar { /* What: Footer Copyright Paragraph. Why: The footer ends with the copyright, set apart from the links. How: This sets it small and grey across the column's full width, under a faint rule. */
+.fooCopPar { /* What: Footer Copyright Paragraph. Why: The footer ends with the copyright, set apart from the links. How: This sets it in grey across the column's full width, under a faint rule. */
 
 
 	border-top  : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-009-rec ) ); /* Border Width Base ~= 1.160px, Background Surface Color = #ffffff, Core-Design-Number to the Power of 9 Reciprocal ~= 0.080 */

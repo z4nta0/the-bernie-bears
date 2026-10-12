@@ -711,12 +711,13 @@
 /* #endregion menOffAnc */
 
 
-.menTagPar { /* What: Menu Tagline Paragraph. Why: The menu ends on the girls' motto, as the footer does. How: This sets it small, italic, and centered in the secondary grey. */
+.menTagPar { /* What: Menu Tagline Paragraph. Why: The menu ends on the girls' motto, as the footer does. How: This sets it italic and centered in the secondary grey, no wider than the small text width cap. */
 
 
 	color      : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
 	font-size  : var( --fon-siz-bas ); /* Font Size Base = 11px */
 	font-style : italic;
+	max-width  : var( --tex-wid-sma ); /* Text Width Small ~= 22.047em */
 	text-align : center;
 
 

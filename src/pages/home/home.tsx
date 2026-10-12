@@ -90,7 +90,8 @@ const FEA_CAR_ARR = [ // What: Feature Card Array. Why: The home page sums up li
  *
  * It also sets the page's canonical address, which React moves into the
  * document head while the page is shown; its title and description are
- * index.html's own, which every other page swaps for its own.
+ * index.html's own, while every other page shows its own title, and Social
+ * Links its own description too.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *

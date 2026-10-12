@@ -331,7 +331,7 @@
 .herBloDiv { /* What: Hero Blob Div. Why: A soft shape behind the portrait adds warmth. How: This sizes a square that grows with the screen from the p12 rhythm step but never past its box, draws a cream to sage to lavender blob behind the portrait and morphs its outline slowly, forever. */
 
 
-	animation     : herBloDivLoopMorph var( --dur-ani-p14 ) var( --mot-sta-eas ) infinite;                                               /* Duration Animation Base Plus 14 ~= 8,090.0ms, Motion Standard Easing = ease */
+	animation     : herBloDivLoopMorph var( --dur-ani-p14 ) var( --mot-sta-eas ) infinite;                                               /* Duration Animation Base Plus 14 ~= 8,090.0ms, Motion Standard Easing = ease */ /* What: Paint Animation Note. Why: The blob's outline itself changes shape, which no transform or opacity change can draw. How: The loop animates border-radius, repainting the blob each frame, the one animation on the page that leaves the compositor. */
 	aspect-ratio  : 1;
 	background    : radial-gradient( ellipse at 40% 40%, var( --bac-hig-col ) 0%, var( --acs-tin-col ) 60%, var( --acc-tin-col ) 100% ); /* Background Highlight Color = #ececb6, Accent-Secondary Tint Color = #ddeadc, Accent Tint Color = #f3eaf9 */
 	border-radius : 60% 40% 55% 45% / 50% 60% 40% 50%;
