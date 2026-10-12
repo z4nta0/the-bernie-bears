@@ -352,10 +352,9 @@ passes on `close-out`.
    - **Open for step 10**: About's narrow overflow is now 35px at 320px and
      also reaches 360px in WebKit, from the fixed 321px cartoon frame (fixed
      in step 10).
-10. **Horizontal layout** (done, pending the user's comparison with the live
-    site): option 2, the fluid horizontal rhythm tonys-toppers uses, chosen
-    on 2026-10-11 over the vertical rhythm, with the user deciding after
-    comparing the dev site with the live one whether to keep it.
+10. **Horizontal layout** (done): option 2, the fluid horizontal rhythm
+    tonys-toppers uses, chosen on 2026-10-11 over the vertical rhythm and
+    kept by the user after comparing the dev site with the live one.
    - **Tokens**: `--hor-rhy-min` to `--hor-rhy-max` (100vw over a power of
      the core design number), `--gut-sid-pad` (horizontal step 016 held
      between `p01` and `p04`, about 19.3px to 44.9px, the siblings' gutter),
@@ -389,13 +388,6 @@ passes on `close-out`.
      row once the cards fit at their minimum width (`--fea-car-wid`, `p09`,
      and `--fac-car-wid`, `p08`, each rising with a horizontal step). Their
      column gap stays at `--spa-hor-p02` so the math can read it.
-   - **To switch to the vertical rhythm**, the fluid layout came in three
-     commits: `300e87a` (tokens and pictures), `01a278a` (layout spacing),
-     and `ba37525` (grid minimums). The fixes from the user's comparison
-     build on them (`851c6dd` hero height, `a0ec488` hero breakpoint,
-     `ac9f161` group photo, `3c5e355` even grid columns), so switching means
-     redoing the widths on vertical rhythm steps while keeping those fixes,
-     rather than a plain `git revert`.
    - **Accessibility review**: axe reports no violations apart from the 404
      page's missing `h1` (step 11). Its undecided results are all contrast
      over gradients and the translucent bar; measured against every gradient
