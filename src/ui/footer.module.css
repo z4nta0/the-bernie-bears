@@ -62,12 +62,13 @@
 
 }
 
-.fooTagPar { /* What: Footer Tagline Paragraph. Why: The tagline sits quietly under the name. How: This sets it grey and italic. */
+.fooTagPar { /* What: Footer Tagline Paragraph. Why: The tagline sits quietly under the name. How: This sets it grey and italic, no wider than the small text width cap, the centered column keeping it centered. */
 
 
 	color      : var( --tex-inm-col ); /* Text Inverse-Muted Color = #9a9a9a */
 	font-size  : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	font-style : italic;
+	max-width  : var( --tex-wid-sma ); /* Text Width Small ~= 22.047em */
 
 
 }

@@ -374,7 +374,7 @@
 
 	/* #region Text Width Tokens */
 
-	--tex-wid-sma : calc( var( --cdn-pow-011 ) * 1em ); /* What: Text Width Small ~= 22.047em. Why: Subtitles read best near 50 characters a line. How: Nunito averages about 2.27 characters per em, so this gives about 50, and every page header's subtitle, the home page's section subtitle, its closing banner's line, and the phone menu's tagline read it. */
+	--tex-wid-sma : calc( var( --cdn-pow-011 ) * 1em ); /* What: Text Width Small ~= 22.047em. Why: Subtitles read best near 50 characters a line. How: Nunito averages about 2.27 characters per em, so this gives about 50, and every page header's subtitle, the home page's section subtitle, its closing banner's line, and the phone menu's and footer's taglines read it. */
 	--tex-wid-bas : calc( var( --cdn-pow-012 ) * 1em ); /* What: Text Width Base ~= 29.207em. Why: Paragraphs read best near 66 characters a line. How: Nunito averages about 2.27 characters per em, so this gives about 66, and the hero's pitch, the links intro, the About page's story paragraph, the sisters' card text, the social cards' descriptions, the Contact page's info, note, and panel lines, and the Social Links closing band's line read it. */
 
 	/* #endregion Text Width Tokens */
