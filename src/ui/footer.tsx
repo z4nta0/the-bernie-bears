@@ -43,9 +43,9 @@ import { Link } from 'react-router'; // What: Link. Why: The footer's page links
  * Official Site link to the brand's main site, which opens in a new tab
  * without giving it access to this one, in a navigation landmark labelled
  * Footer, so screen readers can tell it from the bar's, and the copyright with
- * the current year. The brand's paw print is
- * hidden from screen readers as decoration, while the copyright's heart is
- * announced as love, since the line says it was made with love.
+ * the current year. The brand's paw print is hidden from screen readers as
+ * decoration, while the copyright's heart is announced as love, since the line
+ * says it was made with love.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *

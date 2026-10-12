@@ -61,14 +61,17 @@ app with tabs.
 ```
 src/
   main.tsx               entry point
-  app.tsx                React Router setup, the bar, and the footer
+  app.tsx                the route table, the bar, and the footer
   assets/                fonts/ (the self-hosted fonts)
   pages/
     home/                the home page, its portrait, its photo sizes
     about/               the About page, its three photos, their sizes
     links/               the Social Links page
     contact/             the Contact page
-  ui/                    what every page uses (nav, footer, scroll-top)
+    not-found/           the 404 page every unknown path shows
+  ui/                    what every page uses (the bar, the footer, the
+                         shared social profiles, the page description and
+                         scroll-to-top hooks)
   styles/                global CSS only (fonts.css, styles.css)
 ```
 Outside `src/`: `public/` (the favicon set, the social preview card,
@@ -77,14 +80,15 @@ Outside `src/`: `public/` (the favicon set, the social preview card,
 that render the photos, the card, and the icons), and `tests/` (see "## Test
 suites").
 - **`pages/` takes the place of `tabs/`.** Each route gets its own folder,
-  and an image only that page shows lives beside it. The 404 page gets
-  `pages/not-found/` in step 11.
+  and an image only that page shows lives beside it. The 404 page has
+  `pages/not-found/`.
 - **A page's main file is named after its folder** (`pages/links/links.tsx`,
   not `social-links.tsx`), matching its route.
 - **The bar and footer live in `ui/`** as `nav.tsx` and `footer.tsx`, since
   every page shows them.
 - **`public/favicon.svg`** is the paw icon, served at a fixed address since
-  browsers ask for it themselves; step 11 adds the raster icons beside it.
+  browsers ask for it themselves, with the raster icons rendered from it
+  beside it.
 
 ## Page navigation
 Decided 2026-10-11, per "## Multi-Page React Sites: Scroll Position" in the
@@ -518,7 +522,34 @@ passes on `close-out`.
       `tests/interaction/menu.spec.ts` checks the open menu and each way out.
 12. **Close-out**: the README rewritten (it still describes the placeholder
     site), the full rule audit passes, and the version bump to 1.0.0 (asked
-    for by the user 2026-10-11: remind them when close-out finishes).
+    for by the user 2026-10-11: remind them when close-out finishes). The
+    README and the audit are done 2026-10-12; the bump is left to the user.
+    - **README**: rewritten to describe the finished site and its role
+      beside theberniebears.com, following tonys-toppers'.
+    - **Design scripts type checked**: `tsconfig.design.json`, copied from
+      tonys-toppers, brings `design/` under the type check.
+    - **Rule audit**: four rounds, each by fresh reviewers reading every file
+      against both CLAUDE.md files, found 89, 44, 15, and 13 findings. Most
+      were comments left stale by earlier steps, plus blank lines,
+      alignment, labels, and a few names (Head truncated to `hed`, now on
+      the user-level miscorrections list). The real problems fixed along the
+      way:
+      - text past the measure: the hero pitch, the closing banner, the
+        About and Contact paragraphs, the page subtitles, and the menu and
+        footer taglines, now all capped and checked by a scripted sweep
+        of every paragraph at fifteen widths in all three engines;
+      - hovers with no color shift: the white banner button, the menu's
+        social tiles, and the sister and fact cards;
+      - a social card slide wider than the feedback rule allows;
+      - WebKit showing no press when a social card's empty space was
+        pressed;
+      - the brand link leaving the phone menu open, and the page inert,
+        when tapped with the menu open (now covered by `menu.spec.ts`).
+    - **Footer** (decided by the user 2026-10-12): the tagline keeps its
+      cap, being one continuous run of text, while the copyright line runs
+      66 characters uncapped, a call made for this line alone rather than a
+      rule. The copyright line now sits centered between its rule and the
+      page's end, its top padding matching the footer's bottom padding.
 
 ## Test suites
 Added 2026-10-11, adapted from tonys-toppers'. Playwright suites live in

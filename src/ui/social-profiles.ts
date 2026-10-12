@@ -47,7 +47,7 @@
 const SOC_PRO_ARR = [ // What: Social Profile Array. Why: The Social Links page and the phone menu both list the girls' profiles. How: Each row holds one profile's colors, text, icon, and address.
 
 
-	{ // What: Facebook Card. Why: The girls' home base comes first. How: This card links to the Facebook page.
+	{ // What: Facebook Profile Row. Why: The girls' home base comes first. How: This row gives the Facebook page its card and its menu icon.
 
 
 		bacStr : '#e7f0fd',
@@ -62,7 +62,7 @@ const SOC_PRO_ARR = [ // What: Social Profile Array. Why: The Social Links page 
 
 	},
 
-	{ // What: Instagram Card. Why: Photos and reels are the girls' everyday posts. How: This card links to the Instagram page.
+	{ // What: Instagram Profile Row. Why: Photos and reels are the girls' everyday posts. How: This row gives the Instagram page its card and its menu icon.
 
 
 		bacStr : '#fdeef3',
@@ -77,7 +77,7 @@ const SOC_PRO_ARR = [ // What: Social Profile Array. Why: The Social Links page 
 
 	},
 
-	{ // What: YouTube Card. Why: The full-length videos live here. How: This card links to the YouTube page.
+	{ // What: YouTube Profile Row. Why: The full-length videos live here. How: This row gives the YouTube page its card and its menu icon.
 
 
 		bacStr : '#fff0f0',
@@ -92,7 +92,7 @@ const SOC_PRO_ARR = [ // What: Social Profile Array. Why: The Social Links page 
 
 	},
 
-	{ // What: TikTok Card. Why: Short clips reach the most new fans. How: This card links to the TikTok page.
+	{ // What: TikTok Profile Row. Why: Short clips reach the most new fans. How: This row gives the TikTok page its card and its menu icon.
 
 
 		bacStr : '#f0f0f0',
@@ -107,7 +107,7 @@ const SOC_PRO_ARR = [ // What: Social Profile Array. Why: The Social Links page 
 
 	},
 
-	{ // What: X Card. Why: Quick updates go out here. How: This card links to the X page.
+	{ // What: X Profile Row. Why: Quick updates go out here. How: This row gives the X page its card and its menu icon.
 
 
 		bacStr : '#f0f0f0',
@@ -122,7 +122,7 @@ const SOC_PRO_ARR = [ // What: Social Profile Array. Why: The Social Links page 
 
 	},
 
-	{ // What: Pinterest Card. Why: Outfit ideas and cozy moments are saved here. How: This card links to the Pinterest page.
+	{ // What: Pinterest Profile Row. Why: Outfit ideas and cozy moments are saved here. How: This row gives the Pinterest page its card and its menu icon.
 
 
 		bacStr : '#fdecee',

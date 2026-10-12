@@ -23,7 +23,7 @@
 
 // #region Constants
 
-type PhoSizTyp = { heiNum : number, widNum : number }; // What: Photo Size Type. Why: Every photo's size has the same shape. How: This names its height and width in pixels.
+type HomPhsTyp = { heiNum : number, widNum : number }; // What: Home Photo-Size Type. Why: Every photo's size has the same shape. How: This names its height and width in pixels.
 
 /**
  * PHO_SIZ_OBJ = Photo Sizes Object
@@ -37,7 +37,7 @@ type PhoSizTyp = { heiNum : number, widNum : number }; // What: Photo Size Type.
  *
 */
 
-const PHO_SIZ_OBJ : Record< string, PhoSizTyp > = { // What: Photo Sizes Object. Why: Every img element needs its photo's intrinsic size. How: The page looks each photo's size up by its file name.
+const PHO_SIZ_OBJ : Record< string, HomPhsTyp > = { // What: Photo Sizes Object. Why: Every img element needs its photo's intrinsic size. How: The page looks each photo's size up by its file name.
 
 
 	'portrait-both' : { heiNum : 782, widNum : 782 }

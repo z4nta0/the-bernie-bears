@@ -13,10 +13,10 @@
  * has it open, its rows arriving one after another, and the toggle's bars turn
  * into a cross. Under the links the panel adds a row of the girls' profile
  * icons, a link to the main site, and the tagline. The bar's states are
- * attributes rather than classes: aria-expanded on the toggle, data-mobile-
- * menu-open on the links and the scrim, and aria-current on the current page's
- * link. The bar's width and side padding are the page's shared container
- * values, merged into its own rule.
+ * attributes rather than classes: aria-expanded on the toggle,
+ * data-mobile-menu-open on the links and the scrim, and aria-current on the
+ * current page's link. The bar's width and side padding are the page's shared
+ * container values, merged into its own rule.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -27,7 +27,7 @@
 .navScrDiv { /* What: Navigation Scrim Div. Why: The open phone menu should stand apart from the page, and a tap anywhere on the page should close it. How: This covers the screen under the bar in the scrim color, hidden until the menu opens, fading out as it closes and only then leaving the page clickable. */
 
 
-	background : oklch( from var( --scr-mai-col ) l c h / var( --cdn-pow-003-rec ) );                          /* Core-Design-Number to the Power of 3 Reciprocal ~= 0.430 */
+	background : oklch( from var( --scr-mai-col ) l c h / var( --cdn-pow-003-rec ) );                          /* Scrim Main Color = #2c2c2c, Core-Design-Number to the Power of 3 Reciprocal ~= 0.430 */
 	display    : none;
 	inset      : 0;
 	opacity    : 0;
@@ -85,7 +85,7 @@
 	backdrop-filter : blur( calc( var( --ver-rhy-m01 ) * 1rem ) );     /* Vertical Rhythm Base Minus 1 = 11px */
 	background      : oklch( from var( --bac-sur-col ) l c h / 0.92 ); /* Background Surface Color = #ffffff @ 0.92 opacity */
 	border-bottom   : var( --bor-wid-lar ) solid var( --bor-mai-col ); /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
-	box-shadow      : var( --ele-med-sha );
+	box-shadow      : var( --ele-med-sha );                            /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
 	position        : sticky;
 	top             : 0;
 	z-index         : 4;                                               /* What: Bar Layer. Why: The bar has to stay above the scrim at 3, which covers the page's highest layer, the hero's name badges at 2. How: This sits one layer above the scrim. */
@@ -279,7 +279,7 @@
 
 
 	background       : var( --acc-dar-col );                /* Accent Dark Color ~= #7e5b93 */
-	border-radius    : var( --rad-bor-xsm );                /* Radius Border Extra Small ~= 3.571px */
+	border-radius    : var( --rad-bor-xsm );                /* Radius Border Extra Small ~= 3.572px */
 	display          : block;
 	height           : calc( var( --ver-rhy-m05 ) * 1rem ); /* Vertical Rhythm Base Minus 5 ~= 3.572px */
 	transform-origin : center;
@@ -295,24 +295,24 @@
 
 
 }
-.navTogBut[aria-expanded='true'] .togBarSpa:nth-child(1) { /* What: Open Top Toggle Bar Span. Why: The open toggle shows a cross. How: This drops the top bar to the middle and tilts it one way. */
+.navTogBut[aria-expanded='true'] .togBarSpa:nth-child( 1 ) { /* What: Open Top Toggle Bar Span. Why: The open toggle shows a cross. How: This drops the top bar to the middle and tilts it one way. */
 
 
-	transform : translateY( calc( var( --ver-rhy-m02 ) * 1rem ) ) rotate( 45deg ); /* Vertical Rhythm Base Minus 2 ~= 8.304px */
+	transform : translateY( calc( var( --ver-rhy-m02 ) * 1rem ) ) rotate( 45deg ); /* Vertical Rhythm Base Minus 2 ~= 8.304px */ /* What: Bar Drop Distance. Why: The top bar has to land exactly on the middle one. How: One bar (m05) plus one gap (m04) sums to m02, so this reads that rhythm step rather than a spacing step. */
 
 
 }
-.navTogBut[aria-expanded='true'] .togBarSpa:nth-child(2) { /* What: Open Middle Toggle Bar Span. Why: The cross has only two strokes. How: This fades the middle bar out. */
+.navTogBut[aria-expanded='true'] .togBarSpa:nth-child( 2 ) { /* What: Open Middle Toggle Bar Span. Why: The cross has only two strokes. How: This fades the middle bar out. */
 
 
 	opacity : 0;
 
 
 }
-.navTogBut[aria-expanded='true'] .togBarSpa:nth-child(3) { /* What: Open Bottom Toggle Bar Span. Why: The open toggle shows a cross. How: This lifts the bottom bar to the middle and tilts it the other way. */
+.navTogBut[aria-expanded='true'] .togBarSpa:nth-child( 3 ) { /* What: Open Bottom Toggle Bar Span. Why: The open toggle shows a cross. How: This lifts the bottom bar to the middle and tilts it the other way. */
 
 
-	transform : translateY( calc( var( --ver-rhy-m02 ) * -1rem ) ) rotate( -45deg ); /* Vertical Rhythm Base Minus 2 ~= -8.304px */
+	transform : translateY( calc( var( --ver-rhy-m02 ) * -1rem ) ) rotate( -45deg ); /* Vertical Rhythm Base Minus 2 ~= -8.304px */ /* What: Bar Lift Distance. Why: The bottom bar has to land exactly on the middle one. How: One bar (m05) plus one gap (m04) sums to m02, so this reads that rhythm step rather than a spacing step. */
 
 
 }
@@ -333,6 +333,7 @@
 /* #endregion navTogBut */
 
 
+
 /* #region navLinNav */
 
 .navLinNav { /* What: Navigation Links Nav. Why: Wide screens show the page links in a row in the bar. How: This lines them up with small gaps. */
@@ -347,12 +348,12 @@
 @media ( max-width : 640px ) { /* What: Narrow Navigation Links Nav. Why: The links don't fit the bar on a narrow screen. How: This applies 640px wide and below. */
 
 
-	.navLinNav { /* What: Closed Navigation Links Nav. Why: On a narrow screen the links become a panel below the bar, out of the way until the toggle opens it. How: This stacks them on a white panel, faded out a step above its place and hidden from the tab order, scrolling when it's taller than the screen below the bar, across the screen under the bar, hidden while closed, which also keeps its links out of the Tab order. */
+	.navLinNav { /* What: Closed Navigation Links Nav. Why: On a narrow screen the links become a panel below the bar, out of the way until the toggle opens it. How: This stacks them on a white panel across the screen under the bar, scrolling when it's taller than the screen below the bar, faded out a step above its place and hidden while closed, which also keeps its links out of the Tab order. */
 
 
 		background     : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
 		border-bottom  : var( --bor-wid-lar ) solid var( --bor-mai-col ); /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
-		box-shadow     : var( --ele-lar-sha );
+		box-shadow     : var( --ele-lar-sha );                            /* Elevation Large Shadow, about 0 19.3px 44.9px -14.6px plus 0 6.3px 14.6px -3.6px */
 		flex-direction : column;
 		gap            : var( --spa-ver-m02 );                            /* Spacing Vertical Base Minus 2 ~= 8.304px */
 		left           : 0;
@@ -424,7 +425,7 @@
 
 	background : var( --bac-hig-col );                            /* Background Highlight Color = #ececb6 */
 	border     : var( --bor-wid-bas ) solid var( --bor-str-col ); /* Border Width Base ~= 1.160px, Border Strong Color = #d6d69a */
-	box-shadow : var( --ele-sma-sha );
+	box-shadow : var( --ele-sma-sha );                            /* Elevation Small Shadow, about 0 1.2px 2px */
 	color      : var( --tex-mai-col );                            /* Text Main Color = #2c2c2c */
 
 
@@ -471,6 +472,34 @@
 
 
 }
+@media ( max-width : 640px ) { /* What: Narrow Menu Item Stagger. Why: Only the phone menu's rows arrive in turn. How: This applies 640px wide and below. */
+
+
+	.navLinNav[data-mobile-menu-open] .navLinAnc,
+	.navLinNav[data-mobile-menu-open] .menConDiv { /* What: Arriving Menu Items. Why: Each row should follow the one above it in. How: This plays the fade on every opening, delayed by one stagger step per place in the list, holding the row's start until its turn but nothing after, so a link's press dim still applies. */
+
+
+		animation : menuItemOpenFadeIn var( --dur-ani-p02 ) var( --mot-dec-eas ) calc( var( --dur-ani-m03 ) * ( var( --nav-ite-ind ) + 1 ) ) backwards; /* Duration Animation Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Duration Animation Base Minus 3 ~= 67.9ms, Navigation Item Index, set by each row's style */
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Menu Item Stagger. Why: Someone who asked for less motion should see the rows appear together. How: This applies only when the reduced-motion preference is set. */
+
+
+	.navLinNav[data-mobile-menu-open] .navLinAnc,
+	.navLinNav[data-mobile-menu-open] .menConDiv { /* What: Still Menu Items. Why: The rows should simply be there. How: This turns the stagger off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
 @keyframes menuItemOpenFadeIn { /* What: Menu Item Open Fade In. Why: The phone menu's rows arrive one after another rather than all at once. How: This rises each row a step into place as it fades in. */
 
 
@@ -488,34 +517,6 @@
 
 		opacity   : 1;
 		transform : none;
-
-
-	}
-
-
-}
-@media ( max-width : 640px ) { /* What: Narrow Menu Item Stagger. Why: Only the phone menu's rows arrive in turn. How: This applies 640px wide and below. */
-
-
-	.navLinNav[data-mobile-menu-open] .navLinAnc,
-	.navLinNav[data-mobile-menu-open] .menConDiv { /* What: Arriving Menu Items. Why: Each row should follow the one above it in. How: This plays the fade on every opening, delayed by one stagger step per place in the list, holding the row's start until its turn but nothing after, so a link's press dim still applies. */
-
-
-		animation : menuItemOpenFadeIn var( --dur-ani-p02 ) var( --mot-dec-eas ) calc( var( --dur-ani-m03 ) * ( var( --nav-ite-ind ) + 1 ) ) backwards; /* Duration Animation Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Duration Animation Base Minus 3 ~= 67.9ms */
-
-
-	}
-
-
-}
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Menu Item Stagger. Why: Someone who asked for less motion should see the rows appear together. How: This applies only when the reduced-motion preference is set. */
-
-
-	.navLinNav[data-mobile-menu-open] .navLinAnc,
-	.navLinNav[data-mobile-menu-open] .menConDiv { /* What: Still Menu Items. Why: The rows should simply be there. How: This turns the stagger off. */
-
-
-		animation : none;
 
 
 	}
@@ -564,6 +565,7 @@
 }
 
 
+
 /* #region menSocDiv */
 
 .menSocDiv { /* What: Menu Social Div. Why: The six icons sit together as one row. How: This sets them in a row that wraps on the narrowest screens. */
@@ -579,7 +581,7 @@
 
 /* #region menSocAnc */
 
-.menSocAnc { /* What: Menu Social Anchor. Why: Each icon is a comfortable tap target. How: This centers the mark in a round tile about 45px across, the platform's colors set on the element, easing its lift, press, and focus. */
+.menSocAnc { /* What: Menu Social Anchor. Why: Each icon is a comfortable tap target. How: This centers the mark in a round tile about 45px across, the platform's colors set on the element, easing its tint, lift, press, and focus. */
 
 
 	align-items     : center;
@@ -588,14 +590,15 @@
 	font-size       : var( --fon-siz-p02 );                /* Font Size Base Plus 2 ~= 19.304px */
 	height          : calc( var( --ver-rhy-p04 ) * 1rem ); /* Vertical Rhythm Base Plus 4 ~= 44.876px */
 	justify-content : center;
-	transition      : transform var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	transition      : filter var( --dur-tra-p01 ) var( --mot-sta-eas ), transform var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 	width           : calc( var( --ver-rhy-p04 ) * 1rem ); /* Vertical Rhythm Base Plus 4 ~= 44.876px */
 
 
 }
-.menSocAnc:hover { /* What: Hovered Menu Social Anchor. Why: A tile should respond to the pointer. How: This lifts it 2px. */
+.menSocAnc:hover { /* What: Hovered Menu Social Anchor. Why: A tile should respond to the pointer. How: This deepens its colors a little and lifts it 2px. */
 
 
+	filter    : brightness( 0.9 );                               /* What: Hover Tint. Why: Each tile wears its platform's own colors, so no one color shift suits them all. How: This darkens whatever colors the tile has by a tenth, a literal since it tunes a look rather than a size. */
 	transform : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
@@ -610,7 +613,7 @@
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Menu Social Anchor. Why: Someone who asked for less motion shouldn't see the tiles move. How: This applies only when the reduced-motion preference is set. */
 
 
-	.menSocAnc { /* What: Motionless Menu Social Anchor. Why: The lift and press should apply at once. How: This turns the transition off. */
+	.menSocAnc { /* What: Motionless Menu Social Anchor. Why: The tint, lift, and press should apply at once. How: This turns the transition off. */
 
 
 		transition : none;
@@ -632,6 +635,7 @@
 /* #endregion menSocAnc */
 
 /* #endregion menSocDiv */
+
 
 
 /* #region menOffAnc */
@@ -707,12 +711,13 @@
 /* #endregion menOffAnc */
 
 
-.menTagPar { /* What: Menu Tagline Paragraph. Why: The menu ends on the girls' motto, as the footer does. How: This sets it small, italic, and centered in the secondary grey. */
+.menTagPar { /* What: Menu Tagline Paragraph. Why: The menu ends on the girls' motto, as the footer does. How: This sets it italic and centered in the secondary grey, no wider than the small text width cap. */
 
 
 	color      : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
 	font-size  : var( --fon-siz-bas ); /* Font Size Base = 11px */
 	font-style : italic;
+	max-width  : var( --tex-wid-sma ); /* Text Width Small ~= 22.047em */
 	text-align : center;
 
 

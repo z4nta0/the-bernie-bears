@@ -65,18 +65,20 @@ const NAV_LIN_ARR = [ // What: Navigation Link Array. Why: The bar links to ever
  * Renders the bar. On a phone the links sit in a menu the toggle opens, and
  * choosing a link closes it; the toggle reports the menu's state through
  * aria-expanded and the menu carries data-mobile-menu-open while open. React
- * Router's NavLink marks the link whose route matches with aria-current,
- * which the bar's stylesheet styles, and the Home link matches only the root
- * path exactly, since every path starts with it.
+ * Router's NavLink marks the link whose route matches with aria-current, which
+ * the bar's stylesheet styles, and the Home link matches only the root path
+ * exactly, since every path starts with it.
+ *
  * The brand's paw print is hidden from screen readers as decoration, so the
  * link is announced by the name alone, and the links sit in a navigation
  * landmark labelled Main, so screen readers can tell it from the footer's.
- * On a phone the open menu also shows a row of the girls' six profiles, a
- * link to the main site, and the tagline, each row fading in after the last,
- * over a scrim that dims the page. While it's open the rest of the page is
- * inert, so keyboard and screen reader users stay in the bar; tapping the
- * scrim closes it, Escape closes it and returns focus to the toggle, and a
- * screen widened past the phone layout closes it, since its toggle is gone.
+ *
+ * On a phone the open menu also shows a row of the girls' six profiles, a link
+ * to the main site, and the tagline, each row fading in after the last, over a
+ * scrim that dims the page. While it's open the rest of the page is inert, so
+ * keyboard and screen reader users stay in the bar; tapping the scrim closes
+ * it, Escape closes it and returns focus to the toggle, and a screen widened
+ * past the phone layout closes it, since its toggle is gone.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -96,7 +98,7 @@ function NavBarCom () : React.JSX.Element {
 
 	const [ menOpeBoo, setMenOpeBoo ] = useState( false ); // What: Menu Open Boolean And Setter. Why: The phone menu opens and closes from its toggle. How: This holds whether it's open, starting closed.
 
-	const hedBarRef = useRef< HTMLElement >( null );       // What: Header Bar Reference. Why: The open menu leaves the bar usable while it makes the rest of the page inert. How: This attaches to the header element.
+	const navBarRef = useRef< HTMLElement >( null );       // What: Navigation Bar Reference. Why: The open menu leaves the bar usable while it makes the rest of the page inert. How: This attaches to the header element.
 	const scrDivRef = useRef< HTMLDivElement >( null );    // What: Scrim Div Reference. Why: The scrim has to stay tappable while the page behind it is inert. How: This attaches to the scrim.
 	const togButRef = useRef< HTMLButtonElement >( null ); // What: Toggle Button Reference. Why: Escape puts focus back on the toggle, and a hidden toggle means the menu no longer applies. How: This attaches to the toggle.
 
@@ -108,10 +110,10 @@ function NavBarCom () : React.JSX.Element {
 
 
 
-		const hedBarEle = hedBarRef.current!;                                                                                                            // What: Header Bar Element. Why: The bar stays usable. How: This reads the bar. // What: Non-Null Note. Why: TypeScript can't see the ref is attached. How: Effects run after the bar has mounted.
-		const scrDivEle = scrDivRef.current!;                                                                                                            // What: Scrim Div Element. Why: The scrim stays tappable to close the menu. How: This reads the scrim. // What: Non-Null Note. Why: TypeScript can't see the ref is attached. How: Effects run after the scrim has mounted.
-		const sibEleArr = Array.from( hedBarEle.parentElement!.children ).filter( ( sibCurEle ) => sibCurEle !== hedBarEle && sibCurEle !== scrDivEle ); // What: Sibling Element Array. Why: The page's main content and footer sit beside the bar. How: This lists the bar's siblings, leaving out the scrim. // What: Non-Null Note. Why: TypeScript can't see the bar has a parent. How: The app root always renders it inside its wrapper.
-		const togButEle = togButRef.current!;                                                                                                            // What: Toggle Button Element. Why: Escape returns focus here, and its visibility says whether the menu still applies. How: This reads the toggle. // What: Non-Null Note. Why: TypeScript can't see the ref is attached. How: Effects run after the toggle has mounted.
+		const navBarEle = navBarRef.current!; // What: Navigation Bar Element. Why: The bar stays usable. How: This reads the bar. // What: Non-Null Note. Why: TypeScript can't see the ref is attached. How: Effects run after the bar has mounted.
+		const scrDivEle = scrDivRef.current!; // What: Scrim Div Element. Why: The scrim stays tappable to close the menu. How: This reads the scrim. // What: Non-Null Note. Why: TypeScript can't see the ref is attached. How: Effects run after the scrim has mounted.
+		const sibEleArr = Array.from( navBarEle.parentElement!.children ).filter( ( sibCurEle ) => sibCurEle !== navBarEle && sibCurEle !== scrDivEle ); // What: Sibling Element Array. Why: The page's main content and footer sit beside the bar. How: This lists the bar's siblings, leaving out the scrim. // What: Non-Null Note. Why: TypeScript can't see the bar has a parent. How: The app root always renders it inside its wrapper.
+		const togButEle = togButRef.current!; // What: Toggle Button Element. Why: Escape returns focus here, and its visibility says whether the menu still applies. How: This reads the toggle. // What: Non-Null Note. Why: TypeScript can't see the ref is attached. How: Effects run after the toggle has mounted.
 
 
 		const onKeyDowFun = ( keyEveObj : KeyboardEvent ) => { // What: On Key Down Function. Why: Escape is the expected way out of a layer over the page. How: This closes the menu and puts focus back on the toggle when Escape is pressed.
@@ -180,7 +182,7 @@ function NavBarCom () : React.JSX.Element {
 
 
 			<header
-				ref={ hedBarRef }
+				ref={ navBarRef }
 
 				className={ cssModObj.navBarHed }
 			>{ /* What: Navigation Bar Header Element. Why: Every page starts with the shared bar. How: This holds the bar, which sticks to the top of the screen. */ }
@@ -193,7 +195,9 @@ function NavBarCom () : React.JSX.Element {
 						className={ cssModObj.navBraAnc }
 
 						to='/'
-					>{ /* What: Brand Navigation Link. Why: The brand is the way back to the home page. How: This links to the root path. */ }
+
+						onClick={ () => setMenOpeBoo( false ) }
+					>{ /* What: Brand Navigation Link. Why: The brand is the way back to the home page. How: This links to the root path and closes the phone menu, so the page it opens isn't left inert behind it. */ }
 
 
 						<span
@@ -232,6 +236,8 @@ function NavBarCom () : React.JSX.Element {
 
 					</button>
 
+
+
 					<nav
 						className={ cssModObj.navLinNav }
 
@@ -255,7 +261,7 @@ function NavBarCom () : React.JSX.Element {
 								to={ linRecObj.patStr }
 
 								onClick={ () => setMenOpeBoo( false ) }
-							>{ /* What: Navigation Link. Why: Each link takes the visitor to its page. How: This routes to the row's path, carries aria-current there, and closes the phone menu. */ }
+							>{ /* What: Page Navigation Link. Why: Each link takes the visitor to its page. How: This routes to the row's path, carries aria-current there, and closes the phone menu. */ }
 								{ linRecObj.labStr }
 							</NavLink>
 
@@ -267,7 +273,7 @@ function NavBarCom () : React.JSX.Element {
 						<div
 							className={ cssModObj.menConDiv }
 
-							style={ { '--nav-ite-ind' : NAV_LIN_ARR.length } as React.CSSProperties } // What: Menu Contents Index. Why: The block fades in after the last link. How: This hands it the next place in the stagger. // What: Type Assertion Note. Why: React's style type doesn't list custom properties. How: The stylesheet reads this one by name.
+							style={ { '--nav-ite-ind' : NAV_LIN_ARR.length } as React.CSSProperties } // What: Navigation Item Index. Why: The block fades in after the last link. How: This hands it the next place in the stagger. // What: Type Assertion Note. Why: React's style type doesn't list custom properties. How: The stylesheet reads this one by name.
 						>{ /* What: Menu Contents Div Element. Why: A phone menu of four links alone felt bare, and following the girls is the site's purpose. How: This holds the profiles, the main site link, and the tagline under the links, shown only in the phone menu. */ }
 
 

@@ -56,12 +56,12 @@ const SET_WAI_NUM = 400; // What: Settle Wait Number. Why: Each look is read onc
  * cliBloFun = Click Block Function
  *
  * @summary
- * Runs inside the page and cancels every click before anything handles it,
- * so pressing a control during a check never follows a link, opens an
- * email, or closes the menu. It listens on the document in the capture
- * phase, ahead of React's own listener on the app's root, and both prevents
- * the click's default and stops it from going any further. Passed to
- * Playwright's evaluate, so it can't read anything from this file.
+ * Runs inside the page and cancels every click before anything handles it, so
+ * pressing a control during a check never follows a link, opens an email, or
+ * closes the menu. It listens on the document in the capture phase, ahead of
+ * React's own listener on the app's root, and both prevents the click's
+ * default and stops it from going any further. Passed to Playwright's
+ * evaluate, so it can't read anything from this file.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *

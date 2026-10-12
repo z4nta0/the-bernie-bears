@@ -49,15 +49,15 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The head helpe
 // #region Constants
 
 const HOM_DES_STR = 'Meet Lilah and Norah, two Bernese Mountain Dog sisters sharing bear hugs, silly videos, and fluffy fun. Follow along!'; // What: Home Description String. Why: The raw page and the social tags carry the home page's description, and Social Links has to show its own instead. How: This is the description index.html carries.
-const LIV_URL_STR = 'https://theberniebears.dog/'; // What: Live URL String. Why: The canonical links, structured data, and sitemap must all name the live address. How: This is the site's production root.
-const MAI_URL_STR = 'https://theberniebears.com/'; // What: Main URL String. Why: The structured data has to send search engines to the brand's main site. How: This is the main site's root.
+const LIV_URL_STR = 'https://theberniebears.dog/';                                                                                           // What: Live URL String. Why: The canonical links, structured data, and sitemap must all name the live address. How: This is the site's production root.
+const MAI_URL_STR = 'https://theberniebears.com/';                                                                                           // What: Main URL String. Why: The structured data has to send search engines to the brand's main site. How: This is the main site's root.
 
 
 
-// #region PAG_HED_ARR
+// #region PAG_HEA_ARR
 
 /**
- * PAG_HED_ARR = Page Head Array
+ * PAG_HEA_ARR = Page Head Array
  *
  * @summary
  * What each page's head should say. Every row shares one shape, so its fields
@@ -71,7 +71,7 @@ const MAI_URL_STR = 'https://theberniebears.com/'; // What: Main URL String. Why
  *
 */
 
-const PAG_HED_ARR = [ // What: Page Head Array. Why: Every page's head is checked against what it should say. How: Each row names one page, its title, and its canonical address or null.
+const PAG_HEA_ARR = [ // What: Page Head Array. Why: Every page's head is checked against what it should say. How: Each row names one page, its title, and its canonical address or null.
 
 
 	{ canStr : LIV_URL_STR,             patStr : '/',             titStr : 'Lilah & Norah, the Bernie Bears | Bernese Mountain Dogs' },
@@ -83,7 +83,7 @@ const PAG_HED_ARR = [ // What: Page Head Array. Why: Every page's head is checke
 
 ];
 
-// #endregion PAG_HED_ARR
+// #endregion PAG_HEA_ARR
 
 
 
@@ -134,10 +134,10 @@ const SOC_KEY_ARR = [ // What: Social Key Array. Why: The social preview rule li
 
 // #region Helpers
 
-// #region hedCheFun
+// #region heaCheFun
 
 /**
- * hedCheFun = Head Check Function
+ * heaCheFun = Head Check Function
  *
  * @summary
  * Checks that the page showing now has the head its row describes: its exact
@@ -150,24 +150,24 @@ const SOC_KEY_ARR = [ // What: Social Key Array. Why: The social preview rule li
  * @author z4nta0 <https://github.com/z4nta0>
  *
  * @param curPagObj - Current Page Object: The page to check.
- * @param hedRowObj - Head Row Object: The page's row from PAG_HED_ARR.
+ * @param heaRowObj - Head Row Object: The page's row from PAG_HEA_ARR.
  *
  * @returns A promise that settles once every check has passed, with no
  *          value.
  *
  * @example
  * ```ts
- * hedCheFun(page, PAG_HED_ARR[0]) // => Promise<void>
+ * heaCheFun(page, PAG_HEA_ARR[0]) // => Promise<void>
  * ```
  *
 */
 
-async function hedCheFun ( curPagObj : Page, hedRowObj : typeof PAG_HED_ARR[ number ] ) : Promise< void > {
+async function heaCheFun ( curPagObj : Page, heaRowObj : typeof PAG_HEA_ARR[ number ] ) : Promise< void > {
 
 
-	await expect( curPagObj ).toHaveTitle( hedRowObj.titStr ); // What: Title Assertion. Why: Search listings and tabs name the page by its title. How: This waits for the page's own title.
+	await expect( curPagObj ).toHaveTitle( heaRowObj.titStr ); // What: Title Assertion. Why: Search listings and tabs name the page by its title. How: This waits for the page's own title.
 
-	expect( hedRowObj.titStr.length ).toBeLessThanOrEqual( 60 ); // What: Title Length Assertion. Why: Search listings and link cards cut long titles off. How: This keeps it to 60 characters.
+	expect( heaRowObj.titStr.length ).toBeLessThanOrEqual( 60 ); // What: Title Length Assertion. Why: Search listings and link cards cut long titles off. How: This keeps it to 60 characters.
 
 	await expect( curPagObj.locator( 'meta[name="author"]' ) ).toHaveAttribute( 'content', 'The Bernie Bears' ); // What: Author Assertion. Why: A real brand's site names the brand as its author. How: This checks the author tag.
 
@@ -177,7 +177,7 @@ async function hedCheFun ( curPagObj : Page, hedRowObj : typeof PAG_HED_ARR[ num
 
 
 
-	if ( hedRowObj.canStr === null ) { // What: Noindex Page Branch. Why: About, Contact, and the 404 page must stay out of search results. How: This checks for the noindex tag and the absence of the indexed pages' tags.
+	if ( heaRowObj.canStr === null ) { // What: Noindex Page Branch. Why: About, Contact, and the 404 page must stay out of search results. How: This checks for the noindex tag and the absence of the indexed pages' tags.
 
 
 		await expect( curPagObj.locator( 'meta[name="robots"]' ) ).toHaveAttribute( 'content', 'noindex' ); // What: Noindex Assertion. Why: Search engines must leave the page out. How: This checks the one robots tag says noindex.
@@ -193,14 +193,13 @@ async function hedCheFun ( curPagObj : Page, hedRowObj : typeof PAG_HED_ARR[ num
 		const desConStr = await curPagObj.locator( 'meta[name="description"]' ).getAttribute( 'content' ) ?? ''; // What: Description Content String. Why: The description's length is checked against what listings show. How: This reads the one description's text.
 
 
-
 		expect( desConStr.length ).toBeGreaterThanOrEqual( 100 ); // What: Description Minimum Assertion. Why: A summary that's too short wastes the space a listing gives it. How: This checks it runs at least 100 characters.
 
 		expect( desConStr.length ).toBeLessThanOrEqual( 125 ); // What: Description Maximum Assertion. Why: Phones cut a summary off around 125 characters. How: This checks it stays within that.
 
 		await expect( curPagObj.locator( 'link[rel="canonical"]' ) ).toHaveCount( 1 ); // What: Single Canonical Assertion. Why: Two canonical links leave search engines to guess. How: This checks there's exactly one.
 
-		await expect( curPagObj.locator( 'link[rel="canonical"]' ) ).toHaveAttribute( 'href', hedRowObj.canStr ); // What: Canonical Assertion. Why: Every address Netlify serves the page at should count as its live one. How: This checks the canonical link names it.
+		await expect( curPagObj.locator( 'link[rel="canonical"]' ) ).toHaveAttribute( 'href', heaRowObj.canStr ); // What: Canonical Assertion. Why: Every address Netlify serves the page at should count as its live one. How: This checks the canonical link names it.
 
 		await expect( curPagObj.locator( 'meta[name="robots"]' ) ).toHaveCount( 0 ); // What: Indexable Assertion. Why: The page has to stay findable. How: This checks it carries no robots tag that could keep it out.
 
@@ -210,7 +209,7 @@ async function hedCheFun ( curPagObj : Page, hedRowObj : typeof PAG_HED_ARR[ num
 
 }
 
-// #endregion hedCheFun
+// #endregion heaCheFun
 
 // #endregion Helpers
 
@@ -218,15 +217,15 @@ async function hedCheFun ( curPagObj : Page, hedRowObj : typeof PAG_HED_ARR[ num
 
 // #region Module Init
 
-for ( const hedRowObj of PAG_HED_ARR ) { // What: Page Head Loop. Why: Every page's head is checked when it's loaded directly, as a search engine loads it. How: This declares one test per page.
+for ( const heaRowObj of PAG_HEA_ARR ) { // What: Page Head Loop. Why: Every page's head is checked when it's loaded directly, as a search engine loads it. How: This declares one test per page.
 
 
-	test( `${ hedRowObj.patStr } has the right head`, async ( { page : curPagObj } ) => { // What: Page Head Test. Why: Each page should say what it is and whether it belongs in search results. How: This loads the page and checks its head.
+	test( `${ heaRowObj.patStr } has the right head`, async ( { page : curPagObj } ) => { // What: Page Head Test. Why: Each page should say what it is and whether it belongs in search results. How: This loads the page and checks its head.
 
 
-		await curPagObj.goto( hedRowObj.patStr ); // What: Page Open Call. Why: The check starts on its page. How: This loads it.
+		await curPagObj.goto( heaRowObj.patStr ); // What: Page Open Call. Why: The check starts on its page. How: This loads it.
 
-		await hedCheFun( curPagObj, hedRowObj ); // What: Head Check Call. Why: The page's head is checked against its row. How: This runs every head check.
+		await heaCheFun( curPagObj, heaRowObj ); // What: Head Check Call. Why: The page's head is checked against its row. How: This runs every head check.
 
 
 	} );
@@ -241,15 +240,15 @@ test( 'moving between pages swaps their head tags', async ( { page : curPagObj }
 
 	await curPagObj.goto( '/' ); // What: Home Open Call. Why: The walk starts on an indexed page. How: This loads the root path.
 
-	await hedCheFun( curPagObj, PAG_HED_ARR[ 0 ] ); // What: Home Head Check. Why: The walk starts from a known head. How: This checks Home's.
+	await heaCheFun( curPagObj, PAG_HEA_ARR[ 0 ] ); // What: Home Head Check. Why: The walk starts from a known head. How: This checks Home's.
 
 	await curPagObj.getByRole( 'navigation', { name : 'Footer' } ).getByRole( 'link', { exact : true, name : 'About' } ).click(); // What: About Link Click. Why: About carries noindex, so Home's description and canonical must go. How: This follows the footer's About link.
 
-	await hedCheFun( curPagObj, PAG_HED_ARR[ 2 ] ); // What: About Head Check. Why: Home's tags must be gone and About's noindex in place. How: This checks About's head.
+	await heaCheFun( curPagObj, PAG_HEA_ARR[ 2 ] ); // What: About Head Check. Why: Home's tags must be gone and About's noindex in place. How: This checks About's head.
 
 	await curPagObj.getByRole( 'navigation', { name : 'Footer' } ).getByRole( 'link', { exact : true, name : 'Social Links' } ).click(); // What: Social Links Link Click. Why: Social Links is indexed again, so About's noindex must go. How: This follows the footer's Social Links link.
 
-	await hedCheFun( curPagObj, PAG_HED_ARR[ 1 ] ); // What: Social Links Head Check. Why: About's noindex must be gone and Social Links' own tags in place. How: This checks Social Links' head.
+	await heaCheFun( curPagObj, PAG_HEA_ARR[ 1 ] ); // What: Social Links Head Check. Why: About's noindex must be gone and Social Links' own tags in place. How: This checks Social Links' head.
 
 	await expect( curPagObj.locator( 'meta[name="description"]' ) ).not.toHaveAttribute( 'content', HOM_DES_STR ); // What: Own Description Assertion. Why: Social Links should describe itself, not repeat the home page. How: This checks the one description no longer reads as the home page's.
 
@@ -264,7 +263,7 @@ test( 'the structured data points to the main site and matches the pages', async
 	await curPagObj.goto( '/links' ); // What: Social Links Open Call. Why: The profiles in the data have to be the ones this page links to. How: This loads it.
 
 
-	const ldjTexStr = await curPagObj.locator( 'script[type="application/ld+json"]' ).textContent() ?? '{}';                                                            // What: Linked-Data-JSON Text String. Why: The structured data is read as written in the page. How: This reads the script's text.
+	const ldjTexStr = await curPagObj.locator( 'script[type="application/ld+json"]' ).textContent() ?? '{}';                                                                                         // What: Linked-Data-JSON Text String. Why: The structured data is read as written in the page. How: This reads the script's text.
 	const socHreArr = await curPagObj.getByRole( 'main' ).locator( 'a[href^="https://"]' ).evaluateAll( ( ancEleArr ) => ancEleArr.map( ( ancCurEle ) => ancCurEle.getAttribute( 'href' ) ?? '' ) ); // What: Social Href Array. Why: The data's profiles have to be the ones the page links to. How: This reads every outside link in the page's content.
 
 	type LdjNodTyp = { '@id'? : string, '@type'? : string, email? : string, name? : string, publisher? : { '@id' : string }, sameAs? : string[], url? : string }; // What: Linked-Data-JSON Node Type. Why: The checks read a handful of fields from each node. How: This names the ones they read, all optional, since a missing one should fail an assertion rather than the parse.
@@ -293,12 +292,11 @@ test( 'the structured data points to the main site and matches the pages', async
 test( 'the raw page carries the home title and description for script-free readers', async ( { request : reqConObj } ) => { // What: Raw Head Test. Why: Link checkers and many crawlers read the page without running the site's script, so the title and description have to be in index.html itself. How: This fetches the root as raw HTML and checks both.
 
 
-	const rawHtmStr = await ( await reqConObj.get( '/' ) ).text(); // What: Raw HTML String. Why: The page is read the way a script-free reader reads it. How: This fetches the root's HTML without a browser.
-
-
+	const rawHtmStr = await ( await reqConObj.get( '/' ) ).text();                                        // What: Raw HTML String. Why: The page is read the way a script-free reader reads it. How: This fetches the root's HTML without a browser.
 	const titTexStr = rawHtmStr.match( /<title>([^<]*)<\/title>/ )?.[ 1 ].replace( /&amp;/g, '&' ) ?? ''; // What: Title Text String. Why: The raw title is checked as written. How: This reads the title element's text and decodes its ampersand.
 
-	expect( titTexStr ).toBe( PAG_HED_ARR[ 0 ].titStr ); // What: Raw Title Assertion. Why: The raw page should name the home page in full, not the bare site name. How: This checks it matches the home page's title.
+
+	expect( titTexStr ).toBe( PAG_HEA_ARR[ 0 ].titStr ); // What: Raw Title Assertion. Why: The raw page should name the home page in full, not the bare site name. How: This checks it matches the home page's title.
 
 	expect( titTexStr.length ).toBeGreaterThanOrEqual( 50 ); // What: Raw Title Length Assertion. Why: Checkers flag a title that leaves most of a listing's room unused. How: This checks it runs at least 50 characters.
 
@@ -330,7 +328,7 @@ test( 'the sitemap lists Home and Social Links alone', async ( { request : reqCo
 	const sitXmlStr = await ( await reqConObj.get( '/sitemap.xml' ) ).text(); // What: Sitemap XML String. Why: The file's addresses are checked as served. How: This fetches and reads it.
 
 
-	expect( [ ...sitXmlStr.matchAll( /<loc>([^<]+)<\/loc>/g ) ].map( ( locMatArr ) => locMatArr[ 1 ] ) ).toEqual( PAG_HED_ARR.filter( ( hedRowObj ) => hedRowObj.canStr !== null ).map( ( hedRowObj ) => hedRowObj.canStr ) ); // What: Indexed Pages Assertion. Why: Listing a noindex page would contradict it, and missing an indexed page slows its discovery. How: This checks the sitemap's addresses equal the indexed pages' canonical addresses, in order.
+	expect( [ ...sitXmlStr.matchAll( /<loc>([^<]+)<\/loc>/g ) ].map( ( locMatArr ) => locMatArr[ 1 ] ) ).toEqual( PAG_HEA_ARR.filter( ( heaRowObj ) => heaRowObj.canStr !== null ).map( ( heaRowObj ) => heaRowObj.canStr ) ); // What: Indexed Pages Assertion. Why: Listing a noindex page would contradict it, and missing an indexed page slows its discovery. How: This checks the sitemap's addresses equal the indexed pages' canonical addresses, in order.
 
 
 } );
@@ -446,7 +444,6 @@ test( 'every icon the head links to is served at its size', async ( { page : cur
 
 
 } );
-
 
 // #endregion Module Init
 

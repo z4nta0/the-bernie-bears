@@ -5,7 +5,7 @@
 <html lang='en'><!-- What: Root HTML Element. Why: Screen readers and translation tools need the page's language. How: This marks the document as English. -->
 
 
-	<head><!-- What: Document Head Element. Why: The page's metadata and icon load before the body paints. How: This holds them in the sections below. -->
+	<head><!-- What: Document Head Element. Why: The page's metadata, icons, social tags, and structured data load before the body paints. How: This holds them in the sections below. -->
 
 
 		<!-- #region Document -->
@@ -19,8 +19,23 @@
 
 		<!-- #region Search -->
 
+		<!--
+			index.html = Search Section
+
+			@summary
+			Each page renders its own canonical link or noindex tag, and every
+			page but Home its own title, since React 19 adds those beside any
+			in this file rather than replacing them. So this section holds no
+			canonical or robots tag, and the title above is the home page's.
+
+			@author z4nta0 <https://github.com/z4nta0>
+
+		-->
+
+
+
 		<meta name='author'      content='The Bernie Bears' /> <!-- What: Author Meta. Why: Search engines and link preview inspectors look for who a page belongs to, and on a real brand's site that's the brand itself. How: This names The Bernie Bears. -->
-		<meta name='description' content='Meet Lilah and Norah, two Bernese Mountain Dog sisters sharing bear hugs, silly videos, and fluffy fun. Follow along!' /> <!-- What: Description Meta. Why: Search listings show a summary under the title, and checkers and crawlers that never run the site's script read only this file. How: This carries the home page's description, the one description tag the site has, which the Social Links page swaps for its own while it shows. --> <!-- Each page renders its own canonical link or noindex tag, and every page but Home its own title, since React 19 adds those beside any in this file rather than replacing them. -->
+		<meta name='description' content='Meet Lilah and Norah, two Bernese Mountain Dog sisters sharing bear hugs, silly videos, and fluffy fun. Follow along!' /> <!-- What: Description Meta. Why: Search listings show a summary under the title, and checkers and crawlers that never run the site's script read only this file. How: This carries the home page's description, the one description tag the site has, which the Social Links page swaps for its own while it shows. -->
 
 		<!-- #endregion Search -->
 

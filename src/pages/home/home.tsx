@@ -55,49 +55,13 @@ import { PHO_SIZ_OBJ } from './photo-sizes.ts'; // What: Photo Sizes Object. Why
 const FEA_CAR_ARR = [ // What: Feature Card Array. Why: The home page sums up life with the girls in four cards. How: Each row holds a card's emoji, title, and sentence, rendered in this order.
 
 
-	{ // What: Silly Videos Card. Why: The girls' videos are a big part of what they share. How: This card leads the row.
+	{ desStr : 'From costume adventures to comedic hijinks, Lilah and Norah never fail to entertain.', emoStr : '🎭', titStr : 'Fun & Silly Videos' }, // What: Silly Videos Card. Why: The girls' videos are a big part of what they share. How: This card leads the row.
 
+	{ desStr : "Giving bear hugs is what Lilah & Norah do best, and they've got plenty to go around for everyone.", emoStr : '🐻', titStr : 'Bear Hugs' }, // What: Bear Hugs Card. Why: Bear hugs are the girls' signature. How: This card follows the videos.
 
-		emoStr : '🎭',
-		titStr : 'Fun & Silly Videos',
+	{ desStr : 'These girls take their wardrobe seriously. Bear ears? Bunny ears? Yes to all of it.', emoStr : '👗', titStr : 'Fabulous Outfits' }, // What: Fabulous Outfits Card. Why: The girls are known for their costumes. How: This card follows the bear hugs.
 
-		desStr : 'From costume adventures to comedic hijinks, Lilah and Norah never fail to entertain.'
-
-
-	},
-
-	{ // What: Bear Hugs Card. Why: Bear hugs are the girls' signature. How: This card follows the videos.
-
-
-		emoStr : '🐻',
-		titStr : 'Bear Hugs',
-
-		desStr : "Giving bear hugs is what Lilah & Norah do best, and they've got plenty to go around for everyone."
-
-
-	},
-
-	{ // What: Fabulous Outfits Card. Why: The girls are known for their costumes. How: This card follows the bear hugs.
-
-
-		emoStr : '👗',
-		titStr : 'Fabulous Outfits',
-
-		desStr : 'These girls take their wardrobe seriously. Bear ears? Bunny ears? Yes to all of it.'
-
-
-	},
-
-	{ // What: Outdoor Adventures Card. Why: Much of their content happens outside. How: This card closes the row.
-
-
-		emoStr : '🌿',
-		titStr : 'Outdoor Adventures',
-
-		desStr : 'Snow days, garden romps, and everything in between: life is better outside.'
-
-
-	}
+	{ desStr : 'Snow days, garden romps, and everything in between: life is better outside.', emoStr : '🌿', titStr : 'Outdoor Adventures' } // What: Outdoor Adventures Card. Why: Much of their content happens outside. How: This card closes the row.
 
 
 ];
@@ -126,7 +90,8 @@ const FEA_CAR_ARR = [ // What: Feature Card Array. Why: The home page sums up li
  *
  * It also sets the page's canonical address, which React moves into the
  * document head while the page is shown; its title and description are
- * index.html's own, which every other page swaps for its own.
+ * index.html's own, while every other page shows its own title, and Social
+ * Links its own description too.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -199,7 +164,6 @@ function HomPagCom () : React.JSX.Element {
 					</div>
 
 
-
 					<div className={ cssModObj.herVisDiv }>{ /* What: Hero Visual Div Element. Why: The portrait sits on a soft blob with the girls' names floating beside it. How: This holds the blob, the framed portrait, and the two badges. */ }
 
 
@@ -246,7 +210,7 @@ function HomPagCom () : React.JSX.Element {
 
 					<h2 className={ cssModObj.secTitHea }>Life with the Bernie Bears</h2>{ /* What: Section Title Heading Element. Why: The cards need a heading. How: This names the section. */ }
 
-					<p className={ cssModObj.secSubPar }>Every day is an adventure when you've got fluffy ears and a flair for drama</p>{ /* What: Section Sub Paragraph Element. Why: A short line sets up the cards. How: This shows it under the heading. */ }
+					<p className={ cssModObj.secSubPar }>Every day is an adventure when you've got fluffy ears and a flair for drama</p>{ /* What: Section Subtitle Paragraph Element. Why: A short line sets up the cards. How: This shows it under the heading. */ }
 
 
 					<div className={ cssModObj.feaGriDiv }>{ /* What: Features Grid Div Element. Why: The cards sit in a grid that wraps on narrow screens. How: This lays them out. */ }

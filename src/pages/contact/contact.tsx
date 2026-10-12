@@ -82,12 +82,12 @@ function ConPagCom () : React.JSX.Element {
 			<div className={ cssModObj.pagEntDiv }>{ /* What: Page Enter Div Element. Why: The Contact page fades up into place like every other page. How: This holds the page's sections. */ }
 
 
-				<section className={ cssModObj.pagHedSec }>{ /* What: Page Header Section Element. Why: The page opens with its title. How: This holds the heading and a short line under it. */ }
+				<section className={ cssModObj.pagHeaSec }>{ /* What: Page Header Section Element. Why: The page opens with its title. How: This holds the heading and a short line under it. */ }
 
 
 					<h1 className={ cssModObj.pagTitHea }>Say Hello!</h1>{ /* What: Page Title Heading Element. Why: The page's heading invites visitors to get in touch. How: This names the page. */ }
 
-					<p className={ cssModObj.pagSubPar }>We'd love to hear from you! Lilah & Norah are always listening <span aria-hidden='true'>🐾</span></p>{ /* What: Page Sub Paragraph Element. Why: A short line sets a friendly tone. How: This shows it under the heading, ending in a paw print hidden from screen readers. */ }
+					<p className={ cssModObj.pagSubPar }>We'd love to hear from you! Lilah & Norah are always listening <span aria-hidden='true'>🐾</span></p>{ /* What: Page Subtitle Paragraph Element. Why: A short line sets a friendly tone. How: This shows it under the heading, ending in a paw print hidden from screen readers. */ }
 
 
 				</section>
@@ -125,7 +125,7 @@ function ConPagCom () : React.JSX.Element {
 									>📧</span>{ /* What: Info Icon Span Element. Why: Each card opens with an emoji. How: This shows an envelope, hidden from screen readers as decoration. */ }
 
 
-									<div>{ /* What: Contact Card Text Div Element. Why: The card's label and value read as one block. How: This stacks them, with no styling of its own. */ }
+									<div>{ /* What: Info Text Div Element. Why: The card's label and value read as one block. How: This stacks them, with no styling of its own. */ }
 
 
 										<strong className={ cssModObj.infLabStr }>Email Us</strong>{ /* What: Info Label Strong Element. Why: The card names what it offers. How: This shows the label above the value. */ }
@@ -149,6 +149,7 @@ function ConPagCom () : React.JSX.Element {
 								</div>
 
 
+
 								<div className={ cssModObj.infCarDiv }>{ /* What: Info Card Div Element. Why: Many fans reach out where they already follow the girls. How: This says to send a direct message. */ }
 
 
@@ -158,7 +159,7 @@ function ConPagCom () : React.JSX.Element {
 										aria-hidden='true'
 									>📱</span>{ /* What: Info Icon Span Element. Why: Each card opens with an emoji. How: This shows a phone, hidden from screen readers as decoration. */ }
 
-									<div>{ /* What: Contact Card Text Div Element. Why: The card's label and value read as one block. How: This stacks them, with no styling of its own. */ }
+									<div>{ /* What: Info Text Div Element. Why: The card's label and value read as one block. How: This stacks them, with no styling of its own. */ }
 
 
 										<strong className={ cssModObj.infLabStr }>Social Media</strong>{ /* What: Info Label Strong Element. Why: The card names what it offers. How: This shows the label above the value. */ }
@@ -181,7 +182,7 @@ function ConPagCom () : React.JSX.Element {
 										aria-hidden='true'
 									>⏱️</span>{ /* What: Info Icon Span Element. Why: Each card opens with an emoji. How: This shows a stopwatch, hidden from screen readers as decoration. */ }
 
-									<div>{ /* What: Contact Card Text Div Element. Why: The card's label and value read as one block. How: This stacks them, with no styling of its own. */ }
+									<div>{ /* What: Info Text Div Element. Why: The card's label and value read as one block. How: This stacks them, with no styling of its own. */ }
 
 
 										<strong className={ cssModObj.infLabStr }>Response Time</strong>{ /* What: Info Label Strong Element. Why: The card names what it offers. How: This shows the label above the value. */ }

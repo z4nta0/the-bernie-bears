@@ -25,8 +25,9 @@ import type { Plugin } from 'vite'; // What: Plugin. Why: The page minifier is a
  * production builds only, compacts index.html, which Vite processes but never
  * minifies, so the page's comments, indentation, and JSON-LD whitespace stay
  * out of what visitors download. Every other setting stays at Vite's default,
- * including copying the files in public/ (the favicon, robots.txt, the
- * sitemap, and Netlify's _redirects and _headers) into the build untouched.
+ * including copying the files in public/ (the favicon set, the touch icon, the
+ * preview card, robots.txt, the sitemap, and Netlify's _redirects and
+ * _headers) into the build untouched.
  *
  * Sections:
  *  - Helpers

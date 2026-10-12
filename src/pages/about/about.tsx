@@ -123,12 +123,12 @@ function AboPagCom () : React.JSX.Element {
 			<div className={ cssModObj.pagEntDiv }>{ /* What: Page Enter Div Element. Why: The About page fades up into place like every other page. How: This holds the page's sections. */ }
 
 
-				<section className={ cssModObj.pagHedSec }>{ /* What: Page Header Section Element. Why: The page opens with its title. How: This holds the heading and a short line under it. */ }
+				<section className={ cssModObj.pagHeaSec }>{ /* What: Page Header Section Element. Why: The page opens with its title. How: This holds the heading and a short line under it. */ }
 
 
 					<h1 className={ cssModObj.pagTitHea }>Meet the Girls</h1>{ /* What: Page Title Heading Element. Why: The page's heading says who it's about. How: This names the page. */ }
 
-					<p className={ cssModObj.pagSubPar }>Two sisters. One big fluffy adventure.</p>{ /* What: Page Sub Paragraph Element. Why: A short line sets the tone. How: This shows it under the heading. */ }
+					<p className={ cssModObj.pagSubPar }>Two sisters. One big fluffy adventure.</p>{ /* What: Page Subtitle Paragraph Element. Why: A short line sets the tone. How: This shows it under the heading. */ }
 
 
 				</section>
@@ -138,7 +138,7 @@ function AboPagCom () : React.JSX.Element {
 				<section className={ cssModObj.aboIntSec }>{ /* What: About Intro Section Element. Why: The story comes first. How: This sets the story beside the cartoon of both girls. */ }
 
 
-					<div>{ /* What: About Intro Text Div Element. Why: The story reads as one column. How: This stacks its heading and two paragraphs, with no styling of its own. */ }
+					<div>{ /* What: Intro Text Div Element. Why: The story reads as one column. How: This stacks its heading and two paragraphs, with no styling of its own. */ }
 
 
 						<h2 className={ cssModObj.intTitHea }>The Bernie Bears Story</h2>{ /* What: Intro Title Heading Element. Why: The story needs a heading. How: This names it. */ }
@@ -208,7 +208,7 @@ function AboPagCom () : React.JSX.Element {
 						<div className={` ${ cssModObj.sisCarDiv }   ${ cssModObj.sisCarDivLilah } `}>{ /* What: Sister Card Div Element. Why: Lilah gets a card of her own. How: This sets her photo beside her details, with her own accent. */ }
 
 
-							<div>{ /* What: Dog Card Image Div Element. Why: The photo has its own row. How: This holds its round frame, with no styling of its own. */ }
+							<div>{ /* What: Sister Image Div Element. Why: The photo has its own row. How: This holds its round frame, with no styling of its own. */ }
 
 
 								<div className={ cssModObj.sisFraDiv }>{ /* What: Sister Frame Div Element. Why: Each sister's photo sits in a round frame. How: This frames the image. */ }
@@ -232,7 +232,7 @@ function AboPagCom () : React.JSX.Element {
 							</div>
 
 
-							<div>{ /* What: Dog Card Content Div Element. Why: The details read as one column. How: This stacks the badge, name, description, and traits, with no styling of its own. */ }
+							<div>{ /* What: Sister Content Div Element. Why: The details read as one column. How: This stacks the badge, name, description, and traits, with no styling of its own. */ }
 
 
 								<div className={ cssModObj.sisBadDiv }>The Older Sister</div>{ /* What: Sister Badge Div Element. Why: The badge says where Lilah stands in the family. How: This shows it above her name. */ }
@@ -269,7 +269,7 @@ function AboPagCom () : React.JSX.Element {
 						<div className={` ${ cssModObj.sisCarDiv }   ${ cssModObj.sisCarDivNorah } `}>{ /* What: Sister Card Div Element. Why: Norah gets a card of her own. How: This sets her photo beside her details, with her own accent. */ }
 
 
-							<div>{ /* What: Dog Card Image Div Element. Why: The photo has its own row. How: This holds its round frame, with no styling of its own. */ }
+							<div>{ /* What: Sister Image Div Element. Why: The photo has its own row. How: This holds its round frame, with no styling of its own. */ }
 
 
 								<div className={ cssModObj.sisFraDiv }>{ /* What: Sister Frame Div Element. Why: Each sister's photo sits in a round frame. How: This frames the image. */ }
@@ -293,7 +293,7 @@ function AboPagCom () : React.JSX.Element {
 							</div>
 
 
-							<div>{ /* What: Dog Card Content Div Element. Why: The details read as one column. How: This stacks the badge, name, description, and traits, with no styling of its own. */ }
+							<div>{ /* What: Sister Content Div Element. Why: The details read as one column. How: This stacks the badge, name, description, and traits, with no styling of its own. */ }
 
 
 								<div className={` ${ cssModObj.sisBadDiv }   ${ cssModObj.sisBadDivNorah } `}>The Little Sister</div>{ /* What: Sister Badge Div Element. Why: The badge says where Norah stands in the family. How: This shows it above her name, in her own accent. */ }
@@ -339,7 +339,7 @@ function AboPagCom () : React.JSX.Element {
 					<div className={ cssModObj.facInnDiv }>{ /* What: Facts Inner Div Element. Why: The facts sit in the page's centered column. How: This holds the heading and the grid. */ }
 
 
-						<h2 className={ cssModObj.facTitHea }>Fun Facts</h2>{ /* What: Facts Title Heading Element. Why: The facts need a heading that reads on the gradient. How: This names them in white. */ }
+						<h2 className={ cssModObj.facTitHea }>Fun Facts</h2>{ /* What: Facts Title Heading Element. Why: The facts need a heading that reads on the gradient. How: This names them in the main text color. */ }
 
 
 						<div className={ cssModObj.facGriDiv }>{ /* What: Facts Grid Div Element. Why: The facts sit in a grid that wraps on narrow screens. How: This lays them out. */ }
