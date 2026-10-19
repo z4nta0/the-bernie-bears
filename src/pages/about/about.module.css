@@ -100,7 +100,7 @@
 @media ( max-width : 768px ) { /* What: Narrow About Intro Section. Why: The two columns don't fit side by side on a narrow screen. How: This applies 768px wide and below. */
 
 
-	.aboIntSec { /* What: Stacked About Intro Section. Why: A narrow screen reads the story above the cartoon. How: This stacks them in one centered column. */
+	.aboIntSec { /* What: Stacked About Intro Section. Why: A narrow screen opens on the cartoon, with the story below it. How: This stacks them in one centered column. */
 
 
 		grid-template-columns : 1fr;
@@ -156,6 +156,19 @@
 
 	display         : flex;
 	justify-content : center;
+
+
+}
+@media ( max-width : 768px ) { /* What: Narrow Intro Visual Div. Why: The stacked intro opens on the cartoon. How: This applies 768px wide and below. */
+
+
+	.intVisDiv { /* What: Raised Intro Visual Div. Why: The cartoon should sit just under the page header, above the story's heading. How: This moves it ahead of the story in the stacked column. */
+
+
+		order : -1;
+
+
+	}
 
 
 }

@@ -1,6 +1,6 @@
 # The Bernie Bears
 
-The website for The Bernie Bears, Lilah and Norah, two Bernese Mountain Dog sisters with a following across social media. The site introduces the girls, gathers their six social profiles in one place, and sends visitors on to the brand's main site and shop at [theberniebears.com](https://theberniebears.com/), which it exists to support rather than compete with.
+The website for The Bernie Bears, Lilah and Norah, two Bernese Mountain Dog sisters with a following across social media. The site introduces the girls, gathers their six social profiles in one place, and sends visitors on to the brand's main site and shop at [theberniebears.com](https://theberniebears.com/), which it exists to support rather than compete with. It's built and maintained by [techgeek.dev](https://techgeek.dev/), whose portfolio links to it.
 
 Live at [theberniebears.dog](https://theberniebears.dog/).
 

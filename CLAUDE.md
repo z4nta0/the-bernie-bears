@@ -2,7 +2,8 @@
 
 A website for The Bernie Bears, Lilah and Norah, two Bernese Mountain Dog
 sisters with a following across social media (React, Vite, React Router,
-deployed on Netlify at https://theberniebears.dog/). Every rule in the
+deployed on Netlify at https://theberniebears.dog/). It's also a portfolio
+piece by techgeek.dev, linked from https://techgeek.dev. Every rule in the
 user-level CLAUDE.md applies here; this file records only what's specific to
 this project. ease-my-life, reese-roofing, seal-and-shield, and tonys-toppers
 have already been converted to those rules and serve as worked examples, with
@@ -397,6 +398,11 @@ passes on `close-out`.
      one step smaller, and the badges sit just off the portrait's corners,
      the two-column proportions. On the live site the badges sat at the
      column's edges and the blob hid behind a portrait of its own size.
+   - **Pictures first when stacked** (asked for by the user 2026-10-18): the
+     stacked hero opens on the portrait, above the welcome, and About's
+     stacked intro puts the cartoon between the page header and the story,
+     both through CSS `order`, so the markup (and what screen readers reach
+     first) keeps the text ahead of the picture.
    - **Grids** (after the user's comparison): never a short last row. The
      features show four, two, or one columns and the facts six, three, two,
      or one, each grid's column minimum stepping between whole shares of the
