@@ -63,7 +63,7 @@
 @media ( max-width : 880px ) { /* What: Narrow Home Hero Section. Why: The two columns don't fit side by side on a narrow screen. How: This applies 880px wide and below. */
 
 
-	.homHerSec { /* What: Stacked Home Hero Section. Why: A narrow screen reads the welcome above the portrait. How: This stacks them in one centered column and trims the padding. */
+	.homHerSec { /* What: Stacked Home Hero Section. Why: A narrow screen opens on the portrait, with the welcome below it. How: This stacks them in one centered column and trims the padding. */
 
 
 		grid-template-columns : 1fr;
@@ -316,10 +316,11 @@
 @media ( max-width : 880px ) { /* What: Narrow Hero Visual Div. Why: The stacked hero's portrait shouldn't spread its blob and badges across the whole column. How: This applies 880px wide and below. */
 
 
-	.herVisDiv { /* What: Smaller Hero Visual Div. Why: The blob, portrait, and badges should keep the two-column layout's proportions around a smaller portrait. How: This centers the square box at the p11 rhythm step, never wider than the column, so the blob fills it, the portrait sits one step smaller inside it, and the badges sit just off the portrait's corners. */
+	.herVisDiv { /* What: Smaller Hero Visual Div. Why: The blob, portrait, and badges should keep the two-column layout's proportions around a smaller portrait. How: This centers the square box at the p11 rhythm step, never wider than the column, so the blob fills it, the portrait sits one step smaller inside it, and the badges sit just off the portrait's corners, and moves it above the welcome so the page opens on the girls. */
 
 
 		justify-self : center;
+		order        : -1;
 		width        : min( calc( var( --ver-rhy-p11 ) * 1rem ), 100% ); /* Vertical Rhythm Base Plus 11 ~= 321.273px */
 
 

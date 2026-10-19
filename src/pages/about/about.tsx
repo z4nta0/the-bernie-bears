@@ -20,8 +20,9 @@ import { PHO_SIZ_OBJ } from './photo-sizes.ts'; // What: Photo Sizes Object. Why
  *
  * @summary
  * The About page: a header, the story of The Bernie Bears beside a cartoon of
- * both girls, a row of paw prints, a card for each sister with her photo,
- * description, and three traits, and a grid of fun facts on a gradient band.
+ * both girls (the cartoon on top at 768px wide and below), a row of paw
+ * prints, a card for each sister with her photo, description, and three
+ * traits, and a grid of fun facts on a gradient band.
  *
  * Sections:
  *  - Constants
@@ -80,10 +81,11 @@ const FUN_FAC_ARR = [ // What: Fun Fact Array. Why: The page closes on six quick
  *
  * @summary
  * Renders the About page: the header, the story beside the cartoon of both
- * girls, a row of paw prints, Lilah's and Norah's cards, and the fun facts
- * from FUN_FAC_ARR. Every emoji is hidden from screen readers as decoration,
- * each trait's inside a span of its own, which the stylesheet's chip rule
- * leaves alone since it styles only a trait's outer span.
+ * girls (the cartoon on top at 768px wide and below), a row of paw prints,
+ * Lilah's and Norah's cards, and the fun facts from FUN_FAC_ARR. Every emoji
+ * is hidden from screen readers as decoration, each trait's inside a span of
+ * its own, which the stylesheet's chip rule leaves alone since it styles only
+ * a trait's outer span.
  *
  * It also sets the page's title and a noindex tag, which React moves into
  * the document head, since the brand's main site tells the girls' story.
@@ -135,7 +137,7 @@ function AboPagCom () : React.JSX.Element {
 
 
 
-				<section className={ cssModObj.aboIntSec }>{ /* What: About Intro Section Element. Why: The story comes first. How: This sets the story beside the cartoon of both girls. */ }
+				<section className={ cssModObj.aboIntSec }>{ /* What: About Intro Section Element. Why: The page opens on the girls' story. How: This sets the story beside the cartoon of both girls, stacking the cartoon above the story at 768px wide and below. */ }
 
 
 					<div>{ /* What: Intro Text Div Element. Why: The story reads as one column. How: This stacks its heading and two paragraphs, with no styling of its own. */ }
@@ -160,7 +162,7 @@ function AboPagCom () : React.JSX.Element {
 					</div>
 
 
-					<div className={ cssModObj.intVisDiv }>{ /* What: Intro Visual Div Element. Why: The cartoon sits beside the story. How: This centers its frame. */ }
+					<div className={ cssModObj.intVisDiv }>{ /* What: Intro Visual Div Element. Why: The cartoon sits beside the story, or above it at 768px wide and below. How: This centers its frame. */ }
 
 
 						<div className={ cssModObj.groFraDiv }>{ /* What: Group Frame Div Element. Why: The cartoon sits in a rounded card. How: This frames the image. */ }

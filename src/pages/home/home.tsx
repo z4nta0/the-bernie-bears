@@ -18,9 +18,10 @@ import { PHO_SIZ_OBJ } from './photo-sizes.ts'; // What: Photo Sizes Object. Why
  * home.tsx = Home
  *
  * @summary
- * The home page: a hero introducing Lilah and Norah beside their portrait, a
- * row of paw prints, four cards on what life with the girls is like, and a
- * banner sending visitors to the Social Links page.
+ * The home page: a hero introducing Lilah and Norah beside their portrait (the
+ * portrait on top at 880px wide and below), a row of paw prints, four cards on
+ * what life with the girls is like, and a banner sending visitors to the
+ * Social Links page.
  *
  * Sections:
  *  - Constants
@@ -82,11 +83,12 @@ const FEA_CAR_ARR = [ // What: Feature Card Array. Why: The home page sums up li
  * @summary
  * Renders the home page: the hero with its welcome, the girls' names, a short
  * pitch, and buttons to the About and Social Links pages beside their portrait
- * and two floating name badges; a row of paw prints; the four cards from
- * FEA_CAR_ARR; and a banner linking to the Social Links page. Every emoji is
- * hidden from screen readers as decoration, and the banner's button is named
- * by its words alone, since wrapping its paw in a hidden span would trade the
- * space before it for the button's flex gap.
+ * and two floating name badges, the portrait moving above them at 880px wide
+ * and below; a row of paw prints; the four cards from FEA_CAR_ARR; and a
+ * banner linking to the Social Links page. Every emoji is hidden from screen
+ * readers as decoration, and the banner's button is named by its words alone,
+ * since wrapping its paw in a hidden span would trade the space before it for
+ * the button's flex gap.
  *
  * It also sets the page's canonical address, which React moves into the
  * document head while the page is shown; its title and description are
@@ -125,7 +127,7 @@ function HomPagCom () : React.JSX.Element {
 			<div className={ cssModObj.pagEntDiv }>{ /* What: Page Enter Div Element. Why: The home page fades up into place like every other page. How: This holds the page's sections. */ }
 
 
-				<section className={ cssModObj.homHerSec }>{ /* What: Home Hero Section Element. Why: The home page opens by introducing the girls. How: This sets the words and the portrait side by side. */ }
+				<section className={ cssModObj.homHerSec }>{ /* What: Home Hero Section Element. Why: The home page opens by introducing the girls. How: This sets the words and the portrait side by side, stacking the portrait above the words at 880px wide and below. */ }
 
 
 					<div>{ /* What: Hero Content Div Element. Why: The welcome reads as one column. How: This stacks the eyebrow, title, pitch, and buttons, with no styling of its own. */ }
