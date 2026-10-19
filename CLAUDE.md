@@ -2,7 +2,8 @@
 
 A website for The Bernie Bears, Lilah and Norah, two Bernese Mountain Dog
 sisters with a following across social media (React, Vite, React Router,
-deployed on Netlify at https://theberniebears.dog/). Every rule in the
+deployed on Netlify at https://theberniebears.dog/). It's also a portfolio
+piece by techgeek.dev, linked from https://techgeek.dev. Every rule in the
 user-level CLAUDE.md applies here; this file records only what's specific to
 this project. ease-my-life, reese-roofing, seal-and-shield, and tonys-toppers
 have already been converted to those rules and serve as worked examples, with
