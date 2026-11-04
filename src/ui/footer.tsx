@@ -18,8 +18,7 @@ import { Link } from 'react-router'; // What: Link. Why: The footer's page links
  * @summary
  * The site's footer: the brand name with its tagline, a link to each page and
  * to the brand's main site, and a copyright line. It reads the current year
- * each time it renders, so the copyright shows the year it rendered in. Every
- * page renders it below its content.
+ * each time it renders, so the copyright shows the year it rendered in.
  *
  * Sections:
  *  - Components
@@ -158,7 +157,7 @@ function SitFooCom () : React.JSX.Element {
 
 // #region Exports
 
-export { SitFooCom }; // What: Named Export. Why: Every page renders the footer below its content. How: This exports SitFooCom.
+export { SitFooCom }; // What: Named Export. Why: The app root renders the footer below the routes. How: This exports SitFooCom.
 
 // #endregion Exports
 

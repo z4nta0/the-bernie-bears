@@ -75,10 +75,10 @@ type PhoRecTyp = { pagStr : string, souStr : string, squBoo : boolean, widNum : 
 const PHO_REC_ARR : PhoRecTyp[] = [ // What: Photo Record Array. Why: The script rebuilds every photo from one list. How: Each row names one photo and how it's shown.
 
 
-	{ pagStr : 'about', souStr : 'group-photo.jpg',   squBoo : false, widNum : 909  },
-	{ pagStr : 'about', souStr : 'lilah.jpg',         squBoo : true,  widNum : 390  },
-	{ pagStr : 'about', souStr : 'norah.jpg',         squBoo : true,  widNum : 390  },
-	{ pagStr : 'home',  souStr : 'portrait-both.jpg', squBoo : true,  widNum : 1173 }
+	{ pagStr : 'about', souStr : 'group-photo.jpg',   squBoo : false, widNum : 909  }, // What: About Group Photo Row. Why: The About intro shows the cartoon of both girls. How: This rebuilds it whole, not cropped.
+	{ pagStr : 'about', souStr : 'lilah.jpg',         squBoo : true,  widNum : 390  }, // What: Lilah Photo Row. Why: Lilah's card shows her photo in a round frame. How: This rebuilds it cropped to a centered square.
+	{ pagStr : 'about', souStr : 'norah.jpg',         squBoo : true,  widNum : 390  }, // What: Norah Photo Row. Why: Norah's card shows her photo in a round frame. How: This rebuilds it cropped to a centered square.
+	{ pagStr : 'home',  souStr : 'portrait-both.jpg', squBoo : true,  widNum : 1173 }  // What: Home Portrait Photo Row. Why: The hero shows both girls in a square frame. How: This rebuilds it cropped to a centered square.
 
 
 ];

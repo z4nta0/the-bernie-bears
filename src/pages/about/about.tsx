@@ -45,7 +45,7 @@ import { PHO_SIZ_OBJ } from './photo-sizes.ts'; // What: Photo Sizes Object. Why
  * @summary
  * The six fun facts, in the order the grid shows them. Every row shares the
  * same shape, so its fields carry no comments of their own:
- * - `facStr` (String): Fact String, the fact itself, shown large.
+ * - `facStr` (String): Fact String, the fact itself, shown in bold.
  * - `icoStr` (String): Icon String, the fact's decorative emoji.
  * - `labStr` (String): Label String, what the fact is about, shown small.
  *

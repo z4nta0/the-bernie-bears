@@ -408,7 +408,7 @@ const valSigFun = ( snaRecArr : SnaRecTyp[] ) : string => JSON.stringify( snaRec
 
 // #region Exports
 
-export { cliBloFun, CON_PRO_ARR, FOC_PRO_ARR, movProFun, SET_WAI_NUM, snaEleFun, snaProFun, valSigFun }; // What: Named Exports. Why: More than one spec probes feedback the same way. How: This exports the property lists, the settle wait, the snapshot and comparison helpers, and the click block.
+export { cliBloFun, CON_PRO_ARR, FOC_PRO_ARR, movProFun, SET_WAI_NUM, snaEleFun, snaProFun, valSigFun }; // What: Named Exports. Why: The probe's shared pieces live apart from the spec that reads them. How: This exports the property lists, the settle wait, the snapshot and comparison helpers, and the click block.
 
 // #endregion Exports
 

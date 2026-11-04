@@ -25,8 +25,7 @@ import { useState    } from 'react';                // What: Use State. Why: The
  * and below, where the menu also offers the girls' social profiles, the main
  * site, and the tagline over a dimmed page. The link for the current page is
  * marked. It's led by a skip link, the page's first stop, that jumps a
- * keyboard user past the bar to the main content. Every page renders it above
- * its content.
+ * keyboard user past the bar to the main content.
  *
  * Sections:
  *  - Constants
@@ -262,7 +261,7 @@ function NavBarCom () : React.JSX.Element {
 				aria-hidden='true'
 
 				onClick={ cloMenFun }
-			/>{ /* What: Navigation Scrim Div Element. Why: The open menu should stand apart from the dimmed page, and a tap anywhere on the page should close it. How: This covers the page under the bar, dimmed while the menu is open, closing the menu when tapped, and hidden from screen readers as decoration. */ }
+			/>{ /* What: Navigation Scrim Div Element. Why: The open menu should stand apart from the dimmed page, and a tap anywhere on the page should close it. How: This covers the page under the bar at 640px wide and below, dimmed while the menu is open, closing the menu when tapped, and hidden from screen readers as decoration. */ }
 
 
 
@@ -273,7 +272,7 @@ function NavBarCom () : React.JSX.Element {
 			>{ /* What: Navigation Bar Header Element. Why: Every page starts with the shared bar. How: This holds the bar, which sticks to the top of the screen. */ }
 
 
-				<div className={ cssModObj.navInnDiv }>{ /* What: Navigation Inner Div Element. Why: The bar's content sits in the page's centered column. How: This lays out the brand, the toggle, and the links in a row. */ }
+				<div className={ cssModObj.navInnDiv }>{ /* What: Navigation Inner Div Element. Why: The bar's content sits in the page's centered column. How: This lays out the brand and the links in a row above 640px wide, and the brand and the toggle in a row at 640px and below, where the links drop down as the menu. */ }
 
 
 					<NavLink
@@ -461,7 +460,7 @@ function NavBarCom () : React.JSX.Element {
 
 // #region Exports
 
-export { NavBarCom }; // What: Named Export. Why: Every page renders the bar above its content. How: This exports NavBarCom.
+export { NavBarCom }; // What: Named Export. Why: The app root renders the bar above the routes. How: This exports NavBarCom.
 
 // #endregion Exports
 

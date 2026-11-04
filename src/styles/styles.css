@@ -6,14 +6,11 @@
  *
  * @summary
  * The site's global stylesheet, holding only what can't belong to one
- * component: the design tokens the modules read (the plastic-ratio core
- * design numbers, the color and font roles, and the scales for type, spacing,
- * rhythm, borders, radii, durations, easing, elevation, and text widths), the
- * base element styles (the 11px root, the box reset, the page's font and
- * colors, the brand-font headings, plain links, images, and buttons, the focus
- * ring every link and button grows on keyboard focus, and the scrollbar),
- * and the pageEnterFadeIn keyframe every page's entrance plays through
- * global(). Component styles live in their CSS modules.
+ * component: the design tokens the modules read (such as the plastic-ratio
+ * core design numbers and the scales built from them), the base element styles
+ * (such as the focus ring every link and button grows on keyboard focus), and
+ * the pageEnterFadeIn keyframe every page's entrance plays through global().
+ * Component styles live in their CSS modules.
  *
  * Sections:
  *  - Tokens
@@ -28,7 +25,7 @@
 
 /* #region Tokens */
 
-:root { /* What: Root Tokens. Why: The modules read the site's core design numbers, colors, fonts, radii, and shadows from one place. How: This defines them as custom properties on the root element, grouped into sections. */
+:root { /* What: Root Tokens. Why: The modules read the site's design tokens from one place. How: This defines them as custom properties on the root element, grouped into sections. */
 
 
 	/* #region Core Design Numbers */
