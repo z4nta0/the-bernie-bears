@@ -291,12 +291,12 @@
 	isolation      : isolate;
 	padding        : var( --spa-ver-p04 ) clamp( var( --spa-hor-p02 ), var( --hor-rhy-015 ), var( --spa-hor-p04 ) ); /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px, Horizontal Rhythm 15 ~= 65.739px @ 1,920px width, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	position       : relative;
-	transition     : border-color var( --dur-tra-p02 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
+	transition     : border-color var( --dur-tra-p02 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
 .sisCarDiv::before,
-.sisCarDiv::after { /* What: Sister Card Div Shadow Layers. Why: The lift deepens the card's shadow, and fading between two shadows runs on the compositor where easing the shadow itself would repaint it every frame. How: Each layer covers the card's whole border box behind its content, rounded like it, holding one shadow, and fades its opacity. */
+.sisCarDiv::after { /* What: Sister Card Div Shadow Layers. Why: The lift deepens the card's shadow, and fading between two shadows runs on the compositor where easing the shadow itself would repaint it every frame. How: Each layer covers the card's whole border box behind its content, rounded like it, holding one shadow, and fades its opacity. Each layer arrives on the decelerating curve and leaves on the accelerating one. */
 
 
 	border-radius  : inherit;
@@ -304,7 +304,7 @@
 	inset          : calc( var( --bor-wid-xla ) * -1 ) calc( var( --bor-wid-lar ) * -1 ) calc( var( --bor-wid-lar ) * -1 ); /* Border Width Extra Large ~= -3.572px, Border Width Large ~= -2.035px */
 	pointer-events : none;
 	position       : absolute;
-	transition     : opacity var( --dur-tra-p02 ) var( --mot-sta-eas );                                                     /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
+	transition     : opacity var( --dur-tra-p02 ) var( --mot-dec-eas );                                                     /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 	z-index        : -1;
 
 
@@ -316,11 +316,12 @@
 
 
 }
-.sisCarDiv::after { /* What: Sister Card Div Hover Shadow Layer. Why: A lifted card casts a deeper shadow. How: This gives the layer the large elevation, hidden until hovered. */
+.sisCarDiv::after { /* What: Sister Card Div Hover Shadow Layer. Why: A lifted card casts a deeper shadow. How: This gives the layer the large elevation, hidden until hovered, and fades it out on the accelerating curve. */
 
 
-	box-shadow : var( --ele-lar-sha ); /* Elevation Large Shadow ~= 0 19.304px 44.876px -14.572px plus 0 6.268px 14.572px -3.572px */
+	box-shadow : var( --ele-lar-sha );                              /* Elevation Large Shadow ~= 0 19.304px 44.876px -14.572px plus 0 6.268px 14.572px -3.572px */
 	opacity    : 0;
+	transition : opacity var( --dur-tra-p02 ) var( --mot-acc-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ) */
 
 
 }
@@ -334,17 +335,19 @@
 
 
 }
-.sisCarDiv:hover::before { /* What: Hovered Sister Card Div Resting Shadow Layer. Why: The resting shadow gives way to the deeper one. How: This fades it out. */
+.sisCarDiv:hover::before { /* What: Hovered Sister Card Div Resting Shadow Layer. Why: The resting shadow gives way to the deeper one. How: This fades it out on the accelerating curve. */
 
 
-	opacity : 0;
+	opacity    : 0;
+	transition : opacity var( --dur-tra-p02 ) var( --mot-acc-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ) */
 
 
 }
-.sisCarDiv:hover::after { /* What: Hovered Sister Card Div Hover Shadow Layer. Why: A lifted card casts a deeper shadow. How: This fades the deeper shadow in. */
+.sisCarDiv:hover::after { /* What: Hovered Sister Card Div Hover Shadow Layer. Why: A lifted card casts a deeper shadow. How: This fades the deeper shadow in on the decelerating curve. */
 
 
-	opacity : 1;
+	opacity    : 1;
+	transition : opacity var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -367,7 +370,9 @@
 
 	.sisCarDiv,
 	.sisCarDiv::before,
-	.sisCarDiv::after { /* What: Motionless Sister Card Div. Why: The hover look and the shadow layers should simply switch, the lift still applying at once. How: This turns their transitions off. */
+	.sisCarDiv::after,
+	.sisCarDiv:hover::before,
+	.sisCarDiv:hover::after { /* What: Motionless Sister Card Div. Why: The hover look and the shadow layers should simply switch, the lift still applying at once. How: This turns their transitions off. */
 
 
 		transition : none;
@@ -562,7 +567,7 @@
 	gap             : var( --spa-ver-m03 );                                                                           /* Spacing Vertical Base Minus 3 ~= 6.268px */
 	padding         : var( --spa-ver-p02 ) var( --spa-hor-bas );                                                      /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base ~= 14.572px */
 	text-align      : center;
-	transition      : background-color var( --dur-tra-p02 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
+	transition      : background-color var( --dur-tra-p02 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }

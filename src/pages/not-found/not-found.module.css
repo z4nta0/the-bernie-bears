@@ -114,12 +114,12 @@
 	padding         : var( --spa-ver-bas ) var( --spa-hor-p03 ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	position        : relative;
 	text-decoration : none;
-	transition      : background var( --dur-tra-p02 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	transition      : background var( --dur-tra-p02 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Duration Transition Base Plus 1 ~= 209.1ms */
 
 
 }
 .butBasAnc::before,
-.butBasAnc::after { /* What: Button Base Anchor Shadow Layers. Why: The lift deepens a button's shadow, and fading between two shadows runs on the compositor where easing the shadow itself would repaint it every frame. How: Each layer covers the button's whole border box behind its content, rounded like it, holding the shadow its filled variant gives it, and fades its opacity. */
+.butBasAnc::after { /* What: Button Base Anchor Shadow Layers. Why: The lift deepens a button's shadow, and fading between two shadows runs on the compositor where easing the shadow itself would repaint it every frame. How: Each layer covers the button's whole border box behind its content, rounded like it, holding the shadow its filled variant gives it, and fades its opacity. Each layer arrives on the decelerating curve and leaves on the accelerating one. */
 
 
 	border-radius  : inherit;
@@ -127,29 +127,32 @@
 	inset          : calc( var( --bor-wid-lar ) * -1 );                 /* Border Width Large ~= -2.035px */
 	pointer-events : none;
 	position       : absolute;
-	transition     : opacity var( --dur-tra-p02 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
+	transition     : opacity var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 	z-index        : -1;
 
 
 }
-.butBasAnc::after { /* What: Button Base Anchor Hover Shadow Layer. Why: The deeper shadow shows only while hovered. How: This starts it hidden. */
+.butBasAnc::after { /* What: Button Base Anchor Hover Shadow Layer. Why: The deeper shadow shows only while hovered. How: This starts it hidden and fades it out on the accelerating curve. */
 
 
-	opacity : 0;
-
-
-}
-.butBasAnc:hover::before { /* What: Hovered Button Base Anchor Resting Shadow Layer. Why: The resting shadow gives way to the deeper one. How: This fades it out. */
-
-
-	opacity : 0;
+	opacity    : 0;
+	transition : opacity var( --dur-tra-p02 ) var( --mot-acc-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ) */
 
 
 }
-.butBasAnc:hover::after { /* What: Hovered Button Base Anchor Hover Shadow Layer. Why: A lifted button casts a deeper shadow. How: This fades the deeper shadow in. */
+.butBasAnc:hover::before { /* What: Hovered Button Base Anchor Resting Shadow Layer. Why: The resting shadow gives way to the deeper one. How: This fades it out on the accelerating curve. */
 
 
-	opacity : 1;
+	opacity    : 0;
+	transition : opacity var( --dur-tra-p02 ) var( --mot-acc-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ) */
+
+
+}
+.butBasAnc:hover::after { /* What: Hovered Button Base Anchor Hover Shadow Layer. Why: A lifted button casts a deeper shadow. How: This fades the deeper shadow in on the decelerating curve. */
+
+
+	opacity    : 1;
+	transition : opacity var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -212,7 +215,9 @@
 
 	.butBasAnc,
 	.butBasAnc::before,
-	.butBasAnc::after { /* What: Motionless Button Base Anchor. Why: The hover, press, and focus looks and the shadow layers should simply switch, the lift and press still applying at once. How: This turns their transitions off. */
+	.butBasAnc::after,
+	.butBasAnc:hover::before,
+	.butBasAnc:hover::after { /* What: Motionless Button Base Anchor. Why: The hover, press, and focus looks and the shadow layers should simply switch, the lift and press still applying at once. How: This turns their transitions off. */
 
 
 		transition : none;
