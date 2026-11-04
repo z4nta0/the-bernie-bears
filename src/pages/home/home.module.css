@@ -732,6 +732,8 @@
 
 }
 
+/* What: Button Base Anchor Pointer. Why: The banner's link shares the pill class with the hero's buttons. How: Its rule, and its white variant's, sit in the herActDiv region above. */
+
 /* #endregion ctaInnDiv */
 
 /* #endregion homCtaSec */
