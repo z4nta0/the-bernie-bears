@@ -102,9 +102,9 @@ async function scaStaFun ( curPagObj : Page ) : Promise< AxeResTyp > {
  *
  * @summary
  * Turns one list of axe results into one readable line per rule: the rule's
- * id, its impact where axe gives one, its help text, and the selectors of
- * the elements it flagged. Used for both the violations, which fail the
- * test, and the incomplete results, which are only reported.
+ * id, its impact where axe gives one, its help text, and the selectors of the
+ * elements it flagged. It reads the violations and the incomplete results
+ * alike.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *

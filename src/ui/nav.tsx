@@ -22,9 +22,9 @@ import { useState    } from 'react';                // What: Use State. Why: The
  * @summary
  * The site's sticky top bar: the brand, which returns to the home page, a link
  * to each page, and a toggle that opens those links as a menu at 640px wide
- * and below, where the menu also offers the girls' social profiles, the main
- * site, and the tagline over a dimmed page. The link for the current page is
- * marked. It's led by a skip link, the page's first stop, that jumps a
+ * and below, where the menu also offers extras for following the girls, such
+ * as their social profiles, over a dimmed page. The link for the current page
+ * is marked. It's led by a skip link, the page's first stop, that jumps a
  * keyboard user past the bar to the main content.
  *
  * Sections:
@@ -130,14 +130,14 @@ function modCliFun ( cliEveObj : React.MouseEvent< HTMLAnchorElement > ) : boole
  *
  * The brand's paw print is hidden from screen readers as decoration, so the
  * link is announced by the name alone, and the links sit in a navigation
- * landmark labelled Main, so screen readers can tell it from the footer's.
+ * landmark labelled "Main", so screen readers can tell it from the footer's.
  *
- * At those widths the open menu also shows a row of the girls' six profiles, a
- * link to the main site, and the tagline, each row fading in after the last,
- * over a scrim that dims the page. While it's open the rest of the page is
- * inert, so keyboard and screen reader users stay in the bar; tapping the
- * scrim closes it, Escape closes it and returns focus to the toggle, and a
- * screen widened past the phone layout closes it, since its toggle is gone.
+ * At those widths the open menu also shows extras for following the girls,
+ * such as a row of their six profiles, each row fading in after the last, over
+ * a scrim that dims the page. While it's open the rest of the page is inert,
+ * so keyboard and screen reader users stay in the bar; tapping the scrim
+ * closes it, Escape closes it and returns focus to the toggle, and a screen
+ * widened past the phone layout closes it, since its toggle is gone.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -183,7 +183,7 @@ function NavBarCom () : React.JSX.Element {
 		const onKeyDowFun = ( keyEveObj : KeyboardEvent ) => { // What: On Key Down Function. Why: Escape is the expected way out of a layer over the page. How: This closes the menu and puts focus back on the toggle when Escape is pressed.
 
 
-			if ( keyEveObj.key !== 'Escape' ) return; // What: Escape Key Guard. Why: Escape is the only key that closes the menu. How: This ignores every other key.
+			if ( keyEveObj.key !== 'Escape' ) return; // What: Escape Key Guard. Why: This handler acts only on Escape. How: This ignores every other key.
 
 
 
@@ -282,7 +282,7 @@ function NavBarCom () : React.JSX.Element {
 
 						onAuxClick={ auxCloFun }
 						onClick={ cloMenFun }
-					>{ /* What: Navigation Brand Anchor Navigation Link. Why: The brand is the way back to the home page. How: This links to the root path and closes the phone menu on any click, a new tab's included, so the page it opens isn't left inert behind it. */ }
+					>{ /* What: Navigation Brand Anchor Navigation Link. Why: The brand is the way back to the home page. How: This links to the root path and closes the phone menu on any click, a new tab's included, so the page isn't left inert behind an open menu. */ }
 
 
 						<span
@@ -329,7 +329,7 @@ function NavBarCom () : React.JSX.Element {
 						data-mobile-menu-open={ menOpeBoo || undefined } // What: Mobile Menu Open Flag. Why: On a phone the links show only while the menu is open. How: This marks the nav while menOpeBoo is true, and drops the attribute otherwise.
 
 						aria-label='Main'
-					>{ /* What: Navigation Links Nav Element. Why: The page links sit in a row above 640px wide and drop down as the menu at 640px and below, and the bar's navigation landmark needs a label to tell it from the footer's. How: This holds a link to each page, labelled Main, shown on a phone only while it carries data-mobile-menu-open. */ }
+					>{ /* What: Navigation Links Nav Element. Why: The page links sit in a row above 640px wide and drop down as the menu at 640px and below, and the bar's navigation landmark needs a label to tell it from the footer's. How: This holds a link to each page, labelled "Main", shown at 640px wide and below only while it carries data-mobile-menu-open. */ }
 
 
 						{ NAV_LIN_ARR.map( ( linRecObj, linIndNum ) => ( // What: Page Link Map. Why: Each page gets a link. How: This renders one link per row, with its place in the list.
@@ -360,7 +360,7 @@ function NavBarCom () : React.JSX.Element {
 							className={ cssModObj.menConDiv }
 
 							style={ { '--nav-ite-ind' : NAV_LIN_ARR.length } as React.CSSProperties } // What: Navigation Item Index. Why: The block fades in after the last link. How: This hands it the next place in the stagger. // What: Type Assertion Note. Why: React's style type doesn't list custom properties. How: The stylesheet reads this one by name.
-						>{ /* What: Menu Contents Div Element. Why: A phone menu of four links alone felt bare, and following the girls is the site's purpose. How: This holds the profiles, the main site link, and the tagline under the links, shown only in the phone menu. */ }
+						>{ /* What: Menu Contents Div Element. Why: A phone menu of four links alone felt bare, and following the girls is the site's purpose. How: This holds the eyebrow label, the profiles, the main site link, and the tagline under the links, shown only in the phone menu. */ }
 
 
 							<p className={ cssModObj.menEyePar }>Follow Lilah & Norah</p>{ /* What: Menu Eyebrow Paragraph Element. Why: The icons need a word on what they're for. How: This labels them in small uppercase letters. */ }

@@ -39,12 +39,12 @@ import { Link } from 'react-router'; // What: Link. Why: The footer's page links
  *
  * @summary
  * Renders the footer: the brand name and tagline, a link to each page and an
- * Official Site link to the brand's main site, which opens in a new tab
+ * "Official Site" link to the brand's main site, which opens in a new tab
  * without giving it access to this one, in a navigation landmark labelled
- * Footer, so screen readers can tell it from the bar's, and the copyright with
- * the current year. The brand's paw print is hidden from screen readers as
- * decoration, while the copyright's heart is announced as love, since the line
- * says it was made with love.
+ * "Footer", so screen readers can tell it from the bar's, and the copyright
+ * with the current year. The brand's paw print is hidden from screen readers
+ * as decoration, while the copyright's heart is announced as "love", since the
+ * line says it was made with love.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -89,7 +89,7 @@ function SitFooCom () : React.JSX.Element {
 					className={ cssModObj.fooNavNav }
 
 					aria-label='Footer'
-				>{ /* What: Footer Navigation Nav Element. Why: The site's main pages can be reached from the bottom of any page, and a second navigation landmark needs a label to tell it from the bar's. How: This holds a link to each page and to the brand's main site, labelled Footer. */ }
+				>{ /* What: Footer Navigation Nav Element. Why: The site's main pages can be reached from the bottom of any page, and a second navigation landmark needs a label to tell it from the bar's. How: This holds a link to each page and to the brand's main site, labelled "Footer". */ }
 
 
 					<Link
@@ -135,7 +135,7 @@ function SitFooCom () : React.JSX.Element {
 
 				</nav>
 
-				<p className={ cssModObj.fooCopPar }>© { curYeaNum } The Bernie Bears. Made with <span aria-label='love' role='img'>🩷</span>, bear hugs & lots of treats.</p>{ /* What: Footer Copyright Paragraph Element. Why: The footer ends with the copyright. How: This prints the current year read on each render, with the heart announced as love. */ }
+				<p className={ cssModObj.fooCopPar }>© { curYeaNum } The Bernie Bears. Made with <span aria-label='love' role='img'>🩷</span>, bear hugs & lots of treats.</p>{ /* What: Footer Copyright Paragraph Element. Why: The footer ends with the copyright. How: This prints the current year read on each render, with the heart announced as "love". */ }
 
 
 			</div>

@@ -43,7 +43,7 @@ import { Link } from 'react-router'; // What: Link. Why: The page's buttons move
  * @summary
  * Renders the 404 page's title and its noindex robots tag, which React moves
  * into the document head, and its header holding the page's one h1, a short
- * line, a Back Home button, and a Follow Along button to the Social Links
+ * line, a "Back Home" button, and a "Follow Along" button to the Social Links
  * page. The paw print closing the line is hidden from screen readers as
  * decoration.
  *

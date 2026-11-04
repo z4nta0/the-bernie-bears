@@ -11,12 +11,12 @@
  * screens 640px wide or narrower the links move into a panel below the bar,
  * which fades in over a scrim that dims the page while the three-bar toggle
  * has it open, its rows arriving one after another, and the toggle's bars turn
- * into a cross. Under the links the panel adds a row of the girls' profile
- * icons, a link to the main site, and the tagline. The bar's states are
- * attributes rather than classes: aria-expanded on the toggle,
- * data-mobile-menu-open on the links and the scrim, and aria-current on the
- * current page's link. The bar's width and side padding are the page's shared
- * container values, merged into its own rule.
+ * into a cross. Under the links the panel adds extras for following the girls,
+ * such as a row of their profile icons. The bar's states are attributes rather
+ * than classes: aria-expanded on the toggle, data-mobile-menu-open on the
+ * links and the scrim, and aria-current on the current page's link. The bar's
+ * width and side padding are the page's shared container values, merged into
+ * its own rule.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
