@@ -477,7 +477,7 @@ test( 'malformed saved entries are dropped while a well-formed saved position is
 for ( const { labStr : pagLabStr, patStr : rouPatStr } of [ ...PAG_LIN_ARR, { labStr : '404', patStr : '/missing' } ] ) { // What: Skip Link Loop. Why: Every page opens with the skip link. How: This declares one check per page, the 404 page included.
 
 
-	test( `the first Tab on the ${ pagLabStr } page reaches the skip link, which moves focus to the main content`, async ( { browserName : broNamStr, page : curPagObj } ) => { // What: Skip Link Test. Why: A keyboard user has to be able to jump past the bar. How: This presses Tab once, checks the skip link holds focus on screen, then clicks it and checks focus moved to the main element with the address unchanged and no hash change.
+	test( `the first Tab on the ${ pagLabStr } page reaches the skip link, which moves focus to the main content`, async ( { browserName : broNamStr, page : curPagObj } ) => { // What: Skip Link Test. Why: A keyboard user has to be able to jump past the bar. How: This presses Tab once, clicks the skip link it lands on, and checks focus ends up on the main element without the address changing.
 
 
 		const skiLinLoc = curPagObj.getByRole( 'link', { name : 'Skip to main content' } ); // What: Skip Link Locator. Why: Each step below reaches the same link. How: This finds it by its role and name.
