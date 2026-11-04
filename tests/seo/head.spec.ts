@@ -177,7 +177,7 @@ async function heaCheFun ( curPagObj : Page, heaRowObj : typeof PAG_HEA_ARR[ num
 
 
 
-	if ( heaRowObj.canStr === null ) { // What: Noindex Page Branch. Why: About, Contact, and the 404 page must stay out of search results. How: This checks for the noindex tag and the absence of the indexed pages' tags.
+	if ( heaRowObj.canStr === null ) { // What: Noindex Page Branch. Why: About, Contact, and the 404 page must stay out of search results. How: This checks for the noindex tag and the absence of a canonical link.
 
 
 		await expect( curPagObj.locator( 'meta[name="robots"]' ) ).toHaveAttribute( 'content', 'noindex' ); // What: Noindex Assertion. Why: Search engines must leave the page out. How: This checks the one robots tag says noindex.
@@ -298,7 +298,7 @@ test( 'the raw page carries the home title and description for script-free reade
 
 	expect( titTexStr ).toBe( PAG_HEA_ARR[ 0 ].titStr ); // What: Raw Title Assertion. Why: The raw page should name the home page in full, not the bare site name. How: This checks it matches the home page's title.
 
-	expect( titTexStr.length ).toBeGreaterThanOrEqual( 50 ); // What: Raw Title Length Assertion. Why: Checkers flag a title that leaves most of a listing's room unused. How: This checks it runs at least 50 characters.
+	expect( titTexStr.length ).toBeGreaterThanOrEqual( 50 ); // What: Raw Title Length Assertion. Why: A bare site name would leave most of a listing's room unused, so the raw title has to be the full one. How: This checks it runs at least 50 characters.
 
 	expect( rawHtmStr ).toContain( `<meta name='description' content='${ HOM_DES_STR }' />` ); // What: Raw Description Assertion. Why: Checkers and crawlers without the script need a description to show. How: This checks the raw page carries the home page's.
 

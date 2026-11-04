@@ -85,10 +85,10 @@ const FEA_CAR_ARR = [ // What: Feature Card Array. Why: The home page sums up li
  * pitch, and buttons to the About and Social Links pages beside their portrait
  * and two floating name badges, the portrait moving above them at 880px wide
  * and below; a row of paw prints; the four cards from FEA_CAR_ARR; and a
- * banner linking to the Social Links page. Every emoji is hidden from screen
- * readers as decoration, and the banner's button is named by its words alone,
- * since wrapping its paw in a hidden span would trade the space before it for
- * the button's flex gap.
+ * banner linking to the Social Links page. The banner's button is named by its
+ * words alone, and every other emoji is hidden from screen readers as
+ * decoration, since wrapping its paw in a hidden span would trade the space
+ * before it for the button's flex gap.
  *
  * It also sets the page's canonical address, which React moves into the
  * document head while the page is shown; its title and description are

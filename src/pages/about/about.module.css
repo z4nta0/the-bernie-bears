@@ -6,12 +6,13 @@
  *
  * @summary
  * Styles for AboPagCom: the page fading up into place, the gradient header,
- * the story beside the cartoon in its dashed card, the row of paw prints, the
- * two sisters' cards, which lift on hover, with their round photos, badges,
- * and trait chips, and the frosted fun fact cards on a lavender to sage band.
- * The facts' column takes the page's shared container values, and the band's
- * heading has its own rule in place of an inline style. Every animation and
- * transition is off under reduced motion.
+ * the story beside the cartoon in its dashed card (the cartoon on top at 768px
+ * wide and below), the row of paw prints, the two sisters' cards side by side
+ * (stacked at 768px wide and below), which lift on hover, with their round
+ * photos, badges, and trait chips, and the frosted fun fact cards on a
+ * lavender to sage band. The facts' column takes the page's shared container
+ * values, and the band's heading has its own rule in place of an inline style.
+ * Every animation and transition is off under reduced motion.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *

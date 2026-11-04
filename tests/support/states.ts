@@ -60,11 +60,11 @@ type StaRecTyp = { // What: State Record Type. Why: Every check reads the same d
  * STA_REC_ARR = State Record Array
  *
  * @summary
- * Every state the checks visit: each route (Home, About, Social Links, and
- * Contact) and the 404 page at a phone width (390px) and a desktop width
- * (1,440px), plus the mobile menu open at the phone width, since the menu is
- * only reachable there. Every row shares the {@link StaRecTyp} shape, so its
- * fields carry no comments of their own:
+ * The states the state-based checks visit: each route (Home, About, Social
+ * Links, and Contact) and the 404 page at a phone width (390px) and a desktop
+ * width (1,440px), plus the mobile menu open at the phone width, since the
+ * menu is only reachable there. Every row shares the {@link StaRecTyp} shape,
+ * so its fields carry no comments of their own:
  * - `actFun` (Function): Action Function, run after the page loads to open
  *   something on it, such as the menu. Only the menu row has one.
  * - `heiNum` (Number): Height Number, the viewport height in CSS pixels.

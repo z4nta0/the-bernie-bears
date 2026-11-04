@@ -10,7 +10,7 @@ import { LinPagCom    } from './pages/links/links.tsx';         // What: Links P
 import { NavBarCom    } from './ui/nav.tsx';                    // What: Navigation Bar Component. Why: Every page starts with the shared bar. How: This renders above the routes.
 import { NotFouCom    } from './pages/not-found/not-found.tsx'; // What: Not Found Component. Why: Unknown addresses need a page of their own. How: The catch-all route renders it.
 import { Route        } from 'react-router';                    // What: Route. Why: Each page is matched to its path. How: This declares one route per page.
-import { Routes       } from 'react-router';                    // What: Routes. Why: Only one page should render for any path. How: This renders the first route whose path matches.
+import { Routes       } from 'react-router';                    // What: Routes. Why: Only one page should render for any path. How: This renders the route whose path best matches the address.
 import { SitFooCom    } from './ui/footer.tsx';                 // What: Site Footer Component. Why: Every page ends with the shared footer. How: This renders below the routes.
 import { useScrTopFun } from './ui/scroll-top.ts';              // What: Use Scroll Top Function. Why: A new page should open at its top rather than where the last one was scrolled. How: The app root calls it once, and it scrolls on every link-driven navigation.
 
@@ -105,7 +105,7 @@ function AppRooCom () : React.JSX.Element {
 			>{ /* What: App Main Element. Why: Each page's content is the main landmark, the skip link jumps here, and it should fill the space between the bar and the footer. How: This holds whichever page the address matches, grows to fill the column, and stacks the page as a flex column, so a page such as the 404 page can stretch to fill it too; its ID stays the plain word `main`, since the skip link's #main address names it as a navigation target. */ }
 
 
-				<Routes>{ /* What: Page Routes. Why: Only one page should render for any path. How: This renders the first route below whose path matches. */ }
+				<Routes>{ /* What: Page Routes. Why: Only one page should render for any path. How: This renders the route below whose path best matches the address. */ }
 
 
 					<Route
@@ -138,7 +138,7 @@ function AppRooCom () : React.JSX.Element {
 
 					<Route
 						element={ <NotFouCom /> }
-						path='*' // What: Catch-All Path. Why: Any address the site doesn't have should land on the 404 page. How: The asterisk matches every path no earlier route claimed.
+						path='*' // What: Catch-All Path. Why: Any address the site doesn't have should land on the 404 page. How: The asterisk matches any path, and ranks below every route that has a path of its own.
 					/>{ /* What: Not Found Route. Why: Unknown paths need a page of their own. How: This renders NotFouCom for every other path. */ }
 
 

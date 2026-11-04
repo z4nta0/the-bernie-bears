@@ -13,11 +13,11 @@ import cssModObj from './contact.module.css'; // What: CSS Module Object. Why: T
  * contact.tsx = Contact
  *
  * @summary
- * The Contact page: a header, the ways to get in touch beside a panel that
- * sends visitors to the contact form on The Bernie Bears' main site or to
- * their email, and a closing band. The site exists to promote the brand and
- * its main site, so messages go through the main site's own contact page
- * rather than a form here.
+ * The Contact page: a header, the ways to get in touch beside a panel (stacked
+ * above it at 768px wide and below) that sends visitors to the contact form on
+ * The Bernie Bears' main site or to their email, and a closing band. The site
+ * exists to promote the brand and its main site, so messages go through the
+ * main site's own contact page rather than a form here.
  *
  * Sections:
  *  - Components

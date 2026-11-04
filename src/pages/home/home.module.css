@@ -6,12 +6,12 @@
  *
  * @summary
  * Styles for HomPagCom: the page fading up into place, the hero's welcome
- * beside the girls' portrait on a morphing blob with two floating name badges,
- * the row of paw prints, the four feature cards that lift on hover, and the
- * gradient banner at the end. The pill buttons are shared by the hero and the
- * banner. The features section and the banner's column take the page's shared
- * container values. Every animation and transition is off under reduced
- * motion.
+ * beside the girls' portrait (the portrait on top at 880px wide and below) on
+ * a morphing blob with two floating name badges, the row of paw prints, the
+ * four feature cards that lift on hover, and the gradient banner at the end.
+ * The pill buttons are shared by the hero and the banner. The features section
+ * and the banner's column take the page's shared container values. Every
+ * animation and transition is off under reduced motion.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *

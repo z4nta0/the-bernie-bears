@@ -84,8 +84,7 @@ const FUN_FAC_ARR = [ // What: Fun Fact Array. Why: The page closes on six quick
  * girls (the cartoon on top at 768px wide and below), a row of paw prints,
  * Lilah's and Norah's cards, and the fun facts from FUN_FAC_ARR. Every emoji
  * is hidden from screen readers as decoration, each trait's inside a span of
- * its own, which the stylesheet's chip rule leaves alone since it styles only
- * a trait's outer span.
+ * its own.
  *
  * It also sets the page's title and a noindex tag, which React moves into
  * the document head, since the brand's main site tells the girls' story.
