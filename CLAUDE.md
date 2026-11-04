@@ -96,8 +96,18 @@ Decided 2026-10-11, per "## Multi-Page React Sites: Scroll Position" in the
 user-level rules. `ui/scroll-top.ts`'s `useScrTopFun`, called once in
 `AppRooCom`, opens every link-driven page change at the top (instantly,
 despite the global smooth scroll), scrolls a link's `#hash` target into view
-instead when it has one, and leaves back and forward to the browser, which
-returns the visitor to where they were.
+instead when it has one, and since 2026-11-03 restores back, forward, and a
+reload itself, from positions saved per history entry in session storage
+(ported from tonys-toppers' hook, minus its home page hash hand-off, since
+this site has no section links).
+
+## Skip link
+Added 2026-11-03, per "## Skip Link And Modal Layers". `NavBarCom` renders
+"Skip to main content" first, a lavender pill like the primary buttons that
+slides down over the bar on focus, and its plain click focuses the app's
+`<main id='main' tabIndex={ -1 }>`. **The main content is everything between
+the bar and the footer**: the one `<main>` in `app.tsx` that holds whichever
+page the address matches.
 
 ## Unused files
 Decided 2026-10-11, the same as tonys-toppers. An unused image is listed for
@@ -592,12 +602,18 @@ bar's paw) when waiting for the page to settle.
 - `npm run test:interaction`: checks how the site behaves when used.
   `navigation.spec.ts` (added 2026-10-11) follows each page's footer link from
   the bottom of the page, the current page's own bar link, and a phone menu
-  link, expecting each new page to open at its top, and checks that back
-  returns to the earlier position. `menu.spec.ts` checks the phone menu's
-  scrim, the inert page behind it, and each way out. `feedback.spec.ts`
-  hovers, presses, and focuses every reachable control on every state, failing
-  on any that doesn't respond or whose focus ring doesn't ease in, and checks
-  that reduced motion stops them moving.
+  link, expecting each new page to open at its top, and checks that back,
+  forward, and a reload return to the exact earlier position, that a fresh
+  load and a hash each win over a saved one, that malformed saved positions
+  are ignored, and that every page's first Tab reaches the skip link, which
+  focuses the main content. `menu.spec.ts` checks the phone menu's scrim, the
+  inert page behind it, and each way out, every menu link included, however
+  it's clicked. `feedback.spec.ts` (ported from hair-designs on 2026-11-03,
+  with its helpers in `tests/support/feedback.ts`) hovers, presses, and
+  keyboard-focuses every reachable control on every state, failing on any
+  property a state changes that doesn't ease, flips each toggled state off,
+  on, and off by its attribute, and checks that reduced motion stops the
+  movement.
 - `npm run test:seo` (added 2026-10-11): each page's head loaded directly
   and while moving between pages (the one title, the one description and
   canonical on Home and Social Links, `noindex` and neither on the others),
