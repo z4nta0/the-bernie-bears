@@ -221,7 +221,7 @@ for ( const [ froIndNum, froLinObj ] of PAG_LIN_ARR.entries() ) { // What: Start
 	const nexLinObj = PAG_LIN_ARR[ ( froIndNum + 1 ) % PAG_LIN_ARR.length ]; // What: Next Link Object. Why: Each page links on to another. How: This picks the next page in the list, wrapping from the last back to Home.
 
 
-	test( `the footer's ${ nexLinObj.labStr } link from the bottom of ${ froLinObj.labStr } opens at the top`, async ( { page : curPagObj } ) => { // What: Footer Link Test. Why: A link clicked at the end of a page should open the next page at its top. How: This scrolls to the bottom, clicks the footer link, and checks the offset.
+	test( `the footer's "${ nexLinObj.labStr }" link from the bottom of ${ froLinObj.labStr } opens at the top`, async ( { page : curPagObj } ) => { // What: Footer Link Test. Why: A link clicked at the end of a page should open the next page at its top. How: This scrolls to the bottom, clicks the footer link, and checks the offset.
 
 
 		await curPagObj.setViewportSize( { height : 900, width : 1440 } ); // What: Desktop Viewport Call. Why: The footer shows every page link side by side at desktop width. How: This sizes the page before it loads.
@@ -243,7 +243,7 @@ for ( const [ froIndNum, froLinObj ] of PAG_LIN_ARR.entries() ) { // What: Start
 
 
 
-test( "the current page's own bar link scrolls back to the top", async ( { page : curPagObj } ) => { // What: Same Page Link Test. Why: Clicking the page already showing is a request to go back to its start. How: This scrolls down About, clicks About in the bar, and checks the offset.
+test( "the current page's own bar link scrolls back to the top", async ( { page : curPagObj } ) => { // What: Same Page Link Test. Why: Clicking the page already showing is a request to go back to its start. How: This scrolls down About, clicks the bar's "About" link, and checks the offset.
 
 
 	await curPagObj.setViewportSize( { height : 900, width : 1440 } ); // What: Desktop Viewport Call. Why: The bar shows its links at desktop width. How: This sizes the page before it loads.
@@ -261,7 +261,7 @@ test( "the current page's own bar link scrolls back to the top", async ( { page 
 
 
 
-test( 'a phone menu link opens its page at the top', async ( { page : curPagObj } ) => { // What: Phone Menu Link Test. Why: Phone visitors move between pages through the menu. How: This scrolls down Home, opens the menu, clicks Contact, and checks the offset.
+test( 'a phone menu link opens its page at the top', async ( { page : curPagObj } ) => { // What: Phone Menu Link Test. Why: Phone visitors move between pages through the menu. How: This scrolls down Home, opens the menu, clicks the "Contact" link, and checks the offset.
 
 
 	await curPagObj.setViewportSize( { height : 844, width : 390 } ); // What: Phone Viewport Call. Why: The menu only replaces the bar's links on a phone. How: This sizes the page before it loads.
@@ -271,7 +271,7 @@ test( 'a phone menu link opens its page at the top', async ( { page : curPagObj 
 	await botScrFun( curPagObj ); // What: Bottom Scroll Call. Why: The menu link should be clicked from far down the page. How: This scrolls to the end of the page.
 
 	await curPagObj.getByRole( 'button', { name : 'Toggle menu' } ).click();                                                      // What: Menu Toggle Click. Why: The menu's links only show once it's open. How: This opens it from the sticky bar.
-	await curPagObj.getByRole( 'navigation', { name : 'Main' } ).getByRole( 'link', { exact : true, name : 'Contact' } ).click(); // What: Menu Link Click. Why: A phone visitor picks a page from the open menu. How: This clicks Contact.
+	await curPagObj.getByRole( 'navigation', { name : 'Main' } ).getByRole( 'link', { exact : true, name : 'Contact' } ).click(); // What: Menu Link Click. Why: A phone visitor picks a page from the open menu. How: This clicks the "Contact" link.
 
 	await expect( curPagObj ).toHaveURL( '/contact' );                               // What: Destination Assertion. Why: The offset only means something on the new page. How: This waits for the address to change.
 	await expect.poll( () => curPagObj.evaluate( () => window.scrollY ) ).toBe( 0 ); // What: Top Offset Assertion. Why: The new page has to open at its top. How: This polls the scroll offset until it reads 0.

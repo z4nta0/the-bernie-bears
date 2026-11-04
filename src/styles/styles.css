@@ -580,7 +580,7 @@ main:focus { /* What: Focused Main. Why: The skip link moves focus to the main e
 
 /* #region Shared Keyframes */
 
-@keyframes pageEnterFadeIn { /* What: Page Enter Fade In. Why: Every page arrives gently. How: This fades a page in from a spacing step below its place, played by each page module's pagEntDiv class through global(). */
+@keyframes pageEnterFadeIn { /* What: Page Enter Fade In. Why: Every page arrives gently. How: This fades a page in from a spacing step below its place, played by each page module's `pagEntDiv` class through global(). */
 
 
 	from {
