@@ -281,7 +281,7 @@ test( 'a phone menu link opens its page at the top', async ( { page : curPagObj 
 
 
 
-test( 'back and forward return to the exact position, from a page scrolled further than the page between can scroll', async ( { page : curPagObj } ) => { // What: History Position Test. Why: The scroll hook restores positions itself, and Firefox would otherwise cut one short while a shorter page is still drawn. How: This scrolls Home to the bottom, follows the footer's Contact link to a page that can't scroll that far, and checks back, forward, and back again each return a page to the position it was left at.
+test( 'back and forward return to the exact position, from a page scrolled further than the page between can scroll', async ( { page : curPagObj } ) => { // What: History Position Test. Why: The scroll hook restores positions itself, and Firefox would otherwise cut one short while a shorter page is still drawn. How: This scrolls Home to the bottom, follows the footer's "Contact" link to a page that can't scroll that far, and checks back, forward, and back again each return a page to the position it was left at.
 
 
 	await curPagObj.setViewportSize( { height : 900, width : 1440 } ); // What: Desktop Viewport Call. Why: The footer shows every page link side by side at desktop width. How: This sizes the page before it loads.
@@ -294,7 +294,7 @@ test( 'back and forward return to the exact position, from a page scrolled furth
 
 	await curPagObj.evaluate( () => new Promise( ( resProFun ) => requestAnimationFrame( () => requestAnimationFrame( resProFun ) ) ) ); // What: Two Frame Wait. Why: The scroll hook records a position from the scroll event, which the browser dispatches with its next frame. How: This waits two animation frames, after which that frame's scroll event has run.
 
-	await curPagObj.getByRole( 'navigation', { name : 'Footer' } ).getByRole( 'link', { exact : true, name : 'Contact' } ).click(); // What: Footer Link Click. Why: Back needs a shorter page to come back from. How: This follows the footer's Contact link.
+	await curPagObj.getByRole( 'navigation', { name : 'Footer' } ).getByRole( 'link', { exact : true, name : 'Contact' } ).click(); // What: Footer Link Click. Why: Back needs a shorter page to come back from. How: This follows the footer's "Contact" link.
 
 	await expect( curPagObj ).toHaveURL( '/contact' );                                          // What: Destination Assertion. Why: The page between has to be showing before it's measured. How: This waits for the address to change.
 	await expect( curPagObj.getByRole( 'heading', { level : 1 } ) ).toHaveText( 'Say Hello!' ); // What: Contact Heading Assertion. Why: The address changes a moment before Contact renders, so measuring then would read Home's height. How: This waits for Contact's own heading.

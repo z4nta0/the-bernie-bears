@@ -283,11 +283,11 @@ test( 'moving between pages swaps their head tags', async ( { page : curPagObj }
 
 	await heaCheFun( curPagObj, PAG_HEA_ARR[ 0 ] ); // What: Home Head Check. Why: The walk starts from a known head. How: This checks Home's.
 
-	await curPagObj.getByRole( 'navigation', { name : 'Footer' } ).getByRole( 'link', { exact : true, name : 'About' } ).click(); // What: About Link Click. Why: About carries noindex, so Home's canonical must go. How: This follows the footer's About link.
+	await curPagObj.getByRole( 'navigation', { name : 'Footer' } ).getByRole( 'link', { exact : true, name : 'About' } ).click(); // What: About Link Click. Why: About carries noindex, so Home's canonical must go. How: This follows the footer's "About" link.
 
 	await heaCheFun( curPagObj, PAG_HEA_ARR[ 2 ] ); // What: About Head Check. Why: Home's tags must be gone and About's noindex in place. How: This checks About's head.
 
-	await curPagObj.getByRole( 'navigation', { name : 'Footer' } ).getByRole( 'link', { exact : true, name : 'Social Links' } ).click(); // What: Social Links Link Click. Why: Social Links is indexed again, so About's noindex must go. How: This follows the footer's Social Links link.
+	await curPagObj.getByRole( 'navigation', { name : 'Footer' } ).getByRole( 'link', { exact : true, name : 'Social Links' } ).click(); // What: Social Links Link Click. Why: Social Links is indexed again, so About's noindex must go. How: This follows the footer's "Social Links" link.
 
 	await heaCheFun( curPagObj, PAG_HEA_ARR[ 1 ] ); // What: Social Links Head Check. Why: About's noindex must be gone and Social Links' own tags in place. How: This checks Social Links' head.
 
@@ -316,7 +316,7 @@ test( 'the structured data points to the main site and matches the pages', async
 
 
 	expect( [ orgNodObj.name, orgNodObj.url, webNodObj.name, webNodObj.url ] ).toEqual( [ 'The Bernie Bears', MAI_URL_STR, 'The Bernie Bears', LIV_URL_STR ] ); // What: Brand And Site Assertion. Why: The brand's home is the main site, and this site is only one of its sites. How: This checks the brand's address is the main site's and the site's is this domain's.
-	expect( webNodObj.publisher?.[ '@id' ] ).toBe( orgNodObj[ '@id' ] );                                                                                        // What: Publisher Link Assertion. Why: Search engines join the nodes by their ids. How: This checks the site names the brand as its publisher.
+	expect( webNodObj.publisher?.[ '@id' ] ).toBe( orgNodObj[ '@id' ] );                                                                                        // What: Publisher Link Assertion. Why: Search engines join the nodes by their IDs. How: This checks the site names the brand as its publisher.
 	expect( [ ...( orgNodObj.sameAs ?? [] ) ].sort() ).toEqual( socHreArr.filter( ( hreCurStr ) => !hreCurStr.startsWith( MAI_URL_STR ) ).sort() );             // What: Profiles Assertion. Why: Every profile in the data has to be one the page links to, and every profile the page links to belongs in the data. How: This compares the two lists, leaving out the Shop card's link to the main site.
 
 	await curPagObj.goto( '/contact' ); // What: Contact Open Call. Why: The data's email has to be the one the Contact page offers. How: This loads it.

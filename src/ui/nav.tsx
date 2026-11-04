@@ -121,7 +121,7 @@ function modCliFun ( cliEveObj : React.MouseEvent< HTMLAnchorElement > ) : boole
  * toggle reports the menu's state through aria-expanded and the menu carries
  * data-mobile-menu-open while open. React Router's NavLink marks the link
  * whose route matches with aria-current, which the bar's stylesheet styles,
- * and the Home link matches only the root path exactly, since every path
+ * and the "Home" link matches only the root path exactly, since every path
  * starts with it.
  *
  * A skip link comes first, waiting above the screen until it's focused, and
@@ -344,7 +344,7 @@ function NavBarCom () : React.JSX.Element {
 
 								style={ { '--nav-ite-ind' : linIndNum } as React.CSSProperties } // What: Navigation Item Index. Why: The phone menu's rows fade in one after another. How: This hands each row its place, which the stylesheet multiplies into its delay. // What: Type Assertion Note. Why: React's style type doesn't list custom properties. How: The stylesheet reads this one by name.
 
-								end={ linRecObj.patStr === '/' } // What: End Match Flag. Why: Every path starts with the root, so the Home link would otherwise be active on every page. How: This makes only the Home link match its path exactly.
+								end={ linRecObj.patStr === '/' } // What: End Match Flag. Why: Every path starts with the root, so the "Home" link would otherwise be active on every page. How: This makes only the "Home" link match its path exactly.
 								to={ linRecObj.patStr }
 
 								onAuxClick={ auxCloFun }

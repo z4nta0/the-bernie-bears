@@ -45,7 +45,7 @@ const CLI_KIN_ARR : Array< [ string, Parameters< Locator[ 'click' ] >[ 0 ] ] > =
 const MEN_LIN_ARR = [ // What: Menu Link Array. Why: Every kind of link in the open menu has to close it. How: Each entry is a link's accessible name: a page link, the brand, a profile icon, and the main site link.
 
 
-	'About',                  // What: Page Link Name. Why: The menu's page links route inside the site. How: This names the About link.
+	'About',                  // What: Page Link Name. Why: The menu's page links route inside the site. How: This names the "About" link.
 	'The Bernie Bears',       // What: Brand Link Name. Why: The brand sits above the open menu. How: This names the brand link.
 	'Instagram',              // What: Profile Link Name. Why: The profile icons open another site in a new tab. How: This names the Instagram icon.
 	'Visit the Official Site' // What: Official Site Link Name. Why: The main site link opens another site in a new tab. How: This names the link to theberniebears.com.
