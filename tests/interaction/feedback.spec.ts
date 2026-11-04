@@ -705,7 +705,7 @@ async function togProFun ( curPagObj : Page, staIdeStr : string, redMotBoo : boo
 for ( const staRecObj of STA_REC_ARR ) { // What: State Test Loop. Why: Every page state is checked. How: This declares each check once per state.
 
 
-	test( `${ staRecObj.ideStr } gives every control hover, press, and focus feedback, and every toggle its switch`, async ( { page : curPagObj } ) => { // What: Feedback Test. Why: Every interaction should visibly register. How: This opens the state, blocks clicks, probes every reachable link and button and each reachable element of the toggle kinds listed for the state, and on the Home and About states every card, and checks it finds no problems.
+	test( `${ staRecObj.ideStr } gives every reachable link and button hover, press, and focus feedback, and every toggle its switch`, async ( { page : curPagObj } ) => { // What: Feedback Test. Why: Every interaction should visibly register. How: This opens the state, blocks clicks, probes every reachable link and button and each reachable element of the toggle kinds listed for the state, and on the Home and About states every card, and checks it finds no problems.
 
 
 		test.slow(); // What: Slow Test Mark. Why: Probing every control's hover, press, and focus takes about two seconds per control, which runs past the default 30 second timeout. How: This triples this test's timeout.
@@ -729,7 +729,7 @@ for ( const staRecObj of STA_REC_ARR ) { // What: State Test Loop. Why: Every pa
 
 
 
-	test( `${ staRecObj.ideStr } eases its focus ring in to full width`, async ( { browserName : engNamStr, page : curPagObj } ) => { // What: Focus Ring Test. Why: A keyboard user has to see where focus lands. How: This tabs to the first stop and reads its ring once it has had time to grow in.
+	test( `${ staRecObj.ideStr } draws its first keyboard stop's focus ring at full width`, async ( { browserName : engNamStr, page : curPagObj } ) => { // What: Focus Ring Test. Why: A keyboard user has to see where focus lands. How: This tabs to the first stop and reads its ring once it has had time to settle, while the feedback probe checks that the ring eases.
 
 
 		await opeStaFun( curPagObj, staRecObj ); // What: State Open Call. Why: The walk starts from the state settled. How: This loads and settles it.
