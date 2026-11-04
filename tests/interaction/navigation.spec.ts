@@ -384,7 +384,24 @@ test( 'a hash added to the address lands on its target, not a saved position', a
 
 		winRecObj.__scrTopArr = []; // What: Scroll Top Log Reset. Why: Each page starts with nothing logged. How: This sets the log to an empty list.
 
-		window.scrollTo = new Proxy( window.scrollTo, { apply : ( appTarFun, appThiObj, argLisArr ) => { winRecObj.__scrTopArr.push( argLisArr[ 0 ]?.top ); return Reflect.apply( appTarFun, appThiObj, argLisArr ); } } ); // What: Scroll Call Wrapper. Why: The scroll hook restores a saved position through window.scrollTo, while its hash jump scrolls the target into view instead. How: This logs each call's top before passing the call on unchanged.
+
+		window.scrollTo = new Proxy( window.scrollTo, { // What: Scroll Call Wrapper. Why: The scroll hook restores a saved position through window.scrollTo, while its hash jump scrolls the target into view instead. How: This logs each call's top before passing the call on unchanged.
+
+
+			apply : ( appTarFun, appThiObj, argLisArr ) => { // What: Apply Trap. Why: Every call to window.scrollTo passes through the wrapper. How: This logs the call, then hands it on.
+
+
+				winRecObj.__scrTopArr.push( argLisArr[ 0 ]?.top ); // What: Top Log Push. Why: The test reads which positions the page scrolled to. How: This records the call's top, or undefined when it has none.
+
+
+
+				return Reflect.apply( appTarFun, appThiObj, argLisArr ); // What: Original Call Return. Why: The page should scroll as it would without the wrapper. How: This runs the real window.scrollTo with the same arguments.
+
+
+			}
+
+
+		} );
 
 
 	} );
