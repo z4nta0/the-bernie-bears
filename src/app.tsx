@@ -3,10 +3,10 @@
 
 // #region Imports
 
-import { AboPagCom    } from './pages/about/about.tsx';         // What: About Page Component. Why: The About route shows the girls' story. How: The about route renders it.
-import { ConPagCom    } from './pages/contact/contact.tsx';     // What: Contact Page Component. Why: The Contact route shows the ways to get in touch. How: The contact route renders it.
-import { HomPagCom    } from './pages/home/home.tsx';           // What: Home Page Component. Why: The site's root address is its home page. How: The home route renders it.
-import { LinPagCom    } from './pages/links/links.tsx';         // What: Links Page Component. Why: The Social Links route lists every place to follow the girls. How: The links route renders it.
+import { AboPagCom    } from './pages/about/about.tsx';         // What: About Page Component. Why: The About route shows the girls' story. How: The About route renders it.
+import { ConPagCom    } from './pages/contact/contact.tsx';     // What: Contact Page Component. Why: The Contact route shows the ways to get in touch. How: The Contact route renders it.
+import { HomPagCom    } from './pages/home/home.tsx';           // What: Home Page Component. Why: The site's root address is its home page. How: The Home route renders it.
+import { LinPagCom    } from './pages/links/links.tsx';         // What: Links Page Component. Why: The Social Links route lists every place to follow the girls. How: The Social Links route renders it.
 import { NavBarCom    } from './ui/nav.tsx';                    // What: Navigation Bar Component. Why: Every page starts with the shared bar. How: This renders above the routes.
 import { NotFouCom    } from './pages/not-found/not-found.tsx'; // What: Not Found Component. Why: Unknown addresses need a page of their own. How: The catch-all route renders it.
 import { Route        } from 'react-router';                    // What: Route. Why: Each page is matched to its path. How: This declares one route per page.
