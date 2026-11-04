@@ -166,7 +166,7 @@ test.use( { reducedMotion : 'reduce' } ); // What: Reduced Motion Use. Why: The 
 
 
 
-test( 'the open menu offers the six profiles over a dimmed page', async ( { page : curPagObj } ) => { // What: Open Menu Test. Why: The menu should stand apart from the page and offer the girls' profiles. How: This opens it and checks the profile links and the visible scrim.
+test( 'the open menu offers the six profiles with the scrim over the page', async ( { page : curPagObj } ) => { // What: Open Menu Test. Why: The menu should stand apart from the page and offer the girls' profiles. How: This opens it and checks the profile links and that the scrim sits over the page.
 
 
 	await menOpeFun( curPagObj ); // What: Menu Open Call. Why: The checks need the menu open. How: This opens and checks it.

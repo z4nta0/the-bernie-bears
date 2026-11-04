@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import { expect } from '@playwright/test'; // What: Expect. Why: Each check passes only at the expected scroll position. How: This asserts and polls the window's scroll offset.
+import { expect } from '@playwright/test'; // What: Expect. Why: Each check passes only when the page lands where it should. How: This asserts on the scroll offset, the address, and focus.
 import { test   } from '@playwright/test'; // What: Test. Why: Each navigation case is its own test. How: This declares them.
 
 

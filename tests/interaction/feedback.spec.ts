@@ -557,7 +557,7 @@ async function hovProFun ( curPagObj : Page, redMotBoo : boolean ) : Promise< st
 
 
 
-		if ( redMotBoo ) proLisArr.push( ...movProFun( resSnaArr, hovSnaArr, CON_PRO_ARR, tarDesStr, 'when hovered' ) ); // What: Reduced Motion Change Check. Why: Under reduced motion the lift, border tint, and shadow layers should switch at once. How: This records each property that changes while a transition still eases it.
+		if ( redMotBoo ) proLisArr.push( ...movProFun( resSnaArr, hovSnaArr, CON_PRO_ARR, tarDesStr, 'when hovered' ) ); // What: Reduced Motion Change Check. Why: Under reduced motion a card's hover changes, such as its lift, should switch at once. How: This records each property that changes while a transition still eases it.
 
 		else proLisArr.push( ...snaProFun( resSnaArr, hovSnaArr, CON_PRO_ARR, tarDesStr, 'when hovered' ) ); // What: Snapped Change Check. Why: A hover change, the shadow layers included, should ease rather than snap. How: This records each property that changes without a transition, on the card or anything inside it.
 

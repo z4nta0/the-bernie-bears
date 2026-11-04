@@ -130,7 +130,7 @@
 /* #endregion fooNavNav */
 
 
-.fooCopPar { /* What: Footer Copyright Paragraph. Why: The footer ends with the copyright, set apart from the links. How: This sets it in grey across the column's full width, under a faint rule, with the footer's own bottom padding above it so it sits centered between the rule and the page's end. */
+.fooCopPar { /* What: Footer Copyright Paragraph. Why: The footer ends with the copyright, set apart from the links. How: This sets it in grey across the column's full width, under a faint rule, with a top padding equal to the footer's own bottom padding, so it sits centered between the rule and the page's end. */
 
 
 	border-top  : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-009-rec ) ); /* Border Width Base ~= 1.160px, Background Surface Color = #ffffff, Core-Design-Number to the Power of 9 Reciprocal ~= 0.080 */

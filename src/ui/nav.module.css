@@ -560,7 +560,7 @@
 
 
 }
-@keyframes menuItemOpenFadeIn { /* What: Menu Item Open Fade In. Why: The phone menu's rows arrive one after another rather than all at once. How: This rises each row a step into place as it fades in. */
+@keyframes menuItemOpenFadeIn { /* What: Menu Item Open Fade In. Why: The phone menu's rows arrive one after another rather than all at once. How: This lowers each row a step into place as it fades in. */
 
 
 	from {
