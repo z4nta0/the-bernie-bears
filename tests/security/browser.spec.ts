@@ -194,7 +194,7 @@ for ( const staRecObj of STA_REC_ARR ) { // What: State Loop. Why: Every state t
 		await opeStaFun( curPagObj, staRecObj ); // What: State Open Call. Why: Scrolling through the page and opening the menu load what the state uses, such as its lazy photos. How: This opens the state the way the other page suites do.
 
 
-		const opeRelArr = await curPagObj.locator( 'a[target="_blank"]' ).evaluateAll( ( ancEleArr ) => ancEleArr.map( ( ancCurEle ) => ancCurEle.getAttribute( 'rel' ) ?? '' ) ); // What: Opener Rel Array. Why: A new tab opened without noopener can reach back and change this page. How: This collects the rel of every link that opens a new tab. // What: No Referrer Exception. Why: The project's CLAUDE.md records that this site leaves noreferrer off its new tab links, so the main site and the platforms see the visits it sends. How: Only noopener is checked below.
+		const opeRelArr = await curPagObj.locator( 'a[target="_blank"]' ).evaluateAll( ( ancEleArr ) => ancEleArr.map( ( ancCurEle ) => ancCurEle.getAttribute( 'rel' ) ?? '' ) ); // What: Opener Relationship Array. Why: A new tab opened without noopener can reach back and change this page. How: This collects the rel of every link that opens a new tab. // What: No Referrer Exception. Why: The project's CLAUDE.md records that this site leaves noreferrer off its new tab links, so the main site and the platforms see the visits it sends. How: Only noopener is checked below.
 
 
 		expect( await polVioFun( curPagObj ) ).toEqual( [] );                                           // What: No Violation Assertion. Why: Everything the state loads should be allowed by the policy. How: This checks none was refused.
