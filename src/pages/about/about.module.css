@@ -185,7 +185,7 @@
 	background      : var( --bac-sur-col );                             /* Background Surface Color = #ffffff */
 	border          : var( --bor-wid-xla ) dashed var( --acc-lig-col ); /* Border Width Extra Large ~= 3.572px, Accent Light Color = #ceb1dd */
 	border-radius   : var( --rad-bor-xla );                             /* Radius Border Extra Large ~= 19.304px */
-	box-shadow      : var( --ele-med-sha );                             /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
+	box-shadow      : var( --ele-med-sha );                             /* Elevation Medium Shadow ~= 0 8.304px 25.572px plus 0 3.572px 8.304px -2.035px */
 	display         : flex;
 	justify-content : center;
 	width           : min( calc( var( --ver-rhy-p11 ) * 1rem ), 100% ); /* Vertical Rhythm Base Plus 11 ~= 321.273px */
@@ -312,14 +312,14 @@
 .sisCarDiv::before { /* What: Sister Card Div Resting Shadow Layer. Why: The card rests on a soft lavender shadow. How: This gives the layer the medium elevation. */
 
 
-	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
+	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow ~= 0 8.304px 25.572px plus 0 3.572px 8.304px -2.035px */
 
 
 }
 .sisCarDiv::after { /* What: Sister Card Div Hover Shadow Layer. Why: A lifted card casts a deeper shadow. How: This gives the layer the large elevation, hidden until hovered. */
 
 
-	box-shadow : var( --ele-lar-sha ); /* Elevation Large Shadow, about 0 19.3px 44.9px -14.6px plus 0 6.3px 14.6px -3.6px */
+	box-shadow : var( --ele-lar-sha ); /* Elevation Large Shadow ~= 0 19.304px 44.876px -14.572px plus 0 6.268px 14.572px -3.572px */
 	opacity    : 0;
 
 

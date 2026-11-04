@@ -169,7 +169,7 @@
 	background    : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
 	border        : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #ececb6 */
 	border-radius : var( --rad-bor-xla );                            /* Radius Border Extra Large ~= 19.304px */
-	box-shadow    : var( --ele-sma-sha );                            /* Elevation Small Shadow, about 0 1.2px 2px */
+	box-shadow    : var( --ele-sma-sha );                            /* Elevation Small Shadow ~= 0 1.160px 2.035px */
 	display       : flex;
 	gap           : var( --spa-hor-bas );                            /* Spacing Horizontal Base ~= 14.572px */
 	padding       : var( --spa-ver-p01 ) var( --spa-hor-p01 );       /* Spacing Vertical Base Plus 1 ~= 19.304px, Spacing Horizontal Base Plus 1 ~= 19.304px */
@@ -307,7 +307,7 @@
 	background    : var( --bac-sur-col );                                                                           /* Background Surface Color = #ffffff */
 	border        : var( --bor-wid-lar ) solid var( --bor-mai-col );                                                /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
 	border-radius : var( --rad-bor-xla );                                                                           /* Radius Border Extra Large ~= 19.304px */
-	box-shadow    : var( --ele-med-sha );                                                                           /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
+	box-shadow    : var( --ele-med-sha );                                                                           /* Elevation Medium Shadow ~= 0 8.304px 25.572px plus 0 3.572px 8.304px -2.035px */
 	padding       : var( --spa-ver-p04 ) clamp( var( --spa-hor-p02 ), var( --hor-rhy-015 ), var( --spa-hor-p04 ) ); /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px, Horizontal Rhythm 15 ~= 65.739px @ 1,920px width, Spacing Horizontal Base Plus 4 ~= 44.876px */
 
 
@@ -426,14 +426,14 @@
 .butBasAnc--primary::before { /* What: Button Base Anchor Primary Resting Shadow Layer. Why: The filled button rests on a soft lavender shadow. How: This gives its resting layer the medium elevation. */
 
 
-	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
+	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow ~= 0 8.304px 25.572px plus 0 3.572px 8.304px -2.035px */
 
 
 }
 .butBasAnc--primary::after { /* What: Button Base Anchor Primary Hover Shadow Layer. Why: The filled button's shadow deepens as it lifts. How: This gives its hover layer the large elevation. */
 
 
-	box-shadow : var( --ele-lar-sha ); /* Elevation Large Shadow, about 0 19.3px 44.9px -14.6px plus 0 6.3px 14.6px -3.6px */
+	box-shadow : var( --ele-lar-sha ); /* Elevation Large Shadow ~= 0 19.304px 44.876px -14.572px plus 0 6.268px 14.572px -3.572px */
 
 
 }
@@ -534,7 +534,7 @@
 .wavTexPar { /* What: Wave Text Paragraph. Why: The page ends warmly. How: This sets the closing line in the script font in a deep lavender dark enough for the band. */
 
 
-	color       : oklch( from var( --acc-dar-col ) calc( l - 0.02 ) c h ); /* Accent Dark Color ~= #7e5b93 */ /* What: Darker Wave Text Color. Why: The deep lavender reaches only 4.44:1 against the sage end of the band's gradient, under the 4.5:1 this size of text needs. How: This darkens it a touch for this line alone, to about 4.85:1 at the gradient's darkest point. */
+	color       : oklch( from var( --acc-dar-col ) calc( l - 0.02 ) c h ); /* Accent Dark Color darkened by 0.02 ~= #78558d */ /* What: Darker Wave Text Color. Why: The deep lavender reaches only 4.44:1 against the sage end of the band's gradient, under the 4.5:1 this size of text needs. How: This darkens it a touch for this line alone, to about 4.85:1 at the gradient's darkest point. */
 	font-family : var( --fon-fam-bra );                                    /* Font Family Brand = 'Dancing Script', cursive */
 	font-size   : var( --fon-siz-p02 );                                    /* Font Size Base Plus 2 ~= 19.304px */
 

@@ -164,14 +164,14 @@
 .butBasAnc--primary::before { /* What: Button Base Anchor Primary Resting Shadow Layer. Why: The filled button rests on a soft lavender shadow. How: This gives its resting layer the medium elevation. */
 
 
-	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
+	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow ~= 0 8.304px 25.572px plus 0 3.572px 8.304px -2.035px */
 
 
 }
 .butBasAnc--primary::after { /* What: Button Base Anchor Primary Hover Shadow Layer. Why: The filled button's shadow deepens as it lifts. How: This gives its hover layer the large elevation. */
 
 
-	box-shadow : var( --ele-lar-sha ); /* Elevation Large Shadow, about 0 19.3px 44.9px -14.6px plus 0 6.3px 14.6px -3.6px */
+	box-shadow : var( --ele-lar-sha ); /* Elevation Large Shadow ~= 0 19.304px 44.876px -14.572px plus 0 6.268px 14.572px -3.572px */
 
 
 }
