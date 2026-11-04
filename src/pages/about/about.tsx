@@ -210,10 +210,10 @@ function AboPagCom () : React.JSX.Element {
 						<div className={` ${ cssModObj.sisCarDiv }   ${ cssModObj.sisCarDivLilah } `}>{ /* What: Sister Card Div Lilah Element. Why: Lilah gets a card of her own. How: This sets her photo beside her details, with her own accent. */ }
 
 
-							<div>{ /* What: Sister Image Div Element. Why: The photo has its own row. How: This holds its round frame, with no styling of its own. */ }
+							<div>{ /* What: Sister Image Div Element. Why: The photo has its own row. How: This holds Lilah's round frame, with no styling of its own. */ }
 
 
-								<div className={ cssModObj.sisFraDiv }>{ /* What: Sister Frame Div Element. Why: Each sister's photo sits in a round frame. How: This frames the image. */ }
+								<div className={ cssModObj.sisFraDiv }>{ /* What: Sister Frame Div Element. Why: Each sister's photo sits in a round frame. How: This frames Lilah's photo. */ }
 
 
 									<img
@@ -234,7 +234,7 @@ function AboPagCom () : React.JSX.Element {
 							</div>
 
 
-							<div>{ /* What: Sister Content Div Element. Why: The details read as one column. How: This stacks the badge, name, description, and traits, with no styling of its own. */ }
+							<div>{ /* What: Sister Content Div Element. Why: The details read as one column. How: This stacks Lilah's badge, name, description, and traits, with no styling of its own. */ }
 
 
 								<div className={ cssModObj.sisBadDiv }>The Older Sister</div>{ /* What: Sister Badge Div Element. Why: The badge says where Lilah stands in the family. How: This shows it above her name. */ }
@@ -251,11 +251,11 @@ function AboPagCom () : React.JSX.Element {
 								<div className={ cssModObj.sisTraDiv }>{ /* What: Sister Traits Div Element. Why: Three traits sum Lilah up at a glance. How: This sets them in a wrapping row of chips. */ }
 
 
-									<span className={ cssModObj.sisTraSpa }><span aria-hidden='true'>🎀</span> Fashion forward</span>{ /* What: Sister Trait Span Element. Why: Each trait is a chip. How: This shows one, its emoji hidden from screen readers. */ }
+									<span className={ cssModObj.sisTraSpa }><span aria-hidden='true'>🎀</span> Fashion forward</span>{ /* What: Sister Trait Span Element. Why: Each trait is a chip. How: This shows the "Fashion forward" chip, its emoji hidden from screen readers. */ }
 
-									<span className={ cssModObj.sisTraSpa }><span aria-hidden='true'>📸</span> Natural model</span>{ /* What: Sister Trait Span Element. Why: Each trait is a chip. How: This shows one, its emoji hidden from screen readers. */ }
+									<span className={ cssModObj.sisTraSpa }><span aria-hidden='true'>📸</span> Natural model</span>{ /* What: Sister Trait Span Element. Why: Each trait is a chip. How: This shows the "Natural model" chip, its emoji hidden from screen readers. */ }
 
-									<span className={ cssModObj.sisTraSpa }><span aria-hidden='true'>💕</span> Total sweetheart</span>{ /* What: Sister Trait Span Element. Why: Each trait is a chip. How: This shows one, its emoji hidden from screen readers. */ }
+									<span className={ cssModObj.sisTraSpa }><span aria-hidden='true'>💕</span> Total sweetheart</span>{ /* What: Sister Trait Span Element. Why: Each trait is a chip. How: This shows the "Total sweetheart" chip, its emoji hidden from screen readers. */ }
 
 
 								</div>
@@ -271,10 +271,10 @@ function AboPagCom () : React.JSX.Element {
 						<div className={` ${ cssModObj.sisCarDiv }   ${ cssModObj.sisCarDivNorah } `}>{ /* What: Sister Card Div Norah Element. Why: Norah gets a card of her own. How: This sets her photo beside her details, with her own accent. */ }
 
 
-							<div>{ /* What: Sister Image Div Element. Why: The photo has its own row. How: This holds its round frame, with no styling of its own. */ }
+							<div>{ /* What: Sister Image Div Element. Why: The photo has its own row. How: This holds Norah's round frame, with no styling of its own. */ }
 
 
-								<div className={ cssModObj.sisFraDiv }>{ /* What: Sister Frame Div Element. Why: Each sister's photo sits in a round frame. How: This frames the image. */ }
+								<div className={ cssModObj.sisFraDiv }>{ /* What: Sister Frame Div Element. Why: Each sister's photo sits in a round frame. How: This frames Norah's photo. */ }
 
 
 									<img
@@ -295,7 +295,7 @@ function AboPagCom () : React.JSX.Element {
 							</div>
 
 
-							<div>{ /* What: Sister Content Div Element. Why: The details read as one column. How: This stacks the badge, name, description, and traits, with no styling of its own. */ }
+							<div>{ /* What: Sister Content Div Element. Why: The details read as one column. How: This stacks Norah's badge, name, description, and traits, with no styling of its own. */ }
 
 
 								<div className={` ${ cssModObj.sisBadDiv }   ${ cssModObj.sisBadDivNorah } `}>The Little Sister</div>{ /* What: Sister Badge Div Norah Element. Why: The badge says where Norah stands in the family. How: This shows it above her name, in her own accent. */ }
@@ -312,11 +312,11 @@ function AboPagCom () : React.JSX.Element {
 								<div className={ cssModObj.sisTraDiv }>{ /* What: Sister Traits Div Element. Why: Three traits sum Norah up at a glance. How: This sets them in a wrapping row of chips. */ }
 
 
-									<span className={ cssModObj.sisTraSpa }><span aria-hidden='true'>😂</span> Class clown</span>{ /* What: Sister Trait Span Element. Why: Each trait is a chip. How: This shows one, its emoji hidden from screen readers. */ }
+									<span className={ cssModObj.sisTraSpa }><span aria-hidden='true'>😂</span> Class clown</span>{ /* What: Sister Trait Span Element. Why: Each trait is a chip. How: This shows the "Class clown" chip, its emoji hidden from screen readers. */ }
 
-									<span className={ cssModObj.sisTraSpa }><span aria-hidden='true'>🏃</span> Always zooming</span>{ /* What: Sister Trait Span Element. Why: Each trait is a chip. How: This shows one, its emoji hidden from screen readers. */ }
+									<span className={ cssModObj.sisTraSpa }><span aria-hidden='true'>🏃</span> Always zooming</span>{ /* What: Sister Trait Span Element. Why: Each trait is a chip. How: This shows the "Always zooming" chip, its emoji hidden from screen readers. */ }
 
-									<span className={ cssModObj.sisTraSpa }><span aria-hidden='true'>🐾</span> Trouble maker</span>{ /* What: Sister Trait Span Element. Why: Each trait is a chip. How: This shows one, its emoji hidden from screen readers. */ }
+									<span className={ cssModObj.sisTraSpa }><span aria-hidden='true'>🐾</span> Trouble maker</span>{ /* What: Sister Trait Span Element. Why: Each trait is a chip. How: This shows the "Trouble maker" chip, its emoji hidden from screen readers. */ }
 
 
 								</div>

@@ -128,7 +128,7 @@ function ConPagCom () : React.JSX.Element {
 									<div>{ /* What: Info Text Div Element. Why: The card's label and value read as one block. How: This stacks them, with no styling of its own. */ }
 
 
-										<strong className={ cssModObj.infLabStr }>Email Us</strong>{ /* What: Info Label Strong Element. Why: The card names what it offers. How: This shows the label above the value. */ }
+										<strong className={ cssModObj.infLabStr }>Email Us</strong>{ /* What: Info Label Strong Element. Why: The card names what it offers. How: This shows "Email Us" above the value. */ }
 
 										<p className={ cssModObj.infValPar }>{ /* What: Info Value Paragraph Element. Why: The address should be one tap away. How: This holds the address as a link that starts an email. */ }
 
@@ -162,7 +162,7 @@ function ConPagCom () : React.JSX.Element {
 									<div>{ /* What: Info Text Div Element. Why: The card's label and value read as one block. How: This stacks them, with no styling of its own. */ }
 
 
-										<strong className={ cssModObj.infLabStr }>Social Media</strong>{ /* What: Info Label Strong Element. Why: The card names what it offers. How: This shows the label above the value. */ }
+										<strong className={ cssModObj.infLabStr }>Social Media</strong>{ /* What: Info Label Strong Element. Why: The card names what it offers. How: This shows "Social Media" above the value. */ }
 
 										<p className={ cssModObj.infValPar }>DM us on Facebook or Instagram</p>{ /* What: Info Value Paragraph Element. Why: The card says where to send a message. How: This names the two platforms. */ }
 
@@ -185,7 +185,7 @@ function ConPagCom () : React.JSX.Element {
 									<div>{ /* What: Info Text Div Element. Why: The card's label and value read as one block. How: This stacks them, with no styling of its own. */ }
 
 
-										<strong className={ cssModObj.infLabStr }>Response Time</strong>{ /* What: Info Label Strong Element. Why: The card names what it offers. How: This shows the label above the value. */ }
+										<strong className={ cssModObj.infLabStr }>Response Time</strong>{ /* What: Info Label Strong Element. Why: The card names what it offers. How: This shows "Response Time" above the value. */ }
 
 										<p className={ cssModObj.infValPar }>Usually within 1–2 business days</p>{ /* What: Info Value Paragraph Element. Why: The card sets expectations. How: This gives the usual reply time. */ }
 
