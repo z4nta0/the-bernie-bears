@@ -228,7 +228,11 @@ for ( const [ froIndNum, froLinObj ] of PAG_LIN_ARR.entries() ) { // What: Start
 
 		await curPagObj.goto( froLinObj.patStr ); // What: Start Page Navigation. Why: The check starts on its page. How: This loads it.
 
-		await botScrFun( curPagObj ); // What: Bottom Scroll Call. Why: The click happens where the footer is. How: This scrolls to the end of the page.
+
+		const botTopNum = await botScrFun( curPagObj ); // What: Bottom Top Number. Why: The click happens where the footer is. How: This scrolls to the end of the page and reads how far down it sits.
+
+
+		expect( botTopNum ).toBeGreaterThan( 0 ); // What: Scrolled Assertion. Why: A page that can't scroll would let the check pass with nothing to reset. How: This checks the page sits below its top.
 
 		await curPagObj.getByRole( 'navigation', { name : 'Footer' } ).getByRole( 'link', { exact : true, name : nexLinObj.labStr } ).click(); // What: Footer Link Click. Why: The footer's links are the ones clicked furthest down a page. How: This clicks the link to the next page.
 
@@ -250,7 +254,11 @@ test( "the current page's own bar link scrolls back to the top", async ( { page 
 
 	await curPagObj.goto( '/about' ); // What: About Page Navigation. Why: About is long enough to scroll well down. How: This loads it.
 
-	await botScrFun( curPagObj ); // What: Bottom Scroll Call. Why: The click should come from far down the page. How: This scrolls to the end of the page.
+
+	const botTopNum = await botScrFun( curPagObj ); // What: Bottom Top Number. Why: The click should come from far down the page. How: This scrolls to the end of the page and reads how far down it sits.
+
+
+	expect( botTopNum ).toBeGreaterThan( 0 ); // What: Scrolled Assertion. Why: A page that can't scroll would let the check pass with nothing to reset. How: This checks the page sits below its top.
 
 	await curPagObj.getByRole( 'navigation', { name : 'Main' } ).getByRole( 'link', { exact : true, name : 'About' } ).click(); // What: Bar Link Click. Why: The bar stays in view at every scroll position. How: This clicks the link for the page already showing.
 
@@ -268,7 +276,11 @@ test( 'a phone menu link opens its page at the top', async ( { page : curPagObj 
 
 	await curPagObj.goto( '/' ); // What: Home Page Navigation. Why: Home is long enough to scroll well down. How: This loads it.
 
-	await botScrFun( curPagObj ); // What: Bottom Scroll Call. Why: The menu link should be clicked from far down the page. How: This scrolls to the end of the page.
+
+	const botTopNum = await botScrFun( curPagObj ); // What: Bottom Top Number. Why: The menu link should be clicked from far down the page. How: This scrolls to the end of the page and reads how far down it sits.
+
+
+	expect( botTopNum ).toBeGreaterThan( 0 ); // What: Scrolled Assertion. Why: A page that can't scroll would let the check pass with nothing to reset. How: This checks the page sits below its top.
 
 	await curPagObj.getByRole( 'button', { name : 'Toggle menu' } ).click();                                                      // What: Menu Toggle Click. Why: The menu's links only show once it's open. How: This opens it from the sticky bar.
 	await curPagObj.getByRole( 'navigation', { name : 'Main' } ).getByRole( 'link', { exact : true, name : 'Contact' } ).click(); // What: Menu Link Click. Why: A phone visitor picks a page from the open menu. How: This clicks the "Contact" link.
