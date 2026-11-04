@@ -350,7 +350,9 @@ test( 'robots.txt welcomes crawlers and names the sitemap', async ( { request : 
 	const robTexStr = await ( await reqCotObj.get( '/robots.txt' ) ).text(); // What: Robots Text String. Why: The file's rules are checked as served. How: This fetches and reads it.
 
 
-	expect( robTexStr ).toContain( 'User-agent: *\nAllow: /' );              // What: Allow All Assertion. Why: Every crawler may read the site, since the unwanted pages keep themselves out with noindex. How: This checks the one rule group.
+	expect( robTexStr ).toContain( 'User-agent: *\nAllow: /' );              // What: Allow All Assertion. Why: Every crawler may read the site, since the unwanted pages keep themselves out with noindex. How: This checks the all-crawlers group allows the whole site.
+	expect( robTexStr.match( /^User-agent:/gm ) ).toHaveLength( 1 );         // What: Single Group Assertion. Why: A second group could shut one crawler out of pages the first allows. How: This checks the file holds one User-agent line.
+	expect( robTexStr ).not.toMatch( /^Disallow:/m );                        // What: No Disallow Assertion. Why: Any Disallow rule would hide part of the site from search. How: This checks the file has none.
 	expect( robTexStr ).toContain( `Sitemap: ${ LIV_URL_STR }sitemap.xml` ); // What: Sitemap Line Assertion. Why: Crawlers find the sitemap from this line. How: This checks it names the live sitemap.
 
 
