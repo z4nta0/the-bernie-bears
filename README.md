@@ -102,3 +102,14 @@ design/                Source artwork, not served
 ## Search and the main site
 
 Only Home and Social Links are meant to appear in search; About and Contact overlap pages on the main site, so they and the 404 page carry `noindex`. The structured data names theberniebears.com as the brand's home. `index.html` carries the home page's title and description, since link checkers and many crawlers read it without running the site's script; the other pages set their own titles, and Social Links swaps in its own description while it's showing. Every page shares one social preview card, since link previews only ever read `index.html`.
+
+## Support
+
+If this project is useful to you, you can support its development with a tip
+on Ko-fi. It's never required, and always appreciated.
+
+[![Support me on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/techgeekdev)
+
+## License
+
+The code is copyright Gary S. Walton, all rights reserved, with The Bernie Bears granted full use of it for their own website. The Bernie Bears' name, logos, photos, and written content belong to The Bernie Bears. See [LICENSE.md](LICENSE.md) for the full terms.
