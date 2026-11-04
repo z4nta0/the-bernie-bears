@@ -27,20 +27,20 @@
 .navSkiAnc { /* What: Navigation Skip Anchor. Why: A keyboard user should be able to jump past the bar, and the link shouldn't show until it's needed. How: This sets it as a lavender pill with dark text and a soft shadow, like the site's primary buttons, fixed just above the screen's top edge at the page's side gutter, and eases its slide into view and back out, leaving on the accelerating curve, along with its hover fill and lift, its press, and its focus ring. */
 
 
-	background      : var( --acc-mai-col );                                       /* Accent Main Color = #d1afe2 */
+	background      : var( --acc-mai-col );                               /* Accent Main Color = #d1afe2 */
 	border-radius   : 999px;
-	box-shadow      : var( --ele-med-sha );                                       /* Elevation Medium Shadow ~= 0 8.304px 25.572px plus 0 3.572px 8.304px -2.035px */
-	color           : var( --tex-acc-col );                                       /* Text Accent Color = #2c2c2c */
-	font-size       : var( --fon-siz-p01 );                                       /* Font Size Base Plus 1 ~= 14.572px */
+	box-shadow      : var( --ele-med-sha );                               /* Elevation Medium Shadow ~= 0 8.304px 25.572px plus 0 3.572px 8.304px -2.035px */
+	color           : var( --tex-acc-col );                               /* Text Accent Color = #2c2c2c */
+	font-size       : var( --fon-siz-p01 );                               /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight     : 700;
-	left            : var( --gut-sid-pad );                                       /* Gutter Side Padding, about 19.304px - 44.876px */
-	padding         : var( --spa-ver-bas ) var( --spa-hor-p02 );                  /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	left            : var( --gut-sid-pad );                               /* Gutter Side Padding, about 19.304px - 44.876px */
+	padding         : var( --spa-ver-bas ) var( --spa-hor-p02 );          /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	position        : fixed;
 	text-decoration : none;
-	top             : var( --spa-ver-m02 );                                       /* Spacing Vertical Base Minus 2 ~= 8.304px */
-	transform       : translateY( calc( -100% - var( --spa-ver-p04 ) ) );        /* Spacing Vertical Base Plus 4 ~= 44.876px */ /* What: Hidden Offset. Why: The link waits above the screen until it's focused, clear of the edge so no sliver of it or its soft shadow shows. How: This raises it by its own height plus more than its top offset, its shadow's drop, and its blur together, about 42px. */
+	top             : var( --spa-ver-m02 );                               /* Spacing Vertical Base Minus 2 ~= 8.304px */
+	transform       : translateY( calc( -100% - var( --spa-ver-p04 ) ) ); /* Spacing Vertical Base Plus 4 ~= 44.876px */ /* What: Hidden Offset. Why: The link waits above the screen until it's focused, clear of the edge so no sliver of it or its soft shadow shows. How: This raises it by its own height plus more than its top offset, its shadow's drop, and its blur together, about 42px. */
 	transition      : background var( --dur-tra-p01 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-acc-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Duration Transition Base Plus 2 ~= 277.0ms, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ), Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
-	z-index         : 5;                                                          /* What: Skip Link Layer. Why: The focused link has to show above the bar, at 4, and the scrim, at 3. How: This sets it one layer above the bar. */
+	z-index         : 5;                                                  /* What: Skip Link Layer. Why: The focused link has to show above the bar, at 4, and the scrim, at 3. How: This sets it one layer above the bar. */
 
 
 }
