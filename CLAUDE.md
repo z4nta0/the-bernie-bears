@@ -465,7 +465,8 @@ passes on `close-out`.
       otherwise overrode its square aspect ratio. Every changed pixel in the
       refreshed baselines sits inside a photo.
       Raised to three times on 2026-11-03, per the user-level image rule:
-      353 KB, with the portrait held at its 1,080px original, never enlarged.
+      353 KB. Audit 9 measured the portrait at 345px wide at most (at 1,433px)
+      and rendered it at 1,035px, bringing the four to 317 KB.
     - **SEO**: done 2026-10-11. Each page renders its own head tags, which
       React 19 moves into the head and removes when the page changes: Home
       a canonical address, Social Links ("Follow Lilah & Norah | The Bernie

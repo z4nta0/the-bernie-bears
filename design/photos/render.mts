@@ -69,7 +69,7 @@ type PhoRecTyp = { pagStr : string, souStr : string, squBoo : boolean, widNum : 
  *   photo's centered square, so the rest is cropped away.
  *
  * - `widNum` (Number): Width Number, three times the widest the site shows
- *   the photo: the hero portrait's frame reaches about 391px, the cartoon
+ *   the photo: the hero portrait reaches about 345px, the cartoon
  *   about 303px, and each sister's circle about 130px.
  *
  * @author z4nta0 <https://github.com/z4nta0>
@@ -82,7 +82,7 @@ const PHO_REC_ARR : PhoRecTyp[] = [ // What: Photo Record Array. Why: The script
 	{ pagStr : 'about', souStr : 'group-photo.jpg',   squBoo : false, widNum : 909  }, // What: About Group Photo Row. Why: The About intro shows the cartoon of both girls. How: This rebuilds it whole, not cropped.
 	{ pagStr : 'about', souStr : 'lilah.jpg',         squBoo : true,  widNum : 390  }, // What: Lilah Photo Row. Why: Lilah's card shows her photo in a round frame. How: This rebuilds it cropped to a centered square.
 	{ pagStr : 'about', souStr : 'norah.jpg',         squBoo : true,  widNum : 390  }, // What: Norah Photo Row. Why: Norah's card shows her photo in a round frame. How: This rebuilds it cropped to a centered square.
-	{ pagStr : 'home',  souStr : 'portrait-both.jpg', squBoo : true,  widNum : 1173 }  // What: Home Portrait Photo Row. Why: The hero shows both girls in a square frame. How: This rebuilds it cropped to a centered square.
+	{ pagStr : 'home',  souStr : 'portrait-both.jpg', squBoo : true,  widNum : 1035 }  // What: Home Portrait Photo Row. Why: The hero shows both girls in a square frame. How: This rebuilds it cropped to a centered square.
 
 
 ];
