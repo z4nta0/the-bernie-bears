@@ -217,7 +217,7 @@ function LinPagCom () : React.JSX.Element {
 								<div className={ cssModObj.socBodDiv }>{ /* What: Social Body Div Element. Why: The card's words read as one column. How: This stacks the platform, handle, and sentence. */ }
 
 
-									<div className={ cssModObj.socPlaDiv }>{ socLinObj.plaStr }</div>{ /* What: Social Platform Div Element. Why: The card names its platform. How: This shows it in small capitals. */ }
+									<div className={ cssModObj.socPlaDiv }>{ socLinObj.plaStr }</div>{ /* What: Social Platform Div Element. Why: The card names its platform. How: This shows it in small uppercase letters. */ }
 
 									<div
 										className={ cssModObj.socHanDiv }

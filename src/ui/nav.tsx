@@ -363,7 +363,7 @@ function NavBarCom () : React.JSX.Element {
 						>{ /* What: Menu Contents Div Element. Why: A phone menu of four links alone felt bare, and following the girls is the site's purpose. How: This holds the profiles, the main site link, and the tagline under the links, shown only in the phone menu. */ }
 
 
-							<p className={ cssModObj.menEyePar }>Follow Lilah & Norah</p>{ /* What: Menu Eyebrow Paragraph Element. Why: The icons need a word on what they're for. How: This labels them in small capitals. */ }
+							<p className={ cssModObj.menEyePar }>Follow Lilah & Norah</p>{ /* What: Menu Eyebrow Paragraph Element. Why: The icons need a word on what they're for. How: This labels them in small uppercase letters. */ }
 
 							<div className={ cssModObj.menSocDiv }>{ /* What: Menu Social Div Element. Why: Each of the girls' profiles is one tap away from any page. How: This sets the six icons in a row that wraps. */ }
 

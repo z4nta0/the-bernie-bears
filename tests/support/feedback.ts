@@ -5,11 +5,11 @@
  * feedback.ts = Feedback
  *
  * @summary
- * The shared pieces of the interaction feedback probe, for the specs that
- * check a control's hover, press, and focus: the property lists and settle
+ * The shared pieces of the interaction feedback probe, for a spec that
+ * checks a control's hover, press, and focus: the property lists and settle
  * wait a look is read with, the helpers that snapshot an element's look and
  * turn two snapshots into problems, and the click block that keeps a press
- * from acting mid-check. Each spec collects and drives its own elements.
+ * from acting mid-check. A spec collects and drives its own elements.
  * Adapted from hair-designs' own, with its snapshot also reading the shadow
  * layers a card or button draws in its ::before and ::after.
  *

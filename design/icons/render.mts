@@ -107,11 +107,11 @@ const draPagObj = await broInsObj.newPage(); // What: Draw Page Object. Why: The
  * @param icoSizNum - Icon Size Number: The icon's width and height in pixels.
  * @param icoOpaBoo - Icon Opaque Boolean: Whether to draw on solid white.
  *
- * @returns The finished PNG's bytes.
+ * @returns A promise that resolves with the finished PNG's bytes.
  *
  * @example
  * ```ts
- * renPngFun(32, false) // => Buffer
+ * renPngFun(32, false) // => the 32px PNG's bytes
  * ```
  *
 */
