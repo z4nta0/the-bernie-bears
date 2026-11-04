@@ -601,4 +601,16 @@ bar's paw) when waiting for the page to settle.
   canonical on Home and Social Links, `noindex` and neither on the others),
   the structured data against the profile links and email the pages show,
   and the crawler files.
+- `npm run test:security` (added 2026-11-03, from tonys-toppers): the
+  baseline security suite. `headers.spec.ts` reads `public/_headers` for the
+  policy and the hardening headers, searches the build for secrets, and runs
+  `npm audit` on the shipped dependencies (Chromium only, since files read the
+  same in every engine, skipping with a message when offline).
+  `browser.spec.ts` loads every state from the production build, served by
+  `vite preview` on port 5203 with the headers applied, and fails on any
+  policy violation or a new tab link without `noopener`. No browser key ships,
+  so none is allowed.
+- **Chromium runs as full headless Chrome** (`channel : 'chromium'`), per the
+  user-level testing rule; its baselines were refreshed for the switch on
+  2026-11-03, the change being text antialiasing and soft shadows only.
 - `npm test` runs every suite.
