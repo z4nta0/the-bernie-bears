@@ -36,7 +36,7 @@ import type { Page          } from '@playwright/test'; // What: Page. Why: The h
  * focus ring included. Each kind of element with a state that switches on and
  * off, such as the phone menu's toggle or the current page's bar link, is
  * flipped off, on, and off again by its attribute, and has to look different
- * and ease each change both ways. On the home and About states, the cards that
+ * and ease each change both ways. On the Home and About states, the cards that
  * lift on hover without being links have to show and ease their hover. The
  * first keyboard stop has to draw its ring at full width. Under reduced motion
  * every change stays but switches at once. Real clicks are blocked during the
@@ -705,7 +705,7 @@ async function togProFun ( curPagObj : Page, staIdeStr : string, redMotBoo : boo
 for ( const staRecObj of STA_REC_ARR ) { // What: State Test Loop. Why: Every page state is checked. How: This declares each check once per state.
 
 
-	test( `${ staRecObj.ideStr } gives every control hover, press, and focus feedback, and every toggle its switch`, async ( { page : curPagObj } ) => { // What: Feedback Test. Why: Every interaction should visibly register. How: This opens the state, blocks clicks, probes every reachable link and button and each reachable element of the toggle kinds listed for the state, and on the home and About states every card, and checks it finds no problems.
+	test( `${ staRecObj.ideStr } gives every control hover, press, and focus feedback, and every toggle its switch`, async ( { page : curPagObj } ) => { // What: Feedback Test. Why: Every interaction should visibly register. How: This opens the state, blocks clicks, probes every reachable link and button and each reachable element of the toggle kinds listed for the state, and on the Home and About states every card, and checks it finds no problems.
 
 
 		test.slow(); // What: Slow Test Mark. Why: Probing every control's hover, press, and focus takes about two seconds per control, which runs past the default 30 second timeout. How: This triples this test's timeout.
@@ -718,7 +718,7 @@ for ( const staRecObj of STA_REC_ARR ) { // What: State Test Loop. Why: Every pa
 		const proLisArr = [ ...await feeProFun( curPagObj, false ), ...await togProFun( curPagObj, staRecObj.ideStr, false ) ]; // What: Problem List Array. Why: The state passes only when every reachable link and button responds and every switched state shows and eases. How: This gathers both probes' problems, so a failure prints each one, the toggles' included when a control fails.
 
 
-		if ( /^(home|about)-/.test( staRecObj.ideStr ) ) proLisArr.push( ...await hovProFun( curPagObj, false ) ); // What: Card Probe Call. Why: The cards show, with nothing covering them, only on the home and About states. How: On those pages' desktop and phone states, this adds the cards' problems.
+		if ( /^(home|about)-/.test( staRecObj.ideStr ) ) proLisArr.push( ...await hovProFun( curPagObj, false ) ); // What: Card Probe Call. Why: The cards show, with nothing covering them, only on the Home and About states. How: On those pages' desktop and phone states, this adds the cards' problems.
 
 
 
@@ -745,7 +745,7 @@ for ( const staRecObj of STA_REC_ARR ) { // What: State Test Loop. Why: Every pa
 
 
 
-	test( `${ staRecObj.ideStr } keeps feedback without motion under reduced motion`, async ( { page : curPagObj } ) => { // What: Reduced Motion Feedback Test. Why: Visitors who ask for less motion still need to see their actions register. How: This probes every reachable link and button, each reachable element of the toggle kinds listed for the state, and on the home and About states every card, with reduced motion on, and checks it finds no problems.
+	test( `${ staRecObj.ideStr } keeps feedback without motion under reduced motion`, async ( { page : curPagObj } ) => { // What: Reduced Motion Feedback Test. Why: Visitors who ask for less motion still need to see their actions register. How: This probes every reachable link and button, each reachable element of the toggle kinds listed for the state, and on the Home and About states every card, with reduced motion on, and checks it finds no problems.
 
 
 		test.slow(); // What: Slow Test Mark. Why: Probing every control's hover, press, and focus takes about two seconds per control, which runs past the default 30 second timeout. How: This triples this test's timeout.
@@ -760,7 +760,7 @@ for ( const staRecObj of STA_REC_ARR ) { // What: State Test Loop. Why: Every pa
 		const proLisArr = [ ...await feeProFun( curPagObj, true ), ...await togProFun( curPagObj, staRecObj.ideStr, true ) ]; // What: Problem List Array. Why: Every reachable link and button has to respond, and every switched state show, without moving. How: This gathers both probes' problems, so a failure prints each one, the toggles' included when a control fails.
 
 
-		if ( /^(home|about)-/.test( staRecObj.ideStr ) ) proLisArr.push( ...await hovProFun( curPagObj, true ) ); // What: Card Probe Call. Why: The cards show, with nothing covering them, only on the home and About states. How: On those pages' desktop and phone states, this adds the cards' problems.
+		if ( /^(home|about)-/.test( staRecObj.ideStr ) ) proLisArr.push( ...await hovProFun( curPagObj, true ) ); // What: Card Probe Call. Why: The cards show, with nothing covering them, only on the Home and About states. How: On those pages' desktop and phone states, this adds the cards' problems.
 
 
 
