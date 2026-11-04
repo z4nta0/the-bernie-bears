@@ -84,7 +84,18 @@ test( 'the content security policy allows only the site itself', () => { // What
 	expect( cspValStr ).not.toContain( 'unsafe-inline' );      // What: No Unsafe Inline Assertion. Why: Allowing inline script or style lets injected markup run. How: This checks the policy never allows it.
 	expect( cspValStr ).not.toContain( 'unsafe-eval' );        // What: No Unsafe Eval Assertion. Why: Evaluated strings run as code. How: This checks the policy never allows it.
 	expect( cspValStr ).not.toMatch( /(^|\s)\*(\s|;|$)/ );     // What: No Wildcard Assertion. Why: A bare * would let any origin load resources. How: This checks no directive allows every origin.
-	expect( cspValStr ).not.toMatch( /https?:\/\// );          // What: No Outside Origin Assertion. Why: The site loads everything from itself, so a named outside origin would let another site's files in. How: This checks no directive lists an HTTP or HTTPS address.
+
+
+	for ( const dirTexStr of cspValStr.split( ';' ).map( ( dirRawStr ) => dirRawStr.trim() ).filter( ( dirCurStr ) => dirCurStr.length > 0 ) ) { // What: Directive Loop. Why: The site loads everything from itself, so any source but its own origin or none would let another site's files in, a data or blob address included. How: This checks each directive in turn.
+
+
+		const souLisArr = dirTexStr.split( /\s+/ ).slice( 1 ); // What: Source List Array. Why: The sources follow the directive's name. How: This splits the directive and drops its name.
+
+
+		expect( souLisArr.filter( ( souCurStr ) => souCurStr !== "'self'" && souCurStr !== "'none'" ), dirTexStr ).toEqual( [] ); // What: Own Sources Assertion. Why: Only 'self' and 'none' keep every resource on the site's own origin. How: This checks the directive lists no other source, naming the directive when it fails.
+
+
+	}
 
 
 } );
