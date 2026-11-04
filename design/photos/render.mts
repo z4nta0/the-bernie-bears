@@ -202,7 +202,6 @@ for ( const [ pagFolStr, sizRowArr ] of sizRowMap ) { // What: Sizes File Loop. 
 	const pagWorStr = `${ pagFolStr[ 0 ].toUpperCase() }${ pagFolStr.slice( 1 ) }`; // What: Page Word String. Why: The sizes file's type and its comment name the page the file belongs to. How: This capitalizes the page folder's name, such as home to Home.
 	const phsTypStr = `${ pagWorStr.slice( 0, 3 ) }PhsTyp`;                         // What: Photo-Size Type String. Why: Type names are unique across the codebase, so each page's sizes type needs its own name. How: This joins the page word's first three letters to Phs (Photo-Size) and Typ, such as HomPhsTyp.
 
-
 	const sizTexStr = `
 
 

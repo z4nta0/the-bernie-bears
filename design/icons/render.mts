@@ -61,8 +61,6 @@ const ICO_REC_ARR : IcoRecTyp[] = [ // What: Icon Record Array. Why: The PNG ico
 
 ];
 
-
-
 const ICO_SIZ_ARR = [ 16, 32, 48 ];                                               // What: ICO Size Array. Why: favicon.ico holds several sizes in one file. How: Each entry is one square size packed into the file.
 const OUT_DIR_STR = fileURLToPath( new URL( '../../public/', import.meta.url ) ); // What: Output Directory String. Why: Browsers request icons from the site's root. How: This resolves public/ from this script's folder.
 const TOU_SCA_NUM = 0.8;                                                          // What: Touch Scale Number. Why: iOS rounds the touch icon's corners, which would crowd a paw drawn edge to edge. How: The touch icon draws the mark at this share of its square, centered.

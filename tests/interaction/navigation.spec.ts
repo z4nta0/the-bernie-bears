@@ -270,8 +270,7 @@ test( 'a phone menu link opens its page at the top', async ( { page : curPagObj 
 
 	await botScrFun( curPagObj ); // What: Bottom Scroll Call. Why: The menu link should be clicked from far down the page. How: This scrolls to the end of the page.
 
-	await curPagObj.getByRole( 'button', { name : 'Toggle menu' } ).click(); // What: Menu Toggle Click. Why: The menu's links only show once it's open. How: This opens it from the sticky bar.
-
+	await curPagObj.getByRole( 'button', { name : 'Toggle menu' } ).click();                                                      // What: Menu Toggle Click. Why: The menu's links only show once it's open. How: This opens it from the sticky bar.
 	await curPagObj.getByRole( 'navigation', { name : 'Main' } ).getByRole( 'link', { exact : true, name : 'Contact' } ).click(); // What: Menu Link Click. Why: A phone visitor picks a page from the open menu. How: This clicks Contact.
 
 	await expect( curPagObj ).toHaveURL( '/contact' );                               // What: Destination Assertion. Why: The offset only means something on the new page. How: This waits for the address to change.
@@ -402,8 +401,7 @@ test( 'a hash added to the address lands on its target, not a saved position', a
 	expect( savTopNum ).toBeGreaterThan( 0 ); // What: Scrolled Assertion. Why: A page that can't scroll would leave nothing saved to wrongly restore. How: This checks the page sits below its top.
 
 	await curPagObj.evaluate( () => { ( window as unknown as { __scrTopArr : unknown[] } ).__scrTopArr = []; } ); // What: Scroll Log Clear Call. Why: Only the calls the hash change causes matter. How: This empties the log just before it. // What: Type Assertion Note. Why: The window has no such field in its type. How: The init script set it.
-
-	await curPagObj.evaluate( () => { location.hash = 'main'; } ); // What: Hash Change Call. Why: This is the navigation under test, the same as typing the hash into the address. How: This adds #main to the address, which the router reports as a POP sharing the first entry's key.
+	await curPagObj.evaluate( () => { location.hash = 'main'; } );                                                // What: Hash Change Call. Why: This is the navigation under test, the same as typing the hash into the address. How: This adds #main to the address, which the router reports as a POP sharing the first entry's key.
 
 	await expect.poll( () => curPagObj.evaluate( () => window.scrollY ) ).toBeLessThan( savTopNum / 2 ); // What: Target Arrival Assertion. Why: The main element starts just below the bar, far above the saved position. How: This polls until the page sits near the top, where the main element is.
 
