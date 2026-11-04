@@ -20,7 +20,7 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The helpers dr
  * Checks that moving between pages behaves like a multi-page site, in
  * whichever engine the project runs. A client-side router keeps the scroll
  * position when it swaps pages, so the useScrTopFun hook the app root calls
- * puts every link-driven navigation back at the top, and returns back,
+ * puts a link-driven navigation back at the top, and returns back,
  * forward, and a reload to the position each history entry was left at. Links
  * clicked far down a page open the next page at its top, while history and
  * reloads return to the exact earlier position, and a fresh load, a hash, and

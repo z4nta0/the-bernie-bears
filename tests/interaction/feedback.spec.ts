@@ -263,7 +263,7 @@ async function attSetFun ( hanCurObj : ElementHandle< Element >, attNamStr : str
  * conLisFun = Control List Function
  *
  * @summary
- * Collects every element a visitor can reach on the page as it stands: each
+ * Collects the elements a visitor can reach on the page as it stands: each
  * element the selector matches that's visible, not taken out of the tab order
  * with tabindex -1, not disabled, and not inside inert content (the page
  * behind the open phone menu), so the same list serves the controls, the
@@ -276,7 +276,8 @@ async function attSetFun ( hanCurObj : ElementHandle< Element >, attNamStr : str
  * @param conSelStr - Control Selector String: The elements to collect, such as
  *                    every link and button.
  *
- * @returns A promise that resolves with every reachable element.
+ * @returns A promise that resolves with the reachable elements the selector
+ *          matches.
  * @see {@link conHanArr}
  *
  * @example
@@ -704,7 +705,7 @@ async function togProFun ( curPagObj : Page, staIdeStr : string, redMotBoo : boo
 for ( const staRecObj of STA_REC_ARR ) { // What: State Test Loop. Why: Every page state is checked. How: This declares each check once per state.
 
 
-	test( `${ staRecObj.ideStr } gives every control hover, press, and focus feedback, and every toggle its switch`, async ( { page : curPagObj } ) => { // What: Feedback Test. Why: Every interaction should visibly register. How: This opens the state, blocks clicks, probes every reachable link and button and every reachable toggle, and on the home and About states every card, and checks it finds no problems.
+	test( `${ staRecObj.ideStr } gives every control hover, press, and focus feedback, and every toggle its switch`, async ( { page : curPagObj } ) => { // What: Feedback Test. Why: Every interaction should visibly register. How: This opens the state, blocks clicks, probes every reachable link and button and each reachable element of the toggle kinds listed for the state, and on the home and About states every card, and checks it finds no problems.
 
 
 		test.slow(); // What: Slow Test Mark. Why: Probing every control's hover, press, and focus takes about two seconds per control, which runs past the default 30 second timeout. How: This triples this test's timeout.
@@ -744,7 +745,7 @@ for ( const staRecObj of STA_REC_ARR ) { // What: State Test Loop. Why: Every pa
 
 
 
-	test( `${ staRecObj.ideStr } keeps feedback without motion under reduced motion`, async ( { page : curPagObj } ) => { // What: Reduced Motion Feedback Test. Why: Visitors who ask for less motion still need to see their actions register. How: This probes every reachable link and button, every reachable toggle, and on the home and About states every card, with reduced motion on, and checks it finds no problems.
+	test( `${ staRecObj.ideStr } keeps feedback without motion under reduced motion`, async ( { page : curPagObj } ) => { // What: Reduced Motion Feedback Test. Why: Visitors who ask for less motion still need to see their actions register. How: This probes every reachable link and button, each reachable element of the toggle kinds listed for the state, and on the home and About states every card, with reduced motion on, and checks it finds no problems.
 
 
 		test.slow(); // What: Slow Test Mark. Why: Probing every control's hover, press, and focus takes about two seconds per control, which runs past the default 30 second timeout. How: This triples this test's timeout.

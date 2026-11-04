@@ -67,8 +67,8 @@ const AXE_TAG_ARR = [ 'wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'b
  * @summary
  * Runs axe-core on the page as it stands, limited to the WCAG and
  * best-practice rule sets, and returns its full results. The caller opens
- * and settles the state first, so the scan never sees a page mid-load or
- * mid-animation.
+ * and settles the state first, so the scan doesn't start until the page has
+ * loaded and its entrance animations are done.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *

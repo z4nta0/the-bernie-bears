@@ -13,14 +13,14 @@ import type { Page } from '@playwright/test'; // What: Page. Why: Opening a stat
  * states.ts = States
  *
  * @summary
- * The page states the accessibility, interaction, and rendering suites visit,
- * and the helper that opens one; the responsive suite opens its own widths
- * through the same helper. A state is a page at a width, sometimes with
- * something opened on it: every route and the 404 page at phone and desktop
- * widths, and the mobile menu open on a phone. opeStaFun sizes the viewport,
- * loads the page, waits for the fonts, scrolls through the page so any lazily
- * loaded image loads, runs the state's own action, such as opening the menu,
- * and then waits for the page to stay still so nothing is measured mid-fade.
+ * The page states the suites visit, and the helper that opens one; the
+ * responsive suite opens its own widths through the same helper. A state is a
+ * page at a width, sometimes with something opened on it: every route and the
+ * 404 page at phone and desktop widths, and the mobile menu open on a phone.
+ * opeStaFun sizes the viewport, loads the page, waits for the fonts, scrolls
+ * through the page so any lazily loaded image loads, runs the state's own
+ * action, such as opening the menu, and then waits for the page to stay still
+ * so a check doesn't start mid-fade.
  *
  * Sections:
  *  - Types
@@ -76,7 +76,7 @@ type StaRecTyp = { // What: State Record Type. Why: Every check reads the same d
  *
 */
 
-const STA_REC_ARR : StaRecTyp[] = [ // What: State Record Array. Why: Every check walks the same list of states, so a new state is added in one place. How: Each row names a state, its path, and its viewport, and the menu row adds the action that opens it.
+const STA_REC_ARR : StaRecTyp[] = [ // What: State Record Array. Why: The state-based checks walk the same list of states, so a new state is added in one place. How: Each row names a state, its path, and its viewport, and the menu row adds the action that opens it.
 
 
 	{ heiNum : 900, ideStr : 'home-desktop',      patStr : '/',        widNum : 1440 }, // What: Home Desktop State. Why: Most visitors land here. How: This loads the home page at 1,440px.
@@ -90,7 +90,7 @@ const STA_REC_ARR : StaRecTyp[] = [ // What: State Record Array. Why: Every chec
 	{ heiNum : 900, ideStr : 'not-found-desktop', patStr : '/missing', widNum : 1440 }, // What: Not Found Desktop State. Why: Every unknown address lands on the 404 page. How: This loads an address the site doesn't have at 1,440px.
 	{ heiNum : 844, ideStr : 'not-found-phone',   patStr : '/missing', widNum : 390  }, // What: Not Found Phone State. Why: The phone bar hides its links behind the menu on the 404 page too. How: This loads an address the site doesn't have at 390px.
 
-	{ // What: Menu Phone State. Why: The open menu holds the phone's only copy of the page links. How: This loads the home page at 390px and opens the menu through its toggle button.
+	{ // What: Menu Phone State. Why: The open menu is where the phone shows the bar's page links. How: This loads the home page at 390px and opens the menu through its toggle button.
 
 
 		heiNum : 844,
@@ -250,9 +250,9 @@ async function waiSetFun ( curPagObj : Page ) : Promise< void > {
  * viewport, loads the path, waits for the web fonts, scrolls through the
  * page so every lazily loaded image starts loading ({@link revPagFun}),
  * waits for every image to decode, runs the state's action if it has one,
- * then waits until the page stays still ({@link waiSetFun}), so a check never
- * measures a heading halfway through its entrance fade or a menu halfway
- * open.
+ * then waits until the page stays still ({@link waiSetFun}), so a check
+ * doesn't measure a heading halfway through its entrance fade or a menu
+ * halfway open.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -301,7 +301,7 @@ async function opeStaFun ( curPagObj : Page, staRecObj : StaRecTyp ) : Promise< 
 
 // #region Exports
 
-export { opeStaFun, STA_REC_ARR, type StaRecTyp }; // What: Named Exports. Why: The accessibility, interaction, rendering, and responsive specs share these states and their opener. How: This exports the state list, its type, and the helper that opens one.
+export { opeStaFun, STA_REC_ARR, type StaRecTyp }; // What: Named Exports. Why: The specs that open a page state share these states and their opener. How: This exports the state list, its type, and the helper that opens one.
 
 // #endregion Exports
 
