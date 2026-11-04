@@ -89,7 +89,7 @@ function usePagDesFun ( desTexStr : string ) : void {
 
 // #region Exports
 
-export { usePagDesFun }; // What: Named Exports. Why: A page with a description of its own calls the hook. How: This exports usePagDesFun.
+export { usePagDesFun }; // What: Named Export. Why: A page with a description of its own calls the hook. How: This exports usePagDesFun.
 
 // #endregion Exports
 

@@ -97,7 +97,7 @@ function ConPagCom () : React.JSX.Element {
 				<section className={ cssModObj.conDetSec }>{ /* What: Contact Details Section Element. Why: The ways to get in touch are the page's content. How: This holds the info column and the panel. */ }
 
 
-					<div className={ cssModObj.conGriDiv }>{ /* What: Contact Grid Div Element. Why: The info and the panel sit side by side on wide screens. How: This lays out the two columns. */ }
+					<div className={ cssModObj.conGriDiv }>{ /* What: Contact Grid Div Element. Why: The info and the panel sit side by side above 768px wide, stacking at 768px and below. How: This lays out the two columns. */ }
 
 
 						<div>{ /* What: Contact Info Div Element. Why: The ways to get in touch read as one column. How: This stacks the heading, a line, the cards, and the note, with no styling of its own. */ }
@@ -232,7 +232,7 @@ function ConPagCom () : React.JSX.Element {
 								The Bernie Bears' main site. You can also email us any time.
 							</p>
 
-							<div className={ cssModObj.panActDiv }>{ /* What: Panel Actions Div Element. Why: The two ways to send a message sit together. How: This sets the buttons in a row that wraps on narrow screens. */ }
+							<div className={ cssModObj.panActDiv }>{ /* What: Panel Actions Div Element. Why: The two ways to send a message sit together. How: This sets the buttons in a row, wrapping onto two lines at about 815px to 769px wide and at about 450px and below. */ }
 
 
 								<a
@@ -303,7 +303,7 @@ function ConPagCom () : React.JSX.Element {
 
 // #region Exports
 
-export { ConPagCom }; // What: Named Exports. Why: The Contact route renders this page. How: This exports ConPagCom.
+export { ConPagCom }; // What: Named Export. Why: The Contact route renders this page. How: This exports ConPagCom.
 
 // #endregion Exports
 

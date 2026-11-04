@@ -46,8 +46,8 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The helpers dr
  * PAG_LIN_ARR = Page Link Array
  *
  * @summary
- * Every page of the site, in the bar's order, each one both a starting point
- * and a destination. Every row shares one shape, so its fields carry no
+ * Every page the bar links to, in the bar's order, each one both a starting
+ * point and a destination. Every row shares one shape, so its fields carry no
  * comments of their own:
  * - `labStr` (String): Label String, the page's link text in the bar and the
  *   footer.
@@ -60,10 +60,10 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The helpers dr
 const PAG_LIN_ARR = [ // What: Page Link Array. Why: Every page is checked as a starting point and as a destination. How: Each row pairs a route's path with its link text, in the bar's order.
 
 
-	{ labStr : 'Home',         patStr : '/'        },
-	{ labStr : 'About',        patStr : '/about'   },
-	{ labStr : 'Social Links', patStr : '/links'   },
-	{ labStr : 'Contact',      patStr : '/contact' }
+	{ labStr : 'Home',         patStr : '/'        }, // What: Home Link Row. Why: Home is the bar's first page. How: This pairs its link text with its path.
+	{ labStr : 'About',        patStr : '/about'   }, // What: About Link Row. Why: About is the bar's second page. How: This pairs its link text with its path.
+	{ labStr : 'Social Links', patStr : '/links'   }, // What: Social Links Link Row. Why: Social Links is the bar's third page. How: This pairs its link text with its path.
+	{ labStr : 'Contact',      patStr : '/contact' }  // What: Contact Link Row. Why: Contact is the bar's last page. How: This pairs its link text with its path.
 
 
 ];

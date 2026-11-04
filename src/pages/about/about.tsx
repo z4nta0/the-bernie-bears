@@ -204,10 +204,10 @@ function AboPagCom () : React.JSX.Element {
 
 
 
-					<div className={ cssModObj.sisGriDiv }>{ /* What: Sisters Grid Div Element. Why: The two cards sit side by side on wide screens. How: This lays them out. */ }
+					<div className={ cssModObj.sisGriDiv }>{ /* What: Sisters Grid Div Element. Why: The two cards sit side by side above 768px wide, stacking at 768px and below. How: This lays them out. */ }
 
 
-						<div className={` ${ cssModObj.sisCarDiv }   ${ cssModObj.sisCarDivLilah } `}>{ /* What: Sister Card Div Lilah Element. Why: Lilah gets a card of her own. How: This sets her photo beside her details, with her own accent. */ }
+						<div className={` ${ cssModObj.sisCarDiv }   ${ cssModObj.sisCarDivLilah } `}>{ /* What: Sister Card Div Lilah Element. Why: Lilah gets a card of her own. How: This stacks her photo above her details, with her own accent. */ }
 
 
 							<div>{ /* What: Sister Image Div Element. Why: The photo has its own row. How: This holds Lilah's round frame, with no styling of its own. */ }
@@ -248,7 +248,7 @@ function AboPagCom () : React.JSX.Element {
 									is the one who sets the tone, and her little sister Norah always follows her lead.
 								</p>
 
-								<div className={ cssModObj.sisTraDiv }>{ /* What: Sister Traits Div Element. Why: Three traits sum Lilah up at a glance. How: This sets them in a wrapping row of chips. */ }
+								<div className={ cssModObj.sisTraDiv }>{ /* What: Sister Traits Div Element. Why: Three traits sum Lilah up at a glance. How: This sets them in a row of chips, wrapping onto more lines at about 870px to 769px wide and at about 600px and below. */ }
 
 
 									<span className={ cssModObj.sisTraSpa }><span aria-hidden='true'>🎀</span> Fashion forward</span>{ /* What: Sister Trait Span Element. Why: Each trait is a chip. How: This shows the "Fashion forward" chip, its emoji hidden from screen readers. */ }
@@ -268,7 +268,7 @@ function AboPagCom () : React.JSX.Element {
 
 
 
-						<div className={` ${ cssModObj.sisCarDiv }   ${ cssModObj.sisCarDivNorah } `}>{ /* What: Sister Card Div Norah Element. Why: Norah gets a card of her own. How: This sets her photo beside her details, with her own accent. */ }
+						<div className={` ${ cssModObj.sisCarDiv }   ${ cssModObj.sisCarDivNorah } `}>{ /* What: Sister Card Div Norah Element. Why: Norah gets a card of her own. How: This stacks her photo above her details, with her own accent. */ }
 
 
 							<div>{ /* What: Sister Image Div Element. Why: The photo has its own row. How: This holds Norah's round frame, with no styling of its own. */ }
@@ -309,7 +309,7 @@ function AboPagCom () : React.JSX.Element {
 									the heart to every Bernie Bears moment.
 								</p>
 
-								<div className={ cssModObj.sisTraDiv }>{ /* What: Sister Traits Div Element. Why: Three traits sum Norah up at a glance. How: This sets them in a wrapping row of chips. */ }
+								<div className={ cssModObj.sisTraDiv }>{ /* What: Sister Traits Div Element. Why: Three traits sum Norah up at a glance. How: This sets them in a row of chips, wrapping onto more lines at about 870px to 769px wide and at about 600px and below. */ }
 
 
 									<span className={ cssModObj.sisTraSpa }><span aria-hidden='true'>😂</span> Class clown</span>{ /* What: Sister Trait Span Element. Why: Each trait is a chip. How: This shows the "Class clown" chip, its emoji hidden from screen readers. */ }
@@ -344,7 +344,7 @@ function AboPagCom () : React.JSX.Element {
 						<h2 className={ cssModObj.facTitHea }>Fun Facts</h2>{ /* What: Facts Title Heading Element. Why: The facts need a heading that reads on the gradient. How: This names them in the main text color. */ }
 
 
-						<div className={ cssModObj.facGriDiv }>{ /* What: Facts Grid Div Element. Why: The facts sit in a grid that wraps on narrow screens. How: This lays them out. */ }
+						<div className={ cssModObj.facGriDiv }>{ /* What: Facts Grid Div Element. Why: The facts sit in a grid of six columns, three at about 1,140px wide and below, two at about 570px and below, and one at about 380px and below. How: This lays them out. */ }
 
 
 							{ FUN_FAC_ARR.map( ( funFacObj ) => ( // What: Fun Fact Map. Why: Each row of FUN_FAC_ARR gets a card. How: This renders one card per row.
@@ -402,7 +402,7 @@ function AboPagCom () : React.JSX.Element {
 
 // #region Exports
 
-export { AboPagCom }; // What: Named Exports. Why: The About route renders this page. How: This exports AboPagCom.
+export { AboPagCom }; // What: Named Export. Why: The About route renders this page. How: This exports AboPagCom.
 
 // #endregion Exports
 

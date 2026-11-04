@@ -458,7 +458,7 @@
 
 /* #region sisTraDiv */
 
-.sisTraDiv { /* What: Sister Traits Div. Why: Three traits sum each sister up at a glance. How: This sets them in a wrapping row of chips below the paragraph. */
+.sisTraDiv { /* What: Sister Traits Div. Why: Three traits sum each sister up at a glance. How: This sets them in a row of chips below the paragraph, wrapping onto more lines at about 870px to 769px wide and at about 600px and below. */
 
 
 	display    : flex;
@@ -532,7 +532,7 @@
 
 /* #region facGriDiv */
 
-.facGriDiv { /* What: Facts Grid Div. Why: The facts should fill every row evenly and wrap on a narrow screen. How: This shows the six facts as six columns, three, two, or one, never four or five, choosing the most that fit at the card's minimum width. */
+.facGriDiv { /* What: Facts Grid Div. Why: The facts should fill every row evenly and wrap on a narrow screen. How: This shows the six facts as six columns, three, two, or one, never four or five, choosing the most that fit at the card's minimum width: three at about 1,140px wide and below, two at about 570px and below, and one at about 380px and below. */
 
 
 	--fac-car-wid : max( calc( var( --ver-rhy-p08 ) * 1rem ), var( --hor-rhy-017 ) ); /* Vertical Rhythm Base Plus 8 ~= 138.199px, Horizontal Rhythm 17 ~= 115.363px @ 1,920px width */ /* What: Fact Card Width. Why: The smallest a fact card may be. How: The grid reads it to decide how many columns fit, the p08 rhythm step or a horizontal step as the screen grows. */

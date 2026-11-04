@@ -86,7 +86,7 @@
 
 /* #region nofActDiv */
 
-.nofActDiv { /* What: Not-Found Actions Div. Why: The page's two ways onward sit together under its line. How: This centers them in a row that wraps, with room above. */
+.nofActDiv { /* What: Not-Found Actions Div. Why: The page's two ways onward sit together under its line. How: This centers them in a row, wrapping onto two lines at about 365px wide and below, with room above. */
 
 
 	display         : flex;
@@ -119,7 +119,7 @@
 
 }
 .butBasAnc::before,
-.butBasAnc::after { /* What: Button Base Anchor Shadow Layers. Why: The lift deepens a button's shadow, and fading between two shadows runs on the compositor where easing the shadow itself would repaint it every frame. How: Each layer covers the button's whole border box behind its content, rounded like it, holding one shadow its variant gives it, and fades its opacity. */
+.butBasAnc::after { /* What: Button Base Anchor Shadow Layers. Why: The lift deepens a button's shadow, and fading between two shadows runs on the compositor where easing the shadow itself would repaint it every frame. How: Each layer covers the button's whole border box behind its content, rounded like it, holding the shadow its filled variant gives it, and fades its opacity. */
 
 
 	border-radius  : inherit;

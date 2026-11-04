@@ -6,14 +6,12 @@
  *
  * @summary
  * Styles for HomPagCom: the page fading up into place, the hero's welcome
- * beside the girls' portrait on a morphing blob with two floating name
- * badges, the row of paw prints, the four feature cards that lift on hover,
- * and the gradient banner at the end. The pill buttons are shared by the hero
- * and the banner. The features section and the banner's column take the
- * page's shared container values, which have always set the section's
- * padding, and the section title's bottom margin is the About page's, which
- * has always won on both pages. Every animation and transition is off under
- * reduced motion.
+ * beside the girls' portrait on a morphing blob with two floating name badges,
+ * the row of paw prints, the four feature cards that lift on hover, and the
+ * gradient banner at the end. The pill buttons are shared by the hero and the
+ * banner. The features section and the banner's column take the page's shared
+ * container values. Every animation and transition is off under reduced
+ * motion.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -130,7 +128,7 @@
 
 /* #region herActDiv */
 
-.herActDiv { /* What: Hero Actions Div. Why: The two ways onward sit together. How: This sets them in a row that wraps. */
+.herActDiv { /* What: Hero Actions Div. Why: The two ways onward sit together. How: This sets them in a row, wrapping onto two lines at about 400px wide and below. */
 
 
 	display   : flex;
@@ -174,7 +172,7 @@
 
 }
 .butBasAnc::before,
-.butBasAnc::after { /* What: Button Base Anchor Shadow Layers. Why: The lift deepens a button's shadow, and fading between two shadows runs on the compositor where easing the shadow itself would repaint it every frame. How: Each layer covers the button's whole border box behind its content, rounded like it, holding one shadow its variant gives it, and fades its opacity. */
+.butBasAnc::after { /* What: Button Base Anchor Shadow Layers. Why: The lift deepens a button's shadow, and fading between two shadows runs on the compositor where easing the shadow itself would repaint it every frame. How: Each layer covers the button's whole border box behind its content, rounded like it, holding the shadow its filled variants give it, and fades its opacity. */
 
 
 	border-radius  : inherit;
@@ -513,7 +511,7 @@
 
 /* #region homFeaSec */
 
-.homFeaSec { /* What: Home Features Section. Why: The cards sit in the page's centered column. How: This holds the section within the page's capped column and its side padding, the shared container values that have always set its padding. */
+.homFeaSec { /* What: Home Features Section. Why: The cards sit in the page's centered column. How: This holds the section within the page's capped column and its side padding, the shared container values. */
 
 
 	margin    : 0 auto;
@@ -523,7 +521,7 @@
 
 }
 
-.secTitHea { /* What: Section Title Heading. Why: The cards need a heading. How: This centers it large, growing with the screen, with the About page's bottom margin, which has always won on this page too. */
+.secTitHea { /* What: Section Title Heading. Why: The cards need a heading. How: This centers it large, growing with the screen, with room below. */
 
 
 	font-size     : clamp( var( --fon-siz-p04 ), 4vw, var( --fon-siz-p05 ) ); /* Font Size Base Plus 4 ~= 33.876px, Font Size Base Plus 5 ~= 44.876px */
@@ -551,7 +549,7 @@
 
 /* #region feaGriDiv */
 
-.feaGriDiv { /* What: Features Grid Div. Why: The cards should fill every row evenly and wrap on a narrow screen. How: This shows the four cards as four columns, two, or one, never three, choosing the most that fit at the card's minimum width. */
+.feaGriDiv { /* What: Features Grid Div. Why: The cards should fill every row evenly and wrap on a narrow screen. How: This shows the four cards as four columns, two, or one, never three, choosing the most that fit at the card's minimum width: two at about 890px wide and below, and one at about 430px and below. */
 
 
 	--fea-car-wid : max( calc( var( --ver-rhy-p09 ) * 1rem ), var( --hor-rhy-019 ) ); /* Vertical Rhythm Base Plus 9 ~= 183.074px, Horizontal Rhythm 19 ~= 202.448px @ 1,920px width */ /* What: Feature Card Width. Why: The smallest a feature card may be. How: The grid reads it to decide how many columns fit, the p09 rhythm step or a horizontal step as the screen grows. */

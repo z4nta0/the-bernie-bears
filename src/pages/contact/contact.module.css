@@ -186,7 +186,7 @@
 
 }
 
-.infLabStr { /* What: Info Label Strong. Why: Each card names what it offers. How: This sets the label small and bold in the dark text color, on its own line. */
+.infLabStr { /* What: Info Label Strong. Why: Each card names what it offers. How: This sets the label bold in the dark text color, on its own line. */
 
 
 	color         : var( --tex-mai-col ); /* Text Main Color = #2c2c2c */
@@ -201,7 +201,7 @@
 
 /* #region infValPar */
 
-.infValPar { /* What: Info Value Paragraph. Why: Each card's detail sits under its label. How: This sets it small in the mid grey, with no margin. */
+.infValPar { /* What: Info Value Paragraph. Why: Each card's detail sits under its label. How: This sets it in the mid grey, with no margin. */
 
 
 	color     : var( --tex-sec-col ); /* Text Secondary Color = #5a5a5a */
@@ -350,7 +350,7 @@
 
 /* #region panActDiv */
 
-.panActDiv { /* What: Panel Actions Div. Why: The two ways to send a message sit together. How: This sets them in a row that wraps. */
+.panActDiv { /* What: Panel Actions Div. Why: The two ways to send a message sit together. How: This sets them in a row, wrapping onto two lines at about 815px to 769px wide and at about 450px and below. */
 
 
 	display   : flex;
@@ -381,7 +381,7 @@
 
 }
 .butBasAnc::before,
-.butBasAnc::after { /* What: Button Base Anchor Shadow Layers. Why: The lift deepens a button's shadow, and fading between two shadows runs on the compositor where easing the shadow itself would repaint it every frame. How: Each layer covers the button's whole border box behind its content, rounded like it, holding one shadow its variant gives it, and fades its opacity. */
+.butBasAnc::after { /* What: Button Base Anchor Shadow Layers. Why: The lift deepens a button's shadow, and fading between two shadows runs on the compositor where easing the shadow itself would repaint it every frame. How: Each layer covers the button's whole border box behind its content, rounded like it, holding the shadow its filled variant gives it, and fades its opacity. */
 
 
 	border-radius  : inherit;

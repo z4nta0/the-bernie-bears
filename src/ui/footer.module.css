@@ -7,9 +7,10 @@
  * @summary
  * Styles for SitFooCom: the dark band that ends every page, holding one
  * centered column with the brand name in the script font, its italic tagline,
- * a wrapping row of page links that warm to a deeper cream on hover, and a
- * copyright line under a faint rule. The column's width and side padding
- * are the page's shared container values, merged into its own rule.
+ * a row of page links, wrapping at about 430px wide and below, that warm to a
+ * deeper cream on hover, and a copyright line under a faint rule. The column's
+ * width and side padding are the page's shared container values, merged into
+ * its own rule.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -76,7 +77,7 @@
 
 /* #region fooNavNav */
 
-.fooNavNav { /* What: Footer Navigation Nav. Why: The page links sit in a centered row that wraps on a narrow screen. How: This lays them out with gaps between them. */
+.fooNavNav { /* What: Footer Navigation Nav. Why: The page links sit in a centered row, wrapping onto two lines at about 430px wide and below. How: This lays them out with gaps between them. */
 
 
 	display         : flex;
@@ -87,7 +88,7 @@
 
 }
 
-.fooLinAnc { /* What: Footer Link Anchor. Why: The links should read clearly on the dark band. How: This sets them bold in cream, with no underline, easing their color. */
+.fooLinAnc { /* What: Footer Link Anchor. Why: The links should read clearly on the dark band. How: This sets them bold in cream, with no underline, easing their hover color, press dim, and focus ring. */
 
 
 	color           : var( --bac-pag-col ); /* Background Page Color = #f7f7e2 */

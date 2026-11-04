@@ -21,8 +21,8 @@ import { test      } from '@playwright/test';     // What: Test. Why: Each page 
  * past either edge of the screen (unless an ancestor clips it on purpose),
  * text spilling out of its own box, or two controls a visitor can reach
  * overlapping each other. The widths run from 320px, WCAG's narrowest reflow
- * width, to 1,920px, and include a pixel either side of each of the site's
- * breakpoints, where a layout switches and is most likely to crowd. Pages open
+ * width, to 1,920px, and include each of the site's breakpoints and the pixel
+ * past it, where a layout switches and is most likely to crowd. Pages open
  * under reduced motion, which changes nothing about the layout but skips the
  * wait for entrance animations.
  *
@@ -132,7 +132,7 @@ function layProFun () : string[] {
 	};
 
 
-	const texSpiFun = ( texCurEle : Element ) => { // What: Text Spill Function. Why: Only the element's own text running out of its box is a spill, not a decoration drawn past it on purpose, such as an underline or highlight reaching past an italic line. How: This measures every line of the element's own text and reports whether any runs more than a pixel past either inner edge of its box.
+	const texSpiFun = ( texCurEle : Element ) => { // What: Text Spill Function. Why: Only the element's own text running out of its box is a spill, not a decoration drawn past it on purpose, such as an underline reaching past an italic line. How: This measures every line of the element's own text and reports whether any runs more than a pixel past either inner edge of its box.
 
 
 		const boxRecObj = texCurEle.getBoundingClientRect();     // What: Box Rect Object. Why: The text is measured against the element's own box. How: This measures the box.

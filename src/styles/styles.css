@@ -513,7 +513,7 @@ button { /* What: Buttons. Why: Buttons should use the site's font and show they
 }
 
 a,
-button { /* What: Focus Ring Controls. Why: Keyboard focus should ease in rather than snap, in a ring that suits the band it's in. How: This gives every link and button a zero-width outline in the focus ring color, held a little away from it, ready to grow in on focus. */
+button { /* What: Focus Ring Controls. Why: Keyboard focus should ease in rather than snap, in a ring that suits the band it's in. How: This gives every link and button a zero-width outline in the focus ring color, held a little away from it, ready to grow in on focus, easing the ring's offset and width as it does. */
 
 
 	outline        : 0 solid var( --foc-rin-col );                                                                                      /* Focus Ring Color ~= #7e5b93 */ /* What: Zero Width Outline. Why: A zero width stays invisible, even in forced colors mode, until something is focused. How: The focused rule below grows it. */

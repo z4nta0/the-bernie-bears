@@ -142,7 +142,7 @@ function HomPagCom () : React.JSX.Element {
 							laughter, love, bear hugs, and the occasional dramatic outfit to your feed. <span aria-hidden='true'>🐾</span>
 						</p>
 
-						<div className={ cssModObj.herActDiv }>{ /* What: Hero Actions Div Element. Why: The two main ways onward sit together. How: This sets the buttons in a row. */ }
+						<div className={ cssModObj.herActDiv }>{ /* What: Hero Actions Div Element. Why: The two main ways onward sit together. How: This sets the buttons in a row, wrapping onto two lines at about 400px wide and below. */ }
 
 
 							<Link
@@ -215,7 +215,7 @@ function HomPagCom () : React.JSX.Element {
 					<p className={ cssModObj.secSubPar }>Every day is an adventure when you've got fluffy ears and a flair for drama</p>{ /* What: Section Subtitle Paragraph Element. Why: A short line sets up the cards. How: This shows it under the heading. */ }
 
 
-					<div className={ cssModObj.feaGriDiv }>{ /* What: Features Grid Div Element. Why: The cards sit in a grid that wraps on narrow screens. How: This lays them out. */ }
+					<div className={ cssModObj.feaGriDiv }>{ /* What: Features Grid Div Element. Why: The cards sit in a grid of four columns, two at about 890px wide and below, and one at about 430px and below. How: This lays them out. */ }
 
 
 						{ FEA_CAR_ARR.map( ( feaCarObj ) => ( // What: Feature Card Map. Why: Each row of FEA_CAR_ARR gets a card. How: This renders one card per row.
@@ -298,7 +298,7 @@ function HomPagCom () : React.JSX.Element {
 
 // #region Exports
 
-export { HomPagCom }; // What: Named Exports. Why: The home route renders this page. How: This exports HomPagCom.
+export { HomPagCom }; // What: Named Export. Why: The home route renders this page. How: This exports HomPagCom.
 
 // #endregion Exports
 

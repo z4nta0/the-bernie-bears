@@ -291,7 +291,7 @@ function LinPagCom () : React.JSX.Element {
 
 // #region Exports
 
-export { LinPagCom }; // What: Named Exports. Why: The Social Links route renders this page. How: This exports LinPagCom.
+export { LinPagCom }; // What: Named Export. Why: The Social Links route renders this page. How: This exports LinPagCom.
 
 // #endregion Exports
 

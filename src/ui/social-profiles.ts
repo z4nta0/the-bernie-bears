@@ -148,7 +148,7 @@ const SOC_PRO_ARR = [ // What: Social Profile Array. Why: The Social Links page 
 
 // #region Exports
 
-export { SOC_PRO_ARR }; // What: Named Exports. Why: The Social Links page and the bar both read the profiles. How: This exports SOC_PRO_ARR.
+export { SOC_PRO_ARR }; // What: Named Export. Why: The Social Links page and the bar both read the profiles. How: This exports SOC_PRO_ARR.
 
 // #endregion Exports
 

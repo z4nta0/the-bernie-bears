@@ -18,8 +18,8 @@ import { Link } from 'react-router'; // What: Link. Why: The footer's page links
  * @summary
  * The site's footer: the brand name with its tagline, a link to each page and
  * to the brand's main site, and a copyright line. It reads the current year
- * each time it renders, so the copyright never goes stale. Every page renders
- * it below its content.
+ * each time it renders, so the copyright shows the year it rendered in. Every
+ * page renders it below its content.
  *
  * Sections:
  *  - Components
@@ -81,7 +81,7 @@ function SitFooCom () : React.JSX.Element {
 
 					<span className={ cssModObj.fooLogSpa }><span aria-hidden='true'>🐾</span> The Bernie Bears</span>{ /* What: Footer Logo Span Element. Why: The footer names the brand. How: This shows the name after a paw print, which is hidden from screen readers as decoration. */ }
 
-					<p className={ cssModObj.fooTagPar }>Lilah & Norah: spreading joy, bear hugs & fluffy paws one day at a time</p>{ /* What: Footer Tagline Paragraph Element. Why: The tagline sums up what the girls are about. How: This shows one italic line under the name. */ }
+					<p className={ cssModObj.fooTagPar }>Lilah & Norah: spreading joy, bear hugs & fluffy paws one day at a time</p>{ /* What: Footer Tagline Paragraph Element. Why: The tagline sums up what the girls are about. How: This shows the italic tagline under the name. */ }
 
 
 				</div>
@@ -90,7 +90,7 @@ function SitFooCom () : React.JSX.Element {
 					className={ cssModObj.fooNavNav }
 
 					aria-label='Footer'
-				>{ /* What: Footer Navigation Nav Element. Why: Every page can be reached from the bottom of any page, and a second navigation landmark needs a label to tell it from the bar's. How: This holds a link to each page and to the brand's main site, labelled Footer. */ }
+				>{ /* What: Footer Navigation Nav Element. Why: The site's main pages can be reached from the bottom of any page, and a second navigation landmark needs a label to tell it from the bar's. How: This holds a link to each page and to the brand's main site, labelled Footer. */ }
 
 
 					<Link
@@ -158,7 +158,7 @@ function SitFooCom () : React.JSX.Element {
 
 // #region Exports
 
-export { SitFooCom }; // What: Named Exports. Why: Every page renders the footer below its content. How: This exports SitFooCom.
+export { SitFooCom }; // What: Named Export. Why: Every page renders the footer below its content. How: This exports SitFooCom.
 
 // #endregion Exports
 

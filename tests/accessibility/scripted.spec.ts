@@ -9,7 +9,7 @@ import { STA_REC_ARR } from '../support/states.ts'; // What: State Record Array.
 import { test        } from '@playwright/test';     // What: Test. Why: Each check of each state is its own test. How: This declares them.
 
 
-import type { Page } from '@playwright/test'; // What: Page. Why: Every helper drives a Playwright page. How: This types their page parameters.
+import type { Page } from '@playwright/test'; // What: Page. Why: The helpers that drive the page from the test take a Playwright page, while those that run inside it take none. How: This types the driving helpers' page parameters.
 
 // #endregion Imports
 
@@ -27,8 +27,8 @@ import type { Page } from '@playwright/test'; // What: Page. Why: Every helper d
  * document, and lands only on stops that are on screen, not covered by
  * anything else, and visibly changed by focus. Reflow: at 320px wide, WCAG's
  * narrowest reflow width, nothing scrolls sideways. Motion: with reduced
- * motion requested, no animation or transition plays while the state opens.
- * Each failure lists every problem found, by element.
+ * motion requested, no animation or transition plays while the state opens. A
+ * names or keyboard failure lists every problem found, by element.
  *
  * Sections:
  *  - Constants
@@ -43,7 +43,7 @@ import type { Page } from '@playwright/test'; // What: Page. Why: Every helper d
 
 // #region Constants
 
-const GLY_DEC_REG = /[←↑→↓·•]|\p{Extended_Pictographic}/u; // What: Glyph Decorative Regular Expression. Why: A decorative glyph inside a name is read aloud as noise, such as right arrow or paw prints. How: This matches the arrows and dots a decorative glyph would add to a name, plus any emoji or pictograph, such as the site's paw prints.
+const GLY_DEC_REG = /[←↑→↓·•]|\p{Extended_Pictographic}/u; // What: Glyph Decorative Regular Expression. Why: A decorative glyph inside a name is read aloud as noise, such as a right arrow. How: This matches the arrows and dots a decorative glyph would add to a name, plus any emoji or pictograph, such as the site's paw prints.
 const REF_WID_NUM = 320;                                   // What: Reflow Width Number. Why: WCAG's reflow criterion asks for no sideways scrolling at 320 CSS pixels, the width of 1,280px at 400% zoom. How: This is the viewport width the reflow check opens each state at.
 const TAB_MAX_NUM = 80;                                    // What: Tab Maximum Number. Why: A keyboard trap would otherwise keep the walk going forever. How: This caps the walk at far more Tab presses than the site has stops.
 

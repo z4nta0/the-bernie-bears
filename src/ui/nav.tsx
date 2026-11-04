@@ -21,11 +21,12 @@ import { useState    } from 'react';                // What: Use State. Why: The
  *
  * @summary
  * The site's sticky top bar: the brand, which returns to the home page, a link
- * to each page, and a toggle that opens those links as a menu on a phone,
- * where the menu also offers the girls' social profiles, the main site, and
- * the tagline over a dimmed page. The link for the current page is marked.
- * It's led by a skip link, the page's first stop, that jumps a keyboard user
- * past the bar to the main content. Every page renders it above its content.
+ * to each page, and a toggle that opens those links as a menu at 640px wide
+ * and below, where the menu also offers the girls' social profiles, the main
+ * site, and the tagline over a dimmed page. The link for the current page is
+ * marked. It's led by a skip link, the page's first stop, that jumps a
+ * keyboard user past the bar to the main content. Every page renders it above
+ * its content.
  *
  * Sections:
  *  - Constants
@@ -41,7 +42,7 @@ import { useState    } from 'react';                // What: Use State. Why: The
 
 // #region Constants
 
-const NAV_LIN_ARR = [ // What: Navigation Link Array. Why: The bar links to every page, in a set order. How: Each row names a page's path and the link's label.
+const NAV_LIN_ARR = [ // What: Navigation Link Array. Why: The bar links to the site's main pages, in a set order. How: Each row names a page's path and the link's label.
 
 
 	{ labStr : 'Home',         patStr : '/'        }, // What: Home Link Row. Why: The home page is where a visitor starts. How: This links to the root path.
@@ -116,9 +117,9 @@ function modCliFun ( cliEveObj : React.MouseEvent< HTMLAnchorElement > ) : boole
  * NavBarCom = Navigation Bar Component
  *
  * @summary
- * Renders the bar. On a phone the links sit in a menu the toggle opens, and
- * choosing any link closes it, even one opening in a new tab; the toggle
- * reports the menu's state through aria-expanded and the menu carries
+ * Renders the bar. At 640px wide and below the links sit in a menu the toggle
+ * opens, and choosing any link closes it, even one opening in a new tab; the
+ * toggle reports the menu's state through aria-expanded and the menu carries
  * data-mobile-menu-open while open. React Router's NavLink marks the link
  * whose route matches with aria-current, which the bar's stylesheet styles,
  * and the Home link matches only the root path exactly, since every path
@@ -132,12 +133,12 @@ function modCliFun ( cliEveObj : React.MouseEvent< HTMLAnchorElement > ) : boole
  * link is announced by the name alone, and the links sit in a navigation
  * landmark labelled Main, so screen readers can tell it from the footer's.
  *
- * On a phone the open menu also shows a row of the girls' six profiles, a link
- * to the main site, and the tagline, each row fading in after the last, over a
- * scrim that dims the page. While it's open the rest of the page is inert, so
- * keyboard and screen reader users stay in the bar; tapping the scrim closes
- * it, Escape closes it and returns focus to the toggle, and a screen widened
- * past the phone layout closes it, since its toggle is gone.
+ * At those widths the open menu also shows a row of the girls' six profiles, a
+ * link to the main site, and the tagline, each row fading in after the last,
+ * over a scrim that dims the page. While it's open the rest of the page is
+ * inert, so keyboard and screen reader users stay in the bar; tapping the
+ * scrim closes it, Escape closes it and returns focus to the toggle, and a
+ * screen widened past the phone layout closes it, since its toggle is gone.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -309,7 +310,7 @@ function NavBarCom () : React.JSX.Element {
 						aria-label='Toggle menu'
 
 						onClick={ () => setMenOpeBoo( ( preOpeBoo ) => !preOpeBoo ) }
-					>{ /* What: Navigation Toggle Button Element. Why: On a phone the links sit in a menu. How: This opens or closes it, tells screen readers whether it's open through aria-expanded, and turns its three bars into a cross while it is. */ }
+					>{ /* What: Navigation Toggle Button Element. Why: At 640px wide and below the links sit in a menu. How: This opens or closes it, tells screen readers whether it's open through aria-expanded, and turns its three bars into a cross while it is. */ }
 
 
 						<span className={ cssModObj.togBarSpa } />{ /* What: Toggle Bar Span Element. Why: The toggle draws as three bars. How: This is the top bar. */ }
@@ -329,7 +330,7 @@ function NavBarCom () : React.JSX.Element {
 						data-mobile-menu-open={ menOpeBoo || undefined } // What: Mobile Menu Open Flag. Why: On a phone the links show only while the menu is open. How: This marks the nav while menOpeBoo is true, and drops the attribute otherwise.
 
 						aria-label='Main'
-					>{ /* What: Navigation Links Nav Element. Why: The page links sit in a row on wide screens and drop down as the menu on a phone, and the bar's navigation landmark needs a label to tell it from the footer's. How: This holds a link to each page, labelled Main, shown on a phone only while it carries data-mobile-menu-open. */ }
+					>{ /* What: Navigation Links Nav Element. Why: The page links sit in a row above 640px wide and drop down as the menu at 640px and below, and the bar's navigation landmark needs a label to tell it from the footer's. How: This holds a link to each page, labelled Main, shown on a phone only while it carries data-mobile-menu-open. */ }
 
 
 						{ NAV_LIN_ARR.map( ( linRecObj, linIndNum ) => ( // What: Page Link Map. Why: Each page gets a link. How: This renders one link per row, with its place in the list.
@@ -365,7 +366,7 @@ function NavBarCom () : React.JSX.Element {
 
 							<p className={ cssModObj.menEyePar }>Follow Lilah & Norah</p>{ /* What: Menu Eyebrow Paragraph Element. Why: The icons need a word on what they're for. How: This labels them in small uppercase letters. */ }
 
-							<div className={ cssModObj.menSocDiv }>{ /* What: Menu Social Div Element. Why: Each of the girls' profiles is one tap away from any page. How: This sets the six icons in a row that wraps. */ }
+							<div className={ cssModObj.menSocDiv }>{ /* What: Menu Social Div Element. Why: Each of the girls' profiles is one tap away from any page. How: This sets the six icons in a row, wrapping onto two lines at about 340px wide and below. */ }
 
 
 								{ SOC_PRO_ARR.map( ( socProObj ) => ( // What: Profile Icon Map. Why: Each profile gets an icon. How: This renders one link per row of SOC_PRO_ARR.
@@ -460,7 +461,7 @@ function NavBarCom () : React.JSX.Element {
 
 // #region Exports
 
-export { NavBarCom }; // What: Named Exports. Why: Every page renders the bar above its content. How: This exports NavBarCom.
+export { NavBarCom }; // What: Named Export. Why: Every page renders the bar above its content. How: This exports NavBarCom.
 
 // #endregion Exports
 

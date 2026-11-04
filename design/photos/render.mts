@@ -149,7 +149,7 @@ for ( const phoRecObj of PHO_REC_ARR ) { // What: Photo Record Loop. Why: Each o
 		return { // What: Encode Result Return. Why: Node writes the file and records its size. How: This hands back the WebP's base64 data, its height, and its width.
 
 
-			b64Str : outCanEle.toDataURL( 'image/webp', quaValNum ).split( ',' )[ 1 ], // What: Base64 String. Why: Image data can only cross back from the page as text. How: This encodes the canvas as WebP and keeps the data after the data URL's comma.
+			b64Str : outCanEle.toDataURL( 'image/webp', quaValNum ).split( ',' )[ 1 ], // What: Base64 String. Why: The page hands the image back as text. How: This encodes the canvas as WebP and keeps the data after the data URL's comma.
 			heiNum : outHeiNum,                                                        // What: Height Number. Why: The sizes file records the photo's height. How: This is the canvas's height.
 			widNum : outWidNum                                                         // What: Width Number. Why: The sizes file records the photo's width. How: This is the canvas's width.
 
@@ -250,7 +250,7 @@ ${ sizLinArr.join( '\n' ) }
 
 // #region Exports
 
-export { PHO_SIZ_OBJ }; // What: Named Exports. Why: The page's img elements read the photo sizes. How: This exports the sizes object.
+export { PHO_SIZ_OBJ }; // What: Named Export. Why: The page's img elements read the photo sizes. How: This exports the sizes object.
 
 // #endregion Exports
 

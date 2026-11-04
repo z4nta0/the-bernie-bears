@@ -74,11 +74,11 @@ const MAI_URL_STR = 'https://theberniebears.com/';                              
 const PAG_HEA_ARR = [ // What: Page Head Array. Why: Every page's head is checked against what it should say. How: Each row names one page, its title, and its canonical address or null.
 
 
-	{ canStr : LIV_URL_STR,             patStr : '/',             titStr : 'Lilah & Norah, the Bernie Bears | Bernese Mountain Dogs' },
-	{ canStr : `${ LIV_URL_STR }links`, patStr : '/links',        titStr : 'Follow Lilah & Norah | The Bernie Bears'                 },
-	{ canStr : null,                    patStr : '/about',        titStr : 'About Lilah & Norah | The Bernie Bears'                  },
-	{ canStr : null,                    patStr : '/contact',      titStr : 'Contact | The Bernie Bears'                              },
-	{ canStr : null,                    patStr : '/no-such-page', titStr : 'Page Not Found | The Bernie Bears'                       }
+	{ canStr : LIV_URL_STR,             patStr : '/',             titStr : 'Lilah & Norah, the Bernie Bears | Bernese Mountain Dogs' }, // What: Home Head Row. Why: Home is indexed and carries index.html's description. How: This pairs its path with its title and canonical address.
+	{ canStr : `${ LIV_URL_STR }links`, patStr : '/links',        titStr : 'Follow Lilah & Norah | The Bernie Bears'                 }, // What: Social Links Head Row. Why: Social Links is indexed with a description of its own. How: This pairs its path with its title and canonical address.
+	{ canStr : null,                    patStr : '/about',        titStr : 'About Lilah & Norah | The Bernie Bears'                  }, // What: About Head Row. Why: About overlaps the main site and carries noindex. How: This pairs its path with its title and no canonical address.
+	{ canStr : null,                    patStr : '/contact',      titStr : 'Contact | The Bernie Bears'                              }, // What: Contact Head Row. Why: Contact overlaps the main site and carries noindex. How: This pairs its path with its title and no canonical address.
+	{ canStr : null,                    patStr : '/no-such-page', titStr : 'Page Not Found | The Bernie Bears'                       }  // What: Not Found Head Row. Why: The 404 page carries noindex. How: This pairs an address the site doesn't have with its title and no canonical address.
 
 
 ];
@@ -242,7 +242,7 @@ test( 'moving between pages swaps their head tags', async ( { page : curPagObj }
 
 	await heaCheFun( curPagObj, PAG_HEA_ARR[ 0 ] ); // What: Home Head Check. Why: The walk starts from a known head. How: This checks Home's.
 
-	await curPagObj.getByRole( 'navigation', { name : 'Footer' } ).getByRole( 'link', { exact : true, name : 'About' } ).click(); // What: About Link Click. Why: About carries noindex, so Home's description and canonical must go. How: This follows the footer's About link.
+	await curPagObj.getByRole( 'navigation', { name : 'Footer' } ).getByRole( 'link', { exact : true, name : 'About' } ).click(); // What: About Link Click. Why: About carries noindex, so Home's canonical must go. How: This follows the footer's About link.
 
 	await heaCheFun( curPagObj, PAG_HEA_ARR[ 2 ] ); // What: About Head Check. Why: Home's tags must be gone and About's noindex in place. How: This checks About's head.
 

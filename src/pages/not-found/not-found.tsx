@@ -89,7 +89,7 @@ function NotFouCom () : React.JSX.Element {
 
 					<p className={ cssModObj.pagSubPar }>Lilah & Norah sniffed everywhere, but this page has wandered off <span aria-hidden='true'>🐾</span></p>{ /* What: Page Subtitle Paragraph Element. Why: A short line keeps the girls' playful voice. How: This shows it under the heading, ending in a paw print hidden from screen readers. */ }
 
-					<div className={ cssModObj.nofActDiv }>{ /* What: Not-Found Actions Div Element. Why: The visitor needs clear ways onward. How: This holds the two buttons, centered in a row that wraps. */ }
+					<div className={ cssModObj.nofActDiv }>{ /* What: Not-Found Actions Div Element. Why: The visitor needs clear ways onward. How: This holds the two buttons, centered in a row that wraps onto two lines at about 365px wide and below. */ }
 
 
 						<Link
@@ -132,7 +132,7 @@ function NotFouCom () : React.JSX.Element {
 
 // #region Exports
 
-export { NotFouCom }; // What: Named Exports. Why: The router renders the 404 page for every unknown address. How: This exports NotFouCom.
+export { NotFouCom }; // What: Named Export. Why: The router renders the 404 page for every unknown address. How: This exports NotFouCom.
 
 // #endregion Exports
 

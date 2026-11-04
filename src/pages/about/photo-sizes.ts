@@ -53,7 +53,7 @@ const PHO_SIZ_OBJ : Record< string, AboPhsTyp > = { // What: Photo Sizes Object.
 
 // #region Exports
 
-export { PHO_SIZ_OBJ }; // What: Named Exports. Why: The page's img elements read the photo sizes. How: This exports the sizes object.
+export { PHO_SIZ_OBJ }; // What: Named Export. Why: The page's img elements read the photo sizes. How: This exports the sizes object.
 
 // #endregion Exports
 

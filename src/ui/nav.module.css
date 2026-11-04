@@ -407,7 +407,7 @@
 @media ( max-width : 640px ) { /* What: Narrow Navigation Links Nav. Why: The links don't fit the bar on a narrow screen. How: This applies 640px wide and below. */
 
 
-	.navLinNav { /* What: Closed Navigation Links Nav. Why: On a narrow screen the links become a panel below the bar, out of the way until the toggle opens it. How: This stacks them on a white panel across the screen under the bar, scrolling when it's taller than the screen below the bar, faded out a step above its place and hidden while closed, which also keeps its links out of the Tab order. */
+	.navLinNav { /* What: Closed Navigation Links Nav. Why: On a narrow screen the links become a panel below the bar, out of the way until the toggle opens it. How: This stacks them on a white panel across the screen under the bar, scrolling when it's taller than the screen below the bar, faded out a step above its place and hidden while closed, which also keeps its links out of the Tab order, easing its fade and rise on the accelerating curve as it closes and on the decelerating curve as it opens. */
 
 
 		background     : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
@@ -628,7 +628,7 @@
 
 /* #region menSocDiv */
 
-.menSocDiv { /* What: Menu Social Div. Why: The six icons sit together as one row. How: This sets them in a row that wraps on the narrowest screens. */
+.menSocDiv { /* What: Menu Social Div. Why: The six icons sit together as one row. How: This sets them in a row, wrapping onto two lines at about 340px wide and below. */
 
 
 	display   : flex;

@@ -85,7 +85,7 @@ function AppRooCom () : React.JSX.Element {
 				position      : 'relative',
 				zIndex        : 1
 			}}
-		>{ /* What: App Wrapper Div Element. Why: The bar, the page, and the footer stack in one column at least as tall as the screen. How: This lays them out as a flex column, above any decoration the page draws behind it. */ }
+		>{ /* What: App Wrapper Div Element. Why: The bar, the page, and the footer stack in one column at least as tall as the screen. How: This lays them out as a flex column in a stacking context of its own, so the bar's and scrim's layers are judged inside it. */ }
 
 
 			<NavBarCom />{ /* What: Navigation Bar Component. Why: Every page starts with the shared bar. How: This renders it above the page. */ }
@@ -168,7 +168,7 @@ function AppRooCom () : React.JSX.Element {
 
 // #region Exports
 
-export { AppRooCom }; // What: Named Exports. Why: main.tsx is the sole consumer, mounting this as the site's root. How: This exports AppRooCom.
+export { AppRooCom }; // What: Named Export. Why: The site's entry point mounts this as the root. How: This exports AppRooCom.
 
 // #endregion Exports
 
