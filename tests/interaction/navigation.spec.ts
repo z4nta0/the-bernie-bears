@@ -384,7 +384,7 @@ test( 'a hash added to the address lands on its target, not a saved position', a
 
 		winRecObj.__scrTopArr = []; // What: Scroll Top Log Reset. Why: Each page starts with nothing logged. How: This sets the log to an empty list.
 
-		window.scrollTo = new Proxy( window.scrollTo, { apply : ( tarFun, thiObj, argLisArr ) => { winRecObj.__scrTopArr.push( argLisArr[ 0 ]?.top ); return Reflect.apply( tarFun, thiObj, argLisArr ); } } ); // What: Scroll Call Wrapper. Why: The scroll hook restores a saved position through window.scrollTo, while its hash jump scrolls the target into view instead. How: This logs each call's top before passing the call on unchanged.
+		window.scrollTo = new Proxy( window.scrollTo, { apply : ( appTarFun, appThiObj, argLisArr ) => { winRecObj.__scrTopArr.push( argLisArr[ 0 ]?.top ); return Reflect.apply( appTarFun, appThiObj, argLisArr ); } } ); // What: Scroll Call Wrapper. Why: The scroll hook restores a saved position through window.scrollTo, while its hash jump scrolls the target into view instead. How: This logs each call's top before passing the call on unchanged.
 
 
 	} );

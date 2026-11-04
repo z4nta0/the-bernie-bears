@@ -289,10 +289,10 @@ test( 'the structured data points to the main site and matches the pages', async
 
 
 
-test( 'the raw page carries the home title and description for script-free readers', async ( { request : reqConObj } ) => { // What: Raw Head Test. Why: Link checkers and many crawlers read the page without running the site's script, so the title and description have to be in index.html itself. How: This fetches the root as raw HTML and checks both.
+test( 'the raw page carries the home title and description for script-free readers', async ( { request : reqCotObj } ) => { // What: Raw Head Test. Why: Link checkers and many crawlers read the page without running the site's script, so the title and description have to be in index.html itself. How: This fetches the root as raw HTML and checks both.
 
 
-	const rawHtmStr = await ( await reqConObj.get( '/' ) ).text();                                        // What: Raw HTML String. Why: The page is read the way a script-free reader reads it. How: This fetches the root's HTML without a browser.
+	const rawHtmStr = await ( await reqCotObj.get( '/' ) ).text();                                        // What: Raw HTML String. Why: The page is read the way a script-free reader reads it. How: This fetches the root's HTML without a browser.
 	const titTexStr = rawHtmStr.match( /<title>([^<]*)<\/title>/ )?.[ 1 ].replace( /&amp;/g, '&' ) ?? ''; // What: Title Text String. Why: The raw title is checked as written. How: This reads the title element's text and decodes its ampersand.
 
 
@@ -307,10 +307,10 @@ test( 'the raw page carries the home title and description for script-free reade
 
 
 
-test( 'robots.txt welcomes crawlers and names the sitemap', async ( { request : reqConObj } ) => { // What: Robots File Test. Why: Crawlers read robots.txt before anything else. How: This fetches it and checks its rules and sitemap line.
+test( 'robots.txt welcomes crawlers and names the sitemap', async ( { request : reqCotObj } ) => { // What: Robots File Test. Why: Crawlers read robots.txt before anything else. How: This fetches it and checks its rules and sitemap line.
 
 
-	const robTexStr = await ( await reqConObj.get( '/robots.txt' ) ).text(); // What: Robots Text String. Why: The file's rules are checked as served. How: This fetches and reads it.
+	const robTexStr = await ( await reqCotObj.get( '/robots.txt' ) ).text(); // What: Robots Text String. Why: The file's rules are checked as served. How: This fetches and reads it.
 
 
 	expect( robTexStr ).toContain( 'User-agent: *\nAllow: /' ); // What: Allow All Assertion. Why: Every crawler may read the site, since the unwanted pages keep themselves out with noindex. How: This checks the one rule group.
@@ -322,10 +322,10 @@ test( 'robots.txt welcomes crawlers and names the sitemap', async ( { request : 
 
 
 
-test( 'the sitemap lists Home and Social Links alone', async ( { request : reqConObj } ) => { // What: Sitemap Test. Why: The sitemap should list exactly the indexed pages, by their canonical addresses. How: This fetches it and compares its addresses with the indexed rows.
+test( 'the sitemap lists Home and Social Links alone', async ( { request : reqCotObj } ) => { // What: Sitemap Test. Why: The sitemap should list exactly the indexed pages, by their canonical addresses. How: This fetches it and compares its addresses with the indexed rows.
 
 
-	const sitXmlStr = await ( await reqConObj.get( '/sitemap.xml' ) ).text(); // What: Sitemap XML String. Why: The file's addresses are checked as served. How: This fetches and reads it.
+	const sitXmlStr = await ( await reqCotObj.get( '/sitemap.xml' ) ).text(); // What: Sitemap XML String. Why: The file's addresses are checked as served. How: This fetches and reads it.
 
 
 	expect( [ ...sitXmlStr.matchAll( /<loc>([^<]+)<\/loc>/g ) ].map( ( locMatArr ) => locMatArr[ 1 ] ) ).toEqual( PAG_HEA_ARR.filter( ( heaRowObj ) => heaRowObj.canStr !== null ).map( ( heaRowObj ) => heaRowObj.canStr ) ); // What: Indexed Pages Assertion. Why: Listing a noindex page would contradict it, and missing an indexed page slows its discovery. How: This checks the sitemap's addresses equal the indexed pages' canonical addresses, in order.
@@ -362,10 +362,10 @@ test( 'the social preview tags are complete', async ( { page : curPagObj } ) => 
 
 
 
-test( 'the social preview image is a 1,200x630 JPEG under 300 KB', async ( { request : reqConObj } ) => { // What: Preview Image Test. Why: The social tags promise a 1,200x630 card small enough for WhatsApp. How: This fetches the image, checks its byte count, and reads its size from the JPEG's frame header.
+test( 'the social preview image is a 1,200x630 JPEG under 300 KB', async ( { request : reqCotObj } ) => { // What: Preview Image Test. Why: The social tags promise a 1,200x630 card small enough for WhatsApp. How: This fetches the image, checks its byte count, and reads its size from the JPEG's frame header.
 
 
-	const imaResObj = await reqConObj.get( '/og-image.jpg' ); // What: Image Response Object. Why: The image has to exist where the tags point. How: This fetches it from the site.
+	const imaResObj = await reqCotObj.get( '/og-image.jpg' ); // What: Image Response Object. Why: The image has to exist where the tags point. How: This fetches it from the site.
 	const jpeBufObj = await imaResObj.body();                 // What: JPEG Buffer Object. Why: The image's size is written in its frame header. How: This reads the response bytes.
 
 	let segOffNum = 2; // What: Segment Offset Number. Why: A JPEG's size sits in its frame segment, after a varying run of other segments. How: This starts just past the file's opening marker.
@@ -386,7 +386,7 @@ test( 'the social preview image is a 1,200x630 JPEG under 300 KB', async ( { req
 
 
 
-test( 'every icon the head links to is served at its size', async ( { page : curPagObj, request : reqConObj } ) => { // What: Icons Test. Why: Browsers and apps fetch the icons the head names, and a missing or wrong-sized one shows a blank or blurry mark. How: This reads every icon link and checks each file exists and, for PNGs, has the size its link promises.
+test( 'every icon the head links to is served at its size', async ( { page : curPagObj, request : reqCotObj } ) => { // What: Icons Test. Why: Browsers and apps fetch the icons the head names, and a missing or wrong-sized one shows a blank or blurry mark. How: This reads every icon link and checks each file exists and, for PNGs, has the size its link promises.
 
 
 	await curPagObj.goto( '/' ); // What: Home Load Call. Why: The icon links live in the page's head. How: This opens the home page.
@@ -401,7 +401,7 @@ test( 'every icon the head links to is served at its size', async ( { page : cur
 	for ( const [ icoHreStr, icoSizStr ] of icoLinArr ) { // What: Icon Check Loop. Why: Every linked icon has to be real. How: This fetches each one in turn.
 
 
-		const icoResObj = await reqConObj.get( icoHreStr ); // What: Icon Response Object. Why: The icon has to exist where its link points. How: This fetches it.
+		const icoResObj = await reqCotObj.get( icoHreStr ); // What: Icon Response Object. Why: The icon has to exist where its link points. How: This fetches it.
 		const icoBufObj = await icoResObj.body();           // What: Icon Buffer Object. Why: A PNG's size is written in its header. How: This reads the bytes.
 
 
