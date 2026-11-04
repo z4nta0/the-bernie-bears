@@ -300,7 +300,7 @@ function HomPagCom () : React.JSX.Element {
 
 // #region Exports
 
-export { HomPagCom }; // What: Named Export. Why: The home route renders this page. How: This exports HomPagCom.
+export { HomPagCom }; // What: Named Export. Why: The Home route renders this page. How: This exports HomPagCom.
 
 // #endregion Exports
 
