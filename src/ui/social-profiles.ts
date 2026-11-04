@@ -5,10 +5,9 @@
  * social-profiles.ts = Social Profiles
  *
  * @summary
- * The girls' six social profiles, in the order the site lists them: the
- * Social Links page builds a card from each, and the phone menu a row of
- * icons. Keeping them in one place means a changed handle or address is
- * changed once for both.
+ * The girls' six social profiles, in the order the site lists them. Keeping
+ * them in one place means a changed handle or address is changed once for
+ * every file that reads them.
  *
  * Sections:
  *  - Constants
@@ -32,8 +31,7 @@
  * 24 by 24 SVG path from Simple Icons (CC0). Every row shares the same shape,
  * so its fields carry no comments of their own:
  * - `bacStr` (String): Background String, the icon tile's pale tint.
- * - `colStr` (String): Color String, the profile's brand color, used for a
- *   card's stripe, icon, handle, and arrow, and for the menu's icon.
+ * - `colStr` (String): Color String, the profile's brand color.
  * - `desStr` (String): Description String, the card's sentence.
  * - `hanStr` (String): Handle String, the account name shown.
  * - `icoStr` (String): Icon String, the icon's SVG path data.

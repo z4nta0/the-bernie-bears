@@ -82,7 +82,7 @@
 
 }
 
-.navScrDiv { /* What: Navigation Scrim Div. Why: The open phone menu should stand apart from the page, and a tap anywhere on the page should close it. How: This covers the screen under the bar in the scrim color, hidden until the menu opens, fading out as it closes and only then leaving the page clickable. */
+.navScrDiv { /* What: Navigation Scrim Div. Why: The open phone menu should stand apart from the page, and a tap anywhere on the page should close it. How: This covers the screen under the bar in the scrim color, hidden until the menu opens, fading out on the accelerating curve as it closes and only then leaving the page clickable. */
 
 
 	background : oklch( from var( --scr-mai-col ) l c h / var( --cdn-pow-003-rec ) );                          /* Scrim Main Color = #2c2c2c, Core-Design-Number to the Power of 3 Reciprocal ~= 0.430 */
@@ -96,7 +96,7 @@
 
 
 }
-.navScrDiv[data-mobile-menu-open] { /* What: Open Navigation Scrim Div. Why: The page dims as the menu opens. How: This fades the scrim in, showing it at once so a tap can close the menu straight away. */
+.navScrDiv[data-mobile-menu-open] { /* What: Open Navigation Scrim Div. Why: The page dims as the menu opens. How: This fades the scrim in on the decelerating curve, showing it at once so a tap can close the menu straight away. */
 
 
 	opacity    : 1;

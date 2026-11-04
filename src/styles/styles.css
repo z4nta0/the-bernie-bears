@@ -472,7 +472,7 @@ body { /* What: Page Body. Why: Every page shares one font, color, and backgroun
 h1,
 h2,
 h3,
-h4 { /* What: Headings. Why: Every heading shares the script font. How: This sets them in Dancing Script, in the deep lavender, with tight lines. */
+h4 { /* What: Headings. Why: The page's headings share the script font. How: This sets them in Dancing Script, in the deep lavender, with tight lines. */
 
 
 	color       : var( --acc-dar-col ); /* Accent Dark Color ~= #7e5b93 */
