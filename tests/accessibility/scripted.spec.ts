@@ -27,8 +27,9 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The helpers th
  * document, and lands only on stops that are on screen, not covered by
  * anything else, and visibly changed by focus. Reflow: at 320px wide, WCAG's
  * narrowest reflow width, nothing scrolls sideways. Motion: with reduced
- * motion requested, no animation or transition plays while the state opens. A
- * names or keyboard failure lists every problem found, by element.
+ * motion requested, no animation or transition is still held once the state
+ * has opened. A names or keyboard failure lists every problem found, by
+ * element.
  *
  * Sections:
  *  - Constants
@@ -459,7 +460,7 @@ for ( const staRecObj of STA_REC_ARR ) { // What: State Test Loop. Why: Every ch
 
 
 
-	test( `${ staRecObj.ideStr } plays no motion under reduced motion`, async ( { page : curPagObj } ) => { // What: Reduced Motion Test. Why: Visitors who ask for less motion shouldn't see the page animate. How: This requests reduced motion, opens the state, and lists anything that played.
+	test( `${ staRecObj.ideStr } plays no motion under reduced motion`, async ( { page : curPagObj } ) => { // What: Reduced Motion Test. Why: Visitors who ask for less motion shouldn't see the page animate. How: This requests reduced motion, opens the state, and lists any animation or transition the page still holds once it has opened.
 
 
 		await curPagObj.emulateMedia( { reducedMotion : 'reduce' } ); // What: Reduced Motion Emulation. Why: The preference has to be set before the page loads. How: This makes the page match prefers-reduced-motion: reduce.

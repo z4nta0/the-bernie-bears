@@ -18,14 +18,14 @@ import type { Page    } from '@playwright/test'; // What: Page. Why: The helpers
  * menu.spec.ts = Menu Spec
  *
  * @summary
- * Checks the phone menu's layer behavior in whichever engine the project
- * runs. While the menu is open, the page behind it is dimmed by a scrim and
- * inert, so keyboard and screen reader users stay in the bar, and the menu
- * offers a row of the girls' six profiles. The usual ways out each close it
- * and give the page back: tapping the scrim, pressing Escape, which also
- * returns focus to the toggle, tapping the brand, which also goes home, and
- * widening the screen past the phone layout, which hides the toggle. Choosing
- * any link in it closes it too, even one opening in a new tab.
+ * Checks the phone menu's layer behavior in whichever engine the project runs.
+ * While the menu is open, the page behind it is dimmed by a scrim and inert,
+ * so keyboard and screen reader users stay in the bar, and the menu offers a
+ * row of the girls' six profiles. The usual ways out each close it and give
+ * the page back: tapping the scrim, pressing Escape, which also returns focus
+ * to the toggle, tapping the brand, which also goes home, and widening the
+ * screen past the phone layout, which hides the toggle. Choosing a link of
+ * each kind in it closes it too, even one opening in a new tab.
  *
  * Sections:
  *  - Constants
