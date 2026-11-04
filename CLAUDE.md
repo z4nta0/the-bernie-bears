@@ -454,6 +454,8 @@ passes on `close-out`.
       cartoon's CSS height is `auto`, since its new height attribute
       otherwise overrode its square aspect ratio. Every changed pixel in the
       refreshed baselines sits inside a photo.
+      Raised to three times on 2026-11-03, per the user-level image rule:
+      353 KB, with the portrait held at its 1,080px original, never enlarged.
     - **SEO**: done 2026-10-11. Each page renders its own head tags, which
       React 19 moves into the head and removes when the page changes: Home
       a canonical address, Social Links ("Follow Lilah & Norah | The Bernie
@@ -610,6 +612,13 @@ bar's paw) when waiting for the page to settle.
   `vite preview` on port 5203 with the headers applied, and fails on any
   policy violation or a new tab link without `noopener`. No browser key ships,
   so none is allowed.
+  - **Exception, `noopener` without `noreferrer`** (confirmed by the user
+    2026-11-03): the security rule has every new tab link carry both, but
+    this site keeps `rel='noopener'` alone, as decided 2026-10-11 (see step
+    7), so the main site's and the platforms' analytics see the visits this
+    site sends. The suite checks `noopener` only, and the `Referrer-Policy`
+    (`strict-origin-when-cross-origin`) still sends other sites the origin,
+    never a page's full address.
 - **Chromium runs as full headless Chrome** (`channel : 'chromium'`), per the
   user-level testing rule; its baselines were refreshed for the switch on
   2026-11-03, the change being text antialiasing and soft shadows only.
