@@ -49,8 +49,10 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The helpers dr
  * Every page the bar links to, in the bar's order, each one both a starting
  * point and a destination. Every row shares one shape, so its fields carry no
  * comments of their own:
+ *
  * - `labStr` (String): Label String, the page's link text in the bar and the
  *   footer.
+ *
  * - `patStr` (String): Path String, the route the link goes to.
  *
  * @author z4nta0 <https://github.com/z4nta0>

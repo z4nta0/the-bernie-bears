@@ -58,12 +58,16 @@ type PhoRecTyp = { pagStr : string, souStr : string, squBoo : boolean, widNum : 
  * @summary
  * Every photo the site shows. Every row shares the PhoRecTyp shape, so its
  * fields carry no comments of their own:
+ *
  * - `pagStr` (String): Page String, the folder under src/pages the photo and
  *   its sizes file are written into.
+ *
  * - `souStr` (String): Source String, the original's file name in this
  *   folder; the WebP takes the same name.
+ *
  * - `squBoo` (Boolean): Square Boolean, true when the page shows only the
  *   photo's centered square, so the rest is cropped away.
+ *
  * - `widNum` (Number): Width Number, three times the widest the site shows
  *   the photo: the hero portrait's frame reaches about 391px, the cartoon
  *   about 303px, and each sister's circle about 130px.

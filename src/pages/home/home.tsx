@@ -45,8 +45,11 @@ import { PHO_SIZ_OBJ } from './photo-sizes.ts'; // What: Photo Sizes Object. Why
  * The four cards on what life with the girls is like, in the order they show.
  * Every row shares the same shape, so its fields carry no comments of their
  * own:
+ *
  * - `desStr` (String): Description String, the card's sentence.
+ *
  * - `emoStr` (String): Emoji String, the card's decorative emoji.
+ *
  * - `titStr` (String): Title String, the card's heading.
  *
  * @author z4nta0 <https://github.com/z4nta0>
@@ -56,13 +59,10 @@ import { PHO_SIZ_OBJ } from './photo-sizes.ts'; // What: Photo Sizes Object. Why
 const FEA_CAR_ARR = [ // What: Feature Card Array. Why: The home page sums up life with the girls in four cards. How: Each row holds a card's emoji, title, and sentence, rendered in this order.
 
 
-	{ desStr : 'From costume adventures to comedic hijinks, Lilah and Norah never fail to entertain.', emoStr : '🎭', titStr : 'Fun & Silly Videos' }, // What: Silly Videos Card. Why: The girls' videos are a big part of what they share. How: This card leads the row.
-
-	{ desStr : "Giving bear hugs is what Lilah & Norah do best, and they've got plenty to go around for everyone.", emoStr : '🐻', titStr : 'Bear Hugs' }, // What: Bear Hugs Card. Why: Bear hugs are the girls' signature. How: This card follows the videos.
-
-	{ desStr : 'These girls take their wardrobe seriously. Bear ears? Bunny ears? Yes to all of it.', emoStr : '👗', titStr : 'Fabulous Outfits' }, // What: Fabulous Outfits Card. Why: The girls are known for their costumes. How: This card follows the bear hugs.
-
-	{ desStr : 'Snow days, garden romps, and everything in between: life is better outside.', emoStr : '🌿', titStr : 'Outdoor Adventures' } // What: Outdoor Adventures Card. Why: Much of their content happens outside. How: This card closes the row.
+	{ desStr : 'From costume adventures to comedic hijinks, Lilah and Norah never fail to entertain.',              emoStr : '🎭', titStr : 'Fun & Silly Videos' }, // What: Silly Videos Card. Why: The girls' videos are a big part of what they share. How: This card leads the row.
+	{ desStr : "Giving bear hugs is what Lilah & Norah do best, and they've got plenty to go around for everyone.", emoStr : '🐻', titStr : 'Bear Hugs'          }, // What: Bear Hugs Card. Why: Bear hugs are the girls' signature. How: This card follows the videos.
+	{ desStr : 'These girls take their wardrobe seriously. Bear ears? Bunny ears? Yes to all of it.',               emoStr : '👗', titStr : 'Fabulous Outfits'   }, // What: Fabulous Outfits Card. Why: The girls are known for their costumes. How: This card follows the bear hugs.
+	{ desStr : 'Snow days, garden romps, and everything in between: life is better outside.',                       emoStr : '🌿', titStr : 'Outdoor Adventures' }  // What: Outdoor Adventures Card. Why: Much of their content happens outside. How: This card closes the row.
 
 
 ];
@@ -141,6 +141,8 @@ function HomPagCom () : React.JSX.Element {
 							laughter, love, bear hugs, and the occasional dramatic outfit to your feed. <span aria-hidden='true'>🐾</span>
 						</p>
 
+
+
 						<div className={ cssModObj.herActDiv }>{ /* What: Hero Actions Div Element. Why: The two main ways onward sit together. How: This sets the buttons in a row, wrapping onto two lines at about 400px wide and below. */ }
 
 
@@ -163,6 +165,7 @@ function HomPagCom () : React.JSX.Element {
 
 
 					</div>
+
 
 
 					<div className={ cssModObj.herVisDiv }>{ /* What: Hero Visual Div Element. Why: The portrait sits on a soft blob with the girls' names floating beside it. How: This holds the blob, the framed portrait, and the two badges. */ }

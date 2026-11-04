@@ -167,6 +167,7 @@ function NavBarCom () : React.JSX.Element {
 	const auxCloFun = ( auxEveObj : React.MouseEvent ) => { if ( auxEveObj.button === 1 ) cloMenFun(); }; // What: Auxiliary Close Function. Why: A middle click opens a link in a new tab through the auxclick event, which no click handler sees. How: This closes the menu when the middle button sent it.
 
 
+
 	useEffect( () => { // What: Open Menu Effect. Why: The open menu sits over a dimmed page, so keyboard and screen reader users should stay in the bar until it closes, and it needs the usual ways out. How: While the menu is open, this makes the bar's siblings inert and listens for Escape and resizing, and its cleanup undoes both.
 
 
@@ -193,6 +194,7 @@ function NavBarCom () : React.JSX.Element {
 
 
 		};
+
 
 
 		const onResWinFun = () => { if ( !togButEle.getClientRects().length ) setMenOpeBoo( false ); }; // What: On Resize Window Function. Why: A screen widened past the phone layout hides the toggle, which would leave the page inert with no way to close the menu. How: This closes the menu once the toggle has no box.
@@ -365,6 +367,8 @@ function NavBarCom () : React.JSX.Element {
 
 							<p className={ cssModObj.menEyePar }>Follow Lilah & Norah</p>{ /* What: Menu Eyebrow Paragraph Element. Why: The icons need a word on what they're for. How: This labels them in small uppercase letters. */ }
 
+
+
 							<div className={ cssModObj.menSocDiv }>{ /* What: Menu Social Div Element. Why: Each of the girls' profiles is one tap away from any page. How: This sets the six icons in a row, wrapping onto two lines at about 340px wide and below. */ }
 
 
@@ -417,6 +421,8 @@ function NavBarCom () : React.JSX.Element {
 
 
 							</div>
+
+
 
 							<a
 								className={ cssModObj.menOffAnc }

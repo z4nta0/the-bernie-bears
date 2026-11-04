@@ -47,13 +47,20 @@ import { usePagDesFun } from '../../ui/page-description.ts'; // What: Use Page D
  * The shop's row has the same shape, with its colors read from the theme and
  * its icon a plain bag drawn for this page, so its fields carry no comments
  * of their own beyond the colors' token values:
+ *
  * - `bacStr` (String): Background String, the icon tile's pale tint.
+ *
  * - `colStr` (String): Color String, the card's stripe, icon, handle, and
  *   arrow color.
+ *
  * - `desStr` (String): Description String, the card's sentence.
+ *
  * - `hanStr` (String): Handle String, the address shown.
+ *
  * - `icoStr` (String): Icon String, the icon's SVG path data.
+ *
  * - `plaStr` (String): Platform String, the card's name.
+ *
  * - `urlStr` (String): URL String, the card's address.
  *
  * @author z4nta0 <https://github.com/z4nta0>
@@ -68,14 +75,13 @@ const SOC_LIN_ARR = [ // What: Social Link Array. Why: The page lists every plac
 	{ // What: Shop Card. Why: The brand's own store is where fans can support the girls, and this site exists to promote it. How: This card links to the main site's shop.
 
 
-		bacStr : 'var( --acs-tin-col )', // Accent-Secondary Tint Color = #ddeadc
-		colStr : 'var( --acs-dar-col )', // Accent-Secondary Dark Color ~= #4f6f4e
-		hanStr : 'theberniebears.com',
-		plaStr : 'Shop',
-		urlStr : 'https://theberniebears.com/collections/all',
-
+		bacStr : 'var( --acs-tin-col )',                                                                                 // Accent-Secondary Tint Color = #ddeadc
+		colStr : 'var( --acs-dar-col )',                                                                                 // Accent-Secondary Dark Color ~= #4f6f4e
 		desStr : "Blankets, tees, bags, and more for Bernie lovers, from The Bernie Bears' official store.",
-		icoStr : 'M7 7V6a5 5 0 0 1 10 0v1h-2V6a3 3 0 0 0-6 0v1zM3 7h18l-1.3 14.2A2 2 0 0 1 17.7 23H6.3a2 2 0 0 1-2-1.8z'
+		hanStr : 'theberniebears.com',
+		icoStr : 'M7 7V6a5 5 0 0 1 10 0v1h-2V6a3 3 0 0 0-6 0v1zM3 7h18l-1.3 14.2A2 2 0 0 1 17.7 23H6.3a2 2 0 0 1-2-1.8z',
+		plaStr : 'Shop',
+		urlStr : 'https://theberniebears.com/collections/all'
 
 
 	}
@@ -158,6 +164,7 @@ function LinPagCom () : React.JSX.Element {
 				</section>
 
 
+
 				<section className={ cssModObj.linCarSec }>{ /* What: Links Cards Section Element. Why: The cards are the page's content. How: This holds the intro line and the list of cards. */ }
 
 
@@ -165,6 +172,8 @@ function LinPagCom () : React.JSX.Element {
 						Whether you love long videos, quick clips, or scrolling through adorable photos,
 						there's a place for every kind of Bernie Bears fan. <span aria-hidden='true'>🐾</span>
 					</p>
+
+
 
 					<div className={ cssModObj.socLisDiv }>{ /* What: Social List Div Element. Why: The cards stack in one column. How: This lays them out. */ }
 

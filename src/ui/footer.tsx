@@ -85,6 +85,8 @@ function SitFooCom () : React.JSX.Element {
 
 				</div>
 
+
+
 				<nav
 					className={ cssModObj.fooNavNav }
 
@@ -134,6 +136,8 @@ function SitFooCom () : React.JSX.Element {
 
 
 				</nav>
+
+
 
 				<p className={ cssModObj.fooCopPar }>© { curYeaNum } The Bernie Bears. Made with <span aria-label='love' role='img'>🩷</span>, bear hugs & lots of treats.</p>{ /* What: Footer Copyright Paragraph Element. Why: The footer ends with the copyright. How: This prints the current year read on each render, with the heart announced as "love". */ }
 
