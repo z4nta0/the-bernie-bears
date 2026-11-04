@@ -137,12 +137,12 @@ for ( const phoRecObj of PHO_REC_ARR ) { // What: Photo Record Loop. Why: Each o
 		outCanEle.width  = outWidNum; // What: Canvas Width Assignment. Why: The canvas has to match the fitted size. How: This sets its width.
 
 
-		const outConObj = outCanEle.getContext( '2d' )!; // What: Output Context Object. Why: Drawing goes through the canvas's 2D context. How: This reads it. // What: Non-Null Note. Why: getContext can return null for an unsupported type. How: A 2D context is always available on a fresh canvas.
+		const outCotObj = outCanEle.getContext( '2d' )!; // What: Output Context Object. Why: Drawing goes through the canvas's 2D context. How: This reads it. // What: Non-Null Note. Why: getContext can return null for an unsupported type. How: A 2D context is always available on a fresh canvas.
 
 
-		outConObj.imageSmoothingQuality = 'high'; // What: Smoothing Quality Assignment. Why: A large downscale should stay sharp without jagged edges. How: This asks for the browser's best resampling.
+		outCotObj.imageSmoothingQuality = 'high'; // What: Smoothing Quality Assignment. Why: A large downscale should stay sharp without jagged edges. How: This asks for the browser's best resampling.
 
-		outConObj.drawImage( souImaEle, ( souImaEle.naturalWidth - kepWidNum ) / 2, ( souImaEle.naturalHeight - kepHeiNum ) / 2, kepWidNum, kepHeiNum, 0, 0, outWidNum, outHeiNum ); // What: Photo Draw Call. Why: The kept part of the original fills the canvas. How: This draws the centered crop, or the whole photo, scaled to the canvas.
+		outCotObj.drawImage( souImaEle, ( souImaEle.naturalWidth - kepWidNum ) / 2, ( souImaEle.naturalHeight - kepHeiNum ) / 2, kepWidNum, kepHeiNum, 0, 0, outWidNum, outHeiNum ); // What: Photo Draw Call. Why: The kept part of the original fills the canvas. How: This draws the centered crop, or the whole photo, scaled to the canvas.
 
 
 
