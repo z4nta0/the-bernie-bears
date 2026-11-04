@@ -189,6 +189,7 @@ type StoInfTyp = { // What: Stop Information Type. Why: The keyboard walk judges
 	covBoo : boolean, // What: Covered Boolean. Why: A stop hidden behind another element can't be seen while focused. How: This is true when something else sits on top of the stop's center.
 	desStr : string,  // What: Description String. Why: A problem should name the element a person would recognize. How: This joins the stop's tag and its label or text.
 	indBoo : boolean, // What: Indicator Boolean. Why: A keyboard user has to see where focus is. How: This is true when focusing the stop changes how it looks.
+	lasBoo : boolean, // What: Last Boolean. Why: Focus staying on a stop ends the walk only at the page's last stop, and anywhere else traps the keyboard. How: This is true when nothing reachable by Tab comes after the stop.
 	ordNum : number,  // What: Order Number. Why: Focus order is compared with document order. How: This is the stop's position among every element in the page.
 	visBoo : boolean  // What: Visible Boolean. Why: A stop off screen leaves a keyboard user lost. How: This is true when the stop has a size and overlaps the viewport.
 
@@ -210,8 +211,9 @@ type StoInfTyp = { // What: Stop Information Type. Why: The keyboard walk judges
  * background, color, and underline), then focusing it again so the walk
  * continues from it. Coverage is judged by asking which element sits at the
  * stop's center: anything other than the stop or one of its own descendants
- * means the stop is hidden behind it. Passed to Playwright's evaluate, so it
- * can't read anything from this file.
+ * means the stop is hidden behind it. The stop counts as the last when no
+ * visible, non-inert element in the tab order comes after it in the document.
+ * Passed to Playwright's evaluate, so it can't read anything from this file.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -221,7 +223,7 @@ type StoInfTyp = { // What: Stop Information Type. Why: The keyboard walk judges
  *
  * @example
  * ```ts
- * page.evaluate(stoInfFun) // => { covBoo, desStr, indBoo, ordNum, visBoo }
+ * page.evaluate(stoInfFun) // => { covBoo, desStr, indBoo, lasBoo, ... }
  * ```
  *
 */
@@ -290,12 +292,33 @@ function stoInfFun () : StoInfTyp | null {
 
 
 
-	return { // What: Stop Information Return. Why: The walk judges each stop outside the page. How: This hands back the stop's coverage, description, indicator, position, and visibility.
+	const folTabArr = [ ...document.querySelectorAll( 'a[href], button, [tabindex]' ) ].filter( ( tabCurEle ) => { // What: Following Tab Array. Why: A stop that holds focus ends the walk only when nothing reachable comes after it. How: This lists the reachable elements later in the document.
+
+
+		const folDocBoo = !!( actCurEle.compareDocumentPosition( tabCurEle ) & Node.DOCUMENT_POSITION_FOLLOWING ); // What: Following Document Boolean. Why: Only elements after the stop matter. How: This is true when the element comes later in the document.
+		const notIneBoo = !tabCurEle.closest( '[inert]' );                                                       // What: Not Inert Boolean. Why: Elements inside inert content can't be reached. How: This checks no ancestor is inert.
+		const shoBoxBoo = tabCurEle.getClientRects().length > 0;                                                 // What: Shown Box Boolean. Why: An element that isn't drawn can't take focus. How: This checks it has a box on the page.
+		const tabOrdBoo = ( tabCurEle as HTMLElement ).tabIndex >= 0;                                            // What: Tab Order Boolean. Why: An element taken out of the tab order can't be reached by Tab. How: This checks its tab index. // What: Type Assertion Note. Why: Every element the selector matches is an HTML element. How: The selector names only HTML links, buttons, and elements with a tab index.
+		const visStyBoo = getComputedStyle( tabCurEle ).visibility === 'visible';                                // What: Visible Style Boolean. Why: A hidden element can't take focus. How: This checks its computed visibility.
+
+		const reaFolBoo = folDocBoo && notIneBoo && shoBoxBoo && tabOrdBoo && visStyBoo; // What: Reachable Following Boolean. Why: All five together mean Tab could still move focus to the element. How: This combines the checks.
+
+
+
+		return reaFolBoo; // What: Reachable Following Return. Why: The filter keeps only elements Tab could still reach. How: This keeps the element when it's reachable and later in the document.
+
+
+	} );
+
+
+
+	return { // What: Stop Information Return. Why: The walk judges each stop outside the page. How: This hands back the stop's coverage, description, indicator, whether it's the last, its position, and its visibility.
 
 
 		covBoo : !!topCurEle && !actCurEle.contains( topCurEle ),                               // What: Covered Boolean. Why: The stop is hidden when something else is on top of it. How: This is true when the top element at its center is neither the stop nor inside it.
 		desStr : `${ actCurEle.tagName.toLowerCase() } "${ stoLabStr.trim().slice( 0, 40 ) }"`, // What: Description String. Why: A problem should name the element a person would recognize. How: This joins the tag with the first 40 characters of its label, ID, or text.
 		indBoo : focSigStr !== bluSigStr,                                                       // What: Indicator Boolean. Why: A keyboard user has to see where focus is. How: This is true when focusing the stop changes how it looks.
+		lasBoo : folTabArr.length === 0,                                                        // What: Last Boolean. Why: Focus staying on a stop ends the walk only at the page's last stop. How: This is true when no reachable element follows it.
 		ordNum : Array.prototype.indexOf.call( document.querySelectorAll( '*' ), actCurEle ),   // What: Order Number. Why: Focus order is compared with document order. How: This is the stop's position among every element in the page.
 		visBoo : visStoBoo                                                                      // What: Visible Boolean. Why: A stop off screen leaves a keyboard user lost. How: This reads whether the stop has a size and overlaps the viewport.
 
@@ -364,11 +387,15 @@ async function keyProFun ( curPagObj : Page, engNamStr : string ) : Promise< str
 		await curPagObj.evaluate( scrSetFun ); // What: Scroll Settled Wait. Why: Some engines scroll a focused field into view a few frames late. How: This waits until the page has stopped scrolling.
 
 
-		const stoInfObj = await curPagObj.evaluate( stoInfFun );                                          // What: Stop Information Object. Why: The stop is described and measured inside the page. How: This runs stoInfFun there.
-		const walEndBoo = !stoInfObj || stoInfObj.desStr === firStoStr || stoInfObj.ordNum === preOrdNum; // What: Walk Ended Boolean. Why: Focus leaving the page, coming back around, or staying put means every stop was visited. How: This checks each in turn, the later two only once a stop exists, so the chain stays inline. // What: Firefox Walk End Note. Why: Firefox moves focus out to its own interface after the last stop but still reports that stop as focused. How: Focus staying on the same stop after a press is read as the walk leaving the page.
+		const stoInfObj = await curPagObj.evaluate( stoInfFun );                                                                  // What: Stop Information Object. Why: The stop is described and measured inside the page. How: This runs stoInfFun there.
+		const walEndBoo = !stoInfObj || stoInfObj.desStr === firStoStr || ( stoInfObj.ordNum === preOrdNum && stoInfObj.lasBoo ); // What: Walk Ended Boolean. Why: Focus leaving the page, coming back around, or staying put on the page's last stop means every stop was visited. How: This checks each in turn, the later two only once a stop exists, so the chain stays inline. // What: Firefox Walk End Note. Why: Firefox moves focus out to its own interface after the last stop but still reports that stop as focused. How: Focus staying on the same stop after a press is read as the walk leaving the page.
 
 
 		if ( walEndBoo ) return proLisArr; // What: Walk End Guard. Why: A walk that reaches its end has gathered the problems found at the stops it visited. How: This returns them, ending the walk.
+
+
+
+		if ( stoInfObj.ordNum === preOrdNum ) return [ ...proLisArr, `${ stoInfObj.desStr } holds focus on a Tab press, a likely keyboard trap` ]; // What: Held Focus Guard. Why: Focus staying on a stop before the page's last one means Tab can't move past it. How: This ends the walk, adding the stop as a likely trap.
 
 
 
