@@ -264,7 +264,7 @@ test( 'the structured data points to the main site and matches the pages', async
 
 
 	const ldjTexStr = await curPagObj.locator( 'script[type="application/ld+json"]' ).textContent() ?? '{}';                                                                                         // What: Linked-Data-JSON Text String. Why: The structured data is read as written in the page. How: This reads the script's text.
-	const socHreArr = await curPagObj.getByRole( 'main' ).locator( 'a[href^="https://"]' ).evaluateAll( ( ancEleArr ) => ancEleArr.map( ( ancCurEle ) => ancCurEle.getAttribute( 'href' ) ?? '' ) ); // What: Social Href Array. Why: The data's profiles have to be the ones the page links to. How: This reads every outside link in the page's content.
+	const socHreArr = await curPagObj.getByRole( 'main' ).locator( 'a[href^="https://"]' ).evaluateAll( ( ancEleArr ) => ancEleArr.map( ( ancCurEle ) => ancCurEle.getAttribute( 'href' ) ?? '' ) ); // What: Social Hypertext-Reference Array. Why: The data's profiles have to be the ones the page links to. How: This reads every outside link in the page's content.
 
 	type LdjNodTyp = { '@id'? : string, '@type'? : string, email? : string, name? : string, publisher? : { '@id' : string }, sameAs? : string[], url? : string }; // What: Linked-Data-JSON Node Type. Why: The checks read a handful of fields from each node. How: This names the ones they read, all optional, since a missing one should fail an assertion rather than the parse.
 

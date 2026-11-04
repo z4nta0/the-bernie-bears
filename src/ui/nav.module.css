@@ -460,7 +460,7 @@
 .navLinAnc { /* What: Navigation Link Anchor. Why: Each link names a page as a soft pill. How: This sets it bold in the body font with pill padding and rounding, easing its hover, press, and focus, and the fill, border, and shadow it takes as the current page's link. */
 
 
-	border-color  : transparent;                               /* What: Resting Border Color. Why: The current page's link draws a cream border, which should fade in rather than ease from the text color an unset border color follows. How: This starts the border's color clear, while the link draws no border until it's current. */
+	border        : var( --bor-wid-bas ) solid transparent;    /* Border Width Base ~= 1.160px */ /* What: Resting Clear Border. Why: The current page's link draws a cream border, which would otherwise appear at once and grow the pill, and should fade in rather than ease from the text color. How: Every link keeps a border of the same width, clear at rest, so becoming current only changes its color, which the transition eases. */
 	border-radius : 999px;
 	color         : var( --tex-sec-col );                      /* Text Secondary Color = #5a5a5a */
 	font-family   : var( --fon-fam-mai );                      /* Font Family Main = 'Nunito', sans-serif */
@@ -483,10 +483,10 @@
 .navLinAnc[aria-current='page'] { /* What: Current Navigation Link Anchor. Why: The link for the page being shown should stand out. How: This fills the pill cream with dark text, a darker cream border, and a soft shadow, winning over the hover look by coming after it. */
 
 
-	background : var( --bac-hig-col );                            /* Background Highlight Color = #ececb6 */
-	border     : var( --bor-wid-bas ) solid var( --bor-str-col ); /* Border Width Base ~= 1.160px, Border Strong Color = #d6d69a */
-	box-shadow : var( --ele-sma-sha );                            /* Elevation Small Shadow, about 0 1.2px 2px */
-	color      : var( --tex-mai-col );                            /* Text Main Color = #2c2c2c */
+	background   : var( --bac-hig-col ); /* Background Highlight Color = #ececb6 */
+	border-color : var( --bor-str-col ); /* Border Strong Color = #d6d69a */
+	box-shadow   : var( --ele-sma-sha ); /* Elevation Small Shadow, about 0 1.2px 2px */
+	color        : var( --tex-mai-col ); /* Text Main Color = #2c2c2c */
 
 
 }
