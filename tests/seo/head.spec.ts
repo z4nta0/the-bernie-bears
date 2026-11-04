@@ -19,7 +19,7 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The head helpe
  * @summary
  * Checks the site's SEO setup in whichever engine the project runs. The site
  * is tertiary to the brand's main site, theberniebears.com, so only Home and
- * Social Links are indexed: each has its own title, a description of 100 to
+ * Social Links are indexed: each has its own title, a description of 120 to
  * 125 characters, and one canonical address on this domain. About, Contact,
  * and the 404 page carry noindex and no canonical link. Every page has exactly
  * one description, index.html's, which Social Links swaps for its own, names
@@ -48,9 +48,9 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The head helpe
 
 // #region Constants
 
-const HOM_DES_STR = 'Meet Lilah and Norah, two Bernese Mountain Dog sisters sharing bear hugs, silly videos, and fluffy fun. Follow along!'; // What: Home Description String. Why: The raw page and the social tags carry the home page's description, and Social Links has to show its own instead. How: This is the description index.html carries.
-const LIV_URL_STR = 'https://theberniebears.dog/';                                                                                           // What: Live URL String. Why: The checks compare the addresses the pages give with the live address. How: This is the site's production root.
-const MAI_URL_STR = 'https://theberniebears.com/';                                                                                           // What: Main URL String. Why: The structured data has to send search engines to the brand's main site. How: This is the main site's root.
+const HOM_DES_STR = 'Meet Lilah and Norah, two Bernese Mountain Dog sisters sharing bear hugs, silly videos, and fluffy fun. Come follow along!'; // What: Home Description String. Why: The raw page and the social tags carry the home page's description, and Social Links has to show its own instead. How: This is the description index.html carries.
+const LIV_URL_STR = 'https://theberniebears.dog/';                                                                                                // What: Live URL String. Why: The checks compare the addresses the pages give with the live address. How: This is the site's production root.
+const MAI_URL_STR = 'https://theberniebears.com/';                                                                                                // What: Main URL String. Why: The structured data has to send search engines to the brand's main site. How: This is the main site's root.
 
 
 
@@ -189,7 +189,7 @@ const SOC_KEY_ARR = [ // What: Social Key Array. Why: The social preview rule li
  * @summary
  * Checks that the page showing now has the head its row describes: its exact
  * title, exactly one description, the brand as author, and one h1. A page
- * with a canonical address has that one canonical link, a description of 100
+ * with a canonical address has that one canonical link, a description of 120
  * to 125 characters, and no robots tag; a page without one has a noindex
  * robots tag and no canonical link. Counting the tags also catches a
  * navigation that left the previous page's tags behind.
@@ -237,7 +237,7 @@ async function heaCheFun ( curPagObj : Page, heaRowObj : typeof PAG_HEA_ARR[ num
 		const desConStr = await curPagObj.locator( 'meta[name="description"]' ).getAttribute( 'content' ) ?? ''; // What: Description Content String. Why: The description's length is checked against what listings show. How: This reads the one description's text.
 
 
-		expect( desConStr.length ).toBeGreaterThanOrEqual( 100 ); // What: Description Minimum Assertion. Why: A summary that's too short wastes the space a listing gives it. How: This checks it runs at least 100 characters.
+		expect( desConStr.length ).toBeGreaterThanOrEqual( 120 ); // What: Description Minimum Assertion. Why: A summary that's too short wastes the space a listing gives it, and link preview checkers flag one under 120 characters. How: This checks it runs at least 120 characters.
 		expect( desConStr.length ).toBeLessThanOrEqual( 125 );    // What: Description Maximum Assertion. Why: Phones cut a summary off around 125 characters. How: This checks it stays within that.
 
 		await expect( curPagObj.locator( 'link[rel="canonical"]' ) ).toHaveCount( 1 );                            // What: Single Canonical Assertion. Why: Two canonical links leave search engines to guess. How: This checks there's exactly one.

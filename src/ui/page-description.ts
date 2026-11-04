@@ -47,7 +47,7 @@ import { useEffect } from 'react'; // What: Use Effect. Why: The description has
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
- * @param desTexStr - Description Text String: The page's description, 100 to
+ * @param desTexStr - Description Text String: The page's description, 120 to
  *                    125 characters.
  *
  * @returns This function does not return anything.
