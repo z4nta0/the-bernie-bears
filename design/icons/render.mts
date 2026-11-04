@@ -17,16 +17,14 @@ import { writeFileSync } from 'node:fs';          // What: Write File Sync. Why:
  *
  * @summary
  * Rebuilds the site's raster icons in public/ from favicon.svg, The Bernie
- * Bears' pink paw print on a transparent background. Browsers that read SVG
- * favicons use favicon.svg itself; this script draws the fallbacks: PNG
- * icons at 16, 32, 192, and 512px, a favicon.ico holding the 16, 32, and
- * 48px sizes for older browsers and the request browsers make for
- * /favicon.ico on their own, and a 180px apple-touch-icon.png on a solid
- * white square, since iOS fills transparency with black and rounds the
- * corners itself. The touch icon draws the paw a little smaller than the
- * square, so the rounded corners never crowd it. Since the paw is a vector,
- * each size is drawn straight from it. Run it with npm run icons whenever the
- * paw changes.
+ * Bears' pink paw print on a transparent background. This script draws the
+ * raster icons beside favicon.svg: PNG icons at 16, 32, 192, and 512px, a
+ * favicon.ico holding the 16, 32, and 48px sizes, served at /favicon.ico, and
+ * a 180px apple-touch-icon.png on a solid white square, since iOS fills
+ * transparency with black and rounds the corners itself. The touch icon draws
+ * the paw a little smaller than the square, so the rounded corners never crowd
+ * it. Since the paw is a vector, each size is drawn straight from it. Run it
+ * with npm run icons whenever the paw changes.
  *
  * Sections:
  *  - Constants
@@ -54,10 +52,10 @@ type IcoRecTyp = { // What: Icon Record Type. Why: Every PNG icon is described t
 const ICO_REC_ARR : IcoRecTyp[] = [ // What: Icon Record Array. Why: The PNG icons the head links to, and the one iOS reads, are rendered from one list. How: Each row names a file and its size.
 
 
-	{ filStr : 'favicon-16x16.png',    opaBoo : false, sizNum : 16  }, // What: Small Icon Row. Why: Tabs draw small icons crisper at their own size. How: This renders the 16px icon.
-	{ filStr : 'favicon-32x32.png',    opaBoo : false, sizNum : 32  }, // What: Medium Icon Row. Why: Most browsers pick a 32px tab icon. How: This renders the 32px icon.
-	{ filStr : 'favicon-192x192.png',  opaBoo : false, sizNum : 192 }, // What: Large Icon Row. Why: Android and some browsers use a large icon for shortcuts. How: This renders the 192px icon.
-	{ filStr : 'favicon-512x512.png',  opaBoo : false, sizNum : 512 }, // What: Extra Large Icon Row. Why: High-density screens and launchers can ask for a bigger icon still. How: This renders the 512px icon.
+	{ filStr : 'favicon-16x16.png',    opaBoo : false, sizNum : 16  }, // What: Small Icon Row. Why: The head offers a 16px icon. How: This renders it.
+	{ filStr : 'favicon-32x32.png',    opaBoo : false, sizNum : 32  }, // What: Medium Icon Row. Why: The head offers a 32px icon. How: This renders it.
+	{ filStr : 'favicon-192x192.png',  opaBoo : false, sizNum : 192 }, // What: Large Icon Row. Why: The head offers a 192px icon. How: This renders it.
+	{ filStr : 'favicon-512x512.png',  opaBoo : false, sizNum : 512 }, // What: Extra Large Icon Row. Why: The head offers a 512px icon. How: This renders it.
 	{ filStr : 'apple-touch-icon.png', opaBoo : true,  sizNum : 180 }  // What: Apple Touch Icon Row. Why: iOS draws the home screen icon at 180px and fills transparency with black. How: This renders it on solid white.
 
 
@@ -65,7 +63,7 @@ const ICO_REC_ARR : IcoRecTyp[] = [ // What: Icon Record Array. Why: The PNG ico
 
 
 
-const ICO_SIZ_ARR = [ 16, 32, 48 ]; // What: ICO Size Array. Why: favicon.ico should hold the sizes older browsers and Windows pick from. How: Each entry is one square size packed into the file.
+const ICO_SIZ_ARR = [ 16, 32, 48 ]; // What: ICO Size Array. Why: favicon.ico holds several sizes in one file. How: Each entry is one square size packed into the file.
 
 
 
