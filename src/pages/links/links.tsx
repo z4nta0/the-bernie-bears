@@ -75,8 +75,8 @@ const SOC_LIN_ARR = [ // What: Social Link Array. Why: The page lists every plac
 	{ // What: Shop Card. Why: The brand's own store is where fans can support the girls, and this site exists to promote it. How: This card links to the main site's shop.
 
 
-		bacStr : 'var( --acs-tin-col )',                                                                                 // Accent-Secondary Tint Color = #ddeadc
-		colStr : 'var( --acs-dar-col )',                                                                                 // Accent-Secondary Dark Color ~= #4f6f4e
+		bacStr : 'var( --acs-tin-col )',                                                                                  // Accent-Secondary Tint Color = #ddeadc
+		colStr : 'var( --acs-dar-col )',                                                                                  // Accent-Secondary Dark Color ~= #4f6f4e
 		desStr : "Blankets, tees, bags, and more for Bernie lovers, from The Bernie Bears' official store.",
 		hanStr : 'theberniebears.com',
 		icoStr : 'M7 7V6a5 5 0 0 1 10 0v1h-2V6a3 3 0 0 0-6 0v1zM3 7h18l-1.3 14.2A2 2 0 0 1 17.7 23H6.3a2 2 0 0 1-2-1.8z',
