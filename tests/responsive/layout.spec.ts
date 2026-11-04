@@ -79,14 +79,14 @@ const WID_LIS_ARR = [ 320, 360, 390, 414, 480, 640, 641, 768, 769, 880, 881, 102
  * layProFun = Layout Problems Function
  *
  * @summary
- * Runs inside the page and returns every layout problem it finds, each naming
- * the element by its tag and its first class (just the readable part, once
- * that class comes from a hashed CSS module). The page scrolling sideways is
- * one problem. A visible element counts as spilling past an edge when it
- * reaches more than a pixel beyond the viewport and no ancestor clips its
- * overflow. An element with text of its own spills its box when a line of that
- * text runs more than a pixel past either inner edge and it doesn't clip or
- * scroll its content; a decoration drawn past the text on purpose doesn't
+ * Runs inside the page and returns every layout problem it finds, each problem
+ * about an element naming it by its tag and its first class (just the readable
+ * part, once that class comes from a hashed CSS module). The page scrolling
+ * sideways is one problem. A visible element counts as spilling past an edge
+ * when it reaches more than a pixel beyond the viewport and no ancestor clips
+ * its overflow. An element with text of its own spills its box when a line of
+ * that text runs more than a pixel past either inner edge and it doesn't clip
+ * or scroll its content; a decoration drawn past the text on purpose doesn't
  * count, and inline elements are skipped, since they have no box width of
  * their own. Two reachable controls (links and buttons that are visible, in
  * the tab order, and not inside inert content) overlap when their boxes share

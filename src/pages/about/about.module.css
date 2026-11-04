@@ -198,7 +198,7 @@
 
 	aspect-ratio  : 1;
 	border-radius : var( --rad-bor-med );                                           /* Radius Border Medium = 11px */
-	height        : auto;                                                           /* What: Automatic Height. Why: The img's height attribute, there so the page doesn't shift while the cartoon loads, would otherwise fix it at the file's 608px. How: auto hands the height back to aspect-ratio, which squares it to the width. */
+	height        : auto;                                                           /* What: Automatic Height. Why: The img's height attribute, there so the page doesn't shift while the cartoon loads, would otherwise fix it at the file's own height. How: auto hands the height back to aspect-ratio, which squares it to the width. */
 	width         : calc( 100% - var( --spa-hor-p01 ) + var( --bor-wid-xla ) * 2 ); /* Spacing Horizontal Base Plus 1 ~= 19.304px, Border Width Extra Large ~= 3.572px */
 
 

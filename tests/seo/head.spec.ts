@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import { expect } from '@playwright/test'; // What: Expect. Why: Each check passes only when the page says what it should. How: This asserts on the page's head, its links, and the crawler files.
+import { expect } from '@playwright/test'; // What: Expect. Why: Each check passes only when the page says what it should. How: This asserts on what each check reads.
 import { test   } from '@playwright/test'; // What: Test. Why: Each page and each file is its own test. How: This declares them.
 
 
@@ -49,7 +49,7 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The head helpe
 // #region Constants
 
 const HOM_DES_STR = 'Meet Lilah and Norah, two Bernese Mountain Dog sisters sharing bear hugs, silly videos, and fluffy fun. Follow along!'; // What: Home Description String. Why: The raw page and the social tags carry the home page's description, and Social Links has to show its own instead. How: This is the description index.html carries.
-const LIV_URL_STR = 'https://theberniebears.dog/';                                                                                           // What: Live URL String. Why: The canonical links, structured data, and sitemap must all name the live address. How: This is the site's production root.
+const LIV_URL_STR = 'https://theberniebears.dog/';                                                                                           // What: Live URL String. Why: The checks compare the addresses the pages give with the live address. How: This is the site's production root.
 const MAI_URL_STR = 'https://theberniebears.com/';                                                                                           // What: Main URL String. Why: The structured data has to send search engines to the brand's main site. How: This is the main site's root.
 
 
@@ -171,7 +171,7 @@ async function heaCheFun ( curPagObj : Page, heaRowObj : typeof PAG_HEA_ARR[ num
 
 	await expect( curPagObj.locator( 'meta[name="author"]' ) ).toHaveAttribute( 'content', 'The Bernie Bears' ); // What: Author Assertion. Why: A real brand's site names the brand as its author. How: This checks the author tag.
 
-	await expect( curPagObj.locator( 'meta[name="description"]' ) ).toHaveCount( 1 ); // What: Single Description Assertion. Why: Two descriptions leave search engines to guess. How: This checks there's exactly one, index.html's, on every page.
+	await expect( curPagObj.locator( 'meta[name="description"]' ) ).toHaveCount( 1 ); // What: Single Description Assertion. Why: Two descriptions leave search engines to guess. How: This checks there's exactly one on every page.
 
 	await expect( curPagObj.getByRole( 'heading', { level : 1 } ) ).toHaveCount( 1 ); // What: Single Heading Assertion. Why: One h1 tells search engines and screen readers what the page is about. How: This checks there's exactly one.
 

@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import { expect } from '@playwright/test'; // What: Expect. Why: Each check passes only when the page lands where it should. How: This asserts on the scroll offset, the address, and focus.
+import { expect } from '@playwright/test'; // What: Expect. Why: Each check passes only when the page lands where it should. How: This asserts on what each check reads.
 import { test   } from '@playwright/test'; // What: Test. Why: Each navigation case is its own test. How: This declares them.
 
 
@@ -281,7 +281,7 @@ test( 'a phone menu link opens its page at the top', async ( { page : curPagObj 
 
 
 
-test( 'back and forward return to the exact position, from a page scrolled further than the page between can scroll', async ( { page : curPagObj } ) => { // What: History Position Test. Why: The scroll hook restores positions itself, and Firefox would otherwise cut one short while a shorter page is still drawn. How: This scrolls Home to the bottom, follows the footer's Contact link, checks Contact can't scroll that far, goes back, checks Home returns to the same position, and does the same after forward and back again.
+test( 'back and forward return to the exact position, from a page scrolled further than the page between can scroll', async ( { page : curPagObj } ) => { // What: History Position Test. Why: The scroll hook restores positions itself, and Firefox would otherwise cut one short while a shorter page is still drawn. How: This scrolls Home to the bottom, follows the footer's Contact link to a page that can't scroll that far, and checks back, forward, and back again each return a page to the position it was left at.
 
 
 	await curPagObj.setViewportSize( { height : 900, width : 1440 } ); // What: Desktop Viewport Call. Why: The footer shows every page link side by side at desktop width. How: This sizes the page before it loads.
