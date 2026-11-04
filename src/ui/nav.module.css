@@ -354,21 +354,21 @@
 
 
 }
-.navTogBut[aria-expanded='true'] .togBarSpa:nth-child( 1 ) { /* What: Open Top Toggle Bar Span. Why: The open toggle shows a cross. How: This drops the top bar to the middle and tilts it one way. */
+.navTogBut[aria-expanded='true'] .togBarSpa:nth-child( 1 ) { /* What: Open Toggle Bar Span Top. Why: The open toggle shows a cross. How: This drops the top bar to the middle and tilts it one way. */
 
 
 	transform : translateY( calc( var( --ver-rhy-m02 ) * 1rem ) ) rotate( 45deg ); /* Vertical Rhythm Base Minus 2 ~= 8.304px */ /* What: Bar Drop Distance. Why: The top bar has to land exactly on the middle one. How: One bar (m05) plus one gap (m04) sums to m02, so this reads that rhythm step rather than a spacing step. */
 
 
 }
-.navTogBut[aria-expanded='true'] .togBarSpa:nth-child( 2 ) { /* What: Open Middle Toggle Bar Span. Why: The cross has only two strokes. How: This fades the middle bar out. */
+.navTogBut[aria-expanded='true'] .togBarSpa:nth-child( 2 ) { /* What: Open Toggle Bar Span Middle. Why: The cross has only two strokes. How: This fades the middle bar out. */
 
 
 	opacity : 0;
 
 
 }
-.navTogBut[aria-expanded='true'] .togBarSpa:nth-child( 3 ) { /* What: Open Bottom Toggle Bar Span. Why: The open toggle shows a cross. How: This lifts the bottom bar to the middle and tilts it the other way. */
+.navTogBut[aria-expanded='true'] .togBarSpa:nth-child( 3 ) { /* What: Open Toggle Bar Span Bottom. Why: The open toggle shows a cross. How: This lifts the bottom bar to the middle and tilts it the other way. */
 
 
 	transform : translateY( calc( var( --ver-rhy-m02 ) * -1rem ) ) rotate( -45deg ); /* Vertical Rhythm Base Minus 2 ~= -8.304px */ /* What: Bar Lift Distance. Why: The bottom bar has to land exactly on the middle one. How: One bar (m05) plus one gap (m04) sums to m02, so this reads that rhythm step rather than a spacing step. */
