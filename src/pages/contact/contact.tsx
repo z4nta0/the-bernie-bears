@@ -241,13 +241,13 @@ function ConPagCom () : React.JSX.Element {
 									href='https://theberniebears.com/pages/contact'
 									rel='noopener'
 									target='_blank'
-								>Open Contact Form</a>{ /* What: Button Base Anchor Element. Why: The main site's contact form is where messages belong. How: This opens its Contact Us page in a new tab, without giving it access to this one, while still letting its analytics see the visit came from this site. */ }
+								>Open Contact Form</a>{ /* What: Button Base Anchor Primary Element. Why: The main site's contact form is where messages belong. How: This opens its Contact Us page in a new tab, without giving it access to this one, while still letting its analytics see the visit came from this site. */ }
 
 								<a
 									className={` ${ cssModObj.butBasAnc }   ${ cssModObj.butBasAncOutline } `}
 
 									href='mailto:hello@theberniebears.com'
-								>Email Us</a>{ /* What: Button Base Anchor Element. Why: Some visitors would rather send an email. How: This starts one to the family's address. */ }
+								>Email Us</a>{ /* What: Button Base Anchor Outline Element. Why: Some visitors would rather send an email. How: This starts one to the family's address. */ }
 
 
 							</div>

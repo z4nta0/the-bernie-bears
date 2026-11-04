@@ -97,7 +97,7 @@ function SitFooCom () : React.JSX.Element {
 						className={ cssModObj.fooLinAnc }
 
 						to='/'
-					>Home</Link>{ /* What: Home Link. Why: The footer links back to the home page. How: This routes to the root path. */ }
+					>Home</Link>{ /* What: Footer Link Anchor Link. Why: The footer links back to the home page. How: This routes to the root path. */ }
 
 
 
@@ -105,7 +105,7 @@ function SitFooCom () : React.JSX.Element {
 						className={ cssModObj.fooLinAnc }
 
 						to='/about'
-					>About</Link>{ /* What: About Link. Why: The footer links to the girls' story. How: This routes to the About page. */ }
+					>About</Link>{ /* What: Footer Link Anchor Link. Why: The footer links to the girls' story. How: This routes to the About page. */ }
 
 
 
@@ -113,7 +113,7 @@ function SitFooCom () : React.JSX.Element {
 						className={ cssModObj.fooLinAnc }
 
 						to='/links'
-					>Social Links</Link>{ /* What: Social Links Link. Why: The footer links to every place to follow the girls. How: This routes to the Social Links page. */ }
+					>Social Links</Link>{ /* What: Footer Link Anchor Link. Why: The footer links to every place to follow the girls. How: This routes to the Social Links page. */ }
 
 
 
@@ -121,7 +121,7 @@ function SitFooCom () : React.JSX.Element {
 						className={ cssModObj.fooLinAnc }
 
 						to='/contact'
-					>Contact</Link>{ /* What: Contact Link. Why: The footer links to the ways to get in touch. How: This routes to the Contact page. */ }
+					>Contact</Link>{ /* What: Footer Link Anchor Link. Why: The footer links to the ways to get in touch. How: This routes to the Contact page. */ }
 
 
 

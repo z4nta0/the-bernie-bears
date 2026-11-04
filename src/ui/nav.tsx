@@ -282,7 +282,7 @@ function NavBarCom () : React.JSX.Element {
 
 						onAuxClick={ auxCloFun }
 						onClick={ cloMenFun }
-					>{ /* What: Brand Navigation Link. Why: The brand is the way back to the home page. How: This links to the root path and closes the phone menu on any click, a new tab's included, so the page it opens isn't left inert behind it. */ }
+					>{ /* What: Navigation Brand Anchor Navigation Link. Why: The brand is the way back to the home page. How: This links to the root path and closes the phone menu on any click, a new tab's included, so the page it opens isn't left inert behind it. */ }
 
 
 						<span
@@ -347,7 +347,7 @@ function NavBarCom () : React.JSX.Element {
 
 								onAuxClick={ auxCloFun }
 								onClick={ cloMenFun }
-							>{ /* What: Page Navigation Link. Why: Each link takes the visitor to its page. How: This routes to the row's path, carries aria-current there, and closes the phone menu on any click, a new tab's included. */ }
+							>{ /* What: Navigation Link Anchor Navigation Link. Why: Each link takes the visitor to its page. How: This routes to the row's path, carries aria-current there, and closes the phone menu on any click, a new tab's included. */ }
 								{ linRecObj.labStr }
 							</NavLink>
 

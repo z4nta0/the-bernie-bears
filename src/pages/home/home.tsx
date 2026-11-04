@@ -149,7 +149,7 @@ function HomPagCom () : React.JSX.Element {
 								className={` ${ cssModObj.butBasAnc }   ${ cssModObj.butBasAncPrimary } `}
 
 								to='/about'
-							>Meet the Girls</Link>{ /* What: Meet The Girls Link. Why: Visitors want to know the girls first. How: This routes to the About page. */ }
+							>Meet the Girls</Link>{ /* What: Button Base Anchor Primary Link. Why: Visitors want to know the girls first. How: This routes to the About page. */ }
 
 
 
@@ -157,7 +157,7 @@ function HomPagCom () : React.JSX.Element {
 								className={` ${ cssModObj.butBasAnc }   ${ cssModObj.butBasAncOutline } `}
 
 								to='/links'
-							>Follow Along</Link>{ /* What: Follow Along Link. Why: Following the girls is the site's main purpose. How: This routes to the Social Links page. */ }
+							>Follow Along</Link>{ /* What: Button Base Anchor Outline Link. Why: Following the girls is the site's main purpose. How: This routes to the Social Links page. */ }
 
 
 						</div>
@@ -187,9 +187,9 @@ function HomPagCom () : React.JSX.Element {
 
 						</div>
 
-						<div className={` ${ cssModObj.floBadDiv }   ${ cssModObj.floBadDivLilah } `}><span aria-hidden='true'>🌸</span> Lilah</div>{ /* What: Floating Badge Div Element. Why: The badges name the girls in the portrait. How: This floats Lilah's name beside it, after a flower hidden from screen readers. */ }
+						<div className={` ${ cssModObj.floBadDiv }   ${ cssModObj.floBadDivLilah } `}><span aria-hidden='true'>🌸</span> Lilah</div>{ /* What: Floating Badge Div Lilah Element. Why: The badges name the girls in the portrait. How: This floats Lilah's name beside it, after a flower hidden from screen readers. */ }
 
-						<div className={` ${ cssModObj.floBadDiv }   ${ cssModObj.floBadDivNorah } `}><span aria-hidden='true'>🌺</span> Norah</div>{ /* What: Floating Badge Div Element. Why: The badges name the girls in the portrait. How: This floats Norah's name beside it, half a cycle behind Lilah's, after a flower hidden from screen readers. */ }
+						<div className={` ${ cssModObj.floBadDiv }   ${ cssModObj.floBadDivNorah } `}><span aria-hidden='true'>🌺</span> Norah</div>{ /* What: Floating Badge Div Norah Element. Why: The badges name the girls in the portrait. How: This floats Norah's name beside it, half a cycle behind Lilah's, after a flower hidden from screen readers. */ }
 
 
 					</div>
@@ -270,7 +270,7 @@ function HomPagCom () : React.JSX.Element {
 							to='/links'
 
 							aria-label='See All Social Links' // What: Social Links Button Label. Why: Screen readers would otherwise read the decorative paw aloud. How: This names the button by its words alone, which still match what's shown.
-						>See All Social Links 🐾</Link>{ /* What: See All Social Links Link. Why: The banner's one action is following the girls. How: This routes to the Social Links page. */ }
+						>See All Social Links 🐾</Link>{ /* What: Button Base Anchor White Link. Why: The banner's one action is following the girls. How: This routes to the Social Links page. */ }
 
 
 					</div>

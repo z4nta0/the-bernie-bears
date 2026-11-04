@@ -207,7 +207,7 @@ function AboPagCom () : React.JSX.Element {
 					<div className={ cssModObj.sisGriDiv }>{ /* What: Sisters Grid Div Element. Why: The two cards sit side by side on wide screens. How: This lays them out. */ }
 
 
-						<div className={` ${ cssModObj.sisCarDiv }   ${ cssModObj.sisCarDivLilah } `}>{ /* What: Sister Card Div Element. Why: Lilah gets a card of her own. How: This sets her photo beside her details, with her own accent. */ }
+						<div className={` ${ cssModObj.sisCarDiv }   ${ cssModObj.sisCarDivLilah } `}>{ /* What: Sister Card Div Lilah Element. Why: Lilah gets a card of her own. How: This sets her photo beside her details, with her own accent. */ }
 
 
 							<div>{ /* What: Sister Image Div Element. Why: The photo has its own row. How: This holds its round frame, with no styling of its own. */ }
@@ -268,7 +268,7 @@ function AboPagCom () : React.JSX.Element {
 
 
 
-						<div className={` ${ cssModObj.sisCarDiv }   ${ cssModObj.sisCarDivNorah } `}>{ /* What: Sister Card Div Element. Why: Norah gets a card of her own. How: This sets her photo beside her details, with her own accent. */ }
+						<div className={` ${ cssModObj.sisCarDiv }   ${ cssModObj.sisCarDivNorah } `}>{ /* What: Sister Card Div Norah Element. Why: Norah gets a card of her own. How: This sets her photo beside her details, with her own accent. */ }
 
 
 							<div>{ /* What: Sister Image Div Element. Why: The photo has its own row. How: This holds its round frame, with no styling of its own. */ }
@@ -298,7 +298,7 @@ function AboPagCom () : React.JSX.Element {
 							<div>{ /* What: Sister Content Div Element. Why: The details read as one column. How: This stacks the badge, name, description, and traits, with no styling of its own. */ }
 
 
-								<div className={` ${ cssModObj.sisBadDiv }   ${ cssModObj.sisBadDivNorah } `}>The Little Sister</div>{ /* What: Sister Badge Div Element. Why: The badge says where Norah stands in the family. How: This shows it above her name, in her own accent. */ }
+								<div className={` ${ cssModObj.sisBadDiv }   ${ cssModObj.sisBadDivNorah } `}>The Little Sister</div>{ /* What: Sister Badge Div Norah Element. Why: The badge says where Norah stands in the family. How: This shows it above her name, in her own accent. */ }
 
 								<h3 className={ cssModObj.sisNamHea }>Norah</h3>{ /* What: Sister Name Heading Element. Why: The card is named for Norah. How: This shows her name. */ }
 

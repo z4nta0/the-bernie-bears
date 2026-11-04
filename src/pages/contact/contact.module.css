@@ -415,7 +415,7 @@
 
 
 }
-.butBasAnc--primary { /* What: Primary Button Base Anchor. Why: The main action should stand out. How: This fills the pill lavender with dark text. */
+.butBasAnc--primary { /* What: Button Base Anchor Primary. Why: The main action should stand out. How: This fills the pill lavender with dark text. */
 
 
 	background : var( --acc-mai-col ); /* Accent Main Color = #d1afe2 */
@@ -423,21 +423,21 @@
 
 
 }
-.butBasAnc--primary::before { /* What: Primary Button Base Anchor Resting Shadow Layer. Why: The filled button rests on a soft lavender shadow. How: This gives its resting layer the medium elevation. */
+.butBasAnc--primary::before { /* What: Button Base Anchor Primary Resting Shadow Layer. Why: The filled button rests on a soft lavender shadow. How: This gives its resting layer the medium elevation. */
 
 
 	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
 
 
 }
-.butBasAnc--primary::after { /* What: Primary Button Base Anchor Hover Shadow Layer. Why: The filled button's shadow deepens as it lifts. How: This gives its hover layer the large elevation. */
+.butBasAnc--primary::after { /* What: Button Base Anchor Primary Hover Shadow Layer. Why: The filled button's shadow deepens as it lifts. How: This gives its hover layer the large elevation. */
 
 
 	box-shadow : var( --ele-lar-sha ); /* Elevation Large Shadow, about 0 19.3px 44.9px -14.6px plus 0 6.3px 14.6px -3.6px */
 
 
 }
-.butBasAnc--primary:hover { /* What: Hovered Primary Button Base Anchor. Why: A button should respond to the pointer. How: This deepens the lavender and lifts the pill 2px while its shadow layers cross-fade. */
+.butBasAnc--primary:hover { /* What: Hovered Button Base Anchor Primary. Why: A button should respond to the pointer. How: This deepens the lavender and lifts the pill 2px while its shadow layers cross-fade. */
 
 
 	background : var( --acc-hov-col );                            /* Accent Hover Color = #b48fcb */
@@ -445,7 +445,7 @@
 
 
 }
-.butBasAnc--outline { /* What: Outline Button Base Anchor. Why: The second action should read as lighter than the first. How: This leaves the pill clear with sage text and a sage border. */
+.butBasAnc--outline { /* What: Button Base Anchor Outline. Why: The second action should read as lighter than the first. How: This leaves the pill clear with sage text and a sage border. */
 
 
 	background   : transparent;
@@ -454,7 +454,7 @@
 
 
 }
-.butBasAnc--outline:hover { /* What: Hovered Outline Button Base Anchor. Why: A button should respond to the pointer. How: This tints the pill pale sage and lifts it 2px. */
+.butBasAnc--outline:hover { /* What: Hovered Button Base Anchor Outline. Why: A button should respond to the pointer. How: This tints the pill pale sage and lifts it 2px. */
 
 
 	background : var( --acs-tin-col );                            /* Accent-Secondary Tint Color = #ddeadc */

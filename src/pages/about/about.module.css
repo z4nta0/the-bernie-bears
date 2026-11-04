@@ -347,14 +347,14 @@
 
 
 }
-.sisCarDiv--lilah { /* What: Lilah Sister Card Div. Why: Each sister has her own accent. How: This edges Lilah's card in lavender along the top. */
+.sisCarDiv--lilah { /* What: Sister Card Div Lilah. Why: Each sister has her own accent. How: This edges Lilah's card in lavender along the top. */
 
 
 	border-top : var( --bor-wid-xla ) solid var( --acc-mai-col ); /* Border Width Extra Large ~= 3.572px, Accent Main Color = #d1afe2 */
 
 
 }
-.sisCarDiv--norah { /* What: Norah Sister Card Div. Why: Each sister has her own accent. How: This edges Norah's card in sage along the top. */
+.sisCarDiv--norah { /* What: Sister Card Div Norah. Why: Each sister has her own accent. How: This edges Norah's card in sage along the top. */
 
 
 	border-top : var( --bor-wid-xla ) solid var( --acc-sec-col ); /* Border Width Extra Large ~= 3.572px, Accent Secondary Color = #8bad89 */
@@ -426,7 +426,7 @@
 
 
 }
-.sisBadDiv--norah { /* What: Norah Sister Badge Div. Why: Norah's badge matches her card's accent. How: This sets it sage on a pale sage pill. */
+.sisBadDiv--norah { /* What: Sister Badge Div Norah. Why: Norah's badge matches her card's accent. How: This sets it sage on a pale sage pill. */
 
 
 	background : var( --acs-tin-col ); /* Accent-Secondary Tint Color = #ddeadc */

@@ -96,7 +96,7 @@ function NotFouCom () : React.JSX.Element {
 							className={` ${ cssModObj.butBasAnc }   ${ cssModObj.butBasAncPrimary } `}
 
 							to='/'
-						>Back Home</Link>{ /* What: Back Home Link. Why: Home is the natural place to start over. How: This returns to the home page. */ }
+						>Back Home</Link>{ /* What: Button Base Anchor Primary Link. Why: Home is the natural place to start over. How: This returns to the home page. */ }
 
 
 
@@ -104,7 +104,7 @@ function NotFouCom () : React.JSX.Element {
 							className={` ${ cssModObj.butBasAnc }   ${ cssModObj.butBasAncOutline } `}
 
 							to='/links'
-						>Follow Along</Link>{ /* What: Follow Along Link. Why: Following the girls is the site's main action. How: This opens the Social Links page. */ }
+						>Follow Along</Link>{ /* What: Button Base Anchor Outline Link. Why: Following the girls is the site's main action. How: This opens the Social Links page. */ }
 
 
 					</div>
