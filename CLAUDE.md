@@ -599,7 +599,10 @@ bar's paw) when waiting for the page to settle.
   open menu at 15 widths from 320 to 1,920px (the 640px, 768px, and 880px
   breakpoints and the pixel past each included), failing on sideways
   scrolling, an unclipped element past either edge, text spilling its box,
-  or two reachable controls overlapping.
+  or two reachable controls overlapping. Since audit 9 (2026-11-04) it also
+  checks each page's card grids hold the same number of cards in every row,
+  at those widths and either side of each width where a grid changes its
+  column count (about 380px, 431px, 569px, 890px, and 1,137px).
 - `npm run test:interaction`: checks how the site behaves when used.
   `navigation.spec.ts` (added 2026-10-11) follows each page's footer link from
   the bottom of the page, the current page's own bar link, and a phone menu

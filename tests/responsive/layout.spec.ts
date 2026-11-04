@@ -22,9 +22,11 @@ import { test      } from '@playwright/test';     // What: Test. Why: Each page 
  * text spilling out of its own box, or two controls a visitor can reach
  * overlapping each other. The widths run from 320px, WCAG's narrowest reflow
  * width, to 1,920px, and include each of the site's breakpoints and the pixel
- * past it, where a layout switches and is most likely to crowd. Pages open
- * under reduced motion, which changes nothing about the layout but skips the
- * wait for entrance animations.
+ * past it, where a layout switches and is most likely to crowd. Each page's
+ * grids of cards are also checked for rows that don't all hold the same
+ * number of cards, at those widths and either side of each width where a grid
+ * changes its column count. Pages open under reduced motion, which changes
+ * nothing about the layout but skips the wait for entrance animations.
  *
  * Sections:
  *  - Constants
@@ -63,6 +65,7 @@ const LAY_CAS_ARR : LayCasTyp[] = [ // What: Layout Case Array. Why: Every page 
 ];
 
 const MEN_MAX_NUM = 640;                                                                               // What: Menu Maximum Number. Why: The mobile menu exists only up to the site's 640px breakpoint. How: The menu case is measured only at widths up to this.
+const ROW_WID_ARR = [ 379, 380, 430, 431, 568, 569, 889, 890, 1136, 1137 ];                            // What: Row Width Array. Why: The card grids switch column counts at widths their own minimum card sizes set rather than at a breakpoint, measured at about 380px, 431px, 569px, 890px, and 1,137px. How: The row check adds each of these widths and the pixel before it to the width list.
 const WID_LIS_ARR = [ 320, 360, 390, 414, 480, 640, 641, 768, 769, 880, 881, 1024, 1280, 1440, 1920 ]; // What: Width List Array. Why: Layouts crowd at the narrowest widths and switch at the breakpoints. How: This lists common screen widths (480px a landscape phone, 1,024px a tablet) plus the site's 640px, 768px, and 880px breakpoints and the pixel past each.
 
 // #endregion Constants
@@ -261,6 +264,77 @@ function layProFun () : string[] {
 
 // #endregion layProFun
 
+
+// #region rowProFun
+
+/**
+ * rowProFun = Row Problems Function
+ *
+ * @summary
+ * Runs inside the page and returns every grid of cards in the main content
+ * whose rows don't all hold the same number of cards. A grid of cards here is
+ * an element laid out as a grid with two or more children that share their
+ * first class; its rows are its children grouped by their rounded top edge.
+ * Each problem names the grid by its tag and the readable part of its first
+ * class, and lists its row counts. Passed to Playwright's evaluate, so it
+ * can't read anything from this file.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+ * @param void - This function takes no parameters.
+ *
+ * @returns Every uneven grid found.
+ * @see {@link proLisArr}
+ *
+ * @example
+ * ```ts
+ * page.evaluate(rowProFun) // => [ 'div.facGriDiv has uneven rows of 4, 2' ]
+ * ```
+ *
+*/
+
+function rowProFun () : string[] {
+
+
+	const proLisArr : string[] = []; // What: Problem List Array. Why: Every uneven grid should be reported, not just the first. How: This collects them.
+
+
+
+	for ( const griCurEle of document.querySelectorAll( 'main *' ) ) { // What: Grid Loop. Why: Any grid of cards in the main content could leave a short row. How: This visits each element there.
+
+
+		const chiEleArr = [ ...griCurEle.children ]; // What: Child Element Array. Why: A grid's rows are made of its children. How: This lists them.
+
+		const griDisBoo = getComputedStyle( griCurEle ).display === 'grid';                                               // What: Grid Display Boolean. Why: Only a grid lays its children out in rows of columns. How: This checks the element's computed display.
+		const manChiBoo = chiEleArr.length > 1;                                                                           // What: Many Children Boolean. Why: One card can't leave a short row. How: This checks there are at least two.
+		const samClaBoo = chiEleArr.every( ( chiCurEle ) => chiCurEle.classList[ 0 ] === chiEleArr[ 0 ].classList[ 0 ] ); // What: Same Class Boolean. Why: Cards in one grid share their class, while a layout grid's children differ. How: This checks every child's first class matches the first child's.
+
+		const carGriBoo = griDisBoo && manChiBoo && samClaBoo; // What: Card Grid Boolean. Why: Only a grid of cards has to fill its rows evenly. How: This combines the three checks.
+
+
+		if ( !carGriBoo ) continue; // What: Non-Card Grid Guard. Why: Other elements have no rows of cards to compare. How: This skips them.
+
+
+
+		const topValArr = chiEleArr.map( ( chiCurEle ) => Math.round( chiCurEle.getBoundingClientRect().top ) );                                   // What: Top Value Array. Why: Cards in one row share their top edge. How: This reads each card's top, rounded to the pixel.
+		const rowCouArr = [ ...new Set( topValArr ) ].map( ( topCurNum ) => topValArr.filter( ( topFilNum ) => topFilNum === topCurNum ).length ); // What: Row Count Array. Why: Each row's card count is compared with the others. How: This counts the cards at each distinct top.
+		const griDesStr = `${ griCurEle.tagName.toLowerCase() }.${ griCurEle.classList[ 0 ]?.split( '_' )[ 1 ] || griCurEle.classList[ 0 ] }`;     // What: Grid Description String. Why: A problem should name the grid a person can find. How: This joins the tag and the readable part of the first class.
+
+
+		if ( new Set( rowCouArr ).size > 1 ) proLisArr.push( `${ griDesStr } has uneven rows of ${ rowCouArr.join( ', ' ) }` ); // What: Uneven Row Check. Why: A short last row breaks the grid's rhythm, which the card grid rule forbids. How: This reports the grid when its rows hold different counts.
+
+
+	}
+
+
+
+	return proLisArr; // What: Problem List Return. Why: The test prints whatever was found. How: This hands back every uneven grid.
+
+
+}
+
+// #endregion rowProFun
+
 // #endregion Helpers
 
 
@@ -298,6 +372,42 @@ for ( const layCasObj of LAY_CAS_ARR ) { // What: Case Loop. Why: Every page and
 
 
 	}
+
+
+}
+
+
+for ( const layCasObj of LAY_CAS_ARR.filter( ( casFilObj ) => !casFilObj.menBoo ) ) { // What: Row Case Loop. Why: Every page's card grids should fill their rows evenly at every width. How: This declares one row test per page.
+
+
+	test( `${ layCasObj.ideStr } fills every row of its card grids evenly`, async ( { page : curPagObj } ) => { // What: Row Test. Why: A grid of cards never leaves a short last row. How: This opens the page and checks its grids at each width in turn, a pixel either side of each switch included.
+
+
+		await curPagObj.emulateMedia( { reducedMotion : 'reduce' } ); // What: Reduced Motion Emulation. Why: Entrance animations don't change the rows, so waiting on them only slows the run. How: This makes the page match the reduced motion query.
+
+		await opeStaFun( curPagObj, { heiNum : 900, ideStr : layCasObj.ideStr, patStr : layCasObj.patStr, widNum : 1440 } ); // What: Case Open Call. Why: The rows are measured on a settled page. How: This opens the page once, and the loop below resizes it.
+
+
+
+		const proLisArr : string[] = []; // What: Problem List Array. Why: Every width's uneven grids should be reported together. How: This collects them, each with its width.
+
+
+		for ( const widCurNum of [ ...WID_LIS_ARR, ...ROW_WID_ARR ].sort( ( widOneNum, widTwoNum ) => widOneNum - widTwoNum ) ) { // What: Row Width Loop. Why: Each switch in column count has to land on a count that divides the cards. How: This measures every width in order.
+
+
+			await curPagObj.setViewportSize( { height : 900, width : widCurNum } ); // What: Viewport Resize Call. Why: The grids reflow at each width. How: This sets the width under test.
+
+			proLisArr.push( ...( await curPagObj.evaluate( rowProFun ) ).map( ( proCurStr ) => `${ proCurStr } at ${ widCurNum }px` ) ); // What: Width Problems Push. Why: A problem should say where it happened. How: This adds each uneven grid with its width.
+
+
+		}
+
+
+
+		expect( proLisArr ).toEqual( [] ); // What: Even Rows Assertion. Why: Every width passes only with each grid's rows full. How: This compares the problems with an empty list.
+
+
+	} );
 
 
 }
