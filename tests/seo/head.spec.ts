@@ -30,10 +30,11 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The head helpe
  * published by The Bernie Bears, whose home is the main site, with the six
  * profiles the Social Links page links to and the email the Contact page
  * offers. The social preview tags are complete, use absolute addresses, and
- * match the home page's title and description; the card they point at is a
- * 1,200x630 JPEG under 300 KB; and every icon the head links to is served, the
- * PNGs at the size their links promise. robots.txt lets every crawler in and
- * names the sitemap, which lists Home and Social Links alone.
+ * match the home page's title and description, beside the brand's theme color;
+ * the card they point at is a 1,200x630 JPEG under 300 KB; and every icon the
+ * head links to is served, the PNGs at the size their links promise.
+ * robots.txt lets every crawler in and names the sitemap, which lists Home and
+ * Social Links alone.
  *
  * Sections:
  *  - Constants
@@ -373,7 +374,7 @@ test( 'the sitemap lists Home and Social Links alone', async ( { request : reqCo
 
 
 
-test( 'the social preview tags are complete', async ( { page : curPagObj } ) => { // What: Social Tags Test. Why: A link shared anywhere should show a full card that matches the page. How: This loads the home page and checks every social tag, its absolute URLs, and its copy against the page's own title and description.
+test( 'the social preview tags are complete', async ( { page : curPagObj } ) => { // What: Social Tags Test. Why: A link shared anywhere should show a full card that matches the page. How: This loads the home page and checks every social tag, its absolute URLs, the theme color, and its copy against the page's own title and description.
 
 
 	await curPagObj.goto( '/' ); // What: Home Load Call. Why: Link scrapers read the page every route shares. How: This opens the home page.
@@ -387,6 +388,7 @@ test( 'the social preview tags are complete', async ( { page : curPagObj } ) => 
 	expect( [ socTagObj[ 'og:image' ], socTagObj[ 'og:url' ], socTagObj[ 'twitter:image' ] ] ).toEqual( [ `${ LIV_URL_STR }og-image.jpg`, LIV_URL_STR, `${ LIV_URL_STR }og-image.jpg` ] );         // What: Absolute URLs Assertion. Why: Scrapers can't resolve a relative address. How: This checks each URL tag names the live https address.
 	expect( [ socTagObj[ 'og:image:type' ], socTagObj[ 'og:image:width' ], socTagObj[ 'og:image:height' ] ] ).toEqual( [ 'image/jpeg', '1200', '630' ] );                                          // What: Image Facts Assertion. Why: The tags have to describe the file they point at. How: This checks the type and size they give.
 	expect( socTagObj[ 'twitter:site' ] ).toBe( '@theberniebears' ); // What: X Account Assertion. Why: The card should name the brand's real X account, the one the Social Links page lists. How: This checks the site tag.
+	expect( await curPagObj.locator( 'meta[name="theme-color"]' ).getAttribute( 'content' ) ).toBe( '#d1afe2' );                                                                                   // What: Theme Color Assertion. Why: Discord edges the card in the page's theme color, so the tag should name the brand's lavender. How: This checks the tag's color.
 	expect( [ socTagObj[ 'og:title' ], socTagObj[ 'twitter:title' ] ] ).toEqual( [ await curPagObj.title(), await curPagObj.title() ] );                                                           // What: Title Match Assertion. Why: A card should name the page the way its tab does. How: This checks both card titles match the page title.
 	expect( [ socTagObj[ 'og:description' ], socTagObj[ 'twitter:description' ] ] ).toEqual( Array( 2 ).fill( await curPagObj.locator( 'meta[name="description"]' ).getAttribute( 'content' ) ) ); // What: Description Match Assertion. Why: A card should sum the page up the way its search listing does. How: This checks both card descriptions match the page's description.
 
