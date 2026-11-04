@@ -24,10 +24,12 @@ import { useState    } from 'react';                // What: Use State. Why: The
  * to each page, and a toggle that opens those links as a menu on a phone,
  * where the menu also offers the girls' social profiles, the main site, and
  * the tagline over a dimmed page. The link for the current page is marked.
- * Every page renders it above its content.
+ * It's led by a skip link, the page's first stop, that jumps a keyboard user
+ * past the bar to the main content. Every page renders it above its content.
  *
  * Sections:
  *  - Constants
+ *  - Helpers
  *  - Components
  *  - Exports
  *
@@ -54,6 +56,58 @@ const NAV_LIN_ARR = [ // What: Navigation Link Array. Why: The bar links to ever
 
 
 
+// #region Helpers
+
+// #region modCliFun
+
+/**
+ * modCliFun = Modified Click Function
+ *
+ * @summary
+ * Whether a click on the skip link should be left to the browser: one made
+ * with a modifier key held (Ctrl or Cmd to open a new tab, Shift for a new
+ * window, Alt to download) or with any button but the main one. The skip
+ * link's handler returns early when this is true, so the link's own address
+ * opens the browser's own way.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+ * @param cliEveObj - Click Event Object: The skip link's click event.
+ *
+ * @returns Whether the browser should handle the click itself.
+ * @see {@link modCliBoo}
+ *
+ * @example
+ * ```ts
+ * modCliFun(cliEveObj) // => false for a plain click
+ * ```
+ *
+*/
+
+function modCliFun ( cliEveObj : React.MouseEvent< HTMLAnchorElement > ) : boolean {
+
+
+	const altKeyBoo = cliEveObj.altKey;       // What: Alt Key Boolean. Why: An Alt click is one the browser handles its own way. How: This reads whether Alt was held.
+	const conKeyBoo = cliEveObj.ctrlKey;      // What: Control Key Boolean. Why: Ctrl-click opens a new tab elsewhere. How: This reads whether Ctrl was held.
+	const metKeyBoo = cliEveObj.metaKey;      // What: Meta Key Boolean. Why: Cmd-click opens a new tab on a Mac. How: This reads whether Cmd was held.
+	const othButBoo = cliEveObj.button !== 0; // What: Other Button Boolean. Why: A middle click opens a new tab. How: This checks the click wasn't made with the main button.
+	const shiKeyBoo = cliEveObj.shiftKey;     // What: Shift Key Boolean. Why: Shift-click opens a new window. How: This reads whether Shift was held.
+
+	const modCliBoo = metKeyBoo || conKeyBoo || shiKeyBoo || altKeyBoo || othButBoo; // What: Modified Click Boolean. Why: Any one of these means the visitor asked the browser to open the link its own way. How: This combines them.
+
+
+
+	return modCliBoo; // What: Modified Click Return. Why: The link's handler decides from this whether to step aside. How: This hands back the combined answer.
+
+
+}
+
+// #endregion modCliFun
+
+// #endregion Helpers
+
+
+
 // #region Components
 
 // #region NavBarCom
@@ -63,11 +117,16 @@ const NAV_LIN_ARR = [ // What: Navigation Link Array. Why: The bar links to ever
  *
  * @summary
  * Renders the bar. On a phone the links sit in a menu the toggle opens, and
- * choosing a link closes it; the toggle reports the menu's state through
- * aria-expanded and the menu carries data-mobile-menu-open while open. React
- * Router's NavLink marks the link whose route matches with aria-current, which
- * the bar's stylesheet styles, and the Home link matches only the root path
- * exactly, since every path starts with it.
+ * choosing any link closes it, even one opening in a new tab; the toggle
+ * reports the menu's state through aria-expanded and the menu carries
+ * data-mobile-menu-open while open. React Router's NavLink marks the link
+ * whose route matches with aria-current, which the bar's stylesheet styles,
+ * and the Home link matches only the root path exactly, since every path
+ * starts with it.
+ *
+ * A skip link comes first, waiting above the screen until it's focused, and
+ * its plain click focuses the main element without putting #main in the
+ * address, leaving a Ctrl, Cmd, Shift, or Alt click to the browser.
  *
  * The brand's paw print is hidden from screen readers as decoration, so the
  * link is announced by the name alone, and the links sit in a navigation
@@ -84,7 +143,7 @@ const NAV_LIN_ARR = [ // What: Navigation Link Array. Why: The bar links to ever
  *
  * @param props - This component does not use any props.
  *
- * @returns The scrim and the bar's header element.
+ * @returns The skip link, the scrim, and the bar's header element.
  *
  * @example
  * ```tsx
@@ -103,6 +162,11 @@ function NavBarCom () : React.JSX.Element {
 	const togButRef = useRef< HTMLButtonElement >( null ); // What: Toggle Button Reference. Why: Escape puts focus back on the toggle, and a hidden toggle means the menu no longer applies. How: This attaches to the toggle.
 
 
+
+	const cloMenFun = () => setMenOpeBoo( false );                                                        // What: Close Menu Function. Why: The menu should get out of the way once a link is chosen, however the link opens. How: This closes it.
+	const auxCloFun = ( auxEveObj : React.MouseEvent ) => { if ( auxEveObj.button === 1 ) cloMenFun(); }; // What: Auxiliary Close Function. Why: A middle click opens a link in a new tab through the auxclick event, which no click handler sees. How: This closes the menu when the middle button sent it.
+
+
 	useEffect( () => { // What: Open Menu Effect. Why: The open menu sits over a dimmed page, so keyboard and screen reader users should stay in the bar until it closes, and it needs the usual ways out. How: While the menu is open, this makes the bar's siblings inert and listens for Escape and resizing, and its cleanup undoes both.
 
 
@@ -112,7 +176,7 @@ function NavBarCom () : React.JSX.Element {
 
 		const navBarEle = navBarRef.current!; // What: Navigation Bar Element. Why: The bar stays usable. How: This reads the bar. // What: Non-Null Note. Why: TypeScript can't see the ref is attached. How: Effects run after the bar has mounted.
 		const scrDivEle = scrDivRef.current!; // What: Scrim Div Element. Why: The scrim stays tappable to close the menu. How: This reads the scrim. // What: Non-Null Note. Why: TypeScript can't see the ref is attached. How: Effects run after the scrim has mounted.
-		const sibEleArr = Array.from( navBarEle.parentElement!.children ).filter( ( sibCurEle ) => sibCurEle !== navBarEle && sibCurEle !== scrDivEle ); // What: Sibling Element Array. Why: The page's main content and footer sit beside the bar. How: This lists the bar's siblings, leaving out the scrim. // What: Non-Null Note. Why: TypeScript can't see the bar has a parent. How: The app root always renders it inside its wrapper.
+		const sibEleArr = Array.from( navBarEle.parentElement!.children ).filter( ( sibCurEle ) => sibCurEle !== navBarEle && sibCurEle !== scrDivEle ); // What: Sibling Element Array. Why: The skip link, the page's main content, and the footer sit beside the bar. How: This lists the bar's siblings, leaving out the scrim. // What: Non-Null Note. Why: TypeScript can't see the bar has a parent. How: The app root always renders it inside its wrapper.
 		const togButEle = togButRef.current!; // What: Toggle Button Element. Why: Escape returns focus here, and its visibility says whether the menu still applies. How: This reads the toggle. // What: Non-Null Note. Why: TypeScript can't see the ref is attached. How: Effects run after the toggle has mounted.
 
 
@@ -164,8 +228,28 @@ function NavBarCom () : React.JSX.Element {
 	return (
 
 
-		<>{ /* What: Navigation Fragment. Why: The scrim and the bar render side by side, the scrim first. How: This groups them without adding a wrapper element. */ }
+		<>{ /* What: Navigation Fragment. Why: The skip link, the scrim, and the bar render together, the skip link first so it's the page's first stop, then the scrim. How: This groups them without adding a wrapper element. */ }
 
+
+			<a
+				className={ cssModObj.navSkiAnc }
+
+				href='#main'
+
+				onClick={ ( cliEveObj ) => { // What: Skip Click Handler. Why: The jump should land in the page's content without leaving a hash in the address. How: This leaves a modified click to the browser, and otherwise cancels the default and focuses the main element.
+
+
+					if ( modCliFun( cliEveObj ) ) return; // What: Modified Click Guard. Why: A Ctrl, Cmd, Shift, or Alt click asks the browser to open the link its own way. How: This returns before the default is cancelled.
+
+
+
+					cliEveObj.preventDefault(); // What: Default Prevent Call. Why: The browser's own jump would put #main in the address. How: This cancels it.
+
+					document.getElementById( 'main' )?.focus(); // What: Main Focus Call. Why: Focus has to land past the bar, so the next Tab continues into the content. How: This focuses the page's main element, which also brings it into view.
+
+
+				} }
+			>Skip to main content</a>{ /* What: Navigation Skip Anchor Element. Why: A keyboard user shouldn't have to Tab through every link in the bar to reach the page. How: This is the page's first stop, waiting above the screen until it's focused, when it slides down over the bar's corner, and its click moves focus to the main element. */ }
 
 			<div
 				ref={ scrDivRef }
@@ -176,7 +260,7 @@ function NavBarCom () : React.JSX.Element {
 
 				aria-hidden='true'
 
-				onClick={ () => setMenOpeBoo( false ) }
+				onClick={ cloMenFun }
 			/>{ /* What: Navigation Scrim Div Element. Why: The open menu should stand apart from the dimmed page, and a tap anywhere on the page should close it. How: This covers the page under the bar, dimmed while the menu is open, closing the menu when tapped, and hidden from screen readers as decoration. */ }
 
 
@@ -196,8 +280,9 @@ function NavBarCom () : React.JSX.Element {
 
 						to='/'
 
-						onClick={ () => setMenOpeBoo( false ) }
-					>{ /* What: Brand Navigation Link. Why: The brand is the way back to the home page. How: This links to the root path and closes the phone menu, so the page it opens isn't left inert behind it. */ }
+						onAuxClick={ auxCloFun }
+						onClick={ cloMenFun }
+					>{ /* What: Brand Navigation Link. Why: The brand is the way back to the home page. How: This links to the root path and closes the phone menu on any click, a new tab's included, so the page it opens isn't left inert behind it. */ }
 
 
 						<span
@@ -260,8 +345,9 @@ function NavBarCom () : React.JSX.Element {
 								end={ linRecObj.patStr === '/' } // What: End Match Flag. Why: Every path starts with the root, so the Home link would otherwise be active on every page. How: This makes only the Home link match its path exactly.
 								to={ linRecObj.patStr }
 
-								onClick={ () => setMenOpeBoo( false ) }
-							>{ /* What: Page Navigation Link. Why: Each link takes the visitor to its page. How: This routes to the row's path, carries aria-current there, and closes the phone menu. */ }
+								onAuxClick={ auxCloFun }
+								onClick={ cloMenFun }
+							>{ /* What: Page Navigation Link. Why: Each link takes the visitor to its page. How: This routes to the row's path, carries aria-current there, and closes the phone menu on any click, a new tab's included. */ }
 								{ linRecObj.labStr }
 							</NavLink>
 
@@ -300,7 +386,10 @@ function NavBarCom () : React.JSX.Element {
 										target='_blank'
 
 										aria-label={ socProObj.plaStr }
-									>{ /* What: Menu Social Anchor Element. Why: Each profile should be recognizable at a glance. How: This shows the platform's mark in its brand color on its pale tint, named by the platform for screen readers, opening the profile in a new tab without giving it access to this one. */ }
+
+										onAuxClick={ auxCloFun }
+										onClick={ cloMenFun }
+									>{ /* What: Menu Social Anchor Element. Why: Each profile should be recognizable at a glance. How: This shows the platform's mark in its brand color on its pale tint, named by the platform for screen readers, opening the profile in a new tab without giving it access to this one, and closes the menu. */ }
 
 
 										<svg
@@ -335,7 +424,10 @@ function NavBarCom () : React.JSX.Element {
 								href='https://theberniebears.com/'
 								rel='noopener'
 								target='_blank'
-							>Visit the Official Site<span className={ cssModObj.arrIcoSpa } aria-hidden='true'>→</span></a>{ /* What: Menu Official Anchor Element. Why: This site exists to send visitors to the brand's main site. How: This opens it in a new tab, its arrow hidden from screen readers. */ }
+
+								onAuxClick={ auxCloFun }
+								onClick={ cloMenFun }
+							>Visit the Official Site<span className={ cssModObj.arrIcoSpa } aria-hidden='true'>→</span></a>{ /* What: Menu Official Anchor Element. Why: This site exists to send visitors to the brand's main site. How: This opens it in a new tab and closes the menu, its arrow hidden from screen readers. */ }
 
 							<p className={ cssModObj.menTagPar }>Lilah & Norah: spreading joy, bear hugs & fluffy paws one day at a time</p>{ /* What: Menu Tagline Paragraph Element. Why: The menu ends on the girls' motto, as the footer does. How: This shows it small and quiet. */ }
 

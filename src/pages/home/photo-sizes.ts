@@ -40,7 +40,7 @@ type HomPhsTyp = { heiNum : number, widNum : number }; // What: Home Photo-Size 
 const PHO_SIZ_OBJ : Record< string, HomPhsTyp > = { // What: Photo Sizes Object. Why: Every img element needs its photo's intrinsic size. How: The page looks each photo's size up by its file name.
 
 
-	'portrait-both' : { heiNum : 782, widNum : 782 }
+	'portrait-both' : { heiNum : 1080, widNum : 1080 }
 
 
 };

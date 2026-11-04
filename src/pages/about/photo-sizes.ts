@@ -40,9 +40,9 @@ type AboPhsTyp = { heiNum : number, widNum : number }; // What: About Photo-Size
 const PHO_SIZ_OBJ : Record< string, AboPhsTyp > = { // What: Photo Sizes Object. Why: Every img element needs its photo's intrinsic size. How: The page looks each photo's size up by its file name.
 
 
-	'group-photo' : { heiNum : 608, widNum : 606 },
-	'lilah'       : { heiNum : 260, widNum : 260 },
-	'norah'       : { heiNum : 260, widNum : 260 }
+	'group-photo' : { heiNum : 912, widNum : 909 },
+	'lilah'       : { heiNum : 390, widNum : 390 },
+	'norah'       : { heiNum : 390, widNum : 390 }
 
 
 };

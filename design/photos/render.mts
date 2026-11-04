@@ -23,11 +23,12 @@ import { writeFileSync } from 'node:fs';          // What: Write File Sync. Why:
  * src/pages/about. A photo the page crops to a centered square (the portrait
  * and the sisters, which fill square frames with object-fit cover) is cropped
  * to that square here, so no hidden pixels ship. Each is then scaled down to
- * twice the largest size the site shows it at, never up, and encoded at 0.85
- * quality, the lowest that showed no difference from the original at 3x zoom.
- * Last, it writes a photo-sizes.ts into each page's folder, the width and
- * height of every photo it wrote there, which the page's img elements read
- * so nothing shifts while photos load. Run it with npm run photos whenever a
+ * three times the largest size the site shows it at, never up, so it stays
+ * sharp on the densest phone screens, and encoded at 0.85 quality, the lowest
+ * that showed no difference from the original at 3x zoom. Last, it writes a
+ * photo-sizes.ts into each page's folder, the width and height of every photo
+ * it wrote there, which the page's img elements read so nothing shifts while
+ * photos load. Run it with npm run photos whenever a
  * photo is added or replaced, or a display size changes.
  *
  * Sections:
@@ -63,9 +64,9 @@ type PhoRecTyp = { pagStr : string, souStr : string, squBoo : boolean, widNum : 
  *   folder; the WebP takes the same name.
  * - `squBoo` (Boolean): Square Boolean, true when the page shows only the
  *   photo's centered square, so the rest is cropped away.
- * - `widNum` (Number): Width Number, twice the widest the site shows the
- *   photo: the hero portrait's frame reaches about 391px, the cartoon about
- *   303px, and each sister's circle about 130px.
+ * - `widNum` (Number): Width Number, three times the widest the site shows
+ *   the photo: the hero portrait's frame reaches about 391px, the cartoon
+ *   about 303px, and each sister's circle about 130px.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -74,10 +75,10 @@ type PhoRecTyp = { pagStr : string, souStr : string, squBoo : boolean, widNum : 
 const PHO_REC_ARR : PhoRecTyp[] = [ // What: Photo Record Array. Why: The script rebuilds every photo from one list. How: Each row names one photo and how it's shown.
 
 
-	{ pagStr : 'about', souStr : 'group-photo.jpg',   squBoo : false, widNum : 606 },
-	{ pagStr : 'about', souStr : 'lilah.jpg',         squBoo : true,  widNum : 260 },
-	{ pagStr : 'about', souStr : 'norah.jpg',         squBoo : true,  widNum : 260 },
-	{ pagStr : 'home',  souStr : 'portrait-both.jpg', squBoo : true,  widNum : 782 }
+	{ pagStr : 'about', souStr : 'group-photo.jpg',   squBoo : false, widNum : 909  },
+	{ pagStr : 'about', souStr : 'lilah.jpg',         squBoo : true,  widNum : 390  },
+	{ pagStr : 'about', souStr : 'norah.jpg',         squBoo : true,  widNum : 390  },
+	{ pagStr : 'home',  souStr : 'portrait-both.jpg', squBoo : true,  widNum : 1173 }
 
 
 ];
@@ -264,7 +265,7 @@ export { PHO_SIZ_OBJ }; // What: Named Exports. Why: The page's img elements rea
 
 
 
-console.log( `Wrote ${ PHO_REC_ARR.length } photos, ${ Math.round( befBytNum / 1024 ) } KB down to ${ Math.round( aftBytNum / 1024 ) } KB, and a sizes file for ${ [ ...sizRowMap.keys() ].join( ' and ' ) }.` ); // What: Result Log Call. Why: The run should say what it wrote. How: This prints the photo count, the total sizes before and after, and the pages given sizes files.
+console.log( `Wrote ${ PHO_REC_ARR.length } photos, ${ Math.round( befBytNum / 1024 ).toLocaleString( 'en-US' ) } KB down to ${ Math.round( aftBytNum / 1024 ).toLocaleString( 'en-US' ) } KB, and a sizes file for ${ [ ...sizRowMap.keys() ].join( ' and ' ) }.` ); // What: Result Log Call. Why: The run should say what it wrote. How: This prints the photo count, the total sizes before and after with thousands separators, and the pages given sizes files.
 
 // #endregion Module Init
 

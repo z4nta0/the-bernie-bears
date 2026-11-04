@@ -59,7 +59,7 @@ npm run og-image  # captures design/og-image/card.html as public/og-image.jpg
 npm run icons     # renders favicon.ico, the PNG icons, and the Apple touch icon from public/favicon.svg
 ```
 
-To replace a photo, put the new original in `design/photos/` under the same name and run `npm run photos`. A new photo also needs a row in `PHO_REC_ARR` in `design/photos/render.mts`, saying which page shows it, whether the page crops it to a square, and twice the widest it's shown. Apps cache a link's preview card for days, so a changed card should get a new file name (`og-image-2.jpg`), with every tag in `index.html` that points at it updated.
+To replace a photo, put the new original in `design/photos/` under the same name and run `npm run photos`. A new photo also needs a row in `PHO_REC_ARR` in `design/photos/render.mts`, saying which page shows it, whether the page crops it to a square, and three times the widest it's shown. Apps cache a link's preview card for days, so a changed card should get a new file name (`og-image-2.jpg`), with every tag in `index.html` that points at it updated.
 
 ## Project structure
 
