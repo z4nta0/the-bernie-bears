@@ -373,7 +373,7 @@ test( 'a fresh load of an address opens at its top, not where an earlier visit l
 
 
 
-test( 'a hash added to the address lands on its target, not a saved position', async ( { page : curPagObj } ) => { // What: Hash Entry Test. Why: A hash typed into the address adds an entry that shares the first entry's default key, whose saved position mustn't override the target. How: This scrolls Home down, adds the main element's hash to the address, and checks the page lands on the main element without restoring the saved position.
+test( 'a hash added to the address wins over a saved position', async ( { page : curPagObj } ) => { // What: Hash Entry Test. Why: A hash typed into the address adds an entry that shares the first entry's default key, whose saved position mustn't override the target. How: This scrolls Home down, adds the main element's hash to the address, and checks the page leaves the saved position for the top, where the main element sits, without restoring it.
 
 
 	await curPagObj.addInitScript( () => { // What: Scroll Call Log Script. Why: A wrong restore could be undone by the jump to the target, leaving no trace in the position. How: This has each page record the top of every window.scrollTo call it makes.
