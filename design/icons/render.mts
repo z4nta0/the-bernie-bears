@@ -63,10 +63,7 @@ const ICO_REC_ARR : IcoRecTyp[] = [ // What: Icon Record Array. Why: The PNG ico
 
 
 
-const ICO_SIZ_ARR = [ 16, 32, 48 ]; // What: ICO Size Array. Why: favicon.ico holds several sizes in one file. How: Each entry is one square size packed into the file.
-
-
-
+const ICO_SIZ_ARR = [ 16, 32, 48 ];                                               // What: ICO Size Array. Why: favicon.ico holds several sizes in one file. How: Each entry is one square size packed into the file.
 const OUT_DIR_STR = fileURLToPath( new URL( '../../public/', import.meta.url ) ); // What: Output Directory String. Why: Browsers request icons from the site's root. How: This resolves public/ from this script's folder.
 const TOU_SCA_NUM = 0.8;                                                          // What: Touch Scale Number. Why: iOS rounds the touch icon's corners, which would crowd a paw drawn edge to edge. How: The touch icon draws the mark at this share of its square, centered.
 
@@ -86,7 +83,6 @@ const SOU_B64_STR = readFileSync( new URL( '../../public/favicon.svg', import.me
 
 const broInsObj = await chromium.launch();   // What: Browser Instance Object. Why: The icons are drawn in a real browser's canvas. How: This launches Chromium.
 const draPagObj = await broInsObj.newPage(); // What: Draw Page Object. Why: The canvas work runs inside a page. How: This opens a blank one.
-
 
 
 // #region renPngFun
@@ -125,6 +121,7 @@ async function renPngFun ( icoSizNum : number, icoOpaBoo : boolean ) : Promise< 
 
 		souImaEle.src = `data:image/svg+xml;base64,${ souB64Str }`; // What: Source Address Assignment. Why: The image loads from the data handed in. How: This sets it as an SVG data URL.
 
+
 		await souImaEle.decode(); // What: Source Decode Wait. Why: Drawing an undecoded image draws nothing. How: This waits until it's ready.
 
 
@@ -145,6 +142,7 @@ async function renPngFun ( icoSizNum : number, icoOpaBoo : boolean ) : Promise< 
 
 
 			finCotObj.fillStyle = '#ffffff'; // What: White Fill Assignment. Why: The background has to be solid white. How: This sets the fill color.
+
 
 			finCotObj.fillRect( 0, 0, tarSizNum, tarSizNum ); // What: Background Fill Call. Why: Every pixel under the mark has to be opaque. How: This paints the whole square.
 
@@ -172,7 +170,6 @@ async function renPngFun ( icoSizNum : number, icoOpaBoo : boolean ) : Promise< 
 // #endregion renPngFun
 
 
-
 for ( const icoRecObj of ICO_REC_ARR ) writeFileSync( OUT_DIR_STR + icoRecObj.filStr, await renPngFun( icoRecObj.sizNum, icoRecObj.opaBoo ) ); // What: PNG Icon Loop. Why: Each PNG icon is saved under its own name. How: This renders every row and writes it into public/.
 
 
@@ -195,10 +192,12 @@ for ( const [ icoIndNum, pngBufObj ] of icoPngArr.entries() ) { // What: ICO Ent
 	const entSizNum = ICO_SIZ_ARR[ icoIndNum ]; // What: Entry Size Number. Why: The entry names its image's width and height. How: This reads the size it was rendered at.
 
 
-	icoHeaObj.writeUInt8( entSizNum, entOffNum );               // What: Entry Width Write. Why: The entry names the image's width. How: This writes it.
-	icoHeaObj.writeUInt8( entSizNum, entOffNum + 1 );           // What: Entry Height Write. Why: The entry names the image's height. How: This writes it.
-	icoHeaObj.writeUInt16LE( 1, entOffNum + 4 );                // What: Entry Planes Write. Why: The format expects one color plane. How: This writes it.
-	icoHeaObj.writeUInt16LE( 32, entOffNum + 6 );               // What: Entry Depth Write. Why: The images are full-color PNGs with alpha. How: This writes 32 bits per pixel.
+	icoHeaObj.writeUInt8( entSizNum, entOffNum );     // What: Entry Width Write. Why: The entry names the image's width. How: This writes it.
+	icoHeaObj.writeUInt8( entSizNum, entOffNum + 1 ); // What: Entry Height Write. Why: The entry names the image's height. How: This writes it.
+
+	icoHeaObj.writeUInt16LE( 1, entOffNum + 4 );  // What: Entry Planes Write. Why: The format expects one color plane. How: This writes it.
+	icoHeaObj.writeUInt16LE( 32, entOffNum + 6 ); // What: Entry Depth Write. Why: The images are full-color PNGs with alpha. How: This writes 32 bits per pixel.
+
 	icoHeaObj.writeUInt32LE( pngBufObj.length, entOffNum + 8 ); // What: Entry Size Write. Why: The entry says how many bytes its image takes. How: This writes the PNG's length.
 	icoHeaObj.writeUInt32LE( icoOffNum, entOffNum + 12 );       // What: Entry Offset Write. Why: The entry says where its image starts. How: This writes the running offset.
 

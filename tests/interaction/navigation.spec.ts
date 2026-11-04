@@ -154,6 +154,7 @@ async function hasCouFun ( curPagObj : Page ) : Promise< void > {
 
 		winCouObj.__hasChaNum = 0; // What: Count Reset. Why: Each page starts with no hash changes. How: This sets the count to 0.
 
+
 		window.addEventListener( 'hashchange', () => { winCouObj.__hasChaNum += 1; } ); // What: Hash Change Listener. Why: A jump to a hash fires hashchange. How: This adds 1 to the count each time.
 
 
@@ -231,8 +232,7 @@ for ( const [ froIndNum, froLinObj ] of PAG_LIN_ARR.entries() ) { // What: Start
 
 		await curPagObj.getByRole( 'navigation', { name : 'Footer' } ).getByRole( 'link', { exact : true, name : nexLinObj.labStr } ).click(); // What: Footer Link Click. Why: The footer's links are the ones clicked furthest down a page. How: This clicks the link to the next page.
 
-		await expect( curPagObj ).toHaveURL( nexLinObj.patStr ); // What: Destination Assertion. Why: The offset only means something on the new page. How: This waits for the address to change.
-
+		await expect( curPagObj ).toHaveURL( nexLinObj.patStr );                         // What: Destination Assertion. Why: The offset only means something on the new page. How: This waits for the address to change.
 		await expect.poll( () => curPagObj.evaluate( () => window.scrollY ) ).toBe( 0 ); // What: Top Offset Assertion. Why: The new page has to open at its top. How: This polls the scroll offset until it reads 0, failing if it never does.
 
 
@@ -274,8 +274,7 @@ test( 'a phone menu link opens its page at the top', async ( { page : curPagObj 
 
 	await curPagObj.getByRole( 'navigation', { name : 'Main' } ).getByRole( 'link', { exact : true, name : 'Contact' } ).click(); // What: Menu Link Click. Why: A phone visitor picks a page from the open menu. How: This clicks Contact.
 
-	await expect( curPagObj ).toHaveURL( '/contact' ); // What: Destination Assertion. Why: The offset only means something on the new page. How: This waits for the address to change.
-
+	await expect( curPagObj ).toHaveURL( '/contact' );                               // What: Destination Assertion. Why: The offset only means something on the new page. How: This waits for the address to change.
 	await expect.poll( () => curPagObj.evaluate( () => window.scrollY ) ).toBe( 0 ); // What: Top Offset Assertion. Why: The new page has to open at its top. How: This polls the scroll offset until it reads 0.
 
 
@@ -298,7 +297,7 @@ test( 'back and forward return to the exact position, from a page scrolled furth
 
 	await curPagObj.getByRole( 'navigation', { name : 'Footer' } ).getByRole( 'link', { exact : true, name : 'Contact' } ).click(); // What: Footer Link Click. Why: Back needs a shorter page to come back from. How: This follows the footer's Contact link.
 
-	await expect( curPagObj ).toHaveURL( '/contact' );                                             // What: Destination Assertion. Why: The page between has to be showing before it's measured. How: This waits for the address to change.
+	await expect( curPagObj ).toHaveURL( '/contact' );                                          // What: Destination Assertion. Why: The page between has to be showing before it's measured. How: This waits for the address to change.
 	await expect( curPagObj.getByRole( 'heading', { level : 1 } ) ).toHaveText( 'Say Hello!' ); // What: Contact Heading Assertion. Why: The address changes a moment before Contact renders, so measuring then would read Home's height. How: This waits for Contact's own heading.
 
 
@@ -391,6 +390,7 @@ test( 'a hash added to the address lands on its target, not a saved position', a
 
 	} );
 
+
 	await curPagObj.setViewportSize( { height : 844, width : 390 } ); // What: Phone Viewport Call. Why: Home's stacked phone layout scrolls well past 1,500px. How: This sizes the page before it loads.
 
 	await curPagObj.goto( '/' ); // What: Home Page Navigation. Why: The check starts on Home, the visit's first entry. How: This loads it.
@@ -429,7 +429,7 @@ test( 'malformed saved scroll positions are ignored rather than breaking the pag
 	await curPagObj.goto( '/' ); // What: Home Page Navigation. Why: The hook reads the planted value as the site loads. How: This loads Home.
 
 	expect( await scrDowFun( curPagObj ) ).toBeGreaterThan( 0 ); // What: Scrolled Assertion. Why: A page that can't scroll fires no scroll event, so the recorder and its save would never run. How: This scrolls down and checks the page sits below its top.
-	expect( errLisArr ).toEqual( [] );                            // What: No Error Assertion. Why: The page passes only when the hook handled the bad value. How: This compares the collected errors with an empty list, so a failure prints each one.
+	expect( errLisArr ).toEqual( [] );                           // What: No Error Assertion. Why: The page passes only when the hook handled the bad value. How: This compares the collected errors with an empty list, so a failure prints each one.
 
 
 } );
@@ -454,6 +454,7 @@ test( 'malformed saved entries are dropped while a well-formed saved position is
 
 	expect( leaTopNum ).toBeGreaterThan( 0 ); // What: Scrolled Assertion. Why: A page that can't scroll would let the check pass without anything restored. How: This checks the page sits below its top.
 
+
 	await curPagObj.evaluate( () => { // What: Malformed Entries Plant. Why: Only the hook's per-entry checks keep the good pair, since a bad entry under the same key would replace it and an entry that isn't a list would throw. How: This rewrites the saved record with malformed entries around the real ones, one of them a non-number position under each real key.
 
 
@@ -464,6 +465,7 @@ test( 'malformed saved entries are dropped while a well-formed saved position is
 
 
 	} );
+
 
 	await curPagObj.reload(); // What: Page Reload Call. Why: The hook reads the planted record as the site loads. How: This reloads Home.
 

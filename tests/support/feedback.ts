@@ -277,6 +277,7 @@ function snaEleFun ( eleCurEle : Element, proNamArr : string[] ) : SnaRecTyp[] {
 	}
 
 
+
 	for ( const [ recIndNum, snaRecObj ] of snaRecArr.entries() ) { // What: Inherited Color Loop. Why: A record whose color comes from its parent eases with the parent's transition. How: This gives each one whose color matches its parent's the parent's duration, in document order, so it passes down every level.
 
 

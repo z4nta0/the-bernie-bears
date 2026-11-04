@@ -95,8 +95,7 @@ async function menOpeFun ( curPagObj : Page ) : Promise< void > {
 	await curPagObj.getByRole( 'button', { name : 'Toggle menu' } ).click(); // What: Menu Toggle Click. Why: Every check starts with the menu open. How: This opens it.
 
 	await expect( curPagObj.getByRole( 'button', { name : 'Toggle menu' } ) ).toHaveAttribute( 'aria-expanded', 'true' ); // What: Open State Assertion. Why: The toggle has to report the menu open. How: This checks its aria-expanded.
-
-	await expect( curPagObj.locator( 'main[inert], footer[inert]' ) ).toHaveCount( 2 ); // What: Inert Page Assertion. Why: Content under the scrim shouldn't take focus or be read. How: This checks the main content and the footer are both inert.
+	await expect( curPagObj.locator( 'main[inert], footer[inert]' ) ).toHaveCount( 2 );                                   // What: Inert Page Assertion. Why: Content under the scrim shouldn't take focus or be read. How: This checks the main content and the footer are both inert.
 
 
 }
@@ -188,8 +187,7 @@ test( 'tapping the scrim closes the menu', async ( { page : curPagObj } ) => { /
 	await curPagObj.mouse.click( 200, 800 ); // What: Scrim Tap Call. Why: The scrim covers the page below the panel. How: This taps it.
 
 	await expect( curPagObj.getByRole( 'button', { name : 'Toggle menu' } ) ).toHaveAttribute( 'aria-expanded', 'false' ); // What: Closed State Assertion. Why: The tap should close the menu. How: This checks the toggle reports it closed.
-
-	await expect( curPagObj.locator( '[inert]' ) ).toHaveCount( 0 ); // What: Page Restored Assertion. Why: The page has to be usable again. How: This checks nothing is left inert.
+	await expect( curPagObj.locator( '[inert]' ) ).toHaveCount( 0 );                                                       // What: Page Restored Assertion. Why: The page has to be usable again. How: This checks nothing is left inert.
 
 
 } );
@@ -204,10 +202,8 @@ test( 'Escape closes the menu and returns focus to the toggle', async ( { page :
 	await curPagObj.keyboard.press( 'Escape' ); // What: Escape Press Call. Why: The keyboard way out is checked. How: This presses Escape.
 
 	await expect( curPagObj.getByRole( 'button', { name : 'Toggle menu' } ) ).toHaveAttribute( 'aria-expanded', 'false' ); // What: Closed State Assertion. Why: Escape should close the menu. How: This checks the toggle reports it closed.
-
-	await expect( curPagObj.getByRole( 'button', { name : 'Toggle menu' } ) ).toBeFocused(); // What: Focus Return Assertion. Why: The visitor should be back where they opened the menu. How: This checks the toggle has focus.
-
-	await expect( curPagObj.locator( '[inert]' ) ).toHaveCount( 0 ); // What: Page Restored Assertion. Why: The page has to be usable again. How: This checks nothing is left inert.
+	await expect( curPagObj.getByRole( 'button', { name : 'Toggle menu' } ) ).toBeFocused();                               // What: Focus Return Assertion. Why: The visitor should be back where they opened the menu. How: This checks the toggle has focus.
+	await expect( curPagObj.locator( '[inert]' ) ).toHaveCount( 0 );                                                       // What: Page Restored Assertion. Why: The page has to be usable again. How: This checks nothing is left inert.
 
 
 } );
@@ -221,11 +217,9 @@ test( 'tapping the brand goes home and closes the menu', async ( { page : curPag
 
 	await curPagObj.getByRole( 'banner' ).getByRole( 'link', { exact : true, name : 'The Bernie Bears' } ).click(); // What: Brand Tap Call. Why: The brand is the way home from the open menu. How: This taps the bar's brand link.
 
-	await expect( curPagObj ).toHaveURL( '/' ); // What: Home Assertion. Why: The brand links to the home page. How: This waits for the address to change.
-
+	await expect( curPagObj ).toHaveURL( '/' );                                                                            // What: Home Assertion. Why: The brand links to the home page. How: This waits for the address to change.
 	await expect( curPagObj.getByRole( 'button', { name : 'Toggle menu' } ) ).toHaveAttribute( 'aria-expanded', 'false' ); // What: Closed State Assertion. Why: The tap should close the menu. How: This checks the toggle reports it closed.
-
-	await expect( curPagObj.locator( 'main[inert]' ) ).toHaveCount( 0 ); // What: Main Restored Assertion. Why: The home page's content has to be usable. How: This checks the main content is no longer inert.
+	await expect( curPagObj.locator( 'main[inert]' ) ).toHaveCount( 0 );                                                   // What: Main Restored Assertion. Why: The home page's content has to be usable. How: This checks the main content is no longer inert.
 
 
 } );

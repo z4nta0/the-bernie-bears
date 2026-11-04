@@ -28,8 +28,8 @@ import { writeFileSync } from 'node:fs';          // What: Write File Sync. Why:
  * that showed no difference from the original at 3x zoom. Last, it writes a
  * photo-sizes.ts into each page's folder, the width and height of every photo
  * it wrote there, which the page's img elements read so nothing shifts while
- * photos load. Run it with npm run photos whenever a
- * photo is added or replaced, or a display size changes.
+ * photos load. Run it with npm run photos whenever a photo is added or
+ * replaced, or a display size changes.
  *
  * Sections:
  *  - Constants
@@ -125,6 +125,7 @@ for ( const phoRecObj of PHO_REC_ARR ) { // What: Photo Record Loop. Why: Each o
 
 		souImaEle.src = souUrlStr; // What: Source Address Assignment. Why: The image loads the original's data. How: This sets its source.
 
+
 		await souImaEle.decode(); // What: Source Decode Wait. Why: Drawing an undecoded image draws nothing. How: This waits until it's ready.
 
 
@@ -145,6 +146,7 @@ for ( const phoRecObj of PHO_REC_ARR ) { // What: Photo Record Loop. Why: Each o
 
 
 		outCotObj.imageSmoothingQuality = 'high'; // What: Smoothing Quality Assignment. Why: A large downscale should stay sharp without jagged edges. How: This asks for the browser's best resampling.
+
 
 		outCotObj.drawImage( souImaEle, ( souImaEle.naturalWidth - kepWidNum ) / 2, ( souImaEle.naturalHeight - kepHeiNum ) / 2, kepWidNum, kepHeiNum, 0, 0, outWidNum, outHeiNum ); // What: Photo Draw Call. Why: The kept part of the original fills the canvas. How: This draws the centered crop, or the whole photo, scaled to the canvas.
 
