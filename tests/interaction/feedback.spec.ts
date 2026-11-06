@@ -347,9 +347,9 @@ async function conLisFun ( curPagObj : Page, conSelStr : string ) : Promise< Ele
  * problem. Normally every probed property that changes on hover, press, or
  * focus, on the control or anything inside it, has to be eased by a transition
  * ({@link snaProFun}), the focus ring's outline included; under reduced motion
- * none of them may ease ({@link movProFun}), and every one of the control's
- * own transition durations must be zero. It expects real clicks already
- * blocked, so releasing the mouse does nothing.
+ * none of them may ease ({@link movProFun}), and the control's own transition
+ * durations, read while it is pressed, must all be zero. It expects real
+ * clicks already blocked, so releasing the mouse does nothing.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *

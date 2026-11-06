@@ -65,7 +65,7 @@ const LAY_CAS_ARR : LayCasTyp[] = [ // What: Layout Case Array. Why: Every page 
 ];
 
 const MEN_MAX_NUM = 640;                                                                               // What: Menu Maximum Number. Why: The mobile menu exists only up to the site's 640px breakpoint. How: The menu case is measured only at widths up to this.
-const ROW_WID_ARR = [ 360, 361, 379, 380, 430, 431, 568, 569, 889, 890, 1136, 1137 ];                  // What: Row Width Array. Why: The card grids switch column counts at widths their own minimum card sizes set rather than at a breakpoint, measured at about 380px, 431px, 569px, 890px, and 1,137px, and the phone menu's icons switch at 360px. How: The row check adds each of these widths and the pixel either side of it to the width list.
+const ROW_WID_ARR = [ 360, 361, 379, 380, 430, 431, 568, 569, 889, 890, 1136, 1137 ];                  // What: Row Width Array. Why: The card grids switch column counts at widths their own minimum card sizes set rather than at a breakpoint, measured at about 380px, 431px, 569px, 890px, and 1,137px, and the phone menu's icons switch at 360px. How: The row check adds these widths to the width list, each switch measured as a pair of pixels either side of it.
 const WID_LIS_ARR = [ 320, 360, 390, 414, 480, 640, 641, 768, 769, 880, 881, 1024, 1280, 1440, 1920 ]; // What: Width List Array. Why: Layouts crowd at the narrowest widths and switch at the breakpoints. How: This lists common screen widths (480px a landscape phone, 1,024px a tablet) plus the site's 640px, 768px, and 880px breakpoints and the pixel past each.
 
 // #endregion Constants

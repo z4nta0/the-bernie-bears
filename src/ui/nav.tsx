@@ -369,7 +369,7 @@ function NavBarCom () : React.JSX.Element {
 
 
 
-							<div className={ cssModObj.menSocDiv }>{ /* What: Menu Social Div Element. Why: Each of the girls' profiles is one tap away from any page. How: This sets the six icons in a row, wrapping onto two lines at about 340px wide and below. */ }
+							<div className={ cssModObj.menSocDiv }>{ /* What: Menu Social Div Element. Why: Each of the girls' profiles is one tap away from any page. How: This sets the six icons in one row, or two rows of three at 360px wide and below. */ }
 
 
 								{ SOC_PRO_ARR.map( ( socProObj ) => ( // What: Profile Icon Map. Why: Each profile gets an icon. How: This renders one link per row of SOC_PRO_ARR.
