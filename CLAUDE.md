@@ -402,14 +402,15 @@ passes on `close-out`.
      instead of holding 88% of the viewport, which left empty space on tall
      windows, and it stacks at 880px instead of 768px (the user asked for
      about 850px, and no breakpoint sat near it; 880px is reese-roofing's).
-     The other pages keep 640px and 768px. The phone menu's six icons sit in one row, then
-     two rows of three at 360px and below (added 2026-11-05, Q20), the
-     narrowest breakpoint, since six stop fitting at about 340px. The stacked hero's picture box is
+     The other pages keep 640px and 768px. The stacked hero's picture box is
      a centered square at `p11` (never wider than the column) rather than the
      column's full width, so the blob fills it and shows around the portrait
      one step smaller, and the badges sit just off the portrait's corners,
      the two-column proportions. On the live site the badges sat at the
      column's edges and the blob hid behind a portrait of its own size.
+   - **Menu icons** (added 2026-11-05, Q20): the phone menu's six icons sit
+     in one row, then two rows of three at 360px and below, the narrowest
+     breakpoint, since six stop fitting at about 340px.
    - **Pictures first when stacked** (asked for by the user 2026-10-18): the
      stacked hero opens on the portrait, above the welcome, and About's
      stacked intro puts the cartoon between the page header and the story,
