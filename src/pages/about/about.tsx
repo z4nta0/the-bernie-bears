@@ -318,7 +318,7 @@ function AboPagCom () : React.JSX.Element {
 
 									<span className={ cssModObj.sisTraSpa }><span aria-hidden='true'>🏃</span> Always zooming</span>{ /* What: Sister Trait Span Element. Why: Each trait is a chip. How: This shows the "Always zooming" chip, its emoji hidden from screen readers. */ }
 
-									<span className={ cssModObj.sisTraSpa }><span aria-hidden='true'>🐾</span> Trouble maker</span>{ /* What: Sister Trait Span Element. Why: Each trait is a chip. How: This shows the "Trouble maker" chip, its emoji hidden from screen readers. */ }
+									<span className={ cssModObj.sisTraSpa }><span aria-hidden='true'>🐾</span> Troublemaker</span>{ /* What: Sister Trait Span Element. Why: Each trait is a chip. How: This shows the "Troublemaker" chip, its emoji hidden from screen readers. */ }
 
 
 								</div>
