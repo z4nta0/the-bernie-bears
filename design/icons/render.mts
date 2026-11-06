@@ -20,11 +20,10 @@ import { writeFileSync } from 'node:fs';          // What: Write File Sync. Why:
  * Bears' pink paw print on a transparent background. This script draws the
  * raster icons beside favicon.svg: PNG icons at 16, 32, 192, and 512px, a
  * favicon.ico holding the 16, 32, and 48px sizes, served at /favicon.ico, and
- * a 180px apple-touch-icon.png on a solid white square, since iOS fills
- * transparency with black and rounds the corners itself. The touch icon draws
- * the paw a little smaller than the square, so the rounded corners never crowd
- * it. Since the paw is a vector, each size is drawn straight from it. Run it
- * with npm run icons whenever the paw changes.
+ * a 180px apple-touch-icon.png on a solid white square, which draws the paw
+ * a little smaller than the square so a white margin surrounds it. Since the
+ * paw is a vector, each size is drawn straight from it. Run it with npm run
+ * icons whenever the paw changes.
  *
  * Sections:
  *  - Constants
@@ -43,7 +42,7 @@ type IcoRecTyp = { // What: Icon Record Type. Why: Every PNG icon is described t
 
 
 	filStr : string,  // What: File String. Why: Each icon is saved under its own name in public/. How: This is the file name.
-	opaBoo : boolean, // What: Opaque Boolean. Why: iOS turns transparent pixels black and rounds the icon's corners. How: This is true for the icon drawn smaller on solid white.
+	opaBoo : boolean, // What: Opaque Boolean. Why: The touch icon is drawn opaque, unlike the others. How: This is true for the icon drawn smaller on solid white.
 	sizNum : number   // What: Size Number. Why: Each icon is square at its own size. How: This is its width and height in pixels.
 
 
@@ -56,14 +55,14 @@ const ICO_REC_ARR : IcoRecTyp[] = [ // What: Icon Record Array. Why: The PNG ico
 	{ filStr : 'favicon-32x32.png',    opaBoo : false, sizNum : 32  }, // What: Medium Icon Row. Why: The head offers a 32px icon. How: This renders it.
 	{ filStr : 'favicon-192x192.png',  opaBoo : false, sizNum : 192 }, // What: Large Icon Row. Why: The head offers a 192px icon. How: This renders it.
 	{ filStr : 'favicon-512x512.png',  opaBoo : false, sizNum : 512 }, // What: Extra Large Icon Row. Why: The head offers a 512px icon. How: This renders it.
-	{ filStr : 'apple-touch-icon.png', opaBoo : true,  sizNum : 180 }  // What: Apple Touch Icon Row. Why: iOS draws the home screen icon at 180px and fills transparency with black. How: This renders it on solid white.
+	{ filStr : 'apple-touch-icon.png', opaBoo : true,  sizNum : 180 }  // What: Apple Touch Icon Row. Why: The home screen icon is a 180px opaque square. How: This renders it on solid white.
 
 
 ];
 
 const ICO_SIZ_ARR = [ 16, 32, 48 ];                                               // What: ICO Size Array. Why: favicon.ico holds several sizes in one file. How: Each entry is one square size packed into the file.
 const OUT_DIR_STR = fileURLToPath( new URL( '../../public/', import.meta.url ) ); // What: Output Directory String. Why: Browsers request icons from the site's root. How: This resolves public/ from this script's folder.
-const TOU_SCA_NUM = 0.8;                                                          // What: Touch Scale Number. Why: iOS rounds the touch icon's corners, which would crowd a paw drawn edge to edge. How: The touch icon draws the mark at this share of its square, centered.
+const TOU_SCA_NUM = 0.8;                                                          // What: Touch Scale Number. Why: The touch icon leaves a white margin around the paw. How: The touch icon draws the mark at this share of its square, centered.
 
 // #endregion Constants
 
@@ -131,11 +130,11 @@ async function renPngFun ( icoSizNum : number, icoOpaBoo : boolean ) : Promise< 
 
 
 		const finCotObj = finCanEle.getContext( '2d' )!;                 // What: Final Context Object. Why: Drawing goes through the canvas's 2D context. How: This gets it. // What: Non-Null Note. Why: getContext can return null for an unsupported type. How: A 2D context is always available on a fresh canvas.
-		const marSizNum = solBacBoo ? tarSizNum * touScaNum : tarSizNum; // What: Mark Size Number. Why: The touch icon leaves room around the paw for iOS's rounded corners. How: This shrinks the mark for the opaque icon and fills the square otherwise.
+		const marSizNum = solBacBoo ? tarSizNum * touScaNum : tarSizNum; // What: Mark Size Number. Why: The touch icon leaves a white margin around the paw. How: This shrinks the mark for the opaque icon and fills the square otherwise.
 		const marOffNum = ( tarSizNum - marSizNum ) / 2;                 // What: Mark Offset Number. Why: The shrunk mark sits in the middle of its square. How: This splits the spare room evenly on each side.
 
 
-		if ( solBacBoo ) { // What: Solid Background Fill. Why: iOS fills transparency with black. How: For the opaque icon, this paints the square white before the mark goes on.
+		if ( solBacBoo ) { // What: Solid Background Fill. Why: The touch icon has no transparent pixels. How: For the opaque icon, this paints the square white before the mark goes on.
 
 
 			finCotObj.fillStyle = '#ffffff'; // What: White Fill Assignment. Why: The background has to be solid white. How: This sets the fill color.
