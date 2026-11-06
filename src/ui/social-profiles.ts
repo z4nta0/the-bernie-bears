@@ -97,7 +97,7 @@ const SOC_PRO_ARR = [ // What: Social Profile Array. Why: The Social Links page 
 
 	},
 
-	{ // What: TikTok Profile Row. Why: Short clips reach the most new fans. How: This row gives the TikTok page its card and its menu icon.
+	{ // What: TikTok Profile Row. Why: Short clips are what the girls post here. How: This row gives the TikTok page its card and its menu icon.
 
 
 		bacStr : '#f0f0f0',
