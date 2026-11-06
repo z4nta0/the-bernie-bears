@@ -65,7 +65,7 @@ const LAY_CAS_ARR : LayCasTyp[] = [ // What: Layout Case Array. Why: Every page 
 ];
 
 const MEN_MAX_NUM = 640;                                                                               // What: Menu Maximum Number. Why: The mobile menu exists only up to the site's 640px breakpoint. How: The menu case is measured only at widths up to this.
-const ROW_WID_ARR = [ 379, 380, 430, 431, 568, 569, 889, 890, 1136, 1137 ];                            // What: Row Width Array. Why: The card grids switch column counts at widths their own minimum card sizes set rather than at a breakpoint, measured at about 380px, 431px, 569px, 890px, and 1,137px. How: The row check adds each of these widths and the pixel before it to the width list.
+const ROW_WID_ARR = [ 360, 361, 379, 380, 430, 431, 568, 569, 889, 890, 1136, 1137 ];                  // What: Row Width Array. Why: The card grids switch column counts at widths their own minimum card sizes set rather than at a breakpoint, measured at about 380px, 431px, 569px, 890px, and 1,137px, and the phone menu's icons switch at 360px. How: The row check adds each of these widths and the pixel either side of it to the width list.
 const WID_LIS_ARR = [ 320, 360, 390, 414, 480, 640, 641, 768, 769, 880, 881, 1024, 1280, 1440, 1920 ]; // What: Width List Array. Why: Layouts crowd at the narrowest widths and switch at the breakpoints. How: This lists common screen widths (480px a landscape phone, 1,024px a tablet) plus the site's 640px, 768px, and 880px breakpoints and the pixel past each.
 
 // #endregion Constants
@@ -271,13 +271,14 @@ function layProFun () : string[] {
  * rowProFun = Row Problems Function
  *
  * @summary
- * Runs inside the page and returns every grid of cards in the main content
- * whose rows don't all hold the same number of cards. A grid of cards here is
- * an element laid out as a grid with two or more children that share their
- * first class; its rows are its children grouped by their rounded top edge.
- * Each problem names the grid by its tag and the readable part of its first
- * class, and lists its row counts. Passed to Playwright's evaluate, so it
- * can't read anything from this file.
+ * Runs inside the page and returns every grid of cards in the main content or
+ * the navigation whose rows don't all hold the same number of cards. A grid of
+ * cards here is an element with two or more children that share their first
+ * class, laid out as a grid or as a wrapping row of equal-width tiles (chips
+ * sized to their own text are left out); its rows are its children grouped by
+ * their rounded top edge. Each problem names the grid by its tag and the
+ * readable part of its first class, and lists its row counts. Passed to
+ * Playwright's evaluate, so it can't read anything from this file.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -300,16 +301,21 @@ function rowProFun () : string[] {
 
 
 
-	for ( const griCurEle of document.querySelectorAll( 'main *' ) ) { // What: Grid Loop. Why: Any grid of cards in the main content could leave a short row. How: This visits each element there.
+	for ( const griCurEle of document.querySelectorAll( 'main *, nav *' ) ) { // What: Grid Loop. Why: Any grid of cards in the main content or the navigation could leave a short row. How: This visits each element there.
 
 
-		const chiEleArr = [ ...griCurEle.children ]; // What: Child Element Array. Why: A grid's rows are made of its children. How: This lists them.
+		const chiEleArr = [ ...griCurEle.children ];     // What: Child Element Array. Why: A grid's rows are made of its children. How: This lists them.
+		const griStyObj = getComputedStyle( griCurEle ); // What: Grid Style Object. Why: The layout decides whether the children form rows. How: This reads the element's computed style.
 
-		const griDisBoo = getComputedStyle( griCurEle ).display === 'grid';                                               // What: Grid Display Boolean. Why: Only a grid lays its children out in rows of columns. How: This checks the element's computed display.
+		const fleWraBoo = griStyObj.display === 'flex' && griStyObj.flexWrap === 'wrap';                                  // What: Flex Wrap Boolean. Why: A wrapping row lays its children out in lines that can end short. How: This checks the element is a flex row that wraps.
+		const griDisBoo = griStyObj.display === 'grid';                                                                   // What: Grid Display Boolean. Why: A grid lays its children out in rows of columns. How: This checks the element's computed display.
 		const manChiBoo = chiEleArr.length > 1;                                                                           // What: Many Children Boolean. Why: One card can't leave a short row. How: This checks there are at least two.
 		const samClaBoo = chiEleArr.every( ( chiCurEle ) => chiCurEle.classList[ 0 ] === chiEleArr[ 0 ].classList[ 0 ] ); // What: Same Class Boolean. Why: Cards in one grid share their class, while a layout grid's children differ. How: This checks every child's first class matches the first child's.
+		const samWidBoo = chiEleArr.every( ( chiCurEle ) => Math.abs( chiCurEle.getBoundingClientRect().width - chiEleArr[ 0 ].getBoundingClientRect().width ) < 1 ); // What: Same Width Boolean. Why: Tiles of one size read as a grid, while chips sized to their own text may leave a short row. How: This checks every child is within a pixel of the first child's width.
 
-		const carGriBoo = griDisBoo && manChiBoo && samClaBoo; // What: Card Grid Boolean. Why: Only a grid of cards has to fill its rows evenly. How: This combines the three checks.
+		const tilRowBoo = fleWraBoo && samWidBoo; // What: Tile Row Boolean. Why: A wrapping row of equal tiles has to fill its lines the way a grid does. How: This combines the two checks.
+
+		const carGriBoo = ( griDisBoo || tilRowBoo ) && manChiBoo && samClaBoo; // What: Card Grid Boolean. Why: Only a grid of cards or tiles has to fill its rows evenly. How: This combines the checks.
 
 
 		if ( !carGriBoo ) continue; // What: Non-Card Grid Guard. Why: Other elements have no rows of cards to compare. How: This skips them.
@@ -377,7 +383,7 @@ for ( const layCasObj of LAY_CAS_ARR ) { // What: Case Loop. Why: Every page and
 }
 
 
-for ( const layCasObj of LAY_CAS_ARR.filter( ( casFilObj ) => !casFilObj.menBoo ) ) { // What: Row Case Loop. Why: Every page's card grids should fill their rows evenly at every width. How: This declares one row test per page.
+for ( const layCasObj of LAY_CAS_ARR ) { // What: Row Case Loop. Why: Every page's card grids, and the open menu's icons, should fill their rows evenly at every width. How: This declares one row test per case.
 
 
 	test( `${ layCasObj.ideStr } fills every row of its card grids evenly`, async ( { page : curPagObj } ) => { // What: Row Test. Why: A grid of cards never leaves a short last row. How: This opens the page and checks its grids at each width in turn, a pixel either side of each switch included.
@@ -385,14 +391,25 @@ for ( const layCasObj of LAY_CAS_ARR.filter( ( casFilObj ) => !casFilObj.menBoo 
 
 		await curPagObj.emulateMedia( { reducedMotion : 'reduce' } ); // What: Reduced Motion Emulation. Why: Entrance animations don't change the rows, so waiting on them only slows the run. How: This makes the page match the reduced motion query.
 
-		await opeStaFun( curPagObj, { heiNum : 900, ideStr : layCasObj.ideStr, patStr : layCasObj.patStr, widNum : 1440 } ); // What: Case Open Call. Why: The rows are measured on a settled page. How: This opens the page once, and the loop below resizes it.
+		await opeStaFun( curPagObj, { // What: Case Open Call. Why: The rows are measured on a settled page. How: This opens the case once, opening the menu first for the menu case, and the loop below resizes it.
+
+
+			heiNum : 900,                                   // What: Height Number. Why: Only the width changes the rows. How: Every case is measured at the same height.
+			ideStr : layCasObj.ideStr,                      // What: Identifier String. Why: The state names its case. How: This reuses the case's name.
+			patStr : layCasObj.patStr,                      // What: Path String. Why: The state opens the case's route. How: This reuses the case's path.
+			widNum : layCasObj.menBoo ? MEN_MAX_NUM : 1440, // What: Width Number. Why: The menu only opens on a phone. How: This opens the menu case at the widest a phone layout reaches, and every other case on a desktop.
+
+			...( layCasObj.menBoo ? { actFun : async ( actPagObj ) => { await actPagObj.getByRole( 'button', { name : 'Toggle menu' } ).click(); } } : {} ) // What: Menu Action Spread. Why: Only the menu case opens the menu. How: This adds the toggle click for it.
+
+
+		} );
 
 
 
 		const proLisArr : string[] = []; // What: Problem List Array. Why: Every width's uneven grids should be reported together. How: This collects them, each with its width.
 
 
-		for ( const widCurNum of [ ...WID_LIS_ARR, ...ROW_WID_ARR ].sort( ( widOneNum, widTwoNum ) => widOneNum - widTwoNum ) ) { // What: Row Width Loop. Why: Each switch in column count has to land on a count that divides the cards. How: This measures every width in order.
+		for ( const widCurNum of [ ...WID_LIS_ARR, ...ROW_WID_ARR ].filter( ( widFilNum ) => !layCasObj.menBoo || widFilNum <= MEN_MAX_NUM ).sort( ( widOneNum, widTwoNum ) => widOneNum - widTwoNum ) ) { // What: Row Width Loop. Why: Each switch in column count has to land on a count that divides the cards. How: This measures every width in order.
 
 
 			await curPagObj.setViewportSize( { height : 900, width : widCurNum } ); // What: Viewport Resize Call. Why: The grids reflow at each width. How: This sets the width under test.

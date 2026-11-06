@@ -402,7 +402,9 @@ passes on `close-out`.
      instead of holding 88% of the viewport, which left empty space on tall
      windows, and it stacks at 880px instead of 768px (the user asked for
      about 850px, and no breakpoint sat near it; 880px is reese-roofing's).
-     The other pages keep 640px and 768px. The stacked hero's picture box is
+     The other pages keep 640px and 768px. The phone menu's six icons sit in one row, then
+     two rows of three at 360px and below (added 2026-11-05, Q20), the
+     narrowest breakpoint, since six stop fitting at about 340px. The stacked hero's picture box is
      a centered square at `p11` (never wider than the column) rather than the
      column's full width, so the blob fills it and shows around the portrait
      one step smaller, and the badges sit just off the portrait's corners,
@@ -601,9 +603,11 @@ bar's paw) when waiting for the page to settle.
   breakpoints and the pixel past each included), failing on sideways
   scrolling, an unclipped element past either edge, text spilling its box,
   or two reachable controls overlapping. Since audit 9 (2026-11-04) it also
-  checks each page's card grids hold the same number of cards in every row,
-  at those widths and either side of each width where a grid changes its
-  column count (about 380px, 431px, 569px, 890px, and 1,137px).
+  checks each page's card grids, and since 2026-11-05 the open menu's icon
+  tiles and any wrapping row of equal tiles, hold the same number in every
+  row, at those widths and either side of each width where a grid changes
+  its column count (about 380px, 431px, 569px, 890px, and 1,137px, and the
+  menu icons' 360px).
 - `npm run test:interaction`: checks how the site behaves when used.
   `navigation.spec.ts` (added 2026-10-11) follows each page's footer link from
   the bottom of the page, the current page's own bar link, and a phone menu

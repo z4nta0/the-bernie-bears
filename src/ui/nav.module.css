@@ -630,12 +630,25 @@
 
 /* #region menSocDiv */
 
-.menSocDiv { /* What: Menu Social Div. Why: The six icons sit together as one row. How: This sets them in a row, wrapping onto two lines at about 340px wide and below. */
+.menSocDiv { /* What: Menu Social Div. Why: The six icons sit together, and every row should hold the same number of them. How: This sets them in one row of six, two rows of three at 360px wide and below, where six no longer fit. */
 
 
-	display   : flex;
-	flex-wrap : wrap;
-	gap       : var( --spa-ver-m02 ) var( --spa-hor-m02 ); /* Spacing Vertical Base Minus 2 ~= 8.304px, Spacing Horizontal Base Minus 2 ~= 8.304px */
+	display               : grid;
+	gap                   : var( --spa-ver-m02 ) var( --spa-hor-m02 ); /* Spacing Vertical Base Minus 2 ~= 8.304px, Spacing Horizontal Base Minus 2 ~= 8.304px */
+	grid-template-columns : repeat( 6, auto );
+
+
+}
+@media ( max-width : 360px ) { /* What: Narrowest Menu Social Div. Why: Six tiles stop fitting the menu at about 340px wide, and five with a lone sixth would leave a short row. How: This applies 360px wide and below. */
+
+
+	.menSocDiv { /* What: Stacked Menu Social Div. Why: Three divides six, so both rows stay full. How: This sets the icons in two rows of three. */
+
+
+		grid-template-columns : repeat( 3, auto );
+
+
+	}
 
 
 }
