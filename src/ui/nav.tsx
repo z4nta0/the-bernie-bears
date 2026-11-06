@@ -264,7 +264,7 @@ function NavBarCom () : React.JSX.Element {
 				aria-hidden='true'
 
 				onClick={ cloMenFun }
-			/>{ /* What: Navigation Scrim Div Element. Why: The open menu should stand apart from the dimmed page, and a tap anywhere on the page should close it. How: This covers the page under the bar at 640px wide and below, dimmed while the menu is open, closing the menu when tapped, and hidden from screen readers as decoration. */ }
+			/>{ /* What: Navigation Scrim Div Element. Why: The open menu should stand apart from the dimmed page, and a tap anywhere on the page should close it. How: This covers the whole page, layered beneath the bar, at 640px wide and below, dimmed while the menu is open, closing the menu when tapped, and hidden from screen readers as decoration. */ }
 
 
 
