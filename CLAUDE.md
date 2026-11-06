@@ -496,7 +496,8 @@ passes on `close-out`.
       headers' gradient, above "Follow Lilah & Norah" in Dancing Script) as
       `public/og-image.jpg`, a JPEG at quality 90 (about 45 KB), since as a
       PNG it came to 337 KB and 85 left ringing around the script at 3x
-      zoom. `npm run icons` renders the ICO, the 16 to 512px PNGs, and an
+      zoom. Kept as a JPEG on 2026-11-05, when the user-level rule made
+      the 300 KB limit outrank the PNG format. `npm run icons` renders the ICO, the 16 to 512px PNGs, and an
       inset apple touch icon on white from `public/favicon.svg`, the pink
       paw, kept pink by the user's choice to match the girls' bows and the
       main site's cover. The head gains `theme-color` (the brand lavender),
