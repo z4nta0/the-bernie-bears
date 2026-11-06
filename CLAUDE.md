@@ -96,8 +96,18 @@ Decided 2026-10-11, per "## Multi-Page React Sites: Scroll Position" in the
 user-level rules. `ui/scroll-top.ts`'s `useScrTopFun`, called once in
 `AppRooCom`, opens every link-driven page change at the top (instantly,
 despite the global smooth scroll), scrolls a link's `#hash` target into view
-instead when it has one, and leaves back and forward to the browser, which
-returns the visitor to where they were.
+instead when it has one, and since 2026-11-03 restores back, forward, and a
+reload itself, from positions saved per history entry in session storage
+(ported from tonys-toppers' hook, minus its home page hash hand-off, since
+this site has no section links).
+
+## Skip link
+Added 2026-11-03, per "## Skip Link And Modal Layers". `NavBarCom` renders
+"Skip to main content" first, a lavender pill like the primary buttons that
+slides down over the bar on focus, and its plain click focuses the app's
+`<main id='main' tabIndex={ -1 }>`. **The main content is everything between
+the bar and the footer**: the one `<main>` in `app.tsx` that holds whichever
+page the address matches.
 
 ## Unused files
 Decided 2026-10-11, the same as tonys-toppers. An unused image is listed for
@@ -398,6 +408,9 @@ passes on `close-out`.
      one step smaller, and the badges sit just off the portrait's corners,
      the two-column proportions. On the live site the badges sat at the
      column's edges and the blob hid behind a portrait of its own size.
+   - **Menu icons** (added 2026-11-05, Q20): the phone menu's six icons sit
+     in one row, then two rows of three at 360px and below, the narrowest
+     breakpoint, since six stop fitting at about 340px.
    - **Pictures first when stacked** (asked for by the user 2026-10-18): the
      stacked hero opens on the portrait, above the welcome, and About's
      stacked intro puts the cartoon between the page header and the story,
@@ -454,6 +467,9 @@ passes on `close-out`.
       cartoon's CSS height is `auto`, since its new height attribute
       otherwise overrode its square aspect ratio. Every changed pixel in the
       refreshed baselines sits inside a photo.
+      Raised to three times on 2026-11-03, per the user-level image rule:
+      353 KB. Audit 9 measured the portrait at 345px wide at most (at 1,433px)
+      and rendered it at 1,035px, bringing the four to 317 KB.
     - **SEO**: done 2026-10-11. Each page renders its own head tags, which
       React 19 moves into the head and removes when the page changes: Home
       a canonical address, Social Links ("Follow Lilah & Norah | The Bernie
@@ -483,7 +499,8 @@ passes on `close-out`.
       headers' gradient, above "Follow Lilah & Norah" in Dancing Script) as
       `public/og-image.jpg`, a JPEG at quality 90 (about 45 KB), since as a
       PNG it came to 337 KB and 85 left ringing around the script at 3x
-      zoom. `npm run icons` renders the ICO, the 16 to 512px PNGs, and an
+      zoom. Kept as a JPEG on 2026-11-05, when the user-level rule made
+      the 300 KB limit outrank the PNG format. `npm run icons` renders the ICO, the 16 to 512px PNGs, and an
       inset apple touch icon on white from `public/favicon.svg`, the pink
       paw, kept pink by the user's choice to match the girls' bows and the
       main site's cover. The head gains `theme-color` (the brand lavender),
@@ -586,19 +603,51 @@ bar's paw) when waiting for the page to settle.
   open menu at 15 widths from 320 to 1,920px (the 640px, 768px, and 880px
   breakpoints and the pixel past each included), failing on sideways
   scrolling, an unclipped element past either edge, text spilling its box,
-  or two reachable controls overlapping.
+  or two reachable controls overlapping. Since audit 9 (2026-11-04) it also
+  checks each page's card grids, and since 2026-11-05 the open menu's icon
+  tiles and any wrapping row of equal tiles, hold the same number in every
+  row, at those widths and either side of each width where a grid changes
+  its column count (about 380px, 431px, 569px, 890px, and 1,137px, and the
+  menu icons' 360px). Since 2026-11-06 its edge check looks for a clipping
+  ancestor only inside the body, since the body's own sideways clip
+  (`overflow-x : hidden`) had hidden every spill from it.
 - `npm run test:interaction`: checks how the site behaves when used.
   `navigation.spec.ts` (added 2026-10-11) follows each page's footer link from
   the bottom of the page, the current page's own bar link, and a phone menu
-  link, expecting each new page to open at its top, and checks that back
-  returns to the earlier position. `menu.spec.ts` checks the phone menu's
-  scrim, the inert page behind it, and each way out. `feedback.spec.ts`
-  hovers, presses, and focuses every reachable control on every state, failing
-  on any that doesn't respond or whose focus ring doesn't ease in, and checks
-  that reduced motion stops them moving.
+  link, expecting each new page to open at its top, and checks that back,
+  forward, and a reload return to the exact earlier position, that a fresh
+  load and a hash each win over a saved one, that malformed saved positions
+  are ignored, and that every page's first Tab reaches the skip link, which
+  focuses the main content. `menu.spec.ts` checks the phone menu's scrim, the
+  inert page behind it, and each way out, every menu link included, however
+  it's clicked. `feedback.spec.ts` (ported from hair-designs on 2026-11-03,
+  with its helpers in `tests/support/feedback.ts`) hovers, presses, and
+  keyboard-focuses every reachable control on every state, failing on any
+  property a state changes that doesn't ease, flips each toggled state off,
+  on, and off by its attribute, and checks that reduced motion stops the
+  movement.
 - `npm run test:seo` (added 2026-10-11): each page's head loaded directly
   and while moving between pages (the one title, the one description and
   canonical on Home and Social Links, `noindex` and neither on the others),
   the structured data against the profile links and email the pages show,
   and the crawler files.
+- `npm run test:security` (added 2026-11-03, from tonys-toppers): the
+  baseline security suite. `headers.spec.ts` reads `public/_headers` for the
+  policy and the hardening headers, searches the build for secrets, and runs
+  `npm audit` on the shipped dependencies (Chromium only, since files read the
+  same in every engine, skipping with a message when offline).
+  `browser.spec.ts` loads every state from the production build, served by
+  `vite preview` on port 5203 with the headers applied, and fails on any
+  policy violation or a new tab link without `noopener`. No browser key ships,
+  so none is allowed.
+  - **Exception, `noopener` without `noreferrer`** (confirmed by the user
+    2026-11-03): the security rule has every new tab link carry both, but
+    this site keeps `rel='noopener'` alone, as decided 2026-10-11 (see step
+    7), so the main site's and the platforms' analytics see the visits this
+    site sends. The suite checks `noopener` only, and the `Referrer-Policy`
+    (`strict-origin-when-cross-origin`) still sends other sites the origin,
+    never a page's full address.
+- **Chromium runs as full headless Chrome** (`channel : 'chromium'`), per the
+  user-level testing rule; its baselines were refreshed for the switch on
+  2026-11-03, the change being text antialiasing and soft shadows only.
 - `npm test` runs every suite.

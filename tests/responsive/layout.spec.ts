@@ -21,10 +21,13 @@ import { test      } from '@playwright/test';     // What: Test. Why: Each page 
  * past either edge of the screen (unless an ancestor clips it on purpose),
  * text spilling out of its own box, or two controls a visitor can reach
  * overlapping each other. The widths run from 320px, WCAG's narrowest reflow
- * width, to 1,920px, and include a pixel either side of each of the site's
- * breakpoints, where a layout switches and is most likely to crowd. Pages open
- * under reduced motion, which changes nothing about the layout but skips the
- * wait for entrance animations.
+ * width, to 1,920px, and include the site's 640px, 768px, and 880px
+ * breakpoints and the pixel past each, where a layout switches and is most
+ * likely to crowd. Each page's grids of cards are also checked for rows that
+ * don't all hold the same number of cards, at those widths and either side of
+ * each width where a grid changes its column count. Pages open under reduced
+ * motion, which changes nothing about the layout but skips the wait for
+ * entrance animations.
  *
  * Sections:
  *  - Constants
@@ -39,32 +42,32 @@ import { test      } from '@playwright/test';     // What: Test. Why: Each page 
 
 // #region Constants
 
-type LayCasTyp = { // What: Layout Case Type. Why: Each test measures one page in one state. How: This names the case, its path, and whether it opens the menu.
+type LayCasTyp = { // What: Layout Case Type. Why: Each test measures one page in one state. How: This names the case, its path, whether it opens the menu, and the grids it should show.
 
 
-	ideStr : string,  // What: Identifier String. Why: Each test names the case it measures. How: This becomes part of the test title.
-	menBoo : boolean, // What: Menu Boolean. Why: The open menu is measured as its own case. How: This is true when the case opens it.
-	patStr : string   // What: Path String. Why: Each case opens one route. How: This is the path loaded from the dev server.
+	griArr : string[], // What: Grid Array. Why: The row check should prove it found the grids a case holds, not pass on finding none. How: This lists the first class of each grid of cards or tiles the case should show.
+	ideStr : string,   // What: Identifier String. Why: Each test names the case it measures. How: This becomes part of the test title.
+	menBoo : boolean,  // What: Menu Boolean. Why: The open menu is measured as its own case. How: This is true when the case opens it.
+	patStr : string    // What: Path String. Why: Each case opens one route. How: This is the path loaded from the dev server.
 
 
 };
 
-const LAY_CAS_ARR : LayCasTyp[] = [ // What: Layout Case Array. Why: Every page and the open menu are measured the same way. How: Each row names a case, its path, and whether it opens the menu.
+const LAY_CAS_ARR : LayCasTyp[] = [ // What: Layout Case Array. Why: Every page and the open menu are measured the same way. How: Each row names a case, its path, whether it opens the menu, and the grids it should show.
 
 
-	{ ideStr : 'home',      menBoo : false, patStr : '/'        }, // What: Home Case. Why: The home page holds the hero, the feature cards, and the call to action. How: This measures it as loaded.
-	{ ideStr : 'about',     menBoo : false, patStr : '/about'   }, // What: About Case. Why: The About page holds the story, the photo cards, and the fun facts grid. How: This measures it as loaded.
-	{ ideStr : 'links',     menBoo : false, patStr : '/links'   }, // What: Links Case. Why: The Social Links page holds every platform card. How: This measures it as loaded.
-	{ ideStr : 'contact',   menBoo : false, patStr : '/contact' }, // What: Contact Case. Why: The Contact page holds the ways to get in touch and the contact panel. How: This measures it as loaded.
-	{ ideStr : 'not-found', menBoo : false, patStr : '/missing' }, // What: Not Found Case. Why: Every unknown address lands on the 404 page. How: This measures an address the site doesn't have, closed.
-	{ ideStr : 'menu',      menBoo : true,  patStr : '/'        }  // What: Menu Case. Why: The open menu stacks the page links its own way. How: This measures the home page with the menu open.
+	{ griArr : [ 'feaGriDiv' ],              ideStr : 'home',      menBoo : false, patStr : '/'        }, // What: Home Case. Why: The home page holds the hero, the feature cards, and the call to action. How: This measures it as loaded.
+	{ griArr : [ 'facGriDiv', 'sisGriDiv' ], ideStr : 'about',     menBoo : false, patStr : '/about'   }, // What: About Case. Why: The About page holds the story, the photo cards, and the fun facts grid. How: This measures it as loaded.
+	{ griArr : [],                           ideStr : 'links',     menBoo : false, patStr : '/links'   }, // What: Links Case. Why: The Social Links page holds every platform card. How: This measures it as loaded.
+	{ griArr : [],                           ideStr : 'contact',   menBoo : false, patStr : '/contact' }, // What: Contact Case. Why: The Contact page holds the ways to get in touch and the contact panel. How: This measures it as loaded.
+	{ griArr : [],                           ideStr : 'not-found', menBoo : false, patStr : '/missing' }, // What: Not Found Case. Why: Every unknown address lands on the 404 page. How: This measures an address the site doesn't have, closed.
+	{ griArr : [ 'menSocDiv' ],              ideStr : 'menu',      menBoo : true,  patStr : '/'        }  // What: Menu Case. Why: The open menu stacks the page links its own way. How: This measures the home page with the menu open.
 
 
 ];
 
-
-
 const MEN_MAX_NUM = 640;                                                                               // What: Menu Maximum Number. Why: The mobile menu exists only up to the site's 640px breakpoint. How: The menu case is measured only at widths up to this.
+const ROW_WID_ARR = [ 360, 361, 379, 380, 430, 431, 568, 569, 889, 890, 1136, 1137 ];                  // What: Row Width Array. Why: The card grids switch column counts at widths their own minimum card sizes set rather than at a breakpoint, measured at about 380px, 431px, 569px, 890px, and 1,137px, and the phone menu's icons switch at 360px. How: The row check adds these widths to the width list, each switch measured as a pair of pixels either side of it.
 const WID_LIS_ARR = [ 320, 360, 390, 414, 480, 640, 641, 768, 769, 880, 881, 1024, 1280, 1440, 1920 ]; // What: Width List Array. Why: Layouts crowd at the narrowest widths and switch at the breakpoints. How: This lists common screen widths (480px a landscape phone, 1,024px a tablet) plus the site's 640px, 768px, and 880px breakpoints and the pixel past each.
 
 // #endregion Constants
@@ -79,14 +82,14 @@ const WID_LIS_ARR = [ 320, 360, 390, 414, 480, 640, 641, 768, 769, 880, 881, 102
  * layProFun = Layout Problems Function
  *
  * @summary
- * Runs inside the page and returns every layout problem it finds, each naming
- * the element by its tag and its first class (just the readable part, once
- * that class comes from a hashed CSS module). The page scrolling sideways is
- * one problem. A visible element counts as spilling past an edge when it
- * reaches more than a pixel beyond the viewport and no ancestor clips its
- * overflow. An element with text of its own spills its box when a line of that
- * text runs more than a pixel past either inner edge and it doesn't clip or
- * scroll its content; a decoration drawn past the text on purpose doesn't
+ * Runs inside the page and returns every layout problem it finds, each problem
+ * about an element naming it by its tag and its first class (just the readable
+ * part, once that class comes from a hashed CSS module). The page scrolling
+ * sideways is one problem. A visible element counts as spilling past an edge
+ * when it reaches more than a pixel beyond the viewport and no ancestor clips
+ * its overflow. An element with text of its own spills its box when a line of
+ * that text runs more than a pixel past either inner edge and it doesn't clip
+ * or scroll its content; a decoration drawn past the text on purpose doesn't
  * count, and inline elements are skipped, since they have no box width of
  * their own. Two reachable controls (links and buttons that are visible, in
  * the tab order, and not inside inert content) overlap when their boxes share
@@ -110,19 +113,20 @@ const WID_LIS_ARR = [ 320, 360, 390, 414, 480, 640, 641, 768, 769, 880, 881, 102
 function layProFun () : string[] {
 
 
-	const proLisArr : string[] = []; // What: Problem List Array. Why: Every problem should be reported, not just the first. How: This collects them.
-
 	const vieWidNum = document.documentElement.clientWidth; // What: Viewport Width Number. Why: Edges and sideways scrolling are measured against the visible width. How: This reads the root's width without its scrollbar.
+
+	const proLisArr : string[] = []; // What: Problem List Array. Why: Every problem should be reported, not just the first. How: This collects them.
 
 
 
 	const desEleFun = ( desCurEle : Element ) => `${ desCurEle.tagName.toLowerCase() }${ desCurEle.classList.length ? '.' + ( desCurEle.classList[ 0 ].split( '_' )[ 1 ] || desCurEle.classList[ 0 ] ) : '' }`; // What: Describe Element Function. Why: A problem should name the element in terms of the source. How: This joins the tag with its first class, keeping only the readable part when it's a hashed module class.
 
 
-	const cliAncFun = ( cliCurEle : Element ) => { // What: Clipped Ancestor Function. Why: An element an ancestor clips can reach past the edge without showing there. How: This reports whether any ancestor hides, clips, or scrolls its overflow.
+
+	const cliAncFun = ( cliCurEle : Element ) => { // What: Clipped Ancestor Function. Why: An element an ancestor clips can reach past the edge without showing there. How: This reports whether any ancestor inside the body hides, clips, or scrolls its overflow, leaving out the body's own sideways clip, which would otherwise hide every spill from the check.
 
 
-		for ( let ancCurEle = cliCurEle.parentElement; ancCurEle; ancCurEle = ancCurEle.parentElement ) if ( getComputedStyle( ancCurEle ).overflowX !== 'visible' ) return true; // What: Ancestor Overflow Loop. Why: Any clipping ancestor contains the element. How: This walks up the tree and returns as soon as one doesn't show its overflow.
+		for ( let ancCurEle = cliCurEle.parentElement; ancCurEle && ancCurEle !== document.body; ancCurEle = ancCurEle.parentElement ) if ( getComputedStyle( ancCurEle ).overflowX !== 'visible' ) return true; // What: Ancestor Overflow Loop. Why: Any clipping ancestor inside the body contains the element. How: This walks up the tree to the body and returns as soon as one doesn't show its overflow.
 
 
 
@@ -132,7 +136,8 @@ function layProFun () : string[] {
 	};
 
 
-	const texSpiFun = ( texCurEle : Element ) => { // What: Text Spill Function. Why: Only the element's own text running out of its box is a spill, not a decoration drawn past it on purpose, such as an underline or highlight reaching past an italic line. How: This measures every line of the element's own text and reports whether any runs more than a pixel past either inner edge of its box.
+
+	const texSpiFun = ( texCurEle : Element ) => { // What: Text Spill Function. Why: Only the element's own text running out of its box is a spill, not a decoration drawn past it on purpose, such as an underline reaching past an italic line. How: This measures every line of the element's own text and reports whether any runs more than a pixel past either inner edge of its box.
 
 
 		const boxRecObj = texCurEle.getBoundingClientRect();     // What: Box Rect Object. Why: The text is measured against the element's own box. How: This measures the box.
@@ -175,9 +180,9 @@ function layProFun () : string[] {
 		const recCurObj = layCurEle.getBoundingClientRect(); // What: Rect Current Object. Why: Edges are judged from the element's box. How: This measures it.
 		const styCurObj = getComputedStyle( layCurEle );     // What: Style Current Object. Why: Hidden and inline elements are judged differently. How: This reads its computed styles.
 
-		const zerWidBoo = !recCurObj.width;                   // What: Zero Width Boolean. Why: An element with no width takes no room. How: This checks its box has no width.
-		const zerHeiBoo = !recCurObj.height;                  // What: Zero Height Boolean. Why: An element with no height takes no room. How: This checks its box has no height.
 		const hidStyBoo = styCurObj.visibility !== 'visible'; // What: Hidden Style Boolean. Why: A hidden element doesn't show. How: This checks its computed visibility.
+		const zerHeiBoo = !recCurObj.height;                  // What: Zero Height Boolean. Why: An element with no height takes no room. How: This checks its box has no height.
+		const zerWidBoo = !recCurObj.width;                   // What: Zero Width Boolean. Why: An element with no width takes no room. How: This checks its box has no width.
 
 		const invEleBoo = zerWidBoo || zerHeiBoo || hidStyBoo; // What: Invisible Element Boolean. Why: Any one of these means the element can't break the layout. How: This combines them.
 
@@ -186,9 +191,9 @@ function layProFun () : string[] {
 
 
 
-		const rigSpiBoo = recCurObj.right > vieWidNum + 1; // What: Right Spill Boolean. Why: Content past the right edge is cut off or forces sideways scrolling. How: This checks the box reaches more than a pixel beyond the viewport's right.
-		const lefSpiBoo = recCurObj.left < -1;             // What: Left Spill Boolean. Why: Content past the left edge is cut off. How: This checks the box starts more than a pixel before the viewport.
 		const ancCliBoo = cliAncFun( layCurEle );          // What: Ancestor Clipped Boolean. Why: An element an ancestor clips doesn't show past the edge. How: This checks for a clipping ancestor.
+		const lefSpiBoo = recCurObj.left < -1;             // What: Left Spill Boolean. Why: Content past the left edge is cut off. How: This checks the box starts more than a pixel before the viewport.
+		const rigSpiBoo = recCurObj.right > vieWidNum + 1; // What: Right Spill Boolean. Why: Content past the right edge is cut off or forces sideways scrolling. How: This checks the box reaches more than a pixel beyond the viewport's right.
 
 		const edgSpiBoo = ( rigSpiBoo || lefSpiBoo ) && !ancCliBoo; // What: Edge Spill Boolean. Why: Only an unclipped element past an edge breaks the layout. How: This combines them.
 
@@ -197,10 +202,10 @@ function layProFun () : string[] {
 
 
 
+		const bloBoxBoo = styCurObj.display !== 'inline';                                                                                                // What: Block Box Boolean. Why: An inline element has no box width to compare with. How: This checks it isn't inline.
 		const ownTexBoo = [ ...layCurEle.childNodes ].some( ( chiCurNod ) => chiCurNod.nodeType === Node.TEXT_NODE && !!chiCurNod.textContent?.trim() ); // What: Own Text Boolean. Why: Only an element holding text itself can spill it. How: This checks its direct children for text that isn't just whitespace.
 		const spiBoxBoo = texSpiFun( layCurEle ); // What: Spill Box Boolean. Why: Text running past its box has spilled out of it. How: This checks whether any line of the element's own text runs past an inner edge.
 		const visOveBoo = styCurObj.overflowX === 'visible';                                                                                             // What: Visible Overflow Boolean. Why: Content a box clips or scrolls on purpose isn't a spill. How: This checks the box shows its overflow.
-		const bloBoxBoo = styCurObj.display !== 'inline';                                                                                                // What: Block Box Boolean. Why: An inline element has no box width to compare with. How: This checks it isn't inline.
 
 		const texSpiBoo = ownTexBoo && spiBoxBoo && visOveBoo && bloBoxBoo; // What: Text Spill Boolean. Why: All four together mean text has spilled out of its box. How: This combines them.
 
@@ -215,10 +220,10 @@ function layProFun () : string[] {
 	const conEleArr = [ ...document.querySelectorAll( 'a, button' ) ].filter( ( conCurEle ) => { // What: Control Element Array. Why: Only controls a visitor can see and reach have to stay apart. How: This keeps every link and button that's visible, in the tab order, and outside inert content.
 
 
-		const tabOrdBoo = conCurEle.getAttribute( 'tabindex' ) !== '-1';          // What: Tab Order Boolean. Why: A control taken out of the tab order can't be reached. How: This checks it isn't tabindex -1.
-		const notIneBoo = !conCurEle.closest( '[inert]' );                        // What: Not Inert Boolean. Why: Controls inside inert content can't be reached. How: This checks no ancestor is inert.
-		const visStyBoo = getComputedStyle( conCurEle ).visibility === 'visible'; // What: Visible Style Boolean. Why: A hidden control can't be seen. How: This checks its computed visibility.
 		const hasWidBoo = conCurEle.getBoundingClientRect().width > 0;            // What: Has Width Boolean. Why: A control with no width takes no room. How: This checks its box has width.
+		const notIneBoo = !conCurEle.closest( '[inert]' );                        // What: Not Inert Boolean. Why: Controls inside inert content can't be reached. How: This checks no ancestor is inert.
+		const tabOrdBoo = conCurEle.getAttribute( 'tabindex' ) !== '-1';          // What: Tab Order Boolean. Why: A control taken out of the tab order can't be reached. How: This checks it isn't tabindex -1.
+		const visStyBoo = getComputedStyle( conCurEle ).visibility === 'visible'; // What: Visible Style Boolean. Why: A hidden control can't be seen. How: This checks its computed visibility.
 
 		const reaConBoo = tabOrdBoo && notIneBoo && visStyBoo && hasWidBoo; // What: Reachable Control Boolean. Why: All four together mean a visitor can see and reach the control. How: This combines them.
 
@@ -230,6 +235,7 @@ function layProFun () : string[] {
 	} );
 
 
+
 	conEleArr.forEach( ( oneCurEle, oneIndNum ) => conEleArr.slice( oneIndNum + 1 ).forEach( ( twoCurEle ) => { // What: Control Pair Loop. Why: Overlap is a property of two controls. How: This visits every pair once.
 
 
@@ -238,10 +244,10 @@ function layProFun () : string[] {
 		const oveWidNum = Math.min( oneRecObj.right, twoRecObj.right ) - Math.max( oneRecObj.left, twoRecObj.left ); // What: Overlap Width Number. Why: Two boxes overlap only where both their spans cross. How: This measures how far their horizontal spans cross.
 		const oveHeiNum = Math.min( oneRecObj.bottom, twoRecObj.bottom ) - Math.max( oneRecObj.top, twoRecObj.top ); // What: Overlap Height Number. Why: Two boxes overlap only where both their spans cross. How: This measures how far their vertical spans cross.
 
-		const widOveBoo = oveWidNum > 0;                                                        // What: Width Overlap Boolean. Why: Boxes overlap only where their horizontal spans cross. How: This checks they do.
-		const heiOveBoo = oveHeiNum > 0;                                                        // What: Height Overlap Boolean. Why: Boxes overlap only where their vertical spans cross. How: This checks they do.
 		const areOveBoo = oveWidNum * oveHeiNum > 1;                                            // What: Area Overlap Boolean. Why: A shared edge or corner isn't a real overlap. How: This checks they share more than a pixel of area.
+		const heiOveBoo = oveHeiNum > 0;                                                        // What: Height Overlap Boolean. Why: Boxes overlap only where their vertical spans cross. How: This checks they do.
 		const sepConBoo = !oneCurEle.contains( twoCurEle ) && !twoCurEle.contains( oneCurEle ); // What: Separate Control Boolean. Why: A control inside another overlaps it by design. How: This checks that neither holds the other.
+		const widOveBoo = oveWidNum > 0;                                                        // What: Width Overlap Boolean. Why: Boxes overlap only where their horizontal spans cross. How: This checks they do.
 
 		const conOveBoo = widOveBoo && heiOveBoo && areOveBoo && sepConBoo; // What: Control Overlap Boolean. Why: All four together mean two separate controls cover each other. How: This combines them.
 
@@ -259,6 +265,95 @@ function layProFun () : string[] {
 }
 
 // #endregion layProFun
+
+
+// #region rowProFun
+
+/**
+ * rowProFun = Row Problems Function
+ *
+ * @summary
+ * Runs inside the page and returns every grid of cards in the main content or
+ * the navigation whose rows don't all hold the same number of cards. A grid of
+ * cards here is an element with two or more children that share their first
+ * class, laid out as a grid or as a wrapping row of equal-width tiles (chips
+ * sized to their own text are left out); its rows are its children grouped by
+ * their rounded top edge. Each problem names the grid by its tag and the
+ * readable part of its first class, and lists its row counts. An expected
+ * grid the page doesn't show is a problem too, so the check can't pass by
+ * finding no grids at all. Passed to Playwright's evaluate, so it can't read
+ * anything from this file.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+ * @param expGriArr - Expected Grid Array: The first class of each grid the
+ *                    page should show.
+ *
+ * @returns Every uneven grid found, and every expected grid missing.
+ * @see {@link proLisArr}
+ *
+ * @example
+ * ```ts
+ * page.evaluate(rowProFun, ['facGriDiv']) // => [ 'facGriDiv was not found' ]
+ * ```
+ *
+*/
+
+function rowProFun ( expGriArr : string[] ) : string[] {
+
+
+	const fouGriArr : string[] = []; // What: Found Grid Array. Why: Each expected grid has to be found for the check to mean anything. How: This collects the description of every grid of cards the loop checks.
+	const proLisArr : string[] = []; // What: Problem List Array. Why: Every uneven grid should be reported, not just the first. How: This collects them.
+
+
+
+	for ( const griCurEle of document.querySelectorAll( 'main *, nav *' ) ) { // What: Grid Loop. Why: Any grid of cards in the main content or the navigation could leave a short row. How: This visits each element there.
+
+
+		const chiEleArr = [ ...griCurEle.children ];     // What: Child Element Array. Why: A grid's rows are made of its children. How: This lists them.
+		const griStyObj = getComputedStyle( griCurEle ); // What: Grid Style Object. Why: The layout decides whether the children form rows. How: This reads the element's computed style.
+
+		const fleWraBoo = griStyObj.display === 'flex' && griStyObj.flexWrap === 'wrap';                                  // What: Flex Wrap Boolean. Why: A wrapping row lays its children out in lines that can end short. How: This checks the element is a flex row that wraps.
+		const griDisBoo = griStyObj.display === 'grid';                                                                   // What: Grid Display Boolean. Why: A grid lays its children out in rows of columns. How: This checks the element's computed display.
+		const manChiBoo = chiEleArr.length > 1;                                                                           // What: Many Children Boolean. Why: One card can't leave a short row. How: This checks there are at least two.
+		const samClaBoo = chiEleArr.every( ( chiCurEle ) => chiCurEle.classList[ 0 ] === chiEleArr[ 0 ].classList[ 0 ] ); // What: Same Class Boolean. Why: Cards in one grid share their class, while a layout grid's children differ. How: This checks every child's first class matches the first child's.
+		const samWidBoo = chiEleArr.every( ( chiCurEle ) => Math.abs( chiCurEle.getBoundingClientRect().width - chiEleArr[ 0 ].getBoundingClientRect().width ) < 1 ); // What: Same Width Boolean. Why: Tiles of one size read as a grid, while chips sized to their own text may leave a short row. How: This checks every child is within a pixel of the first child's width.
+
+		const tilRowBoo = fleWraBoo && samWidBoo; // What: Tile Row Boolean. Why: A wrapping row of equal tiles has to fill its lines the way a grid does. How: This combines the two checks.
+
+		const carGriBoo = ( griDisBoo || tilRowBoo ) && manChiBoo && samClaBoo; // What: Card Grid Boolean. Why: Only a grid of cards or tiles has to fill its rows evenly. How: This combines the checks.
+
+
+		if ( !carGriBoo ) continue; // What: Non-Card Grid Guard. Why: Other elements have no rows of cards to compare. How: This skips them.
+
+
+
+		const topValArr = chiEleArr.map( ( chiCurEle ) => Math.round( chiCurEle.getBoundingClientRect().top ) );                                   // What: Top Value Array. Why: Cards in one row share their top edge. How: This reads each card's top, rounded to the pixel.
+		const rowCouArr = [ ...new Set( topValArr ) ].map( ( topCurNum ) => topValArr.filter( ( topFilNum ) => topFilNum === topCurNum ).length ); // What: Row Count Array. Why: Each row's card count is compared with the others. How: This counts the cards at each distinct top.
+		const griDesStr = `${ griCurEle.tagName.toLowerCase() }.${ griCurEle.classList[ 0 ]?.split( '_' )[ 1 ] || griCurEle.classList[ 0 ] }`;     // What: Grid Description String. Why: A problem should name the grid a person can find. How: This joins the tag and the readable part of the first class.
+
+
+		if ( new Set( rowCouArr ).size > 1 ) proLisArr.push( `${ griDesStr } has uneven rows of ${ rowCouArr.join( ', ' ) }` ); // What: Uneven Row Check. Why: A short last row breaks the grid's rhythm, which the card grid rule forbids. How: This reports the grid when its rows hold different counts.
+
+
+
+		fouGriArr.push( griDesStr ); // What: Found Grid Push. Why: The expected grids are checked against what the loop found. How: This records the grid's description.
+
+
+	}
+
+
+
+	for ( const expCurStr of expGriArr ) if ( !fouGriArr.some( ( fouCurStr ) => fouCurStr.endsWith( `.${ expCurStr }` ) ) ) proLisArr.push( `${ expCurStr } was not found` ); // What: Expected Grid Loop. Why: A grid the case should show that the loop never found would leave its rows unchecked. How: This records each expected grid no description ends with.
+
+
+
+	return proLisArr; // What: Problem List Return. Why: The test prints whatever was found. How: This hands back every uneven grid and every missing one.
+
+
+}
+
+// #endregion rowProFun
 
 // #endregion Helpers
 
@@ -290,7 +385,6 @@ for ( const layCasObj of LAY_CAS_ARR ) { // What: Case Loop. Why: Every page and
 
 			} );
 
-
 			expect( await curPagObj.evaluate( layProFun ) ).toEqual( [] ); // What: No Layout Problems Assertion. Why: The width passes only with nothing spilling or overlapping. How: This compares the problems with an empty list, so a failure prints each one.
 
 
@@ -298,6 +392,53 @@ for ( const layCasObj of LAY_CAS_ARR ) { // What: Case Loop. Why: Every page and
 
 
 	}
+
+
+}
+
+
+for ( const layCasObj of LAY_CAS_ARR ) { // What: Row Case Loop. Why: Every page's card grids, and the open menu's icons, should fill their rows evenly at every width. How: This declares one row test per case.
+
+
+	test( `${ layCasObj.ideStr } fills every row of its card grids evenly`, async ( { page : curPagObj } ) => { // What: Row Test. Why: A grid of cards never leaves a short last row. How: This opens the page and checks its grids at each width in turn, a pixel either side of each switch included.
+
+
+		await curPagObj.emulateMedia( { reducedMotion : 'reduce' } ); // What: Reduced Motion Emulation. Why: Entrance animations don't change the rows, so waiting on them only slows the run. How: This makes the page match the reduced motion query.
+
+		await opeStaFun( curPagObj, { // What: Case Open Call. Why: The rows are measured on a settled page. How: This opens the case once, opening the menu first for the menu case, and the loop below resizes it.
+
+
+			heiNum : 900,                                   // What: Height Number. Why: Only the width changes the rows. How: Every case is measured at the same height.
+			ideStr : layCasObj.ideStr,                      // What: Identifier String. Why: The state names its case. How: This reuses the case's name.
+			patStr : layCasObj.patStr,                      // What: Path String. Why: The state opens the case's route. How: This reuses the case's path.
+			widNum : layCasObj.menBoo ? MEN_MAX_NUM : 1440, // What: Width Number. Why: The menu only opens on a phone. How: This opens the menu case at the widest a phone layout reaches, and every other case on a desktop.
+
+			...( layCasObj.menBoo ? { actFun : async ( actPagObj ) => { await actPagObj.getByRole( 'button', { name : 'Toggle menu' } ).click(); } } : {} ) // What: Menu Action Spread. Why: Only the menu case opens the menu. How: This adds the toggle click for it.
+
+
+		} );
+
+
+
+		const proLisArr : string[] = []; // What: Problem List Array. Why: Every width's uneven grids should be reported together. How: This collects them, each with its width.
+
+
+		for ( const widCurNum of [ ...WID_LIS_ARR, ...ROW_WID_ARR ].filter( ( widFilNum ) => !layCasObj.menBoo || widFilNum <= MEN_MAX_NUM ).sort( ( widOneNum, widTwoNum ) => widOneNum - widTwoNum ) ) { // What: Row Width Loop. Why: Each switch in column count has to land on a count that divides the cards. How: This measures every width in order.
+
+
+			await curPagObj.setViewportSize( { height : 900, width : widCurNum } ); // What: Viewport Resize Call. Why: The grids reflow at each width. How: This sets the width under test.
+
+			proLisArr.push( ...( await curPagObj.evaluate( rowProFun, layCasObj.griArr ) ).map( ( proCurStr ) => `${ proCurStr } at ${ widCurNum }px` ) ); // What: Width Problems Push. Why: A problem should say where it happened. How: This adds each uneven grid with its width.
+
+
+		}
+
+
+
+		expect( proLisArr ).toEqual( [] ); // What: Even Rows Assertion. Why: Every width passes only with each grid's rows full. How: This compares the problems with an empty list.
+
+
+	} );
 
 
 }

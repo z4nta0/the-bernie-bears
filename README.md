@@ -36,11 +36,12 @@ npm test                    # every suite
 npm run test:accessibility  # axe-core plus scripted keyboard, naming, reflow, and motion checks
 npm run test:interaction    # page navigation, the phone menu, and every link and button's hover, press, and focus feedback
 npm run test:rendering      # full-page screenshots of each page state against approved baselines
-npm run test:responsive     # every page and the phone menu from 320 to 1,920px: no sideways scroll, spill, or overlap
+npm run test:responsive     # every page and the phone menu from 320 to 1,920px: no sideways scroll, spill, or overlap, and even card grid rows
+npm run test:security       # the security headers, the policy holding on the production build, new tab links, shipped secrets, and dependency advisories
 npm run test:seo            # titles, descriptions, canonical, robots, and social tags, structured data, the preview card, icons, robots.txt, and the sitemap
 ```
 
-Each suite runs in Chromium, Firefox, and WebKit against its own dev server on port 5193, so a dev server already running on 5173 is left alone. Reports land in `tests/output/` (git-ignored); `npx playwright show-report tests/output/report` opens the HTML report. The rendering suite's approved screenshots live in `tests/rendering/baselines/` and match to the pixel, so after a change meant to alter how a page looks, review the diff in the report, then run `npm run test:rendering -- --update-snapshots` and commit the new baselines with the change. The baselines were captured on Linux, and font rendering differs between systems, so on macOS or Windows refresh them locally before relying on the comparison. If a browser is missing, `npx playwright install chromium firefox webkit` installs all three.
+Each suite runs in Chromium, Firefox, and WebKit against its own dev server on port 5193, or for the security suite the production build served on port 5203, so a dev server already running on 5173 is left alone. Reports land in `tests/output/` (git-ignored); `npx playwright show-report tests/output/report` opens the HTML report. The rendering suite's approved screenshots live in `tests/rendering/baselines/` and match to the pixel, so after a change meant to alter how a page looks, review the diff in the report, then run `npm run test:rendering -- --update-snapshots` and commit the new baselines with the change. The baselines were captured on Linux, and font rendering differs between systems, so on macOS or Windows refresh them locally before relying on the comparison. If a browser is missing, `npx playwright install chromium firefox webkit` installs all three.
 
 ## Build
 
@@ -59,7 +60,7 @@ npm run og-image  # captures design/og-image/card.html as public/og-image.jpg
 npm run icons     # renders favicon.ico, the PNG icons, and the Apple touch icon from public/favicon.svg
 ```
 
-To replace a photo, put the new original in `design/photos/` under the same name and run `npm run photos`. A new photo also needs a row in `PHO_REC_ARR` in `design/photos/render.mts`, saying which page shows it, whether the page crops it to a square, and twice the widest it's shown. Apps cache a link's preview card for days, so a changed card should get a new file name (`og-image-2.jpg`), with every tag in `index.html` that points at it updated.
+To replace a photo, put the new original in `design/photos/` under the same name and run `npm run photos`. A new photo also needs a row in `PHO_REC_ARR` in `design/photos/render.mts`, saying which page shows it, whether the page crops it to a square, and three times the widest it's shown. Apps cache a link's preview card for days, so a changed card should get a new file name (`og-image-2.jpg`), with every tag in `index.html` that points at it updated.
 
 ## Project structure
 
@@ -102,3 +103,14 @@ design/                Source artwork, not served
 ## Search and the main site
 
 Only Home and Social Links are meant to appear in search; About and Contact overlap pages on the main site, so they and the 404 page carry `noindex`. The structured data names theberniebears.com as the brand's home. `index.html` carries the home page's title and description, since link checkers and many crawlers read it without running the site's script; the other pages set their own titles, and Social Links swaps in its own description while it's showing. Every page shares one social preview card, since link previews only ever read `index.html`.
+
+## Support
+
+If this project is useful to you, you can support its development with a tip
+on Ko-fi. It's never required, and always appreciated.
+
+[![Support me on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/techgeekdev)
+
+## License
+
+The code is copyright Gary S. Walton, all rights reserved, with The Bernie Bears granted full use of it for their own website. The Bernie Bears' name, logos, photos, and written content belong to The Bernie Bears. See [LICENSE.md](LICENSE.md) for the full terms.

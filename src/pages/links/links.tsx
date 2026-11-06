@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import cssModObj from './links.module.css'; // What: CSS Module Object. Why: The Social Links page is styled in its own module, whose class names Vite hashes. How: Every element reads its class from this object.
+import cssModObj from './links.module.css'; // What: CSS Module Object. Why: The Social Links page is styled in its own module, whose class names Vite hashes. How: Each class an element carries is read from this object.
 
 
 import { SOC_PRO_ARR  } from '../../ui/social-profiles.ts';  // What: Social Profile Array. Why: The page's first six cards are the girls' profiles, which the phone menu lists too. How: This imports the shared rows.
@@ -47,20 +47,27 @@ import { usePagDesFun } from '../../ui/page-description.ts'; // What: Use Page D
  * The shop's row has the same shape, with its colors read from the theme and
  * its icon a plain bag drawn for this page, so its fields carry no comments
  * of their own beyond the colors' token values:
+ *
  * - `bacStr` (String): Background String, the icon tile's pale tint.
+ *
  * - `colStr` (String): Color String, the card's stripe, icon, handle, and
  *   arrow color.
+ *
  * - `desStr` (String): Description String, the card's sentence.
+ *
  * - `hanStr` (String): Handle String, the address shown.
+ *
  * - `icoStr` (String): Icon String, the icon's SVG path data.
+ *
  * - `plaStr` (String): Platform String, the card's name.
+ *
  * - `urlStr` (String): URL String, the card's address.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
 */
 
-const SOC_LIN_ARR = [ // What: Social Link Array. Why: The page lists every place to follow the girls, plus the brand's shop. How: Each row holds a card's colors, text, icon, and address, rendered in this order.
+const SOC_LIN_ARR = [ // What: Social Link Array. Why: The page lists the girls' social profiles, plus the brand's shop. How: Each row holds a card's colors, text, icon, and address, rendered in this order.
 
 
 	...SOC_PRO_ARR, // What: Profile Rows Spread. Why: The six profile cards come first, in the shared order. How: This spreads the rows ui/social-profiles.ts holds.
@@ -68,14 +75,13 @@ const SOC_LIN_ARR = [ // What: Social Link Array. Why: The page lists every plac
 	{ // What: Shop Card. Why: The brand's own store is where fans can support the girls, and this site exists to promote it. How: This card links to the main site's shop.
 
 
-		bacStr : 'var( --acs-tin-col )', // Accent-Secondary Tint Color = #ddeadc
-		colStr : 'var( --acs-dar-col )', // Accent-Secondary Dark Color ~= #4f6f4e
-		hanStr : 'theberniebears.com',
-		plaStr : 'Shop',
-		urlStr : 'https://theberniebears.com/collections/all',
-
+		bacStr : 'var( --acs-tin-col )',                                                                                  // Accent-Secondary Tint Color = #ddeadc
+		colStr : 'var( --acs-dar-col )',                                                                                  // Accent-Secondary Dark Color ~= #4f6f4e
 		desStr : "Blankets, tees, bags, and more for Bernie lovers, from The Bernie Bears' official store.",
-		icoStr : 'M7 7V6a5 5 0 0 1 10 0v1h-2V6a3 3 0 0 0-6 0v1zM3 7h18l-1.3 14.2A2 2 0 0 1 17.7 23H6.3a2 2 0 0 1-2-1.8z'
+		hanStr : 'theberniebears.com',
+		icoStr : 'M7 7V6a5 5 0 0 1 10 0v1h-2V6a3 3 0 0 0-6 0v1zM3 7h18l-1.3 14.2A2 2 0 0 1 17.7 23H6.3a2 2 0 0 1-2-1.8z',
+		plaStr : 'Shop',
+		urlStr : 'https://theberniebears.com/collections/all'
 
 
 	}
@@ -158,6 +164,7 @@ function LinPagCom () : React.JSX.Element {
 				</section>
 
 
+
 				<section className={ cssModObj.linCarSec }>{ /* What: Links Cards Section Element. Why: The cards are the page's content. How: This holds the intro line and the list of cards. */ }
 
 
@@ -165,6 +172,8 @@ function LinPagCom () : React.JSX.Element {
 						Whether you love long videos, quick clips, or scrolling through adorable photos,
 						there's a place for every kind of Bernie Bears fan. <span aria-hidden='true'>🐾</span>
 					</p>
+
+
 
 					<div className={ cssModObj.socLisDiv }>{ /* What: Social List Div Element. Why: The cards stack in one column. How: This lays them out. */ }
 
@@ -217,7 +226,7 @@ function LinPagCom () : React.JSX.Element {
 								<div className={ cssModObj.socBodDiv }>{ /* What: Social Body Div Element. Why: The card's words read as one column. How: This stacks the platform, handle, and sentence. */ }
 
 
-									<div className={ cssModObj.socPlaDiv }>{ socLinObj.plaStr }</div>{ /* What: Social Platform Div Element. Why: The card names its platform. How: This shows it in small capitals. */ }
+									<div className={ cssModObj.socPlaDiv }>{ socLinObj.plaStr }</div>{ /* What: Social Platform Div Element. Why: The card names its platform. How: This shows it in small uppercase letters. */ }
 
 									<div
 										className={ cssModObj.socHanDiv }
@@ -291,7 +300,7 @@ function LinPagCom () : React.JSX.Element {
 
 // #region Exports
 
-export { LinPagCom }; // What: Named Exports. Why: The Social Links route renders this page. How: This exports LinPagCom.
+export { LinPagCom }; // What: Named Export. Why: The Social Links route renders this page. How: This exports LinPagCom.
 
 // #endregion Exports
 

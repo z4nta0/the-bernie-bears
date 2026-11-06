@@ -6,12 +6,13 @@
  *
  * @summary
  * Styles for AboPagCom: the page fading up into place, the gradient header,
- * the story beside the cartoon in its dashed card, the row of paw prints, the
- * two sisters' cards with their round photos, badges, and trait chips, which
- * lift on hover, and the frosted fun fact cards on a lavender to sage band.
- * The facts' column takes the page's shared container values, and the
- * band's heading has its own rule in place of an inline style. Every
- * animation and transition is off under reduced motion.
+ * the story beside the cartoon in its dashed card (the cartoon on top at 768px
+ * wide and below), the row of paw prints, the two sisters' cards side by side
+ * (stacked at 768px wide and below), which lift on hover, with their round
+ * photos, badges, and trait chips, and the frosted fun fact cards on a
+ * lavender to sage band. The facts' column takes the page's shared container
+ * values, and the band's heading has its own rule in place of an inline style.
+ * Every animation and transition is off under reduced motion.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -184,7 +185,7 @@
 	background      : var( --bac-sur-col );                             /* Background Surface Color = #ffffff */
 	border          : var( --bor-wid-xla ) dashed var( --acc-lig-col ); /* Border Width Extra Large ~= 3.572px, Accent Light Color = #ceb1dd */
 	border-radius   : var( --rad-bor-xla );                             /* Radius Border Extra Large ~= 19.304px */
-	box-shadow      : var( --ele-med-sha );                             /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
+	box-shadow      : var( --ele-med-sha );                             /* Elevation Medium Shadow ~= 0 8.304px 25.572px plus 0 3.572px 8.304px -2.035px */
 	display         : flex;
 	justify-content : center;
 	width           : min( calc( var( --ver-rhy-p11 ) * 1rem ), 100% ); /* Vertical Rhythm Base Plus 11 ~= 321.273px */
@@ -197,7 +198,7 @@
 
 	aspect-ratio  : 1;
 	border-radius : var( --rad-bor-med );                                           /* Radius Border Medium = 11px */
-	height        : auto;                                                           /* What: Automatic Height. Why: The img's height attribute, there so the page doesn't shift while the cartoon loads, would otherwise fix it at the file's 608px. How: auto hands the height back to aspect-ratio, which squares it to the width. */
+	height        : auto;                                                           /* What: Automatic Height. Why: The img's height attribute, there so the page doesn't shift while the cartoon loads, would otherwise fix it at the file's own height. How: auto hands the height back to aspect-ratio, which squares it to the width. */
 	width         : calc( 100% - var( --spa-hor-p01 ) + var( --bor-wid-xla ) * 2 ); /* Spacing Horizontal Base Plus 1 ~= 19.304px, Border Width Extra Large ~= 3.572px */
 
 
@@ -281,21 +282,21 @@
 .sisCarDiv { /* What: Sister Card Div. Why: Each sister gets a card of her own. How: This stacks her photo and details in a white card with rounded corners, a cream border, on a soft shadow layer, easing its border tint and lift. */
 
 
-	background     : var( --bac-sur-col );                                                                                        /* Background Surface Color = #ffffff */
-	border         : var( --bor-wid-lar ) solid var( --bor-mai-col );                                                             /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
-	border-radius  : var( --rad-bor-xla );                                                                                        /* Radius Border Extra Large ~= 19.304px */
+	background     : var( --bac-sur-col );                                                                           /* Background Surface Color = #ffffff */
+	border         : var( --bor-wid-lar ) solid var( --bor-mai-col );                                                /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
+	border-radius  : var( --rad-bor-xla );                                                                           /* Radius Border Extra Large ~= 19.304px */
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --spa-ver-p02 );                                                                                        /* Spacing Vertical Base Plus 2 ~= 25.572px */
+	gap            : var( --spa-ver-p02 );                                                                           /* Spacing Vertical Base Plus 2 ~= 25.572px */
 	isolation      : isolate;
-	padding        : var( --spa-ver-p04 ) clamp( var( --spa-hor-p02 ), var( --hor-rhy-015 ), var( --spa-hor-p04 ) );              /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px, Horizontal Rhythm 15 ~= 65.739px @ 1,920px width, Spacing Horizontal Base Plus 4 ~= 44.876px */
+	padding        : var( --spa-ver-p04 ) clamp( var( --spa-hor-p02 ), var( --hor-rhy-015 ), var( --spa-hor-p04 ) ); /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px, Horizontal Rhythm 15 ~= 65.739px @ 1,920px width, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	position       : relative;
-	transition     : border-color var( --dur-tra-p02 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
+	transition     : border-color var( --dur-tra-p02 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
 .sisCarDiv::before,
-.sisCarDiv::after { /* What: Sister Card Div Shadow Layers. Why: The lift deepens the card's shadow, and fading between two shadows runs on the compositor where easing the shadow itself would repaint it every frame. How: Each layer covers the card's whole border box behind its content, rounded like it, holding one shadow, and fades its opacity. */
+.sisCarDiv::after { /* What: Sister Card Div Shadow Layers. Why: The lift deepens the card's shadow, and fading between two shadows runs on the compositor where easing the shadow itself would repaint it every frame. How: Each layer covers the card's whole border box behind its content, rounded like it, holding one shadow, and fades its opacity. Each layer arrives on the decelerating curve and leaves on the accelerating one. */
 
 
 	border-radius  : inherit;
@@ -303,7 +304,7 @@
 	inset          : calc( var( --bor-wid-xla ) * -1 ) calc( var( --bor-wid-lar ) * -1 ) calc( var( --bor-wid-lar ) * -1 ); /* Border Width Extra Large ~= -3.572px, Border Width Large ~= -2.035px */
 	pointer-events : none;
 	position       : absolute;
-	transition     : opacity var( --dur-tra-p02 ) var( --mot-sta-eas );                                                     /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
+	transition     : opacity var( --dur-tra-p02 ) var( --mot-dec-eas );                                                     /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 	z-index        : -1;
 
 
@@ -311,15 +312,16 @@
 .sisCarDiv::before { /* What: Sister Card Div Resting Shadow Layer. Why: The card rests on a soft lavender shadow. How: This gives the layer the medium elevation. */
 
 
-	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
+	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow ~= 0 8.304px 25.572px plus 0 3.572px 8.304px -2.035px */
 
 
 }
-.sisCarDiv::after { /* What: Sister Card Div Hover Shadow Layer. Why: A lifted card casts a deeper shadow. How: This gives the layer the large elevation, hidden until hovered. */
+.sisCarDiv::after { /* What: Sister Card Div Hover Shadow Layer. Why: A lifted card casts a deeper shadow. How: This gives the layer the large elevation, hidden until hovered, and fades it out on the accelerating curve. */
 
 
-	box-shadow : var( --ele-lar-sha ); /* Elevation Large Shadow, about 0 19.3px 44.9px -14.6px plus 0 6.3px 14.6px -3.6px */
+	box-shadow : var( --ele-lar-sha );                              /* Elevation Large Shadow ~= 0 19.304px 44.876px -14.572px plus 0 6.268px 14.572px -3.572px */
 	opacity    : 0;
+	transition : opacity var( --dur-tra-p02 ) var( --mot-acc-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ) */
 
 
 }
@@ -333,28 +335,30 @@
 
 
 }
-.sisCarDiv:hover::before { /* What: Hovered Sister Card Div Resting Shadow Layer. Why: The resting shadow gives way to the deeper one. How: This fades it out. */
+.sisCarDiv:hover::before { /* What: Hovered Sister Card Div Resting Shadow Layer. Why: The resting shadow gives way to the deeper one. How: This fades it out on the accelerating curve. */
 
 
-	opacity : 0;
-
-
-}
-.sisCarDiv:hover::after { /* What: Hovered Sister Card Div Hover Shadow Layer. Why: A lifted card casts a deeper shadow. How: This fades the deeper shadow in. */
-
-
-	opacity : 1;
+	opacity    : 0;
+	transition : opacity var( --dur-tra-p02 ) var( --mot-acc-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ) */
 
 
 }
-.sisCarDiv--lilah { /* What: Lilah Sister Card Div. Why: Each sister has her own accent. How: This edges Lilah's card in lavender along the top. */
+.sisCarDiv:hover::after { /* What: Hovered Sister Card Div Hover Shadow Layer. Why: A lifted card casts a deeper shadow. How: This fades the deeper shadow in on the decelerating curve. */
+
+
+	opacity    : 1;
+	transition : opacity var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.sisCarDiv--lilah { /* What: Sister Card Div Lilah. Why: Each sister has her own accent. How: This edges Lilah's card in lavender along the top. */
 
 
 	border-top : var( --bor-wid-xla ) solid var( --acc-mai-col ); /* Border Width Extra Large ~= 3.572px, Accent Main Color = #d1afe2 */
 
 
 }
-.sisCarDiv--norah { /* What: Norah Sister Card Div. Why: Each sister has her own accent. How: This edges Norah's card in sage along the top. */
+.sisCarDiv--norah { /* What: Sister Card Div Norah. Why: Each sister has her own accent. How: This edges Norah's card in sage along the top. */
 
 
 	border-top : var( --bor-wid-xla ) solid var( --acc-sec-col ); /* Border Width Extra Large ~= 3.572px, Accent Secondary Color = #8bad89 */
@@ -366,7 +370,9 @@
 
 	.sisCarDiv,
 	.sisCarDiv::before,
-	.sisCarDiv::after { /* What: Motionless Sister Card Div. Why: The hover look and the shadow layers should simply switch, the lift still applying at once. How: This turns their transitions off. */
+	.sisCarDiv::after,
+	.sisCarDiv:hover::before,
+	.sisCarDiv:hover::after { /* What: Motionless Sister Card Div. Why: The hover look and the shadow layers should simply switch, the lift still applying at once. How: This turns their transitions off. */
 
 
 		transition : none;
@@ -426,7 +432,7 @@
 
 
 }
-.sisBadDiv--norah { /* What: Norah Sister Badge Div. Why: Norah's badge matches her card's accent. How: This sets it sage on a pale sage pill. */
+.sisBadDiv--norah { /* What: Sister Badge Div Norah. Why: Norah's badge matches her card's accent. How: This sets it sage on a pale sage pill. */
 
 
 	background : var( --acs-tin-col ); /* Accent-Secondary Tint Color = #ddeadc */
@@ -458,7 +464,7 @@
 
 /* #region sisTraDiv */
 
-.sisTraDiv { /* What: Sister Traits Div. Why: Three traits sum each sister up at a glance. How: This sets them in a wrapping row of chips below the paragraph. */
+.sisTraDiv { /* What: Sister Traits Div. Why: Three traits sum each sister up at a glance. How: This sets them in a row of chips below the paragraph, wrapping onto more lines at about 870px to 769px wide and at about 600px and below. */
 
 
 	display    : flex;
@@ -532,14 +538,14 @@
 
 /* #region facGriDiv */
 
-.facGriDiv { /* What: Facts Grid Div. Why: The facts should fill every row evenly and wrap on a narrow screen. How: This shows the six facts as six columns, three, two, or one, never four or five, choosing the most that fit at the card's minimum width. */
+.facGriDiv { /* What: Facts Grid Div. Why: The facts should fill every row evenly and wrap on a narrow screen. How: This shows the six facts as six columns, three, two, or one, never four or five, choosing the most that fit at the card's minimum width: three at about 1,140px wide and below, two at about 570px and below, and one at about 380px and below. */
 
 
 	--fac-car-wid : max( calc( var( --ver-rhy-p08 ) * 1rem ), var( --hor-rhy-017 ) ); /* Vertical Rhythm Base Plus 8 ~= 138.199px, Horizontal Rhythm 17 ~= 115.363px @ 1,920px width */ /* What: Fact Card Width. Why: The smallest a fact card may be. How: The grid reads it to decide how many columns fit, the p08 rhythm step or a horizontal step as the screen grows. */
 
 	display               : grid;
 	gap                   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
-	grid-template-columns : repeat( auto-fill, minmax( max( calc( ( 100% - var( --spa-hor-p02 ) * 5 ) / 6 - 0.1px ), min( calc( ( 100% - var( --spa-hor-p02 ) * 2 ) / 3 - 0.1px ), calc( ( var( --fac-car-wid ) * 6 + var( --spa-hor-p02 ) * 5 - 100% ) * 999 ) ), min( calc( ( 100% - var( --spa-hor-p02 ) ) / 2 - 0.1px ), calc( ( var( --fac-car-wid ) * 3 + var( --spa-hor-p02 ) * 2 - 100% ) * 999 ) ), min( 100%, calc( ( var( --fac-car-wid ) * 2 + var( --spa-hor-p02 ) - 100% ) * 999 ) ) ), 1fr ) ); /* Spacing Horizontal Base Plus 2 ~= 25.572px, Fact Card Width, set by its own rule */ /* What: Six Three Two One Columns. Why: The grid should never leave a short last row. How: The column minimum is a sixth of the row once six facts fit at their minimum, a third once three do, half once two do, and the whole row otherwise, each switch made by a difference multiplied by 999 that turns hugely positive or negative as the row passes that width, and each share trimmed by 0.1px so rounding never drops a column. */
+	grid-template-columns : repeat( auto-fill, minmax( max( calc( ( 100% - var( --spa-hor-p02 ) * 5 ) / 6 - 0.1px ), min( calc( ( 100% - var( --spa-hor-p02 ) * 2 ) / 3 - 0.1px ), calc( ( var( --fac-car-wid ) * 6 + var( --spa-hor-p02 ) * 5 - 100% ) * 999 ) ), min( calc( ( 100% - var( --spa-hor-p02 ) ) / 2 - 0.1px ), calc( ( var( --fac-car-wid ) * 3 + var( --spa-hor-p02 ) * 2 - 100% ) * 999 ) ), min( 100%, calc( ( var( --fac-car-wid ) * 2 + var( --spa-hor-p02 ) - 100% ) * 999 ) ) ), 1fr ) ); /* Spacing Horizontal Base Plus 2 ~= 25.572px, Fact Card Width, set by its own rule */ /* What: Six Three Two One Columns. Why: The grid should never leave a short last row. How: The column minimum is a sixth of the row once six facts fit at their minimum, a third once three do, half once two do, and the whole row otherwise, each switch made by a difference multiplied by 999 that turns hugely positive or negative as the row passes that width, and each fractional share trimmed by 0.1px so rounding never drops a column. */
 	margin-top            : var( --spa-ver-bas );                      /* Spacing Vertical Base ~= 14.572px */
 
 
@@ -552,16 +558,16 @@
 
 
 	align-items     : center;
-	backdrop-filter : blur( calc( var( --ver-rhy-m02 ) * 1rem ) );                                                                     /* Vertical Rhythm Base Minus 2 ~= 8.304px */
-	background      : oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-006-rec ) );                                             /* Background Surface Color = #ffffff, Core-Design-Number to the Power of 6 Reciprocal ~= 0.185 */
-	border          : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-004-rec ) );                  /* Border Width Base ~= 1.160px, Background Surface Color = #ffffff, Core-Design-Number to the Power of 4 Reciprocal ~= 0.325 */
-	border-radius   : var( --rad-bor-xla );                                                                                            /* Radius Border Extra Large ~= 19.304px */
+	backdrop-filter : blur( calc( var( --ver-rhy-m02 ) * 1rem ) );                                                    /* Vertical Rhythm Base Minus 2 ~= 8.304px */
+	background      : oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-006-rec ) );                            /* Background Surface Color = #ffffff, Core-Design-Number to the Power of 6 Reciprocal ~= 0.185 */
+	border          : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-004-rec ) ); /* Border Width Base ~= 1.160px, Background Surface Color = #ffffff, Core-Design-Number to the Power of 4 Reciprocal ~= 0.325 */
+	border-radius   : var( --rad-bor-xla );                                                                           /* Radius Border Extra Large ~= 19.304px */
 	display         : flex;
 	flex-direction  : column;
-	gap             : var( --spa-ver-m03 );                                                                                            /* Spacing Vertical Base Minus 3 ~= 6.268px */
-	padding         : var( --spa-ver-p02 ) var( --spa-hor-bas );                                                                       /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base ~= 14.572px */
+	gap             : var( --spa-ver-m03 );                                                                           /* Spacing Vertical Base Minus 3 ~= 6.268px */
+	padding         : var( --spa-ver-p02 ) var( --spa-hor-bas );                                                      /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base ~= 14.572px */
 	text-align      : center;
-	transition      : background-color var( --dur-tra-p02 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-sta-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease */
+	transition      : background-color var( --dur-tra-p02 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }

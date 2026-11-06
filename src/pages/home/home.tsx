@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import cssModObj from './home.module.css';    // What: CSS Module Object. Why: The home page is styled in its own module, whose class names Vite hashes. How: Every element reads its class from this object.
+import cssModObj from './home.module.css';    // What: CSS Module Object. Why: The home page is styled in its own module, whose class names Vite hashes. How: Each class an element carries is read from this object.
 import porWebUrl from './portrait-both.webp'; // What: Portrait WebP URL. Why: The hero shows Lilah and Norah together, and Vite fingerprints and checks an imported image. How: This imports the photo's built URL for the hero's img.
 
 
@@ -45,8 +45,11 @@ import { PHO_SIZ_OBJ } from './photo-sizes.ts'; // What: Photo Sizes Object. Why
  * The four cards on what life with the girls is like, in the order they show.
  * Every row shares the same shape, so its fields carry no comments of their
  * own:
+ *
  * - `desStr` (String): Description String, the card's sentence.
+ *
  * - `emoStr` (String): Emoji String, the card's decorative emoji.
+ *
  * - `titStr` (String): Title String, the card's heading.
  *
  * @author z4nta0 <https://github.com/z4nta0>
@@ -56,13 +59,10 @@ import { PHO_SIZ_OBJ } from './photo-sizes.ts'; // What: Photo Sizes Object. Why
 const FEA_CAR_ARR = [ // What: Feature Card Array. Why: The home page sums up life with the girls in four cards. How: Each row holds a card's emoji, title, and sentence, rendered in this order.
 
 
-	{ desStr : 'From costume adventures to comedic hijinks, Lilah and Norah never fail to entertain.', emoStr : '🎭', titStr : 'Fun & Silly Videos' }, // What: Silly Videos Card. Why: The girls' videos are a big part of what they share. How: This card leads the row.
-
-	{ desStr : "Giving bear hugs is what Lilah & Norah do best, and they've got plenty to go around for everyone.", emoStr : '🐻', titStr : 'Bear Hugs' }, // What: Bear Hugs Card. Why: Bear hugs are the girls' signature. How: This card follows the videos.
-
-	{ desStr : 'These girls take their wardrobe seriously. Bear ears? Bunny ears? Yes to all of it.', emoStr : '👗', titStr : 'Fabulous Outfits' }, // What: Fabulous Outfits Card. Why: The girls are known for their costumes. How: This card follows the bear hugs.
-
-	{ desStr : 'Snow days, garden romps, and everything in between: life is better outside.', emoStr : '🌿', titStr : 'Outdoor Adventures' } // What: Outdoor Adventures Card. Why: Much of their content happens outside. How: This card closes the row.
+	{ desStr : 'From costume adventures to comedic hijinks, Lilah and Norah never fail to entertain.',              emoStr : '🎭', titStr : 'Fun & Silly Videos' }, // What: Silly Videos Card. Why: The girls' videos are a big part of what they share. How: This card leads the row.
+	{ desStr : "Giving bear hugs is what Lilah & Norah do best, and they've got plenty to go around for everyone.", emoStr : '🐻', titStr : 'Bear Hugs'          }, // What: Bear Hugs Card. Why: Bear hugs are the girls' signature. How: This card follows the videos.
+	{ desStr : 'These girls take their wardrobe seriously. Bear ears? Bunny ears? Yes to all of it.',               emoStr : '👗', titStr : 'Fabulous Outfits'   }, // What: Fabulous Outfits Card. Why: The girls are known for their costumes. How: This card follows the bear hugs.
+	{ desStr : 'Snow days, garden romps, and everything in between: life is better outside.',                       emoStr : '🌿', titStr : 'Outdoor Adventures' }  // What: Outdoor Adventures Card. Why: Much of their content happens outside. How: This card closes the row.
 
 
 ];
@@ -85,15 +85,14 @@ const FEA_CAR_ARR = [ // What: Feature Card Array. Why: The home page sums up li
  * pitch, and buttons to the About and Social Links pages beside their portrait
  * and two floating name badges, the portrait moving above them at 880px wide
  * and below; a row of paw prints; the four cards from FEA_CAR_ARR; and a
- * banner linking to the Social Links page. Every emoji is hidden from screen
- * readers as decoration, and the banner's button is named by its words alone,
- * since wrapping its paw in a hidden span would trade the space before it for
- * the button's flex gap.
+ * banner linking to the Social Links page. The banner's button is named by its
+ * words alone, and every other emoji is hidden from screen readers as
+ * decoration, since wrapping its paw in a hidden span would trade the space
+ * before it for the button's flex gap.
  *
  * It also sets the page's canonical address, which React moves into the
  * document head while the page is shown; its title and description are
- * index.html's own, while every other page shows its own title, and Social
- * Links its own description too.
+ * index.html's own.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -142,14 +141,16 @@ function HomPagCom () : React.JSX.Element {
 							laughter, love, bear hugs, and the occasional dramatic outfit to your feed. <span aria-hidden='true'>🐾</span>
 						</p>
 
-						<div className={ cssModObj.herActDiv }>{ /* What: Hero Actions Div Element. Why: The two main ways onward sit together. How: This sets the buttons in a row. */ }
+
+
+						<div className={ cssModObj.herActDiv }>{ /* What: Hero Actions Div Element. Why: The two main ways onward sit together. How: This sets the buttons in a row, wrapping onto two lines at about 400px wide and below. */ }
 
 
 							<Link
 								className={` ${ cssModObj.butBasAnc }   ${ cssModObj.butBasAncPrimary } `}
 
 								to='/about'
-							>Meet the Girls</Link>{ /* What: Meet The Girls Link. Why: Visitors want to know the girls first. How: This routes to the About page. */ }
+							>Meet the Girls</Link>{ /* What: Button Base Anchor Primary Link. Why: Visitors want to know the girls first. How: This routes to the About page. */ }
 
 
 
@@ -157,13 +158,14 @@ function HomPagCom () : React.JSX.Element {
 								className={` ${ cssModObj.butBasAnc }   ${ cssModObj.butBasAncOutline } `}
 
 								to='/links'
-							>Follow Along</Link>{ /* What: Follow Along Link. Why: Following the girls is the site's main purpose. How: This routes to the Social Links page. */ }
+							>Follow Along</Link>{ /* What: Button Base Anchor Outline Link. Why: Following the girls is the site's main purpose. How: This routes to the Social Links page. */ }
 
 
 						</div>
 
 
 					</div>
+
 
 
 					<div className={ cssModObj.herVisDiv }>{ /* What: Hero Visual Div Element. Why: The portrait sits on a soft blob with the girls' names floating beside it. How: This holds the blob, the framed portrait, and the two badges. */ }
@@ -187,9 +189,9 @@ function HomPagCom () : React.JSX.Element {
 
 						</div>
 
-						<div className={` ${ cssModObj.floBadDiv }   ${ cssModObj.floBadDivLilah } `}><span aria-hidden='true'>🌸</span> Lilah</div>{ /* What: Floating Badge Div Element. Why: The badges name the girls in the portrait. How: This floats Lilah's name beside it, after a flower hidden from screen readers. */ }
+						<div className={` ${ cssModObj.floBadDiv }   ${ cssModObj.floBadDivLilah } `}><span aria-hidden='true'>🌸</span> Lilah</div>{ /* What: Floating Badge Div Lilah Element. Why: The badges name the girls in the portrait. How: This floats Lilah's name beside it, after a flower hidden from screen readers. */ }
 
-						<div className={` ${ cssModObj.floBadDiv }   ${ cssModObj.floBadDivNorah } `}><span aria-hidden='true'>🌺</span> Norah</div>{ /* What: Floating Badge Div Element. Why: The badges name the girls in the portrait. How: This floats Norah's name beside it, half a cycle behind Lilah's, after a flower hidden from screen readers. */ }
+						<div className={` ${ cssModObj.floBadDiv }   ${ cssModObj.floBadDivNorah } `}><span aria-hidden='true'>🌺</span> Norah</div>{ /* What: Floating Badge Div Norah Element. Why: The badges name the girls in the portrait. How: This floats Norah's name beside it, half a cycle behind Lilah's, after a flower hidden from screen readers. */ }
 
 
 					</div>
@@ -215,7 +217,7 @@ function HomPagCom () : React.JSX.Element {
 					<p className={ cssModObj.secSubPar }>Every day is an adventure when you've got fluffy ears and a flair for drama</p>{ /* What: Section Subtitle Paragraph Element. Why: A short line sets up the cards. How: This shows it under the heading. */ }
 
 
-					<div className={ cssModObj.feaGriDiv }>{ /* What: Features Grid Div Element. Why: The cards sit in a grid that wraps on narrow screens. How: This lays them out. */ }
+					<div className={ cssModObj.feaGriDiv }>{ /* What: Features Grid Div Element. Why: The cards sit in a grid of four columns, two at about 890px wide and below, and one at about 430px and below. How: This lays them out. */ }
 
 
 						{ FEA_CAR_ARR.map( ( feaCarObj ) => ( // What: Feature Card Map. Why: Each row of FEA_CAR_ARR gets a card. How: This renders one card per row.
@@ -270,7 +272,7 @@ function HomPagCom () : React.JSX.Element {
 							to='/links'
 
 							aria-label='See All Social Links' // What: Social Links Button Label. Why: Screen readers would otherwise read the decorative paw aloud. How: This names the button by its words alone, which still match what's shown.
-						>See All Social Links 🐾</Link>{ /* What: See All Social Links Link. Why: The banner's one action is following the girls. How: This routes to the Social Links page. */ }
+						>See All Social Links 🐾</Link>{ /* What: Button Base Anchor White Link. Why: The banner's one action is following the girls. How: This routes to the Social Links page. */ }
 
 
 					</div>
@@ -298,7 +300,7 @@ function HomPagCom () : React.JSX.Element {
 
 // #region Exports
 
-export { HomPagCom }; // What: Named Exports. Why: The home route renders this page. How: This exports HomPagCom.
+export { HomPagCom }; // What: Named Export. Why: The Home route renders this page. How: This exports HomPagCom.
 
 // #endregion Exports
 

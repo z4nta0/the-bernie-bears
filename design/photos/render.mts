@@ -23,12 +23,13 @@ import { writeFileSync } from 'node:fs';          // What: Write File Sync. Why:
  * src/pages/about. A photo the page crops to a centered square (the portrait
  * and the sisters, which fill square frames with object-fit cover) is cropped
  * to that square here, so no hidden pixels ship. Each is then scaled down to
- * twice the largest size the site shows it at, never up, and encoded at 0.85
- * quality, the lowest that showed no difference from the original at 3x zoom.
- * Last, it writes a photo-sizes.ts into each page's folder, the width and
- * height of every photo it wrote there, which the page's img elements read
- * so nothing shifts while photos load. Run it with npm run photos whenever a
- * photo is added or replaced, or a display size changes.
+ * three times the largest size the site shows it at, never up, so it stays
+ * sharp on the densest phone screens, and encoded at 0.85 quality, the lowest
+ * that showed no difference from the original at 3x zoom. Last, it writes a
+ * photo-sizes.ts into each page's folder, the width and height of every photo
+ * it wrote there, which the page's img elements read so nothing shifts while
+ * photos load. Run it with npm run photos whenever a photo is added or
+ * replaced, or a display size changes.
  *
  * Sections:
  *  - Constants
@@ -57,15 +58,19 @@ type PhoRecTyp = { pagStr : string, souStr : string, squBoo : boolean, widNum : 
  * @summary
  * Every photo the site shows. Every row shares the PhoRecTyp shape, so its
  * fields carry no comments of their own:
+ *
  * - `pagStr` (String): Page String, the folder under src/pages the photo and
  *   its sizes file are written into.
+ *
  * - `souStr` (String): Source String, the original's file name in this
  *   folder; the WebP takes the same name.
+ *
  * - `squBoo` (Boolean): Square Boolean, true when the page shows only the
  *   photo's centered square, so the rest is cropped away.
- * - `widNum` (Number): Width Number, twice the widest the site shows the
- *   photo: the hero portrait's frame reaches about 391px, the cartoon about
- *   303px, and each sister's circle about 130px.
+ *
+ * - `widNum` (Number): Width Number, three times the widest the site shows
+ *   the photo: the hero portrait reaches about 345px, the cartoon
+ *   about 303px, and each sister's circle about 130px.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -74,10 +79,10 @@ type PhoRecTyp = { pagStr : string, souStr : string, squBoo : boolean, widNum : 
 const PHO_REC_ARR : PhoRecTyp[] = [ // What: Photo Record Array. Why: The script rebuilds every photo from one list. How: Each row names one photo and how it's shown.
 
 
-	{ pagStr : 'about', souStr : 'group-photo.jpg',   squBoo : false, widNum : 606 },
-	{ pagStr : 'about', souStr : 'lilah.jpg',         squBoo : true,  widNum : 260 },
-	{ pagStr : 'about', souStr : 'norah.jpg',         squBoo : true,  widNum : 260 },
-	{ pagStr : 'home',  souStr : 'portrait-both.jpg', squBoo : true,  widNum : 782 }
+	{ pagStr : 'about', souStr : 'group-photo.jpg',   squBoo : false, widNum : 909  }, // What: About Group Photo Row. Why: The About intro shows the cartoon of both girls. How: This rebuilds it whole, not cropped.
+	{ pagStr : 'about', souStr : 'lilah.jpg',         squBoo : true,  widNum : 390  }, // What: Lilah Photo Row. Why: Lilah's card shows her photo in a round frame. How: This rebuilds it cropped to a centered square.
+	{ pagStr : 'about', souStr : 'norah.jpg',         squBoo : true,  widNum : 390  }, // What: Norah Photo Row. Why: Norah's card shows her photo in a round frame. How: This rebuilds it cropped to a centered square.
+	{ pagStr : 'home',  souStr : 'portrait-both.jpg', squBoo : true,  widNum : 1035 }  // What: Home Portrait Photo Row. Why: The hero shows both girls in a square frame. How: This rebuilds it cropped to a centered square.
 
 
 ];
@@ -120,6 +125,7 @@ for ( const phoRecObj of PHO_REC_ARR ) { // What: Photo Record Loop. Why: Each o
 
 		souImaEle.src = souUrlStr; // What: Source Address Assignment. Why: The image loads the original's data. How: This sets its source.
 
+
 		await souImaEle.decode(); // What: Source Decode Wait. Why: Drawing an undecoded image draws nothing. How: This waits until it's ready.
 
 
@@ -136,19 +142,20 @@ for ( const phoRecObj of PHO_REC_ARR ) { // What: Photo Record Loop. Why: Each o
 		outCanEle.width  = outWidNum; // What: Canvas Width Assignment. Why: The canvas has to match the fitted size. How: This sets its width.
 
 
-		const outConObj = outCanEle.getContext( '2d' )!; // What: Output Context Object. Why: Drawing goes through the canvas's 2D context. How: This reads it. // What: Non-Null Note. Why: getContext can return null for an unsupported type. How: A 2D context is always available on a fresh canvas.
+		const outCotObj = outCanEle.getContext( '2d' )!; // What: Output Context Object. Why: Drawing goes through the canvas's 2D context. How: This reads it. // What: Non-Null Note. Why: getContext can return null for an unsupported type. How: A 2D context is always available on a fresh canvas.
 
 
-		outConObj.imageSmoothingQuality = 'high'; // What: Smoothing Quality Assignment. Why: A large downscale should stay sharp without jagged edges. How: This asks for the browser's best resampling.
+		outCotObj.imageSmoothingQuality = 'high'; // What: Smoothing Quality Assignment. Why: A large downscale should stay sharp without jagged edges. How: This asks for the browser's best resampling.
 
-		outConObj.drawImage( souImaEle, ( souImaEle.naturalWidth - kepWidNum ) / 2, ( souImaEle.naturalHeight - kepHeiNum ) / 2, kepWidNum, kepHeiNum, 0, 0, outWidNum, outHeiNum ); // What: Photo Draw Call. Why: The kept part of the original fills the canvas. How: This draws the centered crop, or the whole photo, scaled to the canvas.
+
+		outCotObj.drawImage( souImaEle, ( souImaEle.naturalWidth - kepWidNum ) / 2, ( souImaEle.naturalHeight - kepHeiNum ) / 2, kepWidNum, kepHeiNum, 0, 0, outWidNum, outHeiNum ); // What: Photo Draw Call. Why: The kept part of the original fills the canvas. How: This draws the centered crop, or the whole photo, scaled to the canvas.
 
 
 
 		return { // What: Encode Result Return. Why: Node writes the file and records its size. How: This hands back the WebP's base64 data, its height, and its width.
 
 
-			b64Str : outCanEle.toDataURL( 'image/webp', quaValNum ).split( ',' )[ 1 ], // What: Base64 String. Why: Only text crosses back from the page. How: This encodes the canvas as WebP and keeps the data after the data URL's comma.
+			b64Str : outCanEle.toDataURL( 'image/webp', quaValNum ).split( ',' )[ 1 ], // What: Base64 String. Why: The page hands the image back as text. How: This encodes the canvas as WebP and keeps the data after the data URL's comma.
 			heiNum : outHeiNum,                                                        // What: Height Number. Why: The sizes file records the photo's height. How: This is the canvas's height.
 			widNum : outWidNum                                                         // What: Width Number. Why: The sizes file records the photo's width. How: This is the canvas's width.
 
@@ -194,7 +201,6 @@ for ( const [ pagFolStr, sizRowArr ] of sizRowMap ) { // What: Sizes File Loop. 
 
 	const pagWorStr = `${ pagFolStr[ 0 ].toUpperCase() }${ pagFolStr.slice( 1 ) }`; // What: Page Word String. Why: The sizes file's type and its comment name the page the file belongs to. How: This capitalizes the page folder's name, such as home to Home.
 	const phsTypStr = `${ pagWorStr.slice( 0, 3 ) }PhsTyp`;                         // What: Photo-Size Type String. Why: Type names are unique across the codebase, so each page's sizes type needs its own name. How: This joins the page word's first three letters to Phs (Photo-Size) and Typ, such as HomPhsTyp.
-
 
 	const sizTexStr = `
 
@@ -249,7 +255,7 @@ ${ sizLinArr.join( '\n' ) }
 
 // #region Exports
 
-export { PHO_SIZ_OBJ }; // What: Named Exports. Why: The page's img elements read the photo sizes. How: This exports the sizes object.
+export { PHO_SIZ_OBJ }; // What: Named Export. Why: The page's img elements read the photo sizes. How: This exports the sizes object.
 
 // #endregion Exports
 
@@ -264,7 +270,7 @@ export { PHO_SIZ_OBJ }; // What: Named Exports. Why: The page's img elements rea
 
 
 
-console.log( `Wrote ${ PHO_REC_ARR.length } photos, ${ Math.round( befBytNum / 1024 ) } KB down to ${ Math.round( aftBytNum / 1024 ) } KB, and a sizes file for ${ [ ...sizRowMap.keys() ].join( ' and ' ) }.` ); // What: Result Log Call. Why: The run should say what it wrote. How: This prints the photo count, the total sizes before and after, and the pages given sizes files.
+console.log( `Wrote ${ PHO_REC_ARR.length } photos, ${ Math.round( befBytNum / 1024 ).toLocaleString( 'en-US' ) } KB down to ${ Math.round( aftBytNum / 1024 ).toLocaleString( 'en-US' ) } KB, and a sizes file for ${ [ ...sizRowMap.keys() ].join( ' and ' ) }.` ); // What: Result Log Call. Why: The run should say what it wrote. How: This prints the photo count, the total sizes before and after with thousands separators, and the pages given sizes files.
 
 // #endregion Module Init
 

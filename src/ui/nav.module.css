@@ -11,12 +11,12 @@
  * screens 640px wide or narrower the links move into a panel below the bar,
  * which fades in over a scrim that dims the page while the three-bar toggle
  * has it open, its rows arriving one after another, and the toggle's bars turn
- * into a cross. Under the links the panel adds a row of the girls' profile
- * icons, a link to the main site, and the tagline. The bar's states are
- * attributes rather than classes: aria-expanded on the toggle,
- * data-mobile-menu-open on the links and the scrim, and aria-current on the
- * current page's link. The bar's width and side padding are the page's shared
- * container values, merged into its own rule.
+ * into a cross. Under the links the panel adds extras for following the girls,
+ * such as a row of their profile icons. The bar's states are attributes rather
+ * than classes: aria-expanded on the toggle, data-mobile-menu-open on the
+ * links and the scrim, and aria-current on the current page's link. The bar's
+ * width and side padding are the page's shared container values, merged into
+ * its own rule.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -24,7 +24,65 @@
 
 
 
-.navScrDiv { /* What: Navigation Scrim Div. Why: The open phone menu should stand apart from the page, and a tap anywhere on the page should close it. How: This covers the screen under the bar in the scrim color, hidden until the menu opens, fading out as it closes and only then leaving the page clickable. */
+.navSkiAnc { /* What: Navigation Skip Anchor. Why: A keyboard user should be able to jump past the bar, and the link shouldn't show until it's needed. How: This sets it as a lavender pill with dark text and a soft shadow, like the site's primary buttons, fixed just above the screen's top edge at the page's side gutter, and eases its slide into view and back out, leaving on the accelerating curve, along with its hover fill and lift, its press, and its focus ring. */
+
+
+	background      : var( --acc-mai-col );                               /* Accent Main Color = #d1afe2 */
+	border-radius   : 999px;
+	box-shadow      : var( --ele-med-sha );                               /* Elevation Medium Shadow ~= 0 8.304px 25.572px plus 0 3.572px 8.304px -2.035px */
+	color           : var( --tex-acc-col );                               /* Text Accent Color = #2c2c2c */
+	font-size       : var( --fon-siz-p01 );                               /* Font Size Base Plus 1 ~= 14.572px */
+	font-weight     : 700;
+	left            : var( --gut-sid-pad );                               /* Gutter Side Padding, about 19.304px - 44.876px */
+	padding         : var( --spa-ver-bas ) var( --spa-hor-p02 );          /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	position        : fixed;
+	text-decoration : none;
+	top             : var( --spa-ver-m02 );                               /* Spacing Vertical Base Minus 2 ~= 8.304px */
+	transform       : translateY( calc( -100% - var( --spa-ver-p04 ) ) ); /* Spacing Vertical Base Plus 4 ~= 44.876px */ /* What: Hidden Offset. Why: The link waits above the screen until it's focused, clear of the edge so no sliver of it or its soft shadow shows. How: This raises it by its own height plus more than its top offset, its shadow's drop, and its blur together, about 42px. */
+	transition      : background var( --dur-tra-p01 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-acc-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Duration Transition Base Plus 2 ~= 277.0ms, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ), Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	z-index         : 5;                                                  /* What: Skip Link Layer. Why: The focused link has to show above the bar, at 4, and the scrim, at 3. How: This sets it one layer above the bar. */
+
+
+}
+.navSkiAnc:focus { /* What: Focused Navigation Skip Anchor. Why: The link has to come into view however focus reaches it. How: This slides it down over the bar's corner on the decelerating curve, still easing its hover fill and lift, its press, and its focus ring, on :focus rather than :focus-visible so a script's focus shows it too. */
+
+
+	transform  : translateY( 0 );
+	transition : background var( --dur-tra-p01 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.navSkiAnc:hover { /* What: Hovered Navigation Skip Anchor. Why: The button should respond to the pointer. How: This deepens the lavender and lifts the pill 2px, like the primary buttons. */
+
+
+	background : var( --acc-hov-col );                            /* Accent Hover Color = #b48fcb */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+
+
+}
+.navSkiAnc:active { /* What: Pressed Navigation Skip Anchor. Why: A press should register before focus moves. How: This presses the button in slightly, which also undoes its hover lift. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, which also undoes its hover lift, a literal since no scale step lands within 10%. */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Navigation Skip Anchor. Why: Someone who asked for less motion shouldn't see the link slide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.navSkiAnc,
+	.navSkiAnc:focus { /* What: Motionless Navigation Skip Anchor. Why: The link should simply appear, and its hover, press, and focus changes should switch on at once. How: This turns the transition off on both the hidden and the focused rule, since the focused rule outranks the base. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.navScrDiv { /* What: Navigation Scrim Div. Why: The open phone menu should stand apart from the page, and a tap anywhere on the page should close it. How: This covers the whole screen in the scrim color, layered beneath the bar, hidden until the menu opens, fading out on the accelerating curve as it closes and only then leaving the page clickable. */
 
 
 	background : oklch( from var( --scr-mai-col ) l c h / var( --cdn-pow-003-rec ) );                          /* Scrim Main Color = #2c2c2c, Core-Design-Number to the Power of 3 Reciprocal ~= 0.430 */
@@ -38,7 +96,7 @@
 
 
 }
-.navScrDiv[data-mobile-menu-open] { /* What: Open Navigation Scrim Div. Why: The page dims as the menu opens. How: This fades the scrim in, showing it at once so a tap can close the menu straight away. */
+.navScrDiv[data-mobile-menu-open] { /* What: Open Navigation Scrim Div. Why: The page dims as the menu opens. How: This fades the scrim in on the decelerating curve, showing it at once so a tap can close the menu straight away. */
 
 
 	opacity    : 1;
@@ -85,7 +143,7 @@
 	backdrop-filter : blur( calc( var( --ver-rhy-m01 ) * 1rem ) );     /* Vertical Rhythm Base Minus 1 = 11px */
 	background      : oklch( from var( --bac-sur-col ) l c h / 0.92 ); /* Background Surface Color = #ffffff @ 0.92 opacity */
 	border-bottom   : var( --bor-wid-lar ) solid var( --bor-mai-col ); /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
-	box-shadow      : var( --ele-med-sha );                            /* Elevation Medium Shadow, about 0 8.3px 25.6px plus 0 3.6px 8.3px -2px */
+	box-shadow      : var( --ele-med-sha );                            /* Elevation Medium Shadow ~= 0 8.304px 25.572px plus 0 3.572px 8.304px -2.035px */
 	position        : sticky;
 	top             : 0;
 	z-index         : 4;                                               /* What: Bar Layer. Why: The bar has to stay above the scrim at 3, which covers the page's highest layer, the hero's name badges at 2. How: This sits one layer above the scrim. */
@@ -96,7 +154,7 @@
 
 /* #region navInnDiv */
 
-.navInnDiv { /* What: Navigation Inner Div. Why: The brand, toggle, and links share one row in the page's centered column. How: This spreads them across a row about 79px tall within the page's capped column and its side padding. */
+.navInnDiv { /* What: Navigation Inner Div. Why: The brand and the links share one row in the page's centered column, or the brand and the toggle at 640px wide and below, where the links drop down as the menu. How: This spreads them across a row about 79px tall within the page's capped column and its side padding. */
 
 
 	align-items     : center;
@@ -225,6 +283,7 @@
 /* #endregion navBraAnc */
 
 
+
 /* #region navTogBut */
 
 .navTogBut { /* What: Navigation Toggle Button. Why: Wide screens show the links in the bar, so the toggle stays hidden there. How: This hides it, and stacks its bars on a bare, borderless button once a narrow screen shows it, easing its press and focus. */
@@ -295,21 +354,21 @@
 
 
 }
-.navTogBut[aria-expanded='true'] .togBarSpa:nth-child( 1 ) { /* What: Open Top Toggle Bar Span. Why: The open toggle shows a cross. How: This drops the top bar to the middle and tilts it one way. */
+.navTogBut[aria-expanded='true'] .togBarSpa:nth-child( 1 ) { /* What: Open Toggle Bar Span Top. Why: The open toggle shows a cross. How: This drops the top bar to the middle and tilts it one way. */
 
 
 	transform : translateY( calc( var( --ver-rhy-m02 ) * 1rem ) ) rotate( 45deg ); /* Vertical Rhythm Base Minus 2 ~= 8.304px */ /* What: Bar Drop Distance. Why: The top bar has to land exactly on the middle one. How: One bar (m05) plus one gap (m04) sums to m02, so this reads that rhythm step rather than a spacing step. */
 
 
 }
-.navTogBut[aria-expanded='true'] .togBarSpa:nth-child( 2 ) { /* What: Open Middle Toggle Bar Span. Why: The cross has only two strokes. How: This fades the middle bar out. */
+.navTogBut[aria-expanded='true'] .togBarSpa:nth-child( 2 ) { /* What: Open Toggle Bar Span Middle. Why: The cross has only two strokes. How: This fades the middle bar out. */
 
 
 	opacity : 0;
 
 
 }
-.navTogBut[aria-expanded='true'] .togBarSpa:nth-child( 3 ) { /* What: Open Bottom Toggle Bar Span. Why: The open toggle shows a cross. How: This lifts the bottom bar to the middle and tilts it the other way. */
+.navTogBut[aria-expanded='true'] .togBarSpa:nth-child( 3 ) { /* What: Open Toggle Bar Span Bottom. Why: The open toggle shows a cross. How: This lifts the bottom bar to the middle and tilts it the other way. */
 
 
 	transform : translateY( calc( var( --ver-rhy-m02 ) * -1rem ) ) rotate( -45deg ); /* Vertical Rhythm Base Minus 2 ~= -8.304px */ /* What: Bar Lift Distance. Why: The bottom bar has to land exactly on the middle one. How: One bar (m05) plus one gap (m04) sums to m02, so this reads that rhythm step rather than a spacing step. */
@@ -348,12 +407,12 @@
 @media ( max-width : 640px ) { /* What: Narrow Navigation Links Nav. Why: The links don't fit the bar on a narrow screen. How: This applies 640px wide and below. */
 
 
-	.navLinNav { /* What: Closed Navigation Links Nav. Why: On a narrow screen the links become a panel below the bar, out of the way until the toggle opens it. How: This stacks them on a white panel across the screen under the bar, scrolling when it's taller than the screen below the bar, faded out a step above its place and hidden while closed, which also keeps its links out of the Tab order. */
+	.navLinNav { /* What: Closed Navigation Links Nav. Why: On a narrow screen the links become a panel below the bar, out of the way until the toggle opens it. How: This stacks them on a white panel across the screen under the bar, scrolling when it's taller than the screen below the bar, faded out a step above its place and hidden while closed, which also keeps its links out of the Tab order, easing its fade and rise on the accelerating curve as it closes and on the decelerating curve as it opens. */
 
 
 		background     : var( --bac-sur-col );                            /* Background Surface Color = #ffffff */
 		border-bottom  : var( --bor-wid-lar ) solid var( --bor-mai-col ); /* Border Width Large ~= 2.035px, Border Main Color = #ececb6 */
-		box-shadow     : var( --ele-lar-sha );                            /* Elevation Large Shadow, about 0 19.3px 44.9px -14.6px plus 0 6.3px 14.6px -3.6px */
+		box-shadow     : var( --ele-lar-sha );                            /* Elevation Large Shadow ~= 0 19.304px 44.876px -14.572px plus 0 6.268px 14.572px -3.572px */
 		flex-direction : column;
 		gap            : var( --spa-ver-m02 );                            /* Spacing Vertical Base Minus 2 ~= 8.304px */
 		left           : 0;
@@ -398,9 +457,10 @@
 
 }
 
-.navLinAnc { /* What: Navigation Link Anchor. Why: Each link names a page as a soft pill. How: This sets it bold in the body font with pill padding and rounding, easing its hover, press, and focus. */
+.navLinAnc { /* What: Navigation Link Anchor. Why: Each link names a page as a soft pill. How: This sets it bold in the body font with pill padding and rounding, easing its hover, press, and focus, and the fill, border, and shadow it takes as the current page's link, the border and shadow leaving on the accelerating curve. */
 
 
+	border        : var( --bor-wid-bas ) solid transparent;    /* Border Width Base ~= 1.160px */ /* What: Resting Clear Border. Why: The current page's link draws a cream border, which would otherwise appear at once and grow the pill, and should fade in rather than ease from the text color. How: Every link keeps a border of the same width, clear at rest, so becoming current only changes its color, which the transition eases. */
 	border-radius : 999px;
 	color         : var( --tex-sec-col );                      /* Text Secondary Color = #5a5a5a */
 	font-family   : var( --fon-fam-mai );                      /* Font Family Main = 'Nunito', sans-serif */
@@ -408,7 +468,7 @@
 	font-weight   : 600;
 	padding       : var( --spa-ver-m02 ) var( --spa-hor-bas ); /* Spacing Vertical Base Minus 2 ~= 8.304px, Spacing Horizontal Base ~= 14.572px */
 	position      : relative;
-	transition    : background var( --dur-tra-p01 ) var( --mot-sta-eas ), color var( --dur-tra-p01 ) var( --mot-sta-eas ), opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	transition    : background var( --dur-tra-p01 ) var( --mot-sta-eas ), border-color var( --dur-tra-p01 ) var( --mot-acc-eas ), box-shadow var( --dur-tra-p01 ) var( --mot-acc-eas ), color var( --dur-tra-p01 ) var( --mot-sta-eas ), opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ), Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */ /* What: Shadow Ease Note. Why: The current link's small shadow arrives only as the page changes, too rarely for a cross-faded shadow layer to pay off. How: This eases the shadow itself, a paint property, over the same short duration as the fill. */
 
 
 }
@@ -420,13 +480,14 @@
 
 
 }
-.navLinAnc[aria-current='page'] { /* What: Current Navigation Link Anchor. Why: The link for the page being shown should stand out. How: This fills the pill cream with dark text, a darker cream border, and a soft shadow, winning over the hover look by coming after it. */
+.navLinAnc[aria-current='page'] { /* What: Current Navigation Link Anchor. Why: The link for the page being shown should stand out. How: This fills the pill cream with dark text, a darker cream border, and a soft shadow, winning over the hover look by coming after it, the border and shadow arriving on the decelerating curve. */
 
 
-	background : var( --bac-hig-col );                            /* Background Highlight Color = #ececb6 */
-	border     : var( --bor-wid-bas ) solid var( --bor-str-col ); /* Border Width Base ~= 1.160px, Border Strong Color = #d6d69a */
-	box-shadow : var( --ele-sma-sha );                            /* Elevation Small Shadow, about 0 1.2px 2px */
-	color      : var( --tex-mai-col );                            /* Text Main Color = #2c2c2c */
+	background   : var( --bac-hig-col ); /* Background Highlight Color = #ececb6 */
+	border-color : var( --bor-str-col ); /* Border Strong Color = #d6d69a */
+	box-shadow   : var( --ele-sma-sha ); /* Elevation Small Shadow ~= 0 1.160px 2.035px */
+	color        : var( --tex-mai-col ); /* Text Main Color = #2c2c2c */
+	transition   : background var( --dur-tra-p01 ) var( --mot-sta-eas ), border-color var( --dur-tra-p01 ) var( --mot-dec-eas ), box-shadow var( --dur-tra-p01 ) var( --mot-dec-eas ), color var( --dur-tra-p01 ) var( --mot-sta-eas ), opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -462,7 +523,8 @@
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Navigation Link Anchor. Why: Someone who asked for less motion shouldn't see the links animate. How: This applies only when the reduced-motion preference is set. */
 
 
-	.navLinAnc { /* What: Motionless Navigation Link Anchor. Why: The hover and current looks should simply switch. How: This turns the transition off. */
+	.navLinAnc,
+	.navLinAnc[aria-current='page'] { /* What: Motionless Navigation Link Anchor. Why: The hover and current looks should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -500,7 +562,7 @@
 
 
 }
-@keyframes menuItemOpenFadeIn { /* What: Menu Item Open Fade In. Why: The phone menu's rows arrive one after another rather than all at once. How: This rises each row a step into place as it fades in. */
+@keyframes menuItemOpenFadeIn { /* What: Menu Item Open Fade In. Why: The phone menu's rows arrive one after another rather than all at once. How: This lowers each row a step into place as it fades in. */
 
 
 	from {
@@ -568,12 +630,25 @@
 
 /* #region menSocDiv */
 
-.menSocDiv { /* What: Menu Social Div. Why: The six icons sit together as one row. How: This sets them in a row that wraps on the narrowest screens. */
+.menSocDiv { /* What: Menu Social Div. Why: The six icons sit together, and every row should hold the same number of them. How: This sets them in one row of six, two rows of three at 360px wide and below, where six no longer fit. */
 
 
-	display   : flex;
-	flex-wrap : wrap;
-	gap       : var( --spa-ver-m02 ) var( --spa-hor-m02 ); /* Spacing Vertical Base Minus 2 ~= 8.304px, Spacing Horizontal Base Minus 2 ~= 8.304px */
+	display               : grid;
+	gap                   : var( --spa-ver-m02 ) var( --spa-hor-m02 ); /* Spacing Vertical Base Minus 2 ~= 8.304px, Spacing Horizontal Base Minus 2 ~= 8.304px */
+	grid-template-columns : repeat( 6, auto );
+
+
+}
+@media ( max-width : 360px ) { /* What: Narrowest Menu Social Div. Why: Six tiles stop fitting the menu at about 340px wide, and five with a lone sixth would leave a short row. How: This applies 360px wide and below. */
+
+
+	.menSocDiv { /* What: Stacked Menu Social Div. Why: Three divides six, so both rows stay full. How: This sets the icons in two rows of three. */
+
+
+		grid-template-columns : repeat( 3, auto );
+
+
+	}
 
 
 }
@@ -590,7 +665,7 @@
 	font-size       : var( --fon-siz-p02 );                /* Font Size Base Plus 2 ~= 19.304px */
 	height          : calc( var( --ver-rhy-p04 ) * 1rem ); /* Vertical Rhythm Base Plus 4 ~= 44.876px */
 	justify-content : center;
-	transition      : filter var( --dur-tra-p01 ) var( --mot-sta-eas ), transform var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	transition      : filter var( --dur-tra-p01 ) var( --mot-sta-eas ), transform var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 	width           : calc( var( --ver-rhy-p04 ) * 1rem ); /* Vertical Rhythm Base Plus 4 ~= 44.876px */
 
 

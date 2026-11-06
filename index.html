@@ -1,3 +1,6 @@
+
+
+
 <!doctype html><!-- What: Document Type Declaration. Why: Browsers render the page in standards mode only with a doctype. How: This declares HTML5. -->
 
 
@@ -35,7 +38,7 @@
 
 
 		<meta name='author'      content='The Bernie Bears' /> <!-- What: Author Meta. Why: Search engines and link preview inspectors look for who a page belongs to, and on a real brand's site that's the brand itself. How: This names The Bernie Bears. -->
-		<meta name='description' content='Meet Lilah and Norah, two Bernese Mountain Dog sisters sharing bear hugs, silly videos, and fluffy fun. Follow along!' /> <!-- What: Description Meta. Why: Search listings show a summary under the title, and checkers and crawlers that never run the site's script read only this file. How: This carries the home page's description, the one description tag the site has, which the Social Links page swaps for its own while it shows. -->
+		<meta name='description' content='Meet Lilah and Norah, two Bernese Mountain Dog sisters sharing bear hugs, silly videos, and fluffy fun. Come follow along!' /> <!-- What: Description Meta. Why: Search listings show a summary under the title, and checkers and crawlers that never run the site's script read only this file. How: This carries the home page's description, the one description tag the site has, which the Social Links page swaps for its own while it shows. -->
 
 		<!-- #endregion Search -->
 
@@ -53,12 +56,11 @@
 			index.html = Icons Section
 
 			@summary
-			The SVG comes first, since modern browsers prefer it and it stays
-			sharp at any tab density, then the root favicon.ico for older
-			browsers, then the PNG sizes from smallest to largest. Every raster
-			icon is rendered from favicon.svg by npm run icons. The order is
-			the browser's order of preference, so it stays as written rather
-			than alphabetical.
+			The SVG comes first, since it stays sharp at any size, then the
+			root favicon.ico, then the PNG sizes from smallest to largest.
+			Every raster icon is rendered from favicon.svg by npm run icons.
+			The order is the order of preference, so it stays as written
+			rather than alphabetical.
 
 			@author z4nta0 <https://github.com/z4nta0>
 
@@ -66,12 +68,12 @@
 
 
 
-		<link href='/favicon.svg'         rel='icon' type='image/svg+xml' />             <!-- What: SVG Icon Link. Why: Modern browsers prefer a vector favicon that stays sharp at any tab density. How: This points at the pink paw print in public/. -->
-		<link href='/favicon.ico'         rel='icon' sizes='any' />                      <!-- What: ICO Icon Link. Why: Older browsers read only a .ico favicon. How: This points at the root favicon.ico, which also answers the request browsers make for it on their own. -->
-		<link href='/favicon-16x16.png'   rel='icon' sizes='16x16'   type='image/png' /> <!-- What: Small PNG Icon Link. Why: Small tab icons look crisper drawn at their own size. How: This offers the 16px PNG. -->
-		<link href='/favicon-32x32.png'   rel='icon' sizes='32x32'   type='image/png' /> <!-- What: Medium PNG Icon Link. Why: A browser without SVG favicons needs a raster fallback, and most pick a 32px tab icon. How: This offers the 32px PNG. -->
-		<link href='/favicon-192x192.png' rel='icon' sizes='192x192' type='image/png' /> <!-- What: Large PNG Icon Link. Why: Some browsers and Android pick a large icon for shortcuts and tab previews. How: This offers the 192px PNG. -->
-		<link href='/favicon-512x512.png' rel='icon' sizes='512x512' type='image/png' /> <!-- What: Extra Large PNG Icon Link. Why: High-density screens and app launchers can ask for a bigger icon still. How: This offers the 512px PNG. -->
+		<link href='/favicon.svg'         rel='icon' type='image/svg+xml' />             <!-- What: SVG Icon Link. Why: A vector favicon stays sharp at any size. How: This points at the pink paw print in public/. -->
+		<link href='/favicon.ico'         rel='icon' sizes='any' />                      <!-- What: ICO Icon Link. Why: The favicon is offered in the ICO format too. How: This points at the root favicon.ico, which also answers the request browsers make for it on their own. -->
+		<link href='/favicon-16x16.png'   rel='icon' sizes='16x16'   type='image/png' /> <!-- What: Small PNG Icon Link. Why: The favicon is offered as a raster icon drawn at 16px. How: This offers the 16px PNG. -->
+		<link href='/favicon-32x32.png'   rel='icon' sizes='32x32'   type='image/png' /> <!-- What: Medium PNG Icon Link. Why: The favicon is offered as a raster icon drawn at 32px. How: This offers the 32px PNG. -->
+		<link href='/favicon-192x192.png' rel='icon' sizes='192x192' type='image/png' /> <!-- What: Large PNG Icon Link. Why: The favicon is offered as a raster icon drawn at 192px. How: This offers the 192px PNG. -->
+		<link href='/favicon-512x512.png' rel='icon' sizes='512x512' type='image/png' /> <!-- What: Extra Large PNG Icon Link. Why: The favicon is offered as a raster icon drawn at 512px. How: This offers the 512px PNG. -->
 
 		<!-- #endregion Icons -->
 
@@ -101,7 +103,7 @@
 
 
 
-		<meta property='og:description'  content='Meet Lilah and Norah, two Bernese Mountain Dog sisters sharing bear hugs, silly videos, and fluffy fun. Follow along!' /> <!-- What: Open Graph Description Meta. Why: A shared link shows a summary under its title. How: This matches the home page's description. -->
+		<meta property='og:description'  content='Meet Lilah and Norah, two Bernese Mountain Dog sisters sharing bear hugs, silly videos, and fluffy fun. Come follow along!' /> <!-- What: Open Graph Description Meta. Why: A shared link shows a summary under its title. How: This matches the home page's description. -->
 		<meta property='og:image'        content='https://theberniebears.dog/og-image.jpg' />                                                      <!-- What: Open Graph Image Meta. Why: A shared link shows a preview image. How: This points at the 1,200x630 card in public/, by its absolute address, since scrapers can't resolve a relative one. -->
 		<meta property='og:image:alt'    content='Cartoon logo of Lilah and Norah, The Bernie Bears, above the words Follow Lilah &amp; Norah.' /> <!-- What: Open Graph Image Alt Meta. Why: Screen readers on social sites read the preview image's description. How: This describes the card. -->
 		<meta property='og:image:height' content='630' />                                                                                          <!-- What: Open Graph Image Height Meta. Why: Sites can lay out the preview before the image loads. How: This gives the card's height. -->
@@ -118,12 +120,12 @@
 
 		<!-- #region Twitter Card -->
 
-		<meta name='twitter:card'        content='summary_large_image' />                                                                          <!-- What: Twitter Card Meta. Why: X and similar sites pick a preview layout from this tag. How: This asks for the large image layout, which suits the 1,200x630 card. -->
-		<meta name='twitter:description' content='Meet Lilah and Norah, two Bernese Mountain Dog sisters sharing bear hugs, silly videos, and fluffy fun. Follow along!' /> <!-- What: Twitter Description Meta. Why: The preview shows a summary. How: This matches the home page's description. -->
-		<meta name='twitter:image'       content='https://theberniebears.dog/og-image.jpg' />                                                      <!-- What: Twitter Image Meta. Why: The preview shows an image. How: This points at the same card as Open Graph. -->
-		<meta name='twitter:image:alt'   content='Cartoon logo of Lilah and Norah, The Bernie Bears, above the words Follow Lilah &amp; Norah.' /> <!-- What: Twitter Image Alt Meta. Why: Screen readers read the preview image's description. How: This describes the card. -->
-		<meta name='twitter:site'        content='@theberniebears' />                                                                              <!-- What: Twitter Site Meta. Why: A preview on X can name the account behind the site, and the brand has a real one. How: This names @theberniebears, the X profile the Social Links page lists. -->
-		<meta name='twitter:title'       content='Lilah &amp; Norah, the Bernie Bears | Bernese Mountain Dogs' />                                  <!-- What: Twitter Title Meta. Why: The preview shows a title. How: This matches the home page's title. -->
+		<meta name='twitter:card'        content='summary_large_image' />                                                                                                   <!-- What: Twitter Card Meta. Why: X and similar sites pick a preview layout from this tag. How: This asks for the large image layout, which suits the 1,200x630 card. -->
+		<meta name='twitter:description' content='Meet Lilah and Norah, two Bernese Mountain Dog sisters sharing bear hugs, silly videos, and fluffy fun. Come follow along!' /> <!-- What: Twitter Description Meta. Why: The preview shows a summary. How: This matches the home page's description. -->
+		<meta name='twitter:image'       content='https://theberniebears.dog/og-image.jpg' />                                                                               <!-- What: Twitter Image Meta. Why: The preview shows an image. How: This points at the same card as Open Graph. -->
+		<meta name='twitter:image:alt'   content='Cartoon logo of Lilah and Norah, The Bernie Bears, above the words Follow Lilah &amp; Norah.' />                          <!-- What: Twitter Image Alt Meta. Why: Screen readers read the preview image's description. How: This describes the card. -->
+		<meta name='twitter:site'        content='@theberniebears' /> <!-- What: Twitter Site Meta. Why: A preview on X can name the account behind the site, and the brand has a real one. How: This names @theberniebears, the X profile the Social Links page lists. -->
+		<meta name='twitter:title'       content='Lilah &amp; Norah, the Bernie Bears | Bernese Mountain Dogs' />                                                           <!-- What: Twitter Title Meta. Why: The preview shows a title. How: This matches the home page's title. -->
 
 		<!-- #endregion Twitter Card -->
 
@@ -175,7 +177,7 @@
 	<body><!-- What: Document Body Element. Why: This holds the site's mount point and the entry script. How: The mount point stays empty until React renders the site into it. -->
 
 
-		<div id='appMouDiv'></div><!-- What: App Mount Div Element. Why: React needs one element to render the site into. How: main.tsx renders the app into this id. -->
+		<div id='appMouDiv'></div><!-- What: App Mount Div Element. Why: React needs one element to render the site into. How: main.tsx renders the app into this ID. -->
 
 		<script
 			src='/src/main.tsx'

@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import react from '@vitejs/plugin-react'; // What: React. Why: Vite needs the React plugin to compile JSX. How: This is called first in the plugins array.
+import reaPluFun from '@vitejs/plugin-react'; // What: React Plugin Function. Why: Vite needs the React plugin to compile JSX. How: This is called first in the plugins array.
 
 
 import { defineConfig } from 'vite'; // What: Define Config. Why: Vite's config helper passes the config through with its types. How: This wraps VIT_CON_OBJ.
@@ -25,9 +25,8 @@ import type { Plugin } from 'vite'; // What: Plugin. Why: The page minifier is a
  * production builds only, compacts index.html, which Vite processes but never
  * minifies, so the page's comments, indentation, and JSON-LD whitespace stay
  * out of what visitors download. Every other setting stays at Vite's default,
- * including copying the files in public/ (the favicon set, the touch icon, the
- * preview card, robots.txt, the sitemap, and Netlify's _redirects and
- * _headers) into the build untouched.
+ * including copying the files in public/ (such as Netlify's _headers) into the
+ * build untouched.
  *
  * Sections:
  *  - Helpers
@@ -106,13 +105,12 @@ const minHtmFun = () : Plugin => ({ // What: Minify HTML Function. Why: index.ht
 // #endregion minHtmFun
 
 
-
 const VIT_CON_OBJ = defineConfig({ // What: Vite Config Object. Why: Vite reads its whole configuration from this file's default export. How: This builds the config, including the minHtmFun plugin above.
 
 
 	build   : { assetsInlineLimit : 0 },                            // What: Build. Why: The Content-Security-Policy in public/_headers allows images and fonts only from the site's own origin, which rules out the data URLs Vite would otherwise inline small files as. How: This sets the inline limit to zero, so every imported asset ships as its own fingerprinted file.
-	css     : { modules : { localsConvention : 'camelCaseOnly' } }, // What: CSS. Why: CSS modules expose each class name as a camelCase key only, so a modifier class such as .butBasAnc--primary is read as cssModObj.butBasAncPrimary, per the CSS modules rules. How: This sets the locals convention.
-	plugins : [ react(), minHtmFun() ]                              // What: Plugins. Why: Vite builds the site through these plugins, in this order. How: This lists React and the page minifier.
+	css     : { modules : { localsConvention : 'camelCaseOnly' } }, // What: CSS. Why: CSS modules expose each class name as a camelCase key only, so a modifier class such as `.butBasAnc--primary` is read as cssModObj.butBasAncPrimary, per the CSS modules rules. How: This sets the locals convention.
+	plugins : [ reaPluFun(), minHtmFun() ]                          // What: Plugins. Why: Vite builds the site through these plugins, in this order. How: This lists React and the page minifier.
 
 
 });

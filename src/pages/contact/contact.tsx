@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import cssModObj from './contact.module.css'; // What: CSS Module Object. Why: The Contact page is styled in its own module, whose class names Vite hashes. How: Every element reads its class from this object.
+import cssModObj from './contact.module.css'; // What: CSS Module Object. Why: The Contact page is styled in its own module, whose class names Vite hashes. How: Each class an element carries is read from this object.
 
 // #endregion Imports
 
@@ -13,11 +13,11 @@ import cssModObj from './contact.module.css'; // What: CSS Module Object. Why: T
  * contact.tsx = Contact
  *
  * @summary
- * The Contact page: a header, the ways to get in touch beside a panel that
- * sends visitors to the contact form on The Bernie Bears' main site or to
- * their email, and a closing band. The site exists to promote the brand and
- * its main site, so messages go through the main site's own contact page
- * rather than a form here.
+ * The Contact page: a header, the ways to get in touch beside a panel (stacked
+ * above it at 768px wide and below) that sends visitors to the contact form on
+ * The Bernie Bears' main site or to their email, and a closing band. The site
+ * exists to promote the brand and its main site, so messages go through the
+ * main site's own contact page rather than a form here.
  *
  * Sections:
  *  - Components
@@ -97,7 +97,7 @@ function ConPagCom () : React.JSX.Element {
 				<section className={ cssModObj.conDetSec }>{ /* What: Contact Details Section Element. Why: The ways to get in touch are the page's content. How: This holds the info column and the panel. */ }
 
 
-					<div className={ cssModObj.conGriDiv }>{ /* What: Contact Grid Div Element. Why: The info and the panel sit side by side on wide screens. How: This lays out the two columns. */ }
+					<div className={ cssModObj.conGriDiv }>{ /* What: Contact Grid Div Element. Why: The info and the panel sit side by side above 768px wide, stacking at 768px and below. How: This lays out the two columns. */ }
 
 
 						<div>{ /* What: Contact Info Div Element. Why: The ways to get in touch read as one column. How: This stacks the heading, a line, the cards, and the note, with no styling of its own. */ }
@@ -128,7 +128,7 @@ function ConPagCom () : React.JSX.Element {
 									<div>{ /* What: Info Text Div Element. Why: The card's label and value read as one block. How: This stacks them, with no styling of its own. */ }
 
 
-										<strong className={ cssModObj.infLabStr }>Email Us</strong>{ /* What: Info Label Strong Element. Why: The card names what it offers. How: This shows the label above the value. */ }
+										<strong className={ cssModObj.infLabStr }>Email Us</strong>{ /* What: Info Label Strong Element. Why: The card names what it offers. How: This shows "Email Us" above the value. */ }
 
 										<p className={ cssModObj.infValPar }>{ /* What: Info Value Paragraph Element. Why: The address should be one tap away. How: This holds the address as a link that starts an email. */ }
 
@@ -162,7 +162,7 @@ function ConPagCom () : React.JSX.Element {
 									<div>{ /* What: Info Text Div Element. Why: The card's label and value read as one block. How: This stacks them, with no styling of its own. */ }
 
 
-										<strong className={ cssModObj.infLabStr }>Social Media</strong>{ /* What: Info Label Strong Element. Why: The card names what it offers. How: This shows the label above the value. */ }
+										<strong className={ cssModObj.infLabStr }>Social Media</strong>{ /* What: Info Label Strong Element. Why: The card names what it offers. How: This shows "Social Media" above the value. */ }
 
 										<p className={ cssModObj.infValPar }>DM us on Facebook or Instagram</p>{ /* What: Info Value Paragraph Element. Why: The card says where to send a message. How: This names the two platforms. */ }
 
@@ -185,7 +185,7 @@ function ConPagCom () : React.JSX.Element {
 									<div>{ /* What: Info Text Div Element. Why: The card's label and value read as one block. How: This stacks them, with no styling of its own. */ }
 
 
-										<strong className={ cssModObj.infLabStr }>Response Time</strong>{ /* What: Info Label Strong Element. Why: The card names what it offers. How: This shows the label above the value. */ }
+										<strong className={ cssModObj.infLabStr }>Response Time</strong>{ /* What: Info Label Strong Element. Why: The card names what it offers. How: This shows "Response Time" above the value. */ }
 
 										<p className={ cssModObj.infValPar }>Usually within 1–2 business days</p>{ /* What: Info Value Paragraph Element. Why: The card sets expectations. How: This gives the usual reply time. */ }
 
@@ -232,7 +232,7 @@ function ConPagCom () : React.JSX.Element {
 								The Bernie Bears' main site. You can also email us any time.
 							</p>
 
-							<div className={ cssModObj.panActDiv }>{ /* What: Panel Actions Div Element. Why: The two ways to send a message sit together. How: This sets the buttons in a row that wraps on narrow screens. */ }
+							<div className={ cssModObj.panActDiv }>{ /* What: Panel Actions Div Element. Why: The two ways to send a message sit together. How: This sets the buttons in a row, wrapping onto two lines at about 815px to 769px wide and at about 450px and below. */ }
 
 
 								<a
@@ -241,13 +241,13 @@ function ConPagCom () : React.JSX.Element {
 									href='https://theberniebears.com/pages/contact'
 									rel='noopener'
 									target='_blank'
-								>Open Contact Form</a>{ /* What: Button Base Anchor Element. Why: The main site's contact form is where messages belong. How: This opens its Contact Us page in a new tab, without giving it access to this one, while still letting its analytics see the visit came from this site. */ }
+								>Open Contact Form</a>{ /* What: Button Base Anchor Primary Element. Why: The main site's contact form is where messages belong. How: This opens its Contact Us page in a new tab, without giving it access to this one, while still letting its analytics see the visit came from this site. */ }
 
 								<a
 									className={` ${ cssModObj.butBasAnc }   ${ cssModObj.butBasAncOutline } `}
 
 									href='mailto:hello@theberniebears.com'
-								>Email Us</a>{ /* What: Button Base Anchor Element. Why: Some visitors would rather send an email. How: This starts one to the family's address. */ }
+								>Email Us</a>{ /* What: Button Base Anchor Outline Element. Why: Some visitors would rather send an email. How: This starts one to the family's address. */ }
 
 
 							</div>
@@ -303,7 +303,7 @@ function ConPagCom () : React.JSX.Element {
 
 // #region Exports
 
-export { ConPagCom }; // What: Named Exports. Why: The Contact route renders this page. How: This exports ConPagCom.
+export { ConPagCom }; // What: Named Export. Why: The Contact route renders this page. How: This exports ConPagCom.
 
 // #endregion Exports
 

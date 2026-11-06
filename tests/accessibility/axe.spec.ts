@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import AxeBuilder from '@axe-core/playwright'; // What: Axe Builder. Why: axe-core finds the mechanical accessibility failures, such as low contrast, missing names, and misused ARIA. How: This runs its scan against a Playwright page.
+import AxeBuiCla from '@axe-core/playwright'; // What: Axe Builder Class. Why: axe-core finds the mechanical accessibility failures, such as low contrast. How: This runs its scan against a Playwright page.
 
 
 import { expect      } from '@playwright/test';     // What: Expect. Why: A state passes only with no violations. How: This asserts the violation list is empty.
@@ -43,7 +43,7 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The scan helpe
 
 // #region Types
 
-type AxeResTyp = Awaited< ReturnType< AxeBuilder[ 'analyze' ] > >; // What: Axe Results Type. Why: The scan's findings are summarized for the report, and axe-core itself is only a dependency of the Playwright integration. How: This reads the type from what AxeBuilder's analyze resolves to.
+type AxeResTyp = Awaited< ReturnType< AxeBuiCla[ 'analyze' ] > >; // What: Axe Results Type. Why: The scan's findings are summarized for the report, and axe-core itself is only a dependency of the Playwright integration. How: This reads the type from what AxeBuiCla's analyze resolves to.
 
 // #endregion Types
 
@@ -51,7 +51,7 @@ type AxeResTyp = Awaited< ReturnType< AxeBuilder[ 'analyze' ] > >; // What: Axe 
 
 // #region Constants
 
-const AXE_TAG_ARR = [ 'wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice' ]; // What: Axe Tag Array. Why: The site targets WCAG 2.2 AA, which includes every earlier A and AA rule, and axe's best practices catch common problems WCAG doesn't name. How: This limits the scan to those rule sets.
+const AXE_TAG_ARR = [ 'wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice' ]; // What: Axe Tag Array. Why: The site targets WCAG 2.2 AA, which builds on the earlier A and AA rules, and axe's best practices catch common problems WCAG doesn't name. How: This limits the scan to those rule sets.
 
 // #endregion Constants
 
@@ -66,9 +66,9 @@ const AXE_TAG_ARR = [ 'wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'b
  *
  * @summary
  * Runs axe-core on the page as it stands, limited to the WCAG and
- * best-practice rule sets, and returns its full results. The caller opens
- * and settles the state first, so the scan never sees a page mid-load or
- * mid-animation.
+ * best-practice rule sets, and returns its full results. It expects the state
+ * already open and settled, so the scan sees the page loaded and its entrance
+ * animations done.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -86,7 +86,7 @@ const AXE_TAG_ARR = [ 'wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'b
 async function scaStaFun ( curPagObj : Page ) : Promise< AxeResTyp > {
 
 
-	return new AxeBuilder( { page : curPagObj } ).withTags( AXE_TAG_ARR ).analyze(); // What: Axe Scan Return. Why: The scan's results decide the test. How: This builds an axe run for the page, limits it to the chosen rule sets, and runs it.
+	return new AxeBuiCla( { page : curPagObj } ).withTags( AXE_TAG_ARR ).analyze(); // What: Axe Scan Return. Why: The scan's results decide the test. How: This builds an axe run for the page, limits it to the chosen rule sets, and runs it.
 
 
 }
@@ -102,9 +102,9 @@ async function scaStaFun ( curPagObj : Page ) : Promise< AxeResTyp > {
  *
  * @summary
  * Turns one list of axe results into one readable line per rule: the rule's
- * id, its impact where axe gives one, its help text, and the selectors of
- * the elements it flagged. Used for both the violations, which fail the
- * test, and the incomplete results, which are only reported.
+ * ID, its impact where axe gives one, its help text, and the selectors of the
+ * elements it flagged. It reads the violations and the incomplete results
+ * alike.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -123,7 +123,7 @@ async function scaStaFun ( curPagObj : Page ) : Promise< AxeResTyp > {
 function sumResFun ( resLisArr : AxeResTyp[ 'violations' ] ) : string[] {
 
 
-	return resLisArr.map( ( resCurObj ) => `${ resCurObj.id } (${ resCurObj.impact || 'no impact' }): ${ resCurObj.help } at ${ resCurObj.nodes.map( ( nodCurObj ) => nodCurObj.target.join( ' ' ) ).join( ', ' ) }` ); // What: Result Lines Return. Why: A failure should say what broke and where without opening the report. How: This joins each rule's id, impact, help, and flagged selectors into one line.
+	return resLisArr.map( ( resCurObj ) => `${ resCurObj.id } (${ resCurObj.impact || 'no impact' }): ${ resCurObj.help } at ${ resCurObj.nodes.map( ( nodCurObj ) => nodCurObj.target.join( ' ' ) ).join( ', ' ) }` ); // What: Result Lines Return. Why: A failure should say what broke and where without opening the report. How: This joins each rule's ID, impact, help, and flagged selectors into one line.
 
 
 }
