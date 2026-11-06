@@ -62,9 +62,10 @@ const TAB_MAX_NUM = 80;                                    // What: Tab Maximum 
  * @summary
  * Reads the page's accessibility tree, the same tree a screen reader reads,
  * and returns a problem for every link or button with no name, and for every
- * one whose name contains a decorative glyph that should have been hidden.
- * Elements hidden from assistive technology don't appear in the tree, so the
- * decorative elements hidden from it are never counted.
+ * one whose name contains a decorative glyph that should have been hidden, or
+ * a single problem when it finds no link or button at all. Elements hidden
+ * from assistive technology don't appear in the tree, so the decorative
+ * elements hidden from it are never counted.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -101,6 +102,10 @@ async function namProFun ( curPagObj : Page ) : Promise< string[] > {
 
 
 	}
+
+
+
+	if ( !conLinArr.length ) proLisArr.push( 'no link or button found' ); // What: Empty Tree Guard. Why: A check that finds no controls would pass without judging any name. How: This records a problem when the tree holds no link or button lines.
 
 
 
@@ -344,11 +349,12 @@ function stoInfFun () : StoInfTyp | null {
  * stop, or stays on the page's last reachable stop after a press, which is how
  * Firefox leaves its last stop; focus held on any earlier stop counts as a
  * keyboard trap, and so does a walk that hasn't ended within TAB_MAX_NUM
- * presses. A plain Tab skips links in WebKit, so the walk presses Alt+Tab
- * there. It expects reduced motion already requested, so the page jumps to
- * each stop instead of gliding and focus styles appear at once, and each press
- * waits for scrolling to settle, so every stop is measured where and how it
- * ends up.
+ * presses, while a walk whose first press reaches no stop is reported as
+ * reaching none. A plain Tab skips links in WebKit, so the walk presses
+ * Alt+Tab there. It expects reduced motion already requested, so the page
+ * jumps to each stop instead of gliding and focus styles appear at once, and
+ * each press waits for scrolling to settle, so every stop is measured where
+ * and how it ends up.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -389,7 +395,7 @@ async function keyProFun ( curPagObj : Page, engNamStr : string ) : Promise< str
 		const walEndBoo = !stoInfObj || stoInfObj.desStr === firStoStr || ( stoInfObj.ordNum === preOrdNum && stoInfObj.lasBoo ); // What: Walk Ended Boolean. Why: Focus leaving the page, coming back around, or staying put on the page's last stop means every stop was visited. How: This checks each in turn, the later two only once a stop exists, so the chain stays inline. // What: Firefox Walk End Note. Why: Firefox moves focus out to its own interface after the last stop but still reports that stop as focused. How: Focus staying on the same stop after a press is read as the walk leaving the page.
 
 
-		if ( walEndBoo ) return proLisArr; // What: Walk End Guard. Why: A walk that reaches its end has gathered the problems found at the stops it visited. How: This returns them, ending the walk.
+		if ( walEndBoo ) return firStoStr ? proLisArr : [ ...proLisArr, 'Tab never reached a stop' ]; // What: Walk End Guard. Why: A walk that reaches its end has gathered the problems found at the stops it visited, and one that ends before any stop has checked nothing. How: This returns them, ending the walk, with a problem added when no first stop was recorded.
 
 
 
