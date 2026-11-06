@@ -341,15 +341,15 @@ async function conLisFun ( curPagObj : Page, conSelStr : string ) : Promise< Ele
  * until it's focused, the skip link, is focused so it slides in before it's
  * hovered. Each is read at rest with the pointer away, again while hovered,
  * and again while the mouse button is held on it, then blurred with the
- * pointer away and read once more while focused the way a keyboard focuses
- * it, every look read once its transition has settled. A control that looks
- * the same at rest and hovered, hovered and pressed, or unfocused and focused
- * is a problem. Normally every probed property that changes on hover, press,
- * or focus, on the control or anything inside it, has to be eased by a
- * transition ({@link snaProFun}), the focus ring's outline included; under
- * reduced motion none of them may ease ({@link movProFun}), and every one of
- * the control's own transition durations must be zero. The caller blocks real
- * clicks first, so releasing the mouse does nothing.
+ * pointer away and read once more while focused the way a keyboard focuses it,
+ * every look read once its transition has settled. A control that looks the
+ * same at rest and hovered, hovered and pressed, or unfocused and focused is a
+ * problem. Normally every probed property that changes on hover, press, or
+ * focus, on the control or anything inside it, has to be eased by a transition
+ * ({@link snaProFun}), the focus ring's outline included; under reduced motion
+ * none of them may ease ({@link movProFun}), and every one of the control's
+ * own transition durations must be zero. It expects real clicks already
+ * blocked, so releasing the mouse does nothing.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
