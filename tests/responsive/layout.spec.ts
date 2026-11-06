@@ -45,9 +45,10 @@ import { test      } from '@playwright/test';     // What: Test. Why: Each page 
 type LayCasTyp = { // What: Layout Case Type. Why: Each test measures one page in one state. How: This names the case, its path, and whether it opens the menu.
 
 
-	ideStr : string,  // What: Identifier String. Why: Each test names the case it measures. How: This becomes part of the test title.
-	menBoo : boolean, // What: Menu Boolean. Why: The open menu is measured as its own case. How: This is true when the case opens it.
-	patStr : string   // What: Path String. Why: Each case opens one route. How: This is the path loaded from the dev server.
+	griArr : string[], // What: Grid Array. Why: The row check should prove it found the grids a case holds, not pass on finding none. How: This lists the first class of each grid of cards or tiles the case should show.
+	ideStr : string,   // What: Identifier String. Why: Each test names the case it measures. How: This becomes part of the test title.
+	menBoo : boolean,  // What: Menu Boolean. Why: The open menu is measured as its own case. How: This is true when the case opens it.
+	patStr : string    // What: Path String. Why: Each case opens one route. How: This is the path loaded from the dev server.
 
 
 };
@@ -55,12 +56,12 @@ type LayCasTyp = { // What: Layout Case Type. Why: Each test measures one page i
 const LAY_CAS_ARR : LayCasTyp[] = [ // What: Layout Case Array. Why: Every page and the open menu are measured the same way. How: Each row names a case, its path, and whether it opens the menu.
 
 
-	{ ideStr : 'home',      menBoo : false, patStr : '/'        }, // What: Home Case. Why: The home page holds the hero, the feature cards, and the call to action. How: This measures it as loaded.
-	{ ideStr : 'about',     menBoo : false, patStr : '/about'   }, // What: About Case. Why: The About page holds the story, the photo cards, and the fun facts grid. How: This measures it as loaded.
-	{ ideStr : 'links',     menBoo : false, patStr : '/links'   }, // What: Links Case. Why: The Social Links page holds every platform card. How: This measures it as loaded.
-	{ ideStr : 'contact',   menBoo : false, patStr : '/contact' }, // What: Contact Case. Why: The Contact page holds the ways to get in touch and the contact panel. How: This measures it as loaded.
-	{ ideStr : 'not-found', menBoo : false, patStr : '/missing' }, // What: Not Found Case. Why: Every unknown address lands on the 404 page. How: This measures an address the site doesn't have, closed.
-	{ ideStr : 'menu',      menBoo : true,  patStr : '/'        }  // What: Menu Case. Why: The open menu stacks the page links its own way. How: This measures the home page with the menu open.
+	{ griArr : [ 'feaGriDiv' ],              ideStr : 'home',      menBoo : false, patStr : '/'        }, // What: Home Case. Why: The home page holds the hero, the feature cards, and the call to action. How: This measures it as loaded.
+	{ griArr : [ 'facGriDiv', 'sisGriDiv' ], ideStr : 'about',     menBoo : false, patStr : '/about'   }, // What: About Case. Why: The About page holds the story, the photo cards, and the fun facts grid. How: This measures it as loaded.
+	{ griArr : [],                           ideStr : 'links',     menBoo : false, patStr : '/links'   }, // What: Links Case. Why: The Social Links page holds every platform card. How: This measures it as loaded.
+	{ griArr : [],                           ideStr : 'contact',   menBoo : false, patStr : '/contact' }, // What: Contact Case. Why: The Contact page holds the ways to get in touch and the contact panel. How: This measures it as loaded.
+	{ griArr : [],                           ideStr : 'not-found', menBoo : false, patStr : '/missing' }, // What: Not Found Case. Why: Every unknown address lands on the 404 page. How: This measures an address the site doesn't have, closed.
+	{ griArr : [ 'menSocDiv' ],              ideStr : 'menu',      menBoo : true,  patStr : '/'        }  // What: Menu Case. Why: The open menu stacks the page links its own way. How: This measures the home page with the menu open.
 
 
 ];
@@ -278,26 +279,30 @@ function layProFun () : string[] {
  * class, laid out as a grid or as a wrapping row of equal-width tiles (chips
  * sized to their own text are left out); its rows are its children grouped by
  * their rounded top edge. Each problem names the grid by its tag and the
- * readable part of its first class, and lists its row counts. Passed to
- * Playwright's evaluate, so it can't read anything from this file.
+ * readable part of its first class, and lists its row counts. An expected
+ * grid the page doesn't show is a problem too, so the check can't pass by
+ * finding no grids at all. Passed to Playwright's evaluate, so it can't read
+ * anything from this file.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
- * @param void - This function takes no parameters.
+ * @param expGriArr - Expected Grid Array: The first class of each grid the
+ *                    page should show.
  *
- * @returns Every uneven grid found.
+ * @returns Every uneven grid found, and every expected grid missing.
  * @see {@link proLisArr}
  *
  * @example
  * ```ts
- * page.evaluate(rowProFun) // => [ 'div.facGriDiv has uneven rows of 4, 2' ]
+ * page.evaluate(rowProFun, ['facGriDiv']) // => [ 'facGriDiv was not found' ]
  * ```
  *
 */
 
-function rowProFun () : string[] {
+function rowProFun ( expGriArr : string[] ) : string[] {
 
 
+	const fouGriArr : string[] = []; // What: Found Grid Array. Why: Each expected grid has to be found for the check to mean anything. How: This collects the description of every grid of cards the loop checks.
 	const proLisArr : string[] = []; // What: Problem List Array. Why: Every uneven grid should be reported, not just the first. How: This collects them.
 
 
@@ -331,11 +336,19 @@ function rowProFun () : string[] {
 		if ( new Set( rowCouArr ).size > 1 ) proLisArr.push( `${ griDesStr } has uneven rows of ${ rowCouArr.join( ', ' ) }` ); // What: Uneven Row Check. Why: A short last row breaks the grid's rhythm, which the card grid rule forbids. How: This reports the grid when its rows hold different counts.
 
 
+
+		fouGriArr.push( griDesStr ); // What: Found Grid Push. Why: The expected grids are checked against what the loop found. How: This records the grid's description.
+
+
 	}
 
 
 
-	return proLisArr; // What: Problem List Return. Why: The test prints whatever was found. How: This hands back every uneven grid.
+	for ( const expCurStr of expGriArr ) if ( !fouGriArr.some( ( fouCurStr ) => fouCurStr.endsWith( `.${ expCurStr }` ) ) ) proLisArr.push( `${ expCurStr } was not found` ); // What: Expected Grid Loop. Why: A grid the case should show that the loop never found would leave its rows unchecked. How: This records each expected grid no description ends with.
+
+
+
+	return proLisArr; // What: Problem List Return. Why: The test prints whatever was found. How: This hands back every uneven grid and every missing one.
 
 
 }
@@ -415,7 +428,7 @@ for ( const layCasObj of LAY_CAS_ARR ) { // What: Row Case Loop. Why: Every page
 
 			await curPagObj.setViewportSize( { height : 900, width : widCurNum } ); // What: Viewport Resize Call. Why: The grids reflow at each width. How: This sets the width under test.
 
-			proLisArr.push( ...( await curPagObj.evaluate( rowProFun ) ).map( ( proCurStr ) => `${ proCurStr } at ${ widCurNum }px` ) ); // What: Width Problems Push. Why: A problem should say where it happened. How: This adds each uneven grid with its width.
+			proLisArr.push( ...( await curPagObj.evaluate( rowProFun, layCasObj.griArr ) ).map( ( proCurStr ) => `${ proCurStr } at ${ widCurNum }px` ) ); // What: Width Problems Push. Why: A problem should say where it happened. How: This adds each uneven grid with its width.
 
 
 		}
