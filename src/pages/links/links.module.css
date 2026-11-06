@@ -126,7 +126,7 @@
 
 /* #region socCarAnc */
 
-.socCarAnc { /* What: Social Card Anchor. Why: Each card takes the visitor to one of the girls' pages, or the brand's shop. How: This sets the icon, words, and arrow in a row on a white card with a cream border, rounded corners, and a soft shadow, clipping its stripe to the corners and easing every change. */
+.socCarAnc { /* What: Social Card Anchor. Why: Each card takes the visitor to one of the girls' pages, or the brand's shop. How: This sets the icon, words, and arrow in a row on a white card with a cream border, rounded corners, and a soft shadow, clipping its stripe to the corners and easing every change, its deeper shadow leaving on the accelerating curve. */
 
 
 	align-items     : center;
@@ -141,7 +141,7 @@
 	padding         : var( --spa-ver-p02 ) clamp( var( --spa-hor-p01 ), var( --hor-rhy-014 ), var( --spa-hor-p03 ) ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 1 ~= 19.304px, Horizontal Rhythm 14 ~= 49.625px @ 1,920px width, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	position        : relative;
 	text-decoration : none;
-	transition      : border-color var( --dur-tra-p02 ) var( --mot-sta-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-sta-eas ), transform var( --dur-tra-p02 ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Duration Transition Base Plus 1 ~= 209.1ms */ /* What: Animated Elevation Shadow. Why: A compositor version would fade in a shadow held by a pseudo-element, but the card clips its contents to its rounded corners for its colored stripe, so that shadow would be clipped away. How: The shadow eases on the card itself, which only repaints the one card. */
+	transition      : border-color var( --dur-tra-p02 ) var( --mot-sta-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-acc-eas ), transform var( --dur-tra-p02 ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ), Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Duration Transition Base Plus 1 ~= 209.1ms */ /* What: Animated Elevation Shadow. Why: A compositor version would fade in a shadow held by a pseudo-element, but the card clips its contents to its rounded corners for its colored stripe, so that shadow would be clipped away. How: The shadow eases on the card itself, which only repaints the one card. */
 
 
 }
@@ -159,12 +159,13 @@
 
 
 }
-.socCarAnc:hover { /* What: Hovered Social Card Anchor. Why: A card should respond to the pointer. How: This nudges it about 3.5px right, deepens its shadow, and turns its border light lavender. */
+.socCarAnc:hover { /* What: Hovered Social Card Anchor. Why: A card should respond to the pointer. How: This nudges it about 3.5px right, deepens its shadow, and turns its border light lavender, the shadow arriving on the decelerating curve. */
 
 
 	border-color : var( --acc-lig-col );               /* Accent Light Color = #ceb1dd */
 	box-shadow   : var( --ele-lar-sha );               /* Elevation Large Shadow ~= 0 19.304px 44.876px -14.572px plus 0 6.268px 14.572px -3.572px */
 	transform    : translateX( var( --spa-hor-m05 ) ); /* Spacing Horizontal Base Minus 5 ~= 3.572px */
+	transition   : border-color var( --dur-tra-p02 ) var( --mot-sta-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-dec-eas ), transform var( --dur-tra-p02 ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Duration Transition Base Plus 1 ~= 209.1ms */
 
 
 }
@@ -192,7 +193,8 @@
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Social Card Anchor. Why: Someone who asked for less motion shouldn't see the cards slide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.socCarAnc { /* What: Motionless Social Card Anchor. Why: The hover look should simply switch. How: This turns the transition off. */
+	.socCarAnc,
+	.socCarAnc:hover { /* What: Motionless Social Card Anchor. Why: The hover look should simply switch. How: This turns the transition off. */
 
 
 		transition : none;

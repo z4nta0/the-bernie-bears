@@ -457,7 +457,7 @@
 
 }
 
-.navLinAnc { /* What: Navigation Link Anchor. Why: Each link names a page as a soft pill. How: This sets it bold in the body font with pill padding and rounding, easing its hover, press, and focus, and the fill, border, and shadow it takes as the current page's link. */
+.navLinAnc { /* What: Navigation Link Anchor. Why: Each link names a page as a soft pill. How: This sets it bold in the body font with pill padding and rounding, easing its hover, press, and focus, and the fill, border, and shadow it takes as the current page's link, the border and shadow leaving on the accelerating curve. */
 
 
 	border        : var( --bor-wid-bas ) solid transparent;    /* Border Width Base ~= 1.160px */ /* What: Resting Clear Border. Why: The current page's link draws a cream border, which would otherwise appear at once and grow the pill, and should fade in rather than ease from the text color. How: Every link keeps a border of the same width, clear at rest, so becoming current only changes its color, which the transition eases. */
@@ -468,7 +468,7 @@
 	font-weight   : 600;
 	padding       : var( --spa-ver-m02 ) var( --spa-hor-bas ); /* Spacing Vertical Base Minus 2 ~= 8.304px, Spacing Horizontal Base ~= 14.572px */
 	position      : relative;
-	transition    : background var( --dur-tra-p01 ) var( --mot-sta-eas ), border-color var( --dur-tra-p01 ) var( --mot-sta-eas ), box-shadow var( --dur-tra-p01 ) var( --mot-sta-eas ), color var( --dur-tra-p01 ) var( --mot-sta-eas ), opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */ /* What: Shadow Ease Note. Why: The current link's small shadow arrives only as the page changes, too rarely for a cross-faded shadow layer to pay off. How: This eases the shadow itself, a paint property, over the same short duration as the fill. */
+	transition    : background var( --dur-tra-p01 ) var( --mot-sta-eas ), border-color var( --dur-tra-p01 ) var( --mot-acc-eas ), box-shadow var( --dur-tra-p01 ) var( --mot-acc-eas ), color var( --dur-tra-p01 ) var( --mot-sta-eas ), opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ), Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */ /* What: Shadow Ease Note. Why: The current link's small shadow arrives only as the page changes, too rarely for a cross-faded shadow layer to pay off. How: This eases the shadow itself, a paint property, over the same short duration as the fill. */
 
 
 }
@@ -480,13 +480,14 @@
 
 
 }
-.navLinAnc[aria-current='page'] { /* What: Current Navigation Link Anchor. Why: The link for the page being shown should stand out. How: This fills the pill cream with dark text, a darker cream border, and a soft shadow, winning over the hover look by coming after it. */
+.navLinAnc[aria-current='page'] { /* What: Current Navigation Link Anchor. Why: The link for the page being shown should stand out. How: This fills the pill cream with dark text, a darker cream border, and a soft shadow, winning over the hover look by coming after it, the border and shadow arriving on the decelerating curve. */
 
 
 	background   : var( --bac-hig-col ); /* Background Highlight Color = #ececb6 */
 	border-color : var( --bor-str-col ); /* Border Strong Color = #d6d69a */
 	box-shadow   : var( --ele-sma-sha ); /* Elevation Small Shadow ~= 0 1.160px 2.035px */
 	color        : var( --tex-mai-col ); /* Text Main Color = #2c2c2c */
+	transition   : background var( --dur-tra-p01 ) var( --mot-sta-eas ), border-color var( --dur-tra-p01 ) var( --mot-dec-eas ), box-shadow var( --dur-tra-p01 ) var( --mot-dec-eas ), color var( --dur-tra-p01 ) var( --mot-sta-eas ), opacity var( --dur-tra-p01 ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -522,7 +523,8 @@
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Navigation Link Anchor. Why: Someone who asked for less motion shouldn't see the links animate. How: This applies only when the reduced-motion preference is set. */
 
 
-	.navLinAnc { /* What: Motionless Navigation Link Anchor. Why: The hover and current looks should simply switch. How: This turns the transition off. */
+	.navLinAnc,
+	.navLinAnc[aria-current='page'] { /* What: Motionless Navigation Link Anchor. Why: The hover and current looks should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
