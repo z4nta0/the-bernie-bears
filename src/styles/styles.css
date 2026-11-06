@@ -477,7 +477,7 @@ h4 { /* What: Headings. Why: The page's headings share the script font. How: Thi
 
 	color       : var( --acc-dar-col ); /* Accent Dark Color ~= #7e5b93 */
 	font-family : var( --fon-fam-bra ); /* Font Family Brand = 'Dancing Script', cursive */
-	line-height : var( --ver-rhy-bas ); /* Vertical Rhythm Base ~= 1.325 */
+	line-height : var( --ver-rhy-m01 ); /* Vertical Rhythm Base Minus 1 = 1 */
 
 
 }
