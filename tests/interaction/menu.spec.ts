@@ -168,7 +168,7 @@ test( 'the open menu offers the six profiles with the scrim over the page', asyn
 
 	await menOpeFun( curPagObj ); // What: Menu Open Call. Why: The checks need the menu open. How: This opens and checks it.
 
-	await expect( curPagObj.getByRole( 'navigation', { name : 'Main' } ).locator( 'a[target="_blank"][aria-label]' ) ).toHaveCount( 6 ); // What: Profile Links Assertion. Why: Each of the six profiles should be one tap away. How: This counts the menu's named links that open in a new tab.
+	await expect( curPagObj.getByRole( 'navigation', { name : 'Main' } ).locator( 'a[target="_blank"][aria-label]' ) ).toHaveCount( 6 ); // What: Profile Links Assertion. Why: Each of the six profiles should be one tap away. How: This counts the menu's links that carry an aria-label and open in a new tab, which are the six profile icons.
 
 	expect( await curPagObj.evaluate( () => document.elementFromPoint( 200, 800 )?.getAttribute( 'aria-hidden' ) ) ).toBe( 'true' ); // What: Scrim On Top Assertion. Why: A tap on the page below the menu has to land on the scrim, not the page. How: This checks the element at a point below the panel is the scrim, the one element there hidden from screen readers.
 

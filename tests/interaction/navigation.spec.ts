@@ -449,7 +449,7 @@ test( 'malformed saved scroll positions are ignored rather than breaking the pag
 
 	curPagObj.on( 'pageerror', ( errCurObj ) => errLisArr.push( errCurObj.message ) ); // What: Page Error Listener. Why: Errors thrown in the page don't fail the test by themselves. How: This records each one's message.
 
-	await curPagObj.addInitScript( () => sessionStorage.setItem( 'scroll-positions', 'null' ) ); // What: Malformed Storage Plant. Why: A stored null parses as JSON, so only the hook's own checks can reject it. How: This writes it before the site's scripts run.
+	await curPagObj.addInitScript( () => sessionStorage.setItem( 'scroll-positions', 'null' ) ); // What: Malformed Storage Plant. Why: A stored null parses as JSON, so it gets past the parse and reaches the hook's handling of the value. How: This writes it before the site's scripts run.
 
 	await curPagObj.setViewportSize( { height : 844, width : 390 } ); // What: Phone Viewport Call. Why: Home's stacked phone layout scrolls well past 1,500px. How: This sizes the page before it loads.
 
