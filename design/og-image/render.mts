@@ -5,7 +5,7 @@
 
 import { chromium      } from '@playwright/test'; // What: Chromium. Why: The card is captured in a real browser so it uses the site's own fonts and tokens. How: This launches Playwright's Chromium.
 import { fileURLToPath } from 'node:url';         // What: File URL To Path. Why: The output path is resolved from this script's own location. How: This turns a file URL into a path.
-import { statSync      } from 'node:fs';          // What: Stat Sync. Why: The finished image has to stay under the size WhatsApp accepts. How: This reads its size in bytes.
+import { statSync      } from 'node:fs';          // What: Stat Sync. Why: The finished image has to stay under the preview size limit. How: This reads its size in bytes.
 
 // #endregion Imports
 
@@ -20,8 +20,8 @@ import { statSync      } from 'node:fs';          // What: Stat Sync. Why: The f
  * in its white card over the page headers' gradient, above "Follow Lilah &
  * Norah" in the script font. It opens the card in Chromium at exactly
  * 1,200x630, waits for the site's fonts and the logo, captures it as a JPEG at
- * quality 90, and fails if the file reaches 300 KB, the most WhatsApp will
- * show. The card is a JPEG because as a PNG its gradient and cartoon came to
+ * quality 90, and fails if the file reaches 300 KB, the preview size limit.
+ * The card is a JPEG because as a PNG its gradient and cartoon came to
  * 337 KB, over that limit, while the JPEG is about 45 KB at quality 90, and
  * quality 85 left faint ringing around the script letters at 3x zoom. Run it
  * with npm run og-image whenever the card or the site's look changes, and give
@@ -40,7 +40,7 @@ import { statSync      } from 'node:fs';          // What: Stat Sync. Why: The f
 // #region Constants
 
 const CAR_URL_STR = new URL( './card.html', import.meta.url ).href;                           // What: Card URL String. Why: The card loads its fonts and logo by paths relative to itself. How: This is card.html's own file URL.
-const MAX_BYT_NUM = 300 * 1024;                                                               // What: Maximum Bytes Number. Why: WhatsApp drops a preview image of 300 KB or more. How: This is the limit the finished file is checked against.
+const MAX_BYT_NUM = 300 * 1024;                                                               // What: Maximum Bytes Number. Why: The social preview rules keep the card under 300 KB. How: This is the limit the finished file is checked against.
 const OUT_PAT_STR = fileURLToPath( new URL( '../../public/og-image.jpg', import.meta.url ) ); // What: Output Path String. Why: The tags point at the card in public/. How: This resolves that path from this script's folder.
 
 // #endregion Constants
@@ -62,10 +62,10 @@ await carPagObj.screenshot( { path : OUT_PAT_STR, quality : 90, type : 'jpeg' } 
 await broInsObj.close(); // What: Browser Close Call. Why: The script should exit once the card is saved. How: This shuts Chromium down.
 
 
-const outBytNum = statSync( OUT_PAT_STR ).size; // What: Output Bytes Number. Why: The card has to stay under WhatsApp's limit. How: This reads the saved file's size.
+const outBytNum = statSync( OUT_PAT_STR ).size; // What: Output Bytes Number. Why: The card has to stay under the preview size limit. How: This reads the saved file's size.
 
 
-if ( outBytNum >= MAX_BYT_NUM ) throw new Error( `og-image.jpg is ${ outBytNum.toLocaleString( 'en-US' ) } bytes, at or over the ${ MAX_BYT_NUM.toLocaleString( 'en-US' ) } byte limit.` ); // What: Size Guard. Why: An image over the limit would quietly drop out of WhatsApp previews. How: This fails the run with the file's size.
+if ( outBytNum >= MAX_BYT_NUM ) throw new Error( `og-image.jpg is ${ outBytNum.toLocaleString( 'en-US' ) } bytes, at or over the ${ MAX_BYT_NUM.toLocaleString( 'en-US' ) } byte limit.` ); // What: Size Guard. Why: An image over the limit shouldn't ship as the preview card. How: This fails the run with the file's size.
 
 
 
