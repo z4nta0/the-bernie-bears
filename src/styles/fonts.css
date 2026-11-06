@@ -9,10 +9,10 @@
  * name, and a few accents, and Nunito for the body text, so a visit makes no
  * requests to a third party. Each file is the same latin subset Google served
  * for the weights the site asked for, which covers every character the copy
- * uses except its emoji, arrows, and symbols; none of Google's files for
- * either family has those, so they render from a fallback font. Both files are
- * variable across weights, read from each font's fvar table, so each face
- * declares its whole range: Dancing Script 400 to 700 and Nunito 200 to 1000.
+ * uses except its emoji, arrows, and symbols, which render from a fallback
+ * font. Both files are variable across weights, read from each font's fvar
+ * table, so each face declares its whole range: Dancing Script 400 to 700 and
+ * Nunito 200 to 1000.
  * The site loads no italic file for either family, so the italic captions are
  * slanted from the upright Nunito by the browser. The files live in
  * src/assets/fonts/ and are pulled in through url(), so Vite fingerprints
