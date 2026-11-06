@@ -299,7 +299,7 @@ test( 'moving between pages swaps their head tags', async ( { page : curPagObj }
 
 
 
-test( 'the structured data points to the main site and matches the pages', async ( { page : curPagObj } ) => { // What: Structured Data Test. Why: Search engines may show the brand's details from the JSON-LD, so every claim has to be true and shown on the site, and the brand's home has to be the main site. How: This reads the JSON-LD and compares it with the Social Links page's profile links and the Contact page's email.
+test( 'the structured data points to the main site and matches the pages', async ( { page : curPagObj } ) => { // What: Structured Data Test. Why: Search engines may show the brand's details from the JSON-LD, so the profiles and email it gives have to be ones the site shows, and the brand's home has to be the main site. How: This reads the JSON-LD and compares it with the Social Links page's profile links and the Contact page's email.
 
 
 	await curPagObj.goto( '/links' ); // What: Social Links Open Call. Why: The profiles in the data have to be the ones this page links to. How: This loads it.

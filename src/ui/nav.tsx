@@ -133,10 +133,10 @@ function modCliFun ( cliEveObj : React.MouseEvent< HTMLAnchorElement > ) : boole
  * landmark labelled "Main", so screen readers can tell it from the footer's.
  *
  * At those widths the open menu also shows extras for following the girls,
- * such as a row of their six profiles, arriving as one block after the last
- * link has faded in, over a scrim that dims the page. While it's open the rest
- * of the page is inert, so keyboard and screen reader users stay in the bar;
- * tapping the scrim closes it, Escape closes it and returns focus to the
+ * such as a row of their six profiles, arriving as one block a stagger step
+ * after the last link, over a scrim that dims the page. While it's open the
+ * rest of the page is inert, so keyboard and screen reader users stay in the
+ * bar; tapping the scrim closes it, Escape closes it and returns focus to the
  * toggle, and a screen widened past the phone layout closes it, since its
  * toggle is gone.
  *
