@@ -67,7 +67,7 @@ import { usePagDesFun } from '../../ui/page-description.ts'; // What: Use Page D
  *
 */
 
-const SOC_LIN_ARR = [ // What: Social Link Array. Why: The page lists every place to follow the girls, plus the brand's shop. How: Each row holds a card's colors, text, icon, and address, rendered in this order.
+const SOC_LIN_ARR = [ // What: Social Link Array. Why: The page lists the girls' social profiles, plus the brand's shop. How: Each row holds a card's colors, text, icon, and address, rendered in this order.
 
 
 	...SOC_PRO_ARR, // What: Profile Rows Spread. Why: The six profile cards come first, in the shared order. How: This spreads the rows ui/social-profiles.ts holds.

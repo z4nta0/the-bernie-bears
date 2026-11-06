@@ -16,12 +16,13 @@ import { Link } from 'react-router'; // What: Link. Why: The page's buttons move
  * not-found.tsx = Not Found
  *
  * @summary
- * The page every unknown address lands on: the gradient header the other
- * pages open with, holding a heading saying the page wasn't found, a short
- * line in the girls' voice, and two ways onward, home and the Social Links
- * page, the site's main action. It names itself in the tab and asks search
- * engines not to index it, since the host answers every unknown address with
- * this page and a 200 status. The bar and footer around it come from app.tsx.
+ * The page every unknown address lands on: the gradient header the About,
+ * Social Links, and Contact pages open with, holding a heading saying the page
+ * wasn't found, a short line in the girls' voice, and two ways onward, home
+ * and the Social Links page, the site's main action. It names itself in the
+ * tab and asks search engines not to index it, since the host answers every
+ * unknown address with this page and a 200 status. The bar and footer around
+ * it come from app.tsx.
  *
  * Sections:
  *  - Components
