@@ -13,9 +13,10 @@
  * either family has those, so they render from a fallback font. Both files are
  * variable across weights, read from each font's fvar table, so each face
  * declares its whole range: Dancing Script 400 to 700 and Nunito 200 to 1000.
- * Neither family has an italic file, so the italic captions are slanted from
- * the upright Nunito by the browser. The files live in src/assets/fonts/ and
- * are pulled in through url(), so Vite fingerprints them.
+ * The site loads no italic file for either family, so the italic captions are
+ * slanted from the upright Nunito by the browser. The files live in
+ * src/assets/fonts/ and are pulled in through url(), so Vite fingerprints
+ * them.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *

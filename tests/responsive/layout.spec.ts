@@ -21,12 +21,13 @@ import { test      } from '@playwright/test';     // What: Test. Why: Each page 
  * past either edge of the screen (unless an ancestor clips it on purpose),
  * text spilling out of its own box, or two controls a visitor can reach
  * overlapping each other. The widths run from 320px, WCAG's narrowest reflow
- * width, to 1,920px, and include each of the site's breakpoints and the pixel
- * past it, where a layout switches and is most likely to crowd. Each page's
- * grids of cards are also checked for rows that don't all hold the same
- * number of cards, at those widths and either side of each width where a grid
- * changes its column count. Pages open under reduced motion, which changes
- * nothing about the layout but skips the wait for entrance animations.
+ * width, to 1,920px, and include the site's 640px, 768px, and 880px
+ * breakpoints and the pixel past each, where a layout switches and is most
+ * likely to crowd. Each page's grids of cards are also checked for rows that
+ * don't all hold the same number of cards, at those widths and either side of
+ * each width where a grid changes its column count. Pages open under reduced
+ * motion, which changes nothing about the layout but skips the wait for
+ * entrance animations.
  *
  * Sections:
  *  - Constants
