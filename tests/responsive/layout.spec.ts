@@ -42,7 +42,7 @@ import { test      } from '@playwright/test';     // What: Test. Why: Each page 
 
 // #region Constants
 
-type LayCasTyp = { // What: Layout Case Type. Why: Each test measures one page in one state. How: This names the case, its path, and whether it opens the menu.
+type LayCasTyp = { // What: Layout Case Type. Why: Each test measures one page in one state. How: This names the case, its path, whether it opens the menu, and the grids it should show.
 
 
 	griArr : string[], // What: Grid Array. Why: The row check should prove it found the grids a case holds, not pass on finding none. How: This lists the first class of each grid of cards or tiles the case should show.
@@ -53,7 +53,7 @@ type LayCasTyp = { // What: Layout Case Type. Why: Each test measures one page i
 
 };
 
-const LAY_CAS_ARR : LayCasTyp[] = [ // What: Layout Case Array. Why: Every page and the open menu are measured the same way. How: Each row names a case, its path, and whether it opens the menu.
+const LAY_CAS_ARR : LayCasTyp[] = [ // What: Layout Case Array. Why: Every page and the open menu are measured the same way. How: Each row names a case, its path, whether it opens the menu, and the grids it should show.
 
 
 	{ griArr : [ 'feaGriDiv' ],              ideStr : 'home',      menBoo : false, patStr : '/'        }, // What: Home Case. Why: The home page holds the hero, the feature cards, and the call to action. How: This measures it as loaded.
