@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import cssModObj from './home.module.css';    // What: CSS Module Object. Why: The home page is styled in its own module, whose class names Vite hashes. How: Every element reads its class from this object.
+import cssModObj from './home.module.css';    // What: CSS Module Object. Why: The home page is styled in its own module, whose class names Vite hashes. How: Each class an element carries is read from this object.
 import porWebUrl from './portrait-both.webp'; // What: Portrait WebP URL. Why: The hero shows Lilah and Norah together, and Vite fingerprints and checks an imported image. How: This imports the photo's built URL for the hero's img.
 
 

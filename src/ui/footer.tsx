@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import cssModObj from './footer.module.css'; // What: CSS Module Object. Why: The footer is styled in its own module, whose class names Vite hashes. How: Every element reads its class from this object.
+import cssModObj from './footer.module.css'; // What: CSS Module Object. Why: The footer is styled in its own module, whose class names Vite hashes. How: Each class an element carries is read from this object.
 
 
 import { Link } from 'react-router'; // What: Link. Why: The footer's page links move between routes without a full page load. How: This renders each one as a router link.
@@ -114,7 +114,7 @@ function SitFooCom () : React.JSX.Element {
 						className={ cssModObj.fooLinAnc }
 
 						to='/links'
-					>Social Links</Link>{ /* What: Footer Link Anchor Link. Why: The footer links to every place to follow the girls. How: This routes to the Social Links page. */ }
+					>Social Links</Link>{ /* What: Footer Link Anchor Link. Why: The footer links to the page listing the places to follow the girls. How: This routes to the Social Links page. */ }
 
 
 

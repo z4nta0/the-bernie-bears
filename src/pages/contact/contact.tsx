@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import cssModObj from './contact.module.css'; // What: CSS Module Object. Why: The Contact page is styled in its own module, whose class names Vite hashes. How: Every element reads its class from this object.
+import cssModObj from './contact.module.css'; // What: CSS Module Object. Why: The Contact page is styled in its own module, whose class names Vite hashes. How: Each class an element carries is read from this object.
 
 // #endregion Imports
 

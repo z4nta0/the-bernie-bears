@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import cssModObj from './about.module.css'; // What: CSS Module Object. Why: The About page is styled in its own module, whose class names Vite hashes. How: Every element reads its class from this object.
+import cssModObj from './about.module.css'; // What: CSS Module Object. Why: The About page is styled in its own module, whose class names Vite hashes. How: Each class an element carries is read from this object.
 import groWebUrl from './group-photo.webp'; // What: Group WebP URL. Why: The story sits beside a cartoon of both girls, and Vite fingerprints and checks an imported image. How: This imports the picture's built URL for the story's img.
 import lilWebUrl from './lilah.webp';       // What: Lilah WebP URL. Why: Lilah's card shows her photo, and Vite fingerprints and checks an imported image. How: This imports the photo's built URL for her card's img.
 import norWebUrl from './norah.webp';       // What: Norah WebP URL. Why: Norah's card shows her photo, and Vite fingerprints and checks an imported image. How: This imports the photo's built URL for her card's img.

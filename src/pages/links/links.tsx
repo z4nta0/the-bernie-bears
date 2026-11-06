@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import cssModObj from './links.module.css'; // What: CSS Module Object. Why: The Social Links page is styled in its own module, whose class names Vite hashes. How: Every element reads its class from this object.
+import cssModObj from './links.module.css'; // What: CSS Module Object. Why: The Social Links page is styled in its own module, whose class names Vite hashes. How: Each class an element carries is read from this object.
 
 
 import { SOC_PRO_ARR  } from '../../ui/social-profiles.ts';  // What: Social Profile Array. Why: The page's first six cards are the girls' profiles, which the phone menu lists too. How: This imports the shared rows.

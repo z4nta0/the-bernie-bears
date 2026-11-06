@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import cssModObj from './not-found.module.css'; // What: CSS Module Object. Why: The 404 page is styled in its own module, whose class names Vite hashes. How: Every element reads its class from this object.
+import cssModObj from './not-found.module.css'; // What: CSS Module Object. Why: The 404 page is styled in its own module, whose class names Vite hashes. How: Each class an element carries is read from this object.
 
 
 import { Link } from 'react-router'; // What: Link. Why: The page's buttons move to other pages without a full page load. How: This renders each one as a router link.
@@ -82,7 +82,7 @@ function NotFouCom () : React.JSX.Element {
 			<div className={ cssModObj.pagEntDiv }>{ /* What: Page Enter Div Element. Why: The 404 page fades up into place like every other page. How: This holds the page's header. */ }
 
 
-				<section className={ cssModObj.pagHeaSec }>{ /* What: Page Header Section Element. Why: The page opens with its title like every other page. How: This holds the heading, a short line, and the ways onward. */ }
+				<section className={ cssModObj.pagHeaSec }>{ /* What: Page Header Section Element. Why: The page opens with its title, as the About, Social Links, and Contact pages do. How: This holds the heading, a short line, and the ways onward. */ }
 
 
 					<h1 className={ cssModObj.pagTitHea }>Page Not Found</h1>{ /* What: Page Title Heading Element. Why: The heading says the address doesn't lead anywhere. How: This names what happened. */ }
