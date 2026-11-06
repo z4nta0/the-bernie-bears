@@ -522,7 +522,7 @@ for ( const { labStr : pagLabStr, patStr : rouPatStr } of [ ...PAG_LIN_ARR, { la
 
 		await expect( curPagObj.getByRole( 'heading', { level : 1 } ) ).toBeVisible(); // What: Heading Assertion. Why: The first Tab should land once the page has rendered. How: This waits for the page's heading.
 
-		await curPagObj.keyboard.press( broNamStr === 'webkit' ? 'Alt+Tab' : 'Tab' ); // What: First Tab Call. Why: The skip link should be the page's first stop. How: This presses Tab, or Alt+Tab in WebKit, whose plain Tab skips links the way Safari does by default.
+		await curPagObj.keyboard.press( broNamStr === 'webkit' ? 'Alt+Tab' : 'Tab' ); // What: First Tab Call. Why: The skip link should be the page's first stop. How: This presses Tab, or Alt+Tab in WebKit, whose plain Tab skips links.
 
 		await expect( skiLinLoc ).toBeFocused();    // What: Skip Focus Assertion. Why: The skip link has to be the page's first stop. How: This checks it holds focus after the first Tab.
 		await expect( skiLinLoc ).toBeInViewport(); // What: Skip Shown Assertion. Why: A focused link waiting above the screen would leave a keyboard user lost. How: This checks it has slid into view.

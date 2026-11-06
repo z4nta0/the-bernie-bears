@@ -7,10 +7,11 @@
  * @summary
  * Styles for LinPagCom: the page fading up into place, the gradient header,
  * the intro line, the column of social and shop cards, each with a stripe,
- * icon tile, handle, and arrow in its brand color, and each sliding right on
- * hover, and the closing band. Each card draws a cream border that turns light
- * lavender on hover. The band's column takes the page's shared container
- * values. Every animation and transition is off under reduced motion.
+ * handle, and arrow in its brand color and an icon tile tinted from it, and
+ * each sliding right on hover, and the closing band. Each card draws a cream
+ * border that turns light lavender on hover. The band's column takes the
+ * page's shared container values. Every animation and transition is off under
+ * reduced motion.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *

@@ -344,11 +344,11 @@ function stoInfFun () : StoInfTyp | null {
  * stop, or stays on the page's last reachable stop after a press, which is how
  * Firefox leaves its last stop; focus held on any earlier stop counts as a
  * keyboard trap, and so does a walk that hasn't ended within TAB_MAX_NUM
- * presses. WebKit only tabs to links with Alt held, the way Safari does by
- * default, so the walk presses Alt+Tab there. It expects reduced motion
- * already requested, so the page jumps to each stop instead of gliding and
- * focus styles appear at once, and each press waits for scrolling to settle,
- * so every stop is measured where and how it ends up.
+ * presses. A plain Tab skips links in WebKit, so the walk presses Alt+Tab
+ * there. It expects reduced motion already requested, so the page jumps to
+ * each stop instead of gliding and focus styles appear at once, and each press
+ * waits for scrolling to settle, so every stop is measured where and how it
+ * ends up.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -369,7 +369,7 @@ async function keyProFun ( curPagObj : Page, engNamStr : string ) : Promise< str
 
 
 	const posTabNum = await curPagObj.locator( '[tabindex]' ).evaluateAll( ( tabEleArr ) => tabEleArr.filter( ( tabCurEle ) => Number( tabCurEle.getAttribute( 'tabindex' ) ) > 0 ).length ); // What: Positive Tab-Index Number. Why: A positive tabindex pulls an element ahead of the document order. How: This counts every element carrying one.
-	const tabKeyStr = engNamStr === 'webkit' ? 'Alt+Tab' : 'Tab'; // What: Tab Key String. Why: WebKit skips links on a plain Tab, the way Safari does by default. How: This picks Alt+Tab there and Tab everywhere else.
+	const tabKeyStr = engNamStr === 'webkit' ? 'Alt+Tab' : 'Tab'; // What: Tab Key String. Why: WebKit skips links on a plain Tab. How: This picks Alt+Tab there and Tab everywhere else.
 
 	const proLisArr : string[] = posTabNum ? [ `${ posTabNum } element(s) use a positive tabindex` ] : []; // What: Problem List Array. Why: Every problem should be reported, not just the first. How: This starts with the positive tabindex count, when there is one, and collects the rest during the walk.
 
