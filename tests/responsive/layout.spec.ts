@@ -123,10 +123,10 @@ function layProFun () : string[] {
 
 
 
-	const cliAncFun = ( cliCurEle : Element ) => { // What: Clipped Ancestor Function. Why: An element an ancestor clips can reach past the edge without showing there. How: This reports whether any ancestor hides, clips, or scrolls its overflow.
+	const cliAncFun = ( cliCurEle : Element ) => { // What: Clipped Ancestor Function. Why: An element an ancestor clips can reach past the edge without showing there. How: This reports whether any ancestor inside the body hides, clips, or scrolls its overflow, leaving out the body's own sideways clip, which would otherwise hide every spill from the check.
 
 
-		for ( let ancCurEle = cliCurEle.parentElement; ancCurEle; ancCurEle = ancCurEle.parentElement ) if ( getComputedStyle( ancCurEle ).overflowX !== 'visible' ) return true; // What: Ancestor Overflow Loop. Why: Any clipping ancestor contains the element. How: This walks up the tree and returns as soon as one doesn't show its overflow.
+		for ( let ancCurEle = cliCurEle.parentElement; ancCurEle && ancCurEle !== document.body; ancCurEle = ancCurEle.parentElement ) if ( getComputedStyle( ancCurEle ).overflowX !== 'visible' ) return true; // What: Ancestor Overflow Loop. Why: Any clipping ancestor inside the body contains the element. How: This walks up the tree to the body and returns as soon as one doesn't show its overflow.
 
 
 

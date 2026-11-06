@@ -608,7 +608,9 @@ bar's paw) when waiting for the page to settle.
   tiles and any wrapping row of equal tiles, hold the same number in every
   row, at those widths and either side of each width where a grid changes
   its column count (about 380px, 431px, 569px, 890px, and 1,137px, and the
-  menu icons' 360px).
+  menu icons' 360px). Since 2026-11-06 its edge check looks for a clipping
+  ancestor only inside the body, since the body's own sideways clip
+  (`overflow-x : hidden`) had hidden every spill from it.
 - `npm run test:interaction`: checks how the site behaves when used.
   `navigation.spec.ts` (added 2026-10-11) follows each page's footer link from
   the bottom of the page, the current page's own bar link, and a phone menu
