@@ -651,3 +651,18 @@ bar's paw) when waiting for the page to settle.
   user-level testing rule; its baselines were refreshed for the switch on
   2026-11-03, the change being text antialiasing and soft shadows only.
 - `npm test` runs every suite.
+
+## Found for later
+Noted 2026-11-10, from tech-geek-dev's audit, to fix the next time this
+project is worked on.
+- **Guard the hash decode in the scroll hook**: `ui/scroll-top.ts`'s
+  `useScrTopFun` passes the address's hash straight to `decodeURIComponent`
+  (`ancTarEle`), which throws a `URIError` on a malformed escape. Every
+  navigation whose address carries a hash reaches that line, a fresh load
+  included, so a visitor who types or follows `/#%E0` gets the error inside a
+  layout effect, which takes down the whole app. The fix is the shared design
+  package's form (techgeek-design's `ui/scroll-top.ts`): decode inside `try {
+  ... }`, set the ID to an empty string in the `catch`, and look up the
+  element only when an ID is left, so a malformed hash opens the page at its
+  top. A navigation spec test that loads `/#%E0` and checks the page still
+  renders would prove it.
